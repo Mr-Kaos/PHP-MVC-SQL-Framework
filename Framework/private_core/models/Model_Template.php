@@ -5,14 +5,15 @@ namespace Application\Model;
 require_once("Model.php");
 
 /**
- * The Model object for the Sample page.
- * This class is a demo on how to use a model object with a table in the connected database.
+ * The Model object for the <INSERT PAGE NAME HERE> page.
+ * <Describe what the model is used for here>
+ * 
  * Its other MVC components are:
- * - View: Sample.php
- * - Controller: {@see \Application\Controller\Controller_Sample}
+ * - View: <Specify associated view here>
+ * - Model: <Specify associated controller here>
  *
- * When {@see Model_Sample::fetchModelData()} is called (on page load), it retrieves the respective data for the page the client is on and returns it to the controller.
- * When {@see Model_Sample::sendModelData()} is called, it would typically send data to the database. However, with the table used in this sample, that is not possible. See {@see Model_Sample::sendModelData()} for specifics.
+ * When {@see Model_Sample::fetchModelData()} is called (on GET request), it retrieves the respective data for the page the client requested and returns it to the controller.
+ * When {@see Model_Sample::sendModelData()} is called (on POST request), the data sent is validated and sent to the database. Upon completion it directs the user to a URI specified.
  */
 class Model_Sample extends Model
 {
@@ -25,26 +26,26 @@ class Model_Sample extends Model
 	 */
 	public function __construct(string $mode, array $data = null)
 	{
+		// Specify the base schema and table for this model.
 		parent::__construct('INFORMATION_SCHEMA', 'SCHEMATA', $mode);
-		$this->setTableIdentifiers("Sample", 'User', 'vw_Sample', 'window.location=\'Sample/edit?User=$id\'', ["id" => "UserID"]);
+
+		/** If the views need a table iFrame to display records from a database table in, specify them using {@see Model::setTableIdentifiers()} */
+		$this->setTableIdentifiers("Template", 'INFORMATION_SCHEMA', 'SCHEMATA');
 	}
 
 	/**
 	 * Fetches data from the database to update the model.
 	 * Takes a request received from the view through to the controller to specify what data is required.
-	 * 
-	 * This override retrieves the structure of usp1101 to create the form for creating a new customer.
 	 */
 	public function fetchModelData(array $request = null, string $submitMode = null): array
 	{
 		$modelData = array();
-		$modelData["Name"] = $this->getDBObjectName();
 
 		if ($this->getDBConnection()) {
 			switch ($this->getMode()) {
-				case "otherPage":
-					$modelData[DATA_FORM_EDIT] = $this->queryDatabaseObject($this->dbSchema, $this->dbObject, null, "WHERE SCHEMA_NAME LIKE 'db_%'");
+					// Add cases for each page in the view that requires specific data to be retrieved for it.
 				default:
+					// logic specific to "default" page goes here
 					break;
 			}
 		}
@@ -55,13 +56,14 @@ class Model_Sample extends Model
 	/**
 	 * Submits the given data to the database via the stored procedures below and returns an navigational request for use in a location header.
 	 * 
-	 * The model can send data to the database from three methods:
-	 * - Create:
-	 * 	If creating a new record, all data related to an address except an SampleId should be given. Executes usp_name.
+	 * The model can send data to the database from these modes:
+	 * - Insert:
+	 * 	<Add any notes regarding the insert mode>
 	 * - Update:
-	 *	If updating an existing address record, an SampleId should be given.
+	 * 	<Add any notes regarding the update mode>
 	 * - Delete:
-	 * 	If deleting an existing record, an SampleId and "Delete" value should be given.
+	 * 	<Add any notes regarding the delete mode>
+	 * - <Add any other modes here>
 	 */
 	public function sendModelData(array $data, string $submitMode = null): array | null
 	{
