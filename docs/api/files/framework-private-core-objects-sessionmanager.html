@@ -60,11 +60,11 @@
 </h4>
     <ul class="phpdocumentor-list">
                     <li>
-                <a href="namespaces/application-router.html" class="">Router</a>
+                <a href="namespaces/application-controller.html" class="">Controller</a>
                 
             </li>
                     <li>
-                <a href="namespaces/application-controller.html" class="">Controller</a>
+                <a href="namespaces/application-model.html" class="">Model</a>
                 
             </li>
                     <li>
@@ -72,7 +72,7 @@
                 
             </li>
                     <li>
-                <a href="namespaces/application-model.html" class="">Model</a>
+                <a href="namespaces/application-sessionmanagement.html" class="">SessionManagement</a>
                 
             </li>
             </ul>
@@ -104,7 +104,7 @@
     </ul>
 
     <article class="phpdocumentor-element -file">
-        <h2 class="phpdocumentor-content__title">DataValidators.php</h2>
+        <h2 class="phpdocumentor-content__title">SessionManager.php</h2>
 
         
     <section class="phpdocumentor-description"></section>
@@ -121,17 +121,110 @@
 
 <dl class="phpdocumentor-table-of-contents">
     
+            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Application-SessionManagement-SessionManager.html"><abbr title="\Application\SessionManagement\SessionManager">SessionManager</abbr></a></dt>
+        <dd></dd>
     
-            <dt class="phpdocumentor-table-of-contents__entry -trait"><a href="classes/Application-Controller-DataValidator.html"><abbr title="\Application\Controller\DataValidator">DataValidator</abbr></a></dt>
-        <dd>This trait class contains special data validation functions that are used in specific controllers.</dd>
     
     </dl>
 
 
+<h3 id="toc">
+    Table of Contents
+    <a href="#toc" class="headerlink"><i class="fas fa-link"></i></a>
+</h3>
+
+<dl class="phpdocumentor-table-of-contents">
+            <dt class="phpdocumentor-table-of-contents__entry -constant -public">
+    <a href="namespaces/application-sessionmanagement.html#constant_LOGIN_REDIRECT">LOGIN_REDIRECT</a>
+    <span>
+        &nbsp;= &#039;LOGIN_REDIRECT&#039;                            </span>
+</dt>
+<dd>Authenticate.php.inc
+NOTICE: THIS FILE MUST BE INCLUDED ON EVERY PAGE IN THE WEB APPLICATION!</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -constant -public">
+    <a href="namespaces/application-sessionmanagement.html#constant_USER_INFO">USER_INFO</a>
+    <span>
+        &nbsp;= &#039;USER_INFO&#039;                            </span>
+</dt>
+<dd></dd>
+
+                    </dl>
 
 
 
         
+    <section class="phpdocumentor-constants">
+        <h3 class="phpdocumentor-elements__header" id="constants">
+            Constants
+            <a href="files/framework-private-core-objects-sessionmanager.html#constants" class="headerlink"><i class="fas fa-link"></i></a>
+        </h3>
+                    <article class="phpdocumentor-element -constant -public ">
+    <h4 class="phpdocumentor-element__name" id="constant_LOGIN_REDIRECT">
+        LOGIN_REDIRECT
+        <a href="namespaces/application-sessionmanagement.html#constant_LOGIN_REDIRECT" class="headerlink"><i class="fas fa-link"></i></a>
+    </h4>
+
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/objects/SessionManager.php"><a href="files/framework-private-core-objects-sessionmanager.html"><abbr title="Framework/private_core/objects/SessionManager.php">SessionManager.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">17</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Authenticate.php.inc
+NOTICE: THIS FILE MUST BE INCLUDED ON EVERY PAGE IN THE WEB APPLICATION!</p>
+
+    <code class="phpdocumentor-signature phpdocumentor-code ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__type">mixed</span>
+    <span class="phpdocumentor-signature__name">LOGIN_REDIRECT</span>
+    = <span class="phpdocumentor-signature__default-value">&#039;LOGIN_REDIRECT&#039;</span>
+</code>
+
+
+        <section class="phpdocumentor-description"><p>This script handles user authentication to the server.
+It will initialise a session if one is has not already been created and will check if the client's
+session variables are valid or not when accessing a web page.</p>
+<p>DEBUGGING NOTE: If sessions are ending too early, check the php.ini file for the session.gc_maxlifetime value, and ensure it is set to a value greater (in seconds) than the value of the EXPIRE_TIME_LIMIT constant.
+This is because the garbage collector may be deleting the session files before the session is supposed to end.</p>
+</section>
+
+        <section class="phpdocumentor-description"></section>
+
+    
+
+</article>
+                    <article class="phpdocumentor-element -constant -public ">
+    <h4 class="phpdocumentor-element__name" id="constant_USER_INFO">
+        USER_INFO
+        <a href="namespaces/application-sessionmanagement.html#constant_USER_INFO" class="headerlink"><i class="fas fa-link"></i></a>
+    </h4>
+
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/objects/SessionManager.php"><a href="files/framework-private-core-objects-sessionmanager.html"><abbr title="Framework/private_core/objects/SessionManager.php">SessionManager.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">18</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-signature phpdocumentor-code ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__type">mixed</span>
+    <span class="phpdocumentor-signature__name">USER_INFO</span>
+    = <span class="phpdocumentor-signature__default-value">&#039;USER_INFO&#039;</span>
+</code>
+
+
+        <section class="phpdocumentor-description"></section>
+
+        <section class="phpdocumentor-description"></section>
+
+    
+
+</article>
+            </section>
 
         
     </article>
@@ -148,7 +241,7 @@
 </section>
             </div>
         </div>
-        <a href="files/website-private-core-controllers-datavalidators.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
+        <a href="files/framework-private-core-objects-sessionmanager.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
 
     </main>
 

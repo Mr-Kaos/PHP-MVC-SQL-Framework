@@ -60,11 +60,11 @@
 </h4>
     <ul class="phpdocumentor-list">
                     <li>
-                <a href="namespaces/application-router.html" class="">Router</a>
+                <a href="namespaces/application-controller.html" class="">Controller</a>
                 
             </li>
                     <li>
-                <a href="namespaces/application-controller.html" class="">Controller</a>
+                <a href="namespaces/application-model.html" class="">Model</a>
                 
             </li>
                     <li>
@@ -72,7 +72,7 @@
                 
             </li>
                     <li>
-                <a href="namespaces/application-model.html" class="">Model</a>
+                <a href="namespaces/application-sessionmanagement.html" class="">SessionManagement</a>
                 
             </li>
             </ul>
@@ -114,16 +114,18 @@
 </h3>
 
 <dl class="phpdocumentor-table-of-contents">
-            <dt class="phpdocumentor-table-of-contents__entry -interface"><a href="classes/Application-PageBuilder-SQLToWebPage.html"><abbr title="\Application\PageBuilder\SQLToWebPage">SQLToWebPage</abbr></a></dt>
-        <dd></dd>
     
             <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Application-Controller-Controller.html"><abbr title="\Application\Controller\Controller">Controller</abbr></a></dt>
         <dd>Base Controller class</dd>
-            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Application-Controller-Controller-Customers.html"><abbr title="\Application\Controller\Controller_Customers">Controller_Customers</abbr></a></dt>
-        <dd>The Controller object for the Customer page.</dd>
-            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Application-PageBuilder-PageElementBuilder.html"><abbr title="\Application\PageBuilder\PageElementBuilder">PageElementBuilder</abbr></a></dt>
-        <dd>This script defines the class used to build pages dynamically.</dd>
+            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Application-Controller-Controller-Table.html"><abbr title="\Application\Controller\Controller_Table">Controller_Table</abbr></a></dt>
+        <dd>The Controller object for the Table page.</dd>
+            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Application-Model-Model.html"><abbr title="\Application\Model\Model">Model</abbr></a></dt>
+        <dd>The base model class.</dd>
+            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Application-Model-Model-Table.html"><abbr title="\Application\Model\Model_Table">Model_Table</abbr></a></dt>
+        <dd>The Model object for the Table page.</dd>
             <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Application-PageBuilder-FormBuilder.html"><abbr title="\Application\PageBuilder\FormBuilder">FormBuilder</abbr></a></dt>
+        <dd>This script defines the class used to build pages dynamically.</dd>
+            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Application-PageBuilder-PageElementBuilder.html"><abbr title="\Application\PageBuilder\PageElementBuilder">PageElementBuilder</abbr></a></dt>
         <dd>This script defines the class used to build pages dynamically.</dd>
             <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Application-PageBuilder-TableBuilder.html"><abbr title="\Application\PageBuilder\TableBuilder">TableBuilder</abbr></a></dt>
         <dd>This script defines the class used to build html tables for pages dynamically.</dd>
@@ -144,11 +146,9 @@ It contains methods to alter a table cell&#039;s value or appearance if a certai
         <dd>This object defines a row within a table.</dd>
             <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Application-PageBuilder-RowCell.html"><abbr title="\Application\PageBuilder\RowCell">RowCell</abbr></a></dt>
         <dd>This class defines a singular cell of a row within a table.</dd>
-            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Application-Model-Model.html"><abbr title="\Application\Model\Model">Model</abbr></a></dt>
-        <dd>The base model class.</dd>
-            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Application-Model-Model-Customer.html"><abbr title="\Application\Model\Model_Customer">Model_Customer</abbr></a></dt>
-        <dd>The Model object for the Customer page.</dd>
-            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Application-Router-Route.html"><abbr title="\Application\Router\Route">Route</abbr></a></dt>
+            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Application-Router.html"><abbr title="\Application\Router">Router</abbr></a></dt>
+        <dd>Router Class</dd>
+            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Application-SessionManagement-SessionManager.html"><abbr title="\Application\SessionManagement\SessionManager">SessionManager</abbr></a></dt>
         <dd></dd>
     
             <dt class="phpdocumentor-table-of-contents__entry -trait"><a href="classes/Application-Controller-DataValidator.html"><abbr title="\Application\Controller\DataValidator">DataValidator</abbr></a></dt>
@@ -166,7 +166,14 @@ It contains methods to alter a table cell&#039;s value or appearance if a certai
 
 <dl class="phpdocumentor-table-of-contents">
             <dt class="phpdocumentor-table-of-contents__entry -constant -public">
-    <a href="namespaces/application-router.html#constant_CONTROLLER_DIR">CONTROLLER_DIR</a>
+    <a href="namespaces/application.html#constant_APP_NAME">APP_NAME</a>
+    <span>
+        &nbsp;= &#039;/FrameworkDemo/&#039;                            </span>
+</dt>
+<dd></dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -constant -public">
+    <a href="namespaces/application.html#constant_CONTROLLER_DIR">CONTROLLER_DIR</a>
     <span>
         &nbsp;= &#039;private_core/controllers/&#039;                            </span>
 </dt>
@@ -208,41 +215,6 @@ It contains methods to alter a table cell&#039;s value or appearance if a certai
 <dd>Array key used to store modal data references. Used in the fetchModelData function.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -constant -public">
-    <a href="namespaces/application-router.html#constant_DISPLAY_DEFAULT">DISPLAY_DEFAULT</a>
-    <span>
-        &nbsp;= &quot;default&quot;                            </span>
-</dt>
-<dd></dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -constant -public">
-    <a href="namespaces/application-router.html#constant_DISPLAY_FOOTER">DISPLAY_FOOTER</a>
-    <span>
-        &nbsp;= &quot;footerOnly&quot;                            </span>
-</dt>
-<dd></dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -constant -public">
-    <a href="namespaces/application-router.html#constant_DISPLAY_NAV">DISPLAY_NAV</a>
-    <span>
-        &nbsp;= &quot;navOnly&quot;                            </span>
-</dt>
-<dd></dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -constant -public">
-    <a href="namespaces/application-router.html#constant_DISPLAY_NONE">DISPLAY_NONE</a>
-    <span>
-        &nbsp;= &quot;none&quot;                            </span>
-</dt>
-<dd></dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -constant -public">
-    <a href="namespaces/application-router.html#constant_DOMAIN">DOMAIN</a>
-    <span>
-        &nbsp;= &#039;/Application/&#039;                            </span>
-</dt>
-<dd></dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -constant -public">
     <a href="namespaces/application-controller.html#constant_DROPDOWN_NEW_OPTION">DROPDOWN_NEW_OPTION</a>
     <span>
         &nbsp;= &quot;modal_new&quot;                            </span>
@@ -264,7 +236,15 @@ It contains methods to alter a table cell&#039;s value or appearance if a certai
 <dd></dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -constant -public">
-    <a href="namespaces/application-router.html#constant_MODAL_MESSAGE">MODAL_MESSAGE</a>
+    <a href="namespaces/application-sessionmanagement.html#constant_LOGIN_REDIRECT">LOGIN_REDIRECT</a>
+    <span>
+        &nbsp;= &#039;LOGIN_REDIRECT&#039;                            </span>
+</dt>
+<dd>Authenticate.php.inc
+NOTICE: THIS FILE MUST BE INCLUDED ON EVERY PAGE IN THE WEB APPLICATION!</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -constant -public">
+    <a href="namespaces/application.html#constant_MODAL_MESSAGE">MODAL_MESSAGE</a>
     <span>
         &nbsp;= &quot;ModalResponse&quot;                            </span>
 </dt>
@@ -306,88 +286,18 @@ It contains methods to alter a table cell&#039;s value or appearance if a certai
 <dd>Specifies the insertion of a new record</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -constant -public">
+    <a href="namespaces/application-model.html#constant_MODE_SELECT">MODE_SELECT</a>
+    <span>
+        &nbsp;= &#039;select&#039;                            </span>
+</dt>
+<dd>Specifies the retrieval of data from the database.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -constant -public">
     <a href="namespaces/application-model.html#constant_MODE_UPDATE">MODE_UPDATE</a>
     <span>
         &nbsp;= &#039;update&#039;                            </span>
 </dt>
 <dd>Specified the updating of a record</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -constant -public">
-    <a href="namespaces/application-pagebuilder.html#constant_OPTION_ALLOW_WILDCARD">OPTION_ALLOW_WILDCARD</a>
-    <span>
-        &nbsp;= 8                            </span>
-</dt>
-<dd></dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -constant -public">
-    <a href="namespaces/application-pagebuilder.html#constant_OPTION_APPEND_COLUMNS">OPTION_APPEND_COLUMNS</a>
-    <span>
-        &nbsp;= 6                            </span>
-</dt>
-<dd></dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -constant -public">
-    <a href="namespaces/application-pagebuilder.html#constant_OPTION_EXCLUDED_FIELDS">OPTION_EXCLUDED_FIELDS</a>
-    <span>
-        &nbsp;= 1                            </span>
-</dt>
-<dd></dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -constant -public">
-    <a href="namespaces/application-pagebuilder.html#constant_OPTION_FIELDNAME_PREFIX">OPTION_FIELDNAME_PREFIX</a>
-    <span>
-        &nbsp;= 4                            </span>
-</dt>
-<dd></dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -constant -public">
-    <a href="namespaces/application-pagebuilder.html#constant_OPTION_INCLUDE_PRIMARYKEY">OPTION_INCLUDE_PRIMARYKEY</a>
-    <span>
-        &nbsp;= 9                            </span>
-</dt>
-<dd></dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -constant -public">
-    <a href="namespaces/application-pagebuilder.html#constant_OPTION_INTERACTIVE_CELLS">OPTION_INTERACTIVE_CELLS</a>
-    <span>
-        &nbsp;= 7                            </span>
-</dt>
-<dd></dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -constant -public">
-    <a href="namespaces/application-pagebuilder.html#constant_OPTION_ORDER_BY">OPTION_ORDER_BY</a>
-    <span>
-        &nbsp;= 10                            </span>
-</dt>
-<dd></dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -constant -public">
-    <a href="namespaces/application-pagebuilder.html#constant_OPTION_PREFILL_DATA">OPTION_PREFILL_DATA</a>
-    <span>
-        &nbsp;= 12                            </span>
-</dt>
-<dd></dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -constant -public">
-    <a href="namespaces/application-pagebuilder.html#constant_OPTION_PROCEDURE_PARAMS">OPTION_PROCEDURE_PARAMS</a>
-    <span>
-        &nbsp;= 5                            </span>
-</dt>
-<dd></dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -constant -public">
-    <a href="namespaces/application-pagebuilder.html#constant_OPTION_SHOW_DISALLOWED_FIELDS">OPTION_SHOW_DISALLOWED_FIELDS</a>
-    <span>
-        &nbsp;= 11                            </span>
-</dt>
-<dd></dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -constant -public">
-    <a href="namespaces/application-pagebuilder.html#constant_OPTION_USE_OBJECT_NAME_ID">OPTION_USE_OBJECT_NAME_ID</a>
-    <span>
-        &nbsp;= 2                            </span>
-</dt>
-<dd></dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -constant -public">
     <a href="namespaces/application-pagebuilder.html#constant_PROPERTY_FRIENDLY_NAME">PROPERTY_FRIENDLY_NAME</a>
@@ -439,9 +349,16 @@ It contains methods to alter a table cell&#039;s value or appearance if a certai
 <dd>Array key used to store table identifiers in the $_SESSION array.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -constant -public">
+    <a href="namespaces/application.html#constant_SITE_NAME">SITE_NAME</a>
+    <span>
+        &nbsp;= &#039;FrameworkDemo&#039;                            </span>
+</dt>
+<dd></dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -constant -public">
     <a href="namespaces/application-model.html#constant_SQL_PRINT_PREFIX">SQL_PRINT_PREFIX</a>
     <span>
-        &nbsp;= &#039;[Microsoft][ODBC Driver 17 for SQL Server][SQL Server]&#039;                            </span>
+        &nbsp;= &#039;/(?:\\[Microsoft]\\[ODBC Driver (\\d+) for SQL Server]\\[SQL Server])/&#039;                            </span>
 </dt>
 <dd></dd>
 
@@ -467,6 +384,13 @@ It contains methods to alter a table cell&#039;s value or appearance if a certai
 <dd>Signifies that the form data validation and submission was successful.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -constant -public">
+    <a href="namespaces/application-model.html#constant_TABLE_DATA_KEY">TABLE_DATA_KEY</a>
+    <span>
+        &nbsp;= &quot;TableDataName&quot;                            </span>
+</dt>
+<dd>Used as a GET parameter in a URL to specify the table data key to retrieve from the session array $_SESSION[{@see SESS_TABLES}].</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -constant -public">
     <a href="namespaces/application-model.html#constant_TWO_COL_TO_ONE_PRIMARY">TWO_COL_TO_ONE_PRIMARY</a>
     <span>
         &nbsp;= &quot;PRIMARY_COL&quot;                            </span>
@@ -481,41 +405,20 @@ It contains methods to alter a table cell&#039;s value or appearance if a certai
 <dd>Array key used to specify a value to be used as an array value in Model::resultSetToArray()</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -constant -public">
-    <a href="namespaces/application-router.html#constant_VIEW_DIR">VIEW_DIR</a>
+    <a href="namespaces/application-sessionmanagement.html#constant_USER_INFO">USER_INFO</a>
+    <span>
+        &nbsp;= &#039;USER_INFO&#039;                            </span>
+</dt>
+<dd></dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -constant -public">
+    <a href="namespaces/application.html#constant_VIEW_DIR">VIEW_DIR</a>
     <span>
         &nbsp;= &#039;private_core/views/&#039;                            </span>
 </dt>
 <dd></dd>
 
-                            <dt class="phpdocumentor-table-of-contents__entry -function -">
-    <a href="namespaces/application-router.html#function_makeController">makeController()</a>
-    <span>
-                                &nbsp;: <a href="classes/Application-Controller-Controller.html"><abbr title="\Application\Controller\Controller">Controller</abbr></a>    </span>
-</dt>
-<dd>Creates a controller object dynamically based on the given class name</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -function -">
-    <a href="namespaces/application-router.html#function_headerSetUp">headerSetUp()</a>
-    <span>
-                                &nbsp;: mixed    </span>
-</dt>
-<dd></dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -function -">
-    <a href="namespaces/application-router.html#function_getContentTypeHeader">getContentTypeHeader()</a>
-    <span>
-                                &nbsp;: string    </span>
-</dt>
-<dd>Returns a MIME type based on the given file extension.</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -function -">
-    <a href="namespaces/application-router.html#function_getWindowMessage">getWindowMessage()</a>
-    <span>
-                                &nbsp;: mixed    </span>
-</dt>
-<dd>Checks if this page is loaded with a message request in the GET variables.</dd>
-
-    </dl>
+                    </dl>
 
         
     <section class="phpdocumentor-constants">
@@ -524,15 +427,44 @@ It contains methods to alter a table cell&#039;s value or appearance if a certai
             <a href="packages/Application.html#constants" class="headerlink"><i class="fas fa-link"></i></a>
         </h3>
                     <article class="phpdocumentor-element -constant -public ">
-    <h4 class="phpdocumentor-element__name" id="constant_CONTROLLER_DIR">
-        CONTROLLER_DIR
-        <a href="namespaces/application-router.html#constant_CONTROLLER_DIR" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="constant_APP_NAME">
+        APP_NAME
+        <a href="namespaces/application.html#constant_APP_NAME" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
 
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/index.php"><a href="files/website-index.html"><abbr title="Website/index.php">index.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/objects/Router.php"><a href="files/framework-private-core-objects-router.html"><abbr title="Framework/private_core/objects/Router.php">Router.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">15</span>
+    <span class="phpdocumentor-element-found-in__line">41</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-signature phpdocumentor-code ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__type">mixed</span>
+    <span class="phpdocumentor-signature__name">APP_NAME</span>
+    = <span class="phpdocumentor-signature__default-value">&#039;/FrameworkDemo/&#039;</span>
+</code>
+
+
+        <section class="phpdocumentor-description"></section>
+
+        <section class="phpdocumentor-description"></section>
+
+    
+
+</article>
+                    <article class="phpdocumentor-element -constant -public ">
+    <h4 class="phpdocumentor-element__name" id="constant_CONTROLLER_DIR">
+        CONTROLLER_DIR
+        <a href="namespaces/application.html#constant_CONTROLLER_DIR" class="headerlink"><i class="fas fa-link"></i></a>
+    </h4>
+
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/objects/Router.php"><a href="files/framework-private-core-objects-router.html"><abbr title="Framework/private_core/objects/Router.php">Router.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">39</span>
 
     </aside>
 
@@ -559,7 +491,7 @@ It contains methods to alter a table cell&#039;s value or appearance if a certai
     </h4>
 
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/models/Model.php"><a href="files/website-private-core-models-model.html"><abbr title="Website/private_core/models/Model.php">Model.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/models/Model.php"><a href="files/framework-private-core-models-model.html"><abbr title="Framework/private_core/models/Model.php">Model.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">10</span>
 
@@ -588,7 +520,7 @@ It contains methods to alter a table cell&#039;s value or appearance if a certai
     </h4>
 
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/models/Model.php"><a href="files/website-private-core-models-model.html"><abbr title="Website/private_core/models/Model.php">Model.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/models/Model.php"><a href="files/framework-private-core-models-model.html"><abbr title="Framework/private_core/models/Model.php">Model.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">14</span>
 
@@ -617,7 +549,7 @@ It contains methods to alter a table cell&#039;s value or appearance if a certai
     </h4>
 
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/models/Model.php"><a href="files/website-private-core-models-model.html"><abbr title="Website/private_core/models/Model.php">Model.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/models/Model.php"><a href="files/framework-private-core-models-model.html"><abbr title="Framework/private_core/models/Model.php">Model.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">18</span>
 
@@ -646,7 +578,7 @@ It contains methods to alter a table cell&#039;s value or appearance if a certai
     </h4>
 
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/models/Model.php"><a href="files/website-private-core-models-model.html"><abbr title="Website/private_core/models/Model.php">Model.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/models/Model.php"><a href="files/framework-private-core-models-model.html"><abbr title="Framework/private_core/models/Model.php">Model.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">16</span>
 
@@ -675,7 +607,7 @@ It contains methods to alter a table cell&#039;s value or appearance if a certai
     </h4>
 
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/models/Model.php"><a href="files/website-private-core-models-model.html"><abbr title="Website/private_core/models/Model.php">Model.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/models/Model.php"><a href="files/framework-private-core-models-model.html"><abbr title="Framework/private_core/models/Model.php">Model.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">12</span>
 
@@ -698,158 +630,13 @@ It contains methods to alter a table cell&#039;s value or appearance if a certai
 
 </article>
                     <article class="phpdocumentor-element -constant -public ">
-    <h4 class="phpdocumentor-element__name" id="constant_DISPLAY_DEFAULT">
-        DISPLAY_DEFAULT
-        <a href="namespaces/application-router.html#constant_DISPLAY_DEFAULT" class="headerlink"><i class="fas fa-link"></i></a>
-    </h4>
-
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/index.php"><a href="files/website-index.html"><abbr title="Website/index.php">index.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">17</span>
-
-    </aside>
-
-    
-    <code class="phpdocumentor-signature phpdocumentor-code ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-        <span class="phpdocumentor-signature__type">mixed</span>
-    <span class="phpdocumentor-signature__name">DISPLAY_DEFAULT</span>
-    = <span class="phpdocumentor-signature__default-value">&quot;default&quot;</span>
-</code>
-
-
-        <section class="phpdocumentor-description"></section>
-
-        <section class="phpdocumentor-description"></section>
-
-    
-
-</article>
-                    <article class="phpdocumentor-element -constant -public ">
-    <h4 class="phpdocumentor-element__name" id="constant_DISPLAY_FOOTER">
-        DISPLAY_FOOTER
-        <a href="namespaces/application-router.html#constant_DISPLAY_FOOTER" class="headerlink"><i class="fas fa-link"></i></a>
-    </h4>
-
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/index.php"><a href="files/website-index.html"><abbr title="Website/index.php">index.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">19</span>
-
-    </aside>
-
-    
-    <code class="phpdocumentor-signature phpdocumentor-code ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-        <span class="phpdocumentor-signature__type">mixed</span>
-    <span class="phpdocumentor-signature__name">DISPLAY_FOOTER</span>
-    = <span class="phpdocumentor-signature__default-value">&quot;footerOnly&quot;</span>
-</code>
-
-
-        <section class="phpdocumentor-description"></section>
-
-        <section class="phpdocumentor-description"></section>
-
-    
-
-</article>
-                    <article class="phpdocumentor-element -constant -public ">
-    <h4 class="phpdocumentor-element__name" id="constant_DISPLAY_NAV">
-        DISPLAY_NAV
-        <a href="namespaces/application-router.html#constant_DISPLAY_NAV" class="headerlink"><i class="fas fa-link"></i></a>
-    </h4>
-
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/index.php"><a href="files/website-index.html"><abbr title="Website/index.php">index.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">18</span>
-
-    </aside>
-
-    
-    <code class="phpdocumentor-signature phpdocumentor-code ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-        <span class="phpdocumentor-signature__type">mixed</span>
-    <span class="phpdocumentor-signature__name">DISPLAY_NAV</span>
-    = <span class="phpdocumentor-signature__default-value">&quot;navOnly&quot;</span>
-</code>
-
-
-        <section class="phpdocumentor-description"></section>
-
-        <section class="phpdocumentor-description"></section>
-
-    
-
-</article>
-                    <article class="phpdocumentor-element -constant -public ">
-    <h4 class="phpdocumentor-element__name" id="constant_DISPLAY_NONE">
-        DISPLAY_NONE
-        <a href="namespaces/application-router.html#constant_DISPLAY_NONE" class="headerlink"><i class="fas fa-link"></i></a>
-    </h4>
-
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/index.php"><a href="files/website-index.html"><abbr title="Website/index.php">index.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">20</span>
-
-    </aside>
-
-    
-    <code class="phpdocumentor-signature phpdocumentor-code ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-        <span class="phpdocumentor-signature__type">mixed</span>
-    <span class="phpdocumentor-signature__name">DISPLAY_NONE</span>
-    = <span class="phpdocumentor-signature__default-value">&quot;none&quot;</span>
-</code>
-
-
-        <section class="phpdocumentor-description"></section>
-
-        <section class="phpdocumentor-description"></section>
-
-    
-
-</article>
-                    <article class="phpdocumentor-element -constant -public ">
-    <h4 class="phpdocumentor-element__name" id="constant_DOMAIN">
-        DOMAIN
-        <a href="namespaces/application-router.html#constant_DOMAIN" class="headerlink"><i class="fas fa-link"></i></a>
-    </h4>
-
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/index.php"><a href="files/website-index.html"><abbr title="Website/index.php">index.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">21</span>
-
-    </aside>
-
-    
-    <code class="phpdocumentor-signature phpdocumentor-code ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-        <span class="phpdocumentor-signature__type">mixed</span>
-    <span class="phpdocumentor-signature__name">DOMAIN</span>
-    = <span class="phpdocumentor-signature__default-value">&#039;/Application/&#039;</span>
-</code>
-
-
-        <section class="phpdocumentor-description"></section>
-
-        <section class="phpdocumentor-description"></section>
-
-    
-
-</article>
-                    <article class="phpdocumentor-element -constant -public ">
     <h4 class="phpdocumentor-element__name" id="constant_DROPDOWN_NEW_OPTION">
         DROPDOWN_NEW_OPTION
         <a href="namespaces/application-controller.html#constant_DROPDOWN_NEW_OPTION" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
 
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/controllers/Controller.php"><a href="files/website-private-core-controllers-controller.html"><abbr title="Website/private_core/controllers/Controller.php">Controller.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/controllers/Controller.php"><a href="files/framework-private-core-controllers-controller.html"><abbr title="Framework/private_core/controllers/Controller.php">Controller.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">21</span>
 
@@ -878,9 +665,9 @@ It contains methods to alter a table cell&#039;s value or appearance if a certai
     </h4>
 
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/controllers/PageObjects/TableObjects.php"><a href="files/website-private-core-controllers-pageobjects-tableobjects.html"><abbr title="Website/private_core/controllers/PageObjects/TableObjects.php">TableObjects.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/objects/PageObjects/TableObjects.php"><a href="files/framework-private-core-objects-pageobjects-tableobjects.html"><abbr title="Framework/private_core/objects/PageObjects/TableObjects.php">TableObjects.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">23</span>
+    <span class="phpdocumentor-element-found-in__line">22</span>
 
     </aside>
 
@@ -907,9 +694,9 @@ It contains methods to alter a table cell&#039;s value or appearance if a certai
     </h4>
 
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/controllers/PageObjects/TableObjects.php"><a href="files/website-private-core-controllers-pageobjects-tableobjects.html"><abbr title="Website/private_core/controllers/PageObjects/TableObjects.php">TableObjects.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/objects/PageObjects/TableObjects.php"><a href="files/framework-private-core-objects-pageobjects-tableobjects.html"><abbr title="Framework/private_core/objects/PageObjects/TableObjects.php">TableObjects.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">22</span>
+    <span class="phpdocumentor-element-found-in__line">21</span>
 
     </aside>
 
@@ -930,15 +717,51 @@ It contains methods to alter a table cell&#039;s value or appearance if a certai
 
 </article>
                     <article class="phpdocumentor-element -constant -public ">
-    <h4 class="phpdocumentor-element__name" id="constant_MODAL_MESSAGE">
-        MODAL_MESSAGE
-        <a href="namespaces/application-router.html#constant_MODAL_MESSAGE" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="constant_LOGIN_REDIRECT">
+        LOGIN_REDIRECT
+        <a href="namespaces/application-sessionmanagement.html#constant_LOGIN_REDIRECT" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
 
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/index.php"><a href="files/website-index.html"><abbr title="Website/index.php">index.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/objects/SessionManager.php"><a href="files/framework-private-core-objects-sessionmanager.html"><abbr title="Framework/private_core/objects/SessionManager.php">SessionManager.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">16</span>
+    <span class="phpdocumentor-element-found-in__line">17</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Authenticate.php.inc
+NOTICE: THIS FILE MUST BE INCLUDED ON EVERY PAGE IN THE WEB APPLICATION!</p>
+
+    <code class="phpdocumentor-signature phpdocumentor-code ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__type">mixed</span>
+    <span class="phpdocumentor-signature__name">LOGIN_REDIRECT</span>
+    = <span class="phpdocumentor-signature__default-value">&#039;LOGIN_REDIRECT&#039;</span>
+</code>
+
+
+        <section class="phpdocumentor-description"><p>This script handles user authentication to the server.
+It will initialise a session if one is has not already been created and will check if the client's
+session variables are valid or not when accessing a web page.</p>
+<p>DEBUGGING NOTE: If sessions are ending too early, check the php.ini file for the session.gc_maxlifetime value, and ensure it is set to a value greater (in seconds) than the value of the EXPIRE_TIME_LIMIT constant.
+This is because the garbage collector may be deleting the session files before the session is supposed to end.</p>
+</section>
+
+        <section class="phpdocumentor-description"></section>
+
+    
+
+</article>
+                    <article class="phpdocumentor-element -constant -public ">
+    <h4 class="phpdocumentor-element__name" id="constant_MODAL_MESSAGE">
+        MODAL_MESSAGE
+        <a href="namespaces/application.html#constant_MODAL_MESSAGE" class="headerlink"><i class="fas fa-link"></i></a>
+    </h4>
+
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/objects/Router.php"><a href="files/framework-private-core-objects-router.html"><abbr title="Framework/private_core/objects/Router.php">Router.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">40</span>
 
     </aside>
 
@@ -965,7 +788,7 @@ It contains methods to alter a table cell&#039;s value or appearance if a certai
     </h4>
 
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/models/Model.php"><a href="files/website-private-core-models-model.html"><abbr title="Website/private_core/models/Model.php">Model.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/models/Model.php"><a href="files/framework-private-core-models-model.html"><abbr title="Framework/private_core/models/Model.php">Model.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">29</span>
 
@@ -994,7 +817,7 @@ It contains methods to alter a table cell&#039;s value or appearance if a certai
     </h4>
 
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/models/Model.php"><a href="files/website-private-core-models-model.html"><abbr title="Website/private_core/models/Model.php">Model.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/models/Model.php"><a href="files/framework-private-core-models-model.html"><abbr title="Framework/private_core/models/Model.php">Model.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">27</span>
 
@@ -1023,7 +846,7 @@ It contains methods to alter a table cell&#039;s value or appearance if a certai
     </h4>
 
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/models/Model.php"><a href="files/website-private-core-models-model.html"><abbr title="Website/private_core/models/Model.php">Model.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/models/Model.php"><a href="files/framework-private-core-models-model.html"><abbr title="Framework/private_core/models/Model.php">Model.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">31</span>
 
@@ -1052,7 +875,7 @@ It contains methods to alter a table cell&#039;s value or appearance if a certai
     </h4>
 
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/models/Model.php"><a href="files/website-private-core-models-model.html"><abbr title="Website/private_core/models/Model.php">Model.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/models/Model.php"><a href="files/framework-private-core-models-model.html"><abbr title="Framework/private_core/models/Model.php">Model.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">33</span>
 
@@ -1081,7 +904,7 @@ It contains methods to alter a table cell&#039;s value or appearance if a certai
     </h4>
 
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/models/Model.php"><a href="files/website-private-core-models-model.html"><abbr title="Website/private_core/models/Model.php">Model.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/models/Model.php"><a href="files/framework-private-core-models-model.html"><abbr title="Framework/private_core/models/Model.php">Model.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">23</span>
 
@@ -1104,13 +927,42 @@ It contains methods to alter a table cell&#039;s value or appearance if a certai
 
 </article>
                     <article class="phpdocumentor-element -constant -public ">
+    <h4 class="phpdocumentor-element__name" id="constant_MODE_SELECT">
+        MODE_SELECT
+        <a href="namespaces/application-model.html#constant_MODE_SELECT" class="headerlink"><i class="fas fa-link"></i></a>
+    </h4>
+
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/models/Model.php"><a href="files/framework-private-core-models-model.html"><abbr title="Framework/private_core/models/Model.php">Model.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">35</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Specifies the retrieval of data from the database.</p>
+
+    <code class="phpdocumentor-signature phpdocumentor-code ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__type">mixed</span>
+    <span class="phpdocumentor-signature__name">MODE_SELECT</span>
+    = <span class="phpdocumentor-signature__default-value">&#039;select&#039;</span>
+</code>
+
+
+    
+        <section class="phpdocumentor-description"></section>
+
+    
+
+</article>
+                    <article class="phpdocumentor-element -constant -public ">
     <h4 class="phpdocumentor-element__name" id="constant_MODE_UPDATE">
         MODE_UPDATE
         <a href="namespaces/application-model.html#constant_MODE_UPDATE" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
 
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/models/Model.php"><a href="files/website-private-core-models-model.html"><abbr title="Website/private_core/models/Model.php">Model.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/models/Model.php"><a href="files/framework-private-core-models-model.html"><abbr title="Framework/private_core/models/Model.php">Model.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">25</span>
 
@@ -1133,334 +985,15 @@ It contains methods to alter a table cell&#039;s value or appearance if a certai
 
 </article>
                     <article class="phpdocumentor-element -constant -public ">
-    <h4 class="phpdocumentor-element__name" id="constant_OPTION_ALLOW_WILDCARD">
-        OPTION_ALLOW_WILDCARD
-        <a href="namespaces/application-pagebuilder.html#constant_OPTION_ALLOW_WILDCARD" class="headerlink"><i class="fas fa-link"></i></a>
-    </h4>
-
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/controllers/PageBuilder/SQLToWebPage.php"><a href="files/website-private-core-controllers-pagebuilder-sqltowebpage.html"><abbr title="Website/private_core/controllers/PageBuilder/SQLToWebPage.php">SQLToWebPage.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">15</span>
-
-    </aside>
-
-    
-    <code class="phpdocumentor-signature phpdocumentor-code ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-        <span class="phpdocumentor-signature__type">mixed</span>
-    <span class="phpdocumentor-signature__name">OPTION_ALLOW_WILDCARD</span>
-    = <span class="phpdocumentor-signature__default-value">8</span>
-</code>
-
-
-        <section class="phpdocumentor-description"></section>
-
-        <section class="phpdocumentor-description"></section>
-
-    
-
-</article>
-                    <article class="phpdocumentor-element -constant -public ">
-    <h4 class="phpdocumentor-element__name" id="constant_OPTION_APPEND_COLUMNS">
-        OPTION_APPEND_COLUMNS
-        <a href="namespaces/application-pagebuilder.html#constant_OPTION_APPEND_COLUMNS" class="headerlink"><i class="fas fa-link"></i></a>
-    </h4>
-
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/controllers/PageBuilder/SQLToWebPage.php"><a href="files/website-private-core-controllers-pagebuilder-sqltowebpage.html"><abbr title="Website/private_core/controllers/PageBuilder/SQLToWebPage.php">SQLToWebPage.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">13</span>
-
-    </aside>
-
-    
-    <code class="phpdocumentor-signature phpdocumentor-code ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-        <span class="phpdocumentor-signature__type">mixed</span>
-    <span class="phpdocumentor-signature__name">OPTION_APPEND_COLUMNS</span>
-    = <span class="phpdocumentor-signature__default-value">6</span>
-</code>
-
-
-        <section class="phpdocumentor-description"></section>
-
-        <section class="phpdocumentor-description"></section>
-
-    
-
-</article>
-                    <article class="phpdocumentor-element -constant -public ">
-    <h4 class="phpdocumentor-element__name" id="constant_OPTION_EXCLUDED_FIELDS">
-        OPTION_EXCLUDED_FIELDS
-        <a href="namespaces/application-pagebuilder.html#constant_OPTION_EXCLUDED_FIELDS" class="headerlink"><i class="fas fa-link"></i></a>
-    </h4>
-
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/controllers/PageBuilder/SQLToWebPage.php"><a href="files/website-private-core-controllers-pagebuilder-sqltowebpage.html"><abbr title="Website/private_core/controllers/PageBuilder/SQLToWebPage.php">SQLToWebPage.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">9</span>
-
-    </aside>
-
-    
-    <code class="phpdocumentor-signature phpdocumentor-code ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-        <span class="phpdocumentor-signature__type">mixed</span>
-    <span class="phpdocumentor-signature__name">OPTION_EXCLUDED_FIELDS</span>
-    = <span class="phpdocumentor-signature__default-value">1</span>
-</code>
-
-
-        <section class="phpdocumentor-description"></section>
-
-        <section class="phpdocumentor-description"></section>
-
-    
-
-</article>
-                    <article class="phpdocumentor-element -constant -public ">
-    <h4 class="phpdocumentor-element__name" id="constant_OPTION_FIELDNAME_PREFIX">
-        OPTION_FIELDNAME_PREFIX
-        <a href="namespaces/application-pagebuilder.html#constant_OPTION_FIELDNAME_PREFIX" class="headerlink"><i class="fas fa-link"></i></a>
-    </h4>
-
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/controllers/PageBuilder/SQLToWebPage.php"><a href="files/website-private-core-controllers-pagebuilder-sqltowebpage.html"><abbr title="Website/private_core/controllers/PageBuilder/SQLToWebPage.php">SQLToWebPage.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">11</span>
-
-    </aside>
-
-    
-    <code class="phpdocumentor-signature phpdocumentor-code ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-        <span class="phpdocumentor-signature__type">mixed</span>
-    <span class="phpdocumentor-signature__name">OPTION_FIELDNAME_PREFIX</span>
-    = <span class="phpdocumentor-signature__default-value">4</span>
-</code>
-
-
-        <section class="phpdocumentor-description"></section>
-
-        <section class="phpdocumentor-description"></section>
-
-    
-
-</article>
-                    <article class="phpdocumentor-element -constant -public ">
-    <h4 class="phpdocumentor-element__name" id="constant_OPTION_INCLUDE_PRIMARYKEY">
-        OPTION_INCLUDE_PRIMARYKEY
-        <a href="namespaces/application-pagebuilder.html#constant_OPTION_INCLUDE_PRIMARYKEY" class="headerlink"><i class="fas fa-link"></i></a>
-    </h4>
-
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/controllers/PageBuilder/SQLToWebPage.php"><a href="files/website-private-core-controllers-pagebuilder-sqltowebpage.html"><abbr title="Website/private_core/controllers/PageBuilder/SQLToWebPage.php">SQLToWebPage.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">16</span>
-
-    </aside>
-
-    
-    <code class="phpdocumentor-signature phpdocumentor-code ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-        <span class="phpdocumentor-signature__type">mixed</span>
-    <span class="phpdocumentor-signature__name">OPTION_INCLUDE_PRIMARYKEY</span>
-    = <span class="phpdocumentor-signature__default-value">9</span>
-</code>
-
-
-        <section class="phpdocumentor-description"></section>
-
-        <section class="phpdocumentor-description"></section>
-
-    
-
-</article>
-                    <article class="phpdocumentor-element -constant -public ">
-    <h4 class="phpdocumentor-element__name" id="constant_OPTION_INTERACTIVE_CELLS">
-        OPTION_INTERACTIVE_CELLS
-        <a href="namespaces/application-pagebuilder.html#constant_OPTION_INTERACTIVE_CELLS" class="headerlink"><i class="fas fa-link"></i></a>
-    </h4>
-
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/controllers/PageBuilder/SQLToWebPage.php"><a href="files/website-private-core-controllers-pagebuilder-sqltowebpage.html"><abbr title="Website/private_core/controllers/PageBuilder/SQLToWebPage.php">SQLToWebPage.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">14</span>
-
-    </aside>
-
-    
-    <code class="phpdocumentor-signature phpdocumentor-code ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-        <span class="phpdocumentor-signature__type">mixed</span>
-    <span class="phpdocumentor-signature__name">OPTION_INTERACTIVE_CELLS</span>
-    = <span class="phpdocumentor-signature__default-value">7</span>
-</code>
-
-
-        <section class="phpdocumentor-description"></section>
-
-        <section class="phpdocumentor-description"></section>
-
-    
-
-</article>
-                    <article class="phpdocumentor-element -constant -public ">
-    <h4 class="phpdocumentor-element__name" id="constant_OPTION_ORDER_BY">
-        OPTION_ORDER_BY
-        <a href="namespaces/application-pagebuilder.html#constant_OPTION_ORDER_BY" class="headerlink"><i class="fas fa-link"></i></a>
-    </h4>
-
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/controllers/PageBuilder/SQLToWebPage.php"><a href="files/website-private-core-controllers-pagebuilder-sqltowebpage.html"><abbr title="Website/private_core/controllers/PageBuilder/SQLToWebPage.php">SQLToWebPage.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">17</span>
-
-    </aside>
-
-    
-    <code class="phpdocumentor-signature phpdocumentor-code ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-        <span class="phpdocumentor-signature__type">mixed</span>
-    <span class="phpdocumentor-signature__name">OPTION_ORDER_BY</span>
-    = <span class="phpdocumentor-signature__default-value">10</span>
-</code>
-
-
-        <section class="phpdocumentor-description"></section>
-
-        <section class="phpdocumentor-description"></section>
-
-    
-
-</article>
-                    <article class="phpdocumentor-element -constant -public ">
-    <h4 class="phpdocumentor-element__name" id="constant_OPTION_PREFILL_DATA">
-        OPTION_PREFILL_DATA
-        <a href="namespaces/application-pagebuilder.html#constant_OPTION_PREFILL_DATA" class="headerlink"><i class="fas fa-link"></i></a>
-    </h4>
-
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/controllers/PageBuilder/SQLToWebPage.php"><a href="files/website-private-core-controllers-pagebuilder-sqltowebpage.html"><abbr title="Website/private_core/controllers/PageBuilder/SQLToWebPage.php">SQLToWebPage.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">19</span>
-
-    </aside>
-
-    
-    <code class="phpdocumentor-signature phpdocumentor-code ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-        <span class="phpdocumentor-signature__type">mixed</span>
-    <span class="phpdocumentor-signature__name">OPTION_PREFILL_DATA</span>
-    = <span class="phpdocumentor-signature__default-value">12</span>
-</code>
-
-
-        <section class="phpdocumentor-description"></section>
-
-        <section class="phpdocumentor-description"></section>
-
-    
-
-</article>
-                    <article class="phpdocumentor-element -constant -public ">
-    <h4 class="phpdocumentor-element__name" id="constant_OPTION_PROCEDURE_PARAMS">
-        OPTION_PROCEDURE_PARAMS
-        <a href="namespaces/application-pagebuilder.html#constant_OPTION_PROCEDURE_PARAMS" class="headerlink"><i class="fas fa-link"></i></a>
-    </h4>
-
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/controllers/PageBuilder/SQLToWebPage.php"><a href="files/website-private-core-controllers-pagebuilder-sqltowebpage.html"><abbr title="Website/private_core/controllers/PageBuilder/SQLToWebPage.php">SQLToWebPage.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">12</span>
-
-    </aside>
-
-    
-    <code class="phpdocumentor-signature phpdocumentor-code ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-        <span class="phpdocumentor-signature__type">mixed</span>
-    <span class="phpdocumentor-signature__name">OPTION_PROCEDURE_PARAMS</span>
-    = <span class="phpdocumentor-signature__default-value">5</span>
-</code>
-
-
-        <section class="phpdocumentor-description"></section>
-
-        <section class="phpdocumentor-description"></section>
-
-    
-
-</article>
-                    <article class="phpdocumentor-element -constant -public ">
-    <h4 class="phpdocumentor-element__name" id="constant_OPTION_SHOW_DISALLOWED_FIELDS">
-        OPTION_SHOW_DISALLOWED_FIELDS
-        <a href="namespaces/application-pagebuilder.html#constant_OPTION_SHOW_DISALLOWED_FIELDS" class="headerlink"><i class="fas fa-link"></i></a>
-    </h4>
-
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/controllers/PageBuilder/SQLToWebPage.php"><a href="files/website-private-core-controllers-pagebuilder-sqltowebpage.html"><abbr title="Website/private_core/controllers/PageBuilder/SQLToWebPage.php">SQLToWebPage.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">18</span>
-
-    </aside>
-
-    
-    <code class="phpdocumentor-signature phpdocumentor-code ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-        <span class="phpdocumentor-signature__type">mixed</span>
-    <span class="phpdocumentor-signature__name">OPTION_SHOW_DISALLOWED_FIELDS</span>
-    = <span class="phpdocumentor-signature__default-value">11</span>
-</code>
-
-
-        <section class="phpdocumentor-description"></section>
-
-        <section class="phpdocumentor-description"></section>
-
-    
-
-</article>
-                    <article class="phpdocumentor-element -constant -public ">
-    <h4 class="phpdocumentor-element__name" id="constant_OPTION_USE_OBJECT_NAME_ID">
-        OPTION_USE_OBJECT_NAME_ID
-        <a href="namespaces/application-pagebuilder.html#constant_OPTION_USE_OBJECT_NAME_ID" class="headerlink"><i class="fas fa-link"></i></a>
-    </h4>
-
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/controllers/PageBuilder/SQLToWebPage.php"><a href="files/website-private-core-controllers-pagebuilder-sqltowebpage.html"><abbr title="Website/private_core/controllers/PageBuilder/SQLToWebPage.php">SQLToWebPage.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">10</span>
-
-    </aside>
-
-    
-    <code class="phpdocumentor-signature phpdocumentor-code ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-        <span class="phpdocumentor-signature__type">mixed</span>
-    <span class="phpdocumentor-signature__name">OPTION_USE_OBJECT_NAME_ID</span>
-    = <span class="phpdocumentor-signature__default-value">2</span>
-</code>
-
-
-        <section class="phpdocumentor-description"></section>
-
-        <section class="phpdocumentor-description"></section>
-
-    
-
-</article>
-                    <article class="phpdocumentor-element -constant -public ">
     <h4 class="phpdocumentor-element__name" id="constant_PROPERTY_FRIENDLY_NAME">
         PROPERTY_FRIENDLY_NAME
         <a href="namespaces/application-pagebuilder.html#constant_PROPERTY_FRIENDLY_NAME" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
 
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/controllers/PageBuilder/PageBuilder_Form.php"><a href="files/website-private-core-controllers-pagebuilder-pagebuilder-form.html"><abbr title="Website/private_core/controllers/PageBuilder/PageBuilder_Form.php">PageBuilder_Form.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/objects/PageBuilder/FormBuilder.php"><a href="files/framework-private-core-objects-pagebuilder-formbuilder.html"><abbr title="Framework/private_core/objects/PageBuilder/FormBuilder.php">FormBuilder.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">16</span>
+    <span class="phpdocumentor-element-found-in__line">13</span>
 
     </aside>
 
@@ -1487,9 +1020,9 @@ It contains methods to alter a table cell&#039;s value or appearance if a certai
     </h4>
 
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/controllers/PageBuilder/PageBuilder_Form.php"><a href="files/website-private-core-controllers-pagebuilder-pagebuilder-form.html"><abbr title="Website/private_core/controllers/PageBuilder/PageBuilder_Form.php">PageBuilder_Form.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/objects/PageBuilder/FormBuilder.php"><a href="files/framework-private-core-objects-pagebuilder-formbuilder.html"><abbr title="Framework/private_core/objects/PageBuilder/FormBuilder.php">FormBuilder.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">18</span>
+    <span class="phpdocumentor-element-found-in__line">15</span>
 
     </aside>
 
@@ -1516,9 +1049,9 @@ It contains methods to alter a table cell&#039;s value or appearance if a certai
     </h4>
 
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/controllers/PageBuilder/PageBuilder_Form.php"><a href="files/website-private-core-controllers-pagebuilder-pagebuilder-form.html"><abbr title="Website/private_core/controllers/PageBuilder/PageBuilder_Form.php">PageBuilder_Form.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/objects/PageBuilder/FormBuilder.php"><a href="files/framework-private-core-objects-pagebuilder-formbuilder.html"><abbr title="Framework/private_core/objects/PageBuilder/FormBuilder.php">FormBuilder.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">19</span>
+    <span class="phpdocumentor-element-found-in__line">16</span>
 
     </aside>
 
@@ -1545,9 +1078,9 @@ It contains methods to alter a table cell&#039;s value or appearance if a certai
     </h4>
 
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/controllers/PageBuilder/PageBuilder_Form.php"><a href="files/website-private-core-controllers-pagebuilder-pagebuilder-form.html"><abbr title="Website/private_core/controllers/PageBuilder/PageBuilder_Form.php">PageBuilder_Form.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/objects/PageBuilder/FormBuilder.php"><a href="files/framework-private-core-objects-pagebuilder-formbuilder.html"><abbr title="Framework/private_core/objects/PageBuilder/FormBuilder.php">FormBuilder.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">15</span>
+    <span class="phpdocumentor-element-found-in__line">12</span>
 
     </aside>
 
@@ -1574,9 +1107,9 @@ It contains methods to alter a table cell&#039;s value or appearance if a certai
     </h4>
 
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/controllers/PageBuilder/PageBuilder_Form.php"><a href="files/website-private-core-controllers-pagebuilder-pagebuilder-form.html"><abbr title="Website/private_core/controllers/PageBuilder/PageBuilder_Form.php">PageBuilder_Form.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/objects/PageBuilder/FormBuilder.php"><a href="files/framework-private-core-objects-pagebuilder-formbuilder.html"><abbr title="Framework/private_core/objects/PageBuilder/FormBuilder.php">FormBuilder.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">17</span>
+    <span class="phpdocumentor-element-found-in__line">14</span>
 
     </aside>
 
@@ -1603,9 +1136,9 @@ It contains methods to alter a table cell&#039;s value or appearance if a certai
     </h4>
 
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/controllers/PageObjects/TableObjects.php"><a href="files/website-private-core-controllers-pageobjects-tableobjects.html"><abbr title="Website/private_core/controllers/PageObjects/TableObjects.php">TableObjects.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/objects/PageObjects/TableObjects.php"><a href="files/framework-private-core-objects-pageobjects-tableobjects.html"><abbr title="Framework/private_core/objects/PageObjects/TableObjects.php">TableObjects.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">21</span>
+    <span class="phpdocumentor-element-found-in__line">20</span>
 
     </aside>
 
@@ -1632,7 +1165,7 @@ It contains methods to alter a table cell&#039;s value or appearance if a certai
     </h4>
 
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/models/Model.php"><a href="files/website-private-core-models-model.html"><abbr title="Website/private_core/models/Model.php">Model.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/models/Model.php"><a href="files/framework-private-core-models-model.html"><abbr title="Framework/private_core/models/Model.php">Model.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">20</span>
 
@@ -1655,15 +1188,44 @@ It contains methods to alter a table cell&#039;s value or appearance if a certai
 
 </article>
                     <article class="phpdocumentor-element -constant -public ">
+    <h4 class="phpdocumentor-element__name" id="constant_SITE_NAME">
+        SITE_NAME
+        <a href="namespaces/application.html#constant_SITE_NAME" class="headerlink"><i class="fas fa-link"></i></a>
+    </h4>
+
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/objects/Router.php"><a href="files/framework-private-core-objects-router.html"><abbr title="Framework/private_core/objects/Router.php">Router.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">37</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-signature phpdocumentor-code ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__type">mixed</span>
+    <span class="phpdocumentor-signature__name">SITE_NAME</span>
+    = <span class="phpdocumentor-signature__default-value">&#039;FrameworkDemo&#039;</span>
+</code>
+
+
+        <section class="phpdocumentor-description"></section>
+
+        <section class="phpdocumentor-description"></section>
+
+    
+
+</article>
+                    <article class="phpdocumentor-element -constant -public ">
     <h4 class="phpdocumentor-element__name" id="constant_SQL_PRINT_PREFIX">
         SQL_PRINT_PREFIX
         <a href="namespaces/application-model.html#constant_SQL_PRINT_PREFIX" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
 
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/models/Model.php"><a href="files/website-private-core-models-model.html"><abbr title="Website/private_core/models/Model.php">Model.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/models/Model.php"><a href="files/framework-private-core-models-model.html"><abbr title="Framework/private_core/models/Model.php">Model.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">35</span>
+    <span class="phpdocumentor-element-found-in__line">37</span>
 
     </aside>
 
@@ -1672,7 +1234,7 @@ It contains methods to alter a table cell&#039;s value or appearance if a certai
     <span class="phpdocumentor-signature__visibility">public</span>
         <span class="phpdocumentor-signature__type">mixed</span>
     <span class="phpdocumentor-signature__name">SQL_PRINT_PREFIX</span>
-    = <span class="phpdocumentor-signature__default-value">&#039;[Microsoft][ODBC Driver 17 for SQL Server][SQL Server]&#039;</span>
+    = <span class="phpdocumentor-signature__default-value">&#039;/(?:\\[Microsoft]\\[ODBC Driver (\\d+) for SQL Server]\\[SQL Server])/&#039;</span>
 </code>
 
 
@@ -1690,7 +1252,7 @@ It contains methods to alter a table cell&#039;s value or appearance if a certai
     </h4>
 
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/controllers/Controller.php"><a href="files/website-private-core-controllers-controller.html"><abbr title="Website/private_core/controllers/Controller.php">Controller.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/controllers/Controller.php"><a href="files/framework-private-core-controllers-controller.html"><abbr title="Framework/private_core/controllers/Controller.php">Controller.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">17</span>
 
@@ -1719,7 +1281,7 @@ It contains methods to alter a table cell&#039;s value or appearance if a certai
     </h4>
 
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/controllers/Controller.php"><a href="files/website-private-core-controllers-controller.html"><abbr title="Website/private_core/controllers/Controller.php">Controller.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/controllers/Controller.php"><a href="files/framework-private-core-controllers-controller.html"><abbr title="Framework/private_core/controllers/Controller.php">Controller.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">19</span>
 
@@ -1748,7 +1310,7 @@ It contains methods to alter a table cell&#039;s value or appearance if a certai
     </h4>
 
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/controllers/Controller.php"><a href="files/website-private-core-controllers-controller.html"><abbr title="Website/private_core/controllers/Controller.php">Controller.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/controllers/Controller.php"><a href="files/framework-private-core-controllers-controller.html"><abbr title="Framework/private_core/controllers/Controller.php">Controller.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">15</span>
 
@@ -1771,13 +1333,44 @@ It contains methods to alter a table cell&#039;s value or appearance if a certai
 
 </article>
                     <article class="phpdocumentor-element -constant -public ">
+    <h4 class="phpdocumentor-element__name" id="constant_TABLE_DATA_KEY">
+        TABLE_DATA_KEY
+        <a href="namespaces/application-model.html#constant_TABLE_DATA_KEY" class="headerlink"><i class="fas fa-link"></i></a>
+    </h4>
+
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/models/Model_Table.php"><a href="files/framework-private-core-models-model-table.html"><abbr title="Framework/private_core/models/Model_Table.php">Model_Table.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">11</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Used as a GET parameter in a URL to specify the table data key to retrieve from the session array $_SESSION[{@see SESS_TABLES}].</p>
+
+    <code class="phpdocumentor-signature phpdocumentor-code ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__type">mixed</span>
+    <span class="phpdocumentor-signature__name">TABLE_DATA_KEY</span>
+    = <span class="phpdocumentor-signature__default-value">&quot;TableDataName&quot;</span>
+</code>
+
+
+        <section class="phpdocumentor-description"><p>See <abbr title="\Application\Model\Model_Table::__construct">Model_Table::__construct</abbr> for more details.</p>
+</section>
+
+        <section class="phpdocumentor-description"></section>
+
+    
+
+</article>
+                    <article class="phpdocumentor-element -constant -public ">
     <h4 class="phpdocumentor-element__name" id="constant_TWO_COL_TO_ONE_PRIMARY">
         TWO_COL_TO_ONE_PRIMARY
         <a href="namespaces/application-model.html#constant_TWO_COL_TO_ONE_PRIMARY" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
 
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/models/Model.php"><a href="files/website-private-core-models-model.html"><abbr title="Website/private_core/models/Model.php">Model.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/models/Model.php"><a href="files/framework-private-core-models-model.html"><abbr title="Framework/private_core/models/Model.php">Model.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">6</span>
 
@@ -1806,7 +1399,7 @@ It contains methods to alter a table cell&#039;s value or appearance if a certai
     </h4>
 
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/models/Model.php"><a href="files/website-private-core-models-model.html"><abbr title="Website/private_core/models/Model.php">Model.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/models/Model.php"><a href="files/framework-private-core-models-model.html"><abbr title="Framework/private_core/models/Model.php">Model.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">8</span>
 
@@ -1829,15 +1422,44 @@ It contains methods to alter a table cell&#039;s value or appearance if a certai
 
 </article>
                     <article class="phpdocumentor-element -constant -public ">
-    <h4 class="phpdocumentor-element__name" id="constant_VIEW_DIR">
-        VIEW_DIR
-        <a href="namespaces/application-router.html#constant_VIEW_DIR" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="constant_USER_INFO">
+        USER_INFO
+        <a href="namespaces/application-sessionmanagement.html#constant_USER_INFO" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
 
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/index.php"><a href="files/website-index.html"><abbr title="Website/index.php">index.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/objects/SessionManager.php"><a href="files/framework-private-core-objects-sessionmanager.html"><abbr title="Framework/private_core/objects/SessionManager.php">SessionManager.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">14</span>
+    <span class="phpdocumentor-element-found-in__line">18</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-signature phpdocumentor-code ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__type">mixed</span>
+    <span class="phpdocumentor-signature__name">USER_INFO</span>
+    = <span class="phpdocumentor-signature__default-value">&#039;USER_INFO&#039;</span>
+</code>
+
+
+        <section class="phpdocumentor-description"></section>
+
+        <section class="phpdocumentor-description"></section>
+
+    
+
+</article>
+                    <article class="phpdocumentor-element -constant -public ">
+    <h4 class="phpdocumentor-element__name" id="constant_VIEW_DIR">
+        VIEW_DIR
+        <a href="namespaces/application.html#constant_VIEW_DIR" class="headerlink"><i class="fas fa-link"></i></a>
+    </h4>
+
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/objects/Router.php"><a href="files/framework-private-core-objects-router.html"><abbr title="Framework/private_core/objects/Router.php">Router.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">38</span>
 
     </aside>
 
@@ -1859,177 +1481,7 @@ It contains methods to alter a table cell&#039;s value or appearance if a certai
 </article>
             </section>
 
-            <section class="phpdocumentor-functions">
-        <h3 class="phpdocumentor-elements__header" id="functions">
-            Functions
-            <a href="packages/Application.html#functions" class="headerlink"><i class="fas fa-link"></i></a>
-        </h3>
-                    <article class="phpdocumentor-element -function - ">
-    <h4 class="phpdocumentor-element__name" id="function_makeController">
-        makeController()
-        <a href="namespaces/application-router.html#function_makeController" class="headerlink"><i class="fas fa-link"></i></a>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/index.php"><a href="files/website-index.html"><abbr title="Website/index.php">index.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">178</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">Creates a controller object dynamically based on the given class name</p>
-
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility"></span>
-                    <span class="phpdocumentor-signature__name">makeController</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$className</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$mode</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$constructorParam</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Application-Controller-Controller.html"><abbr title="\Application\Controller\Controller">Controller</abbr></a></span></code>
-
-    
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$className</span>
-                : <span class="phpdocumentor-signature__argument__return-type">string</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
-
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$mode</span>
-                : <span class="phpdocumentor-signature__argument__return-type">string</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
-
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$constructorParam</span>
-                : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
-                 = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
-
-            </dd>
-            </dl>
-
-    
-
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type"><a href="classes/Application-Controller-Controller.html"><abbr title="\Application\Controller\Controller">Controller</abbr></a></span>
-            &mdash;
         
-    
-</article>
-                    <article class="phpdocumentor-element -function - ">
-    <h4 class="phpdocumentor-element__name" id="function_headerSetUp">
-        headerSetUp()
-        <a href="namespaces/application-router.html#function_headerSetUp" class="headerlink"><i class="fas fa-link"></i></a>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/index.php"><a href="files/website-index.html"><abbr title="Website/index.php">index.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">189</span>
-
-    </aside>
-
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility"></span>
-                    <span class="phpdocumentor-signature__name">headerSetUp</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$pageName</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
-
-        <section class="phpdocumentor-description"></section>
-
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$pageName</span>
-                : <span class="phpdocumentor-signature__argument__return-type">string</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
-
-            </dd>
-            </dl>
-
-    
-
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">mixed</span>
-            &mdash;
-        
-    
-</article>
-                    <article class="phpdocumentor-element -function - ">
-    <h4 class="phpdocumentor-element__name" id="function_getContentTypeHeader">
-        getContentTypeHeader()
-        <a href="namespaces/application-router.html#function_getContentTypeHeader" class="headerlink"><i class="fas fa-link"></i></a>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/index.php"><a href="files/website-index.html"><abbr title="Website/index.php">index.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">237</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">Returns a MIME type based on the given file extension.</p>
-
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility"></span>
-                    <span class="phpdocumentor-signature__name">getContentTypeHeader</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$fileExtension</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
-
-    
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$fileExtension</span>
-                : <span class="phpdocumentor-signature__argument__return-type">string</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                
-            </dd>
-            </dl>
-
-    
-
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">string</span>
-            &mdash;
-            <section class="phpdocumentor-description"><p>The MIME type for the specified file extension.</p>
-</section>
-
-    
-</article>
-                    <article class="phpdocumentor-element -function - ">
-    <h4 class="phpdocumentor-element__name" id="function_getWindowMessage">
-        getWindowMessage()
-        <a href="namespaces/application-router.html#function_getWindowMessage" class="headerlink"><i class="fas fa-link"></i></a>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/index.php"><a href="files/website-index.html"><abbr title="Website/index.php">index.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">304</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">Checks if this page is loaded with a message request in the GET variables.</p>
-
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility"></span>
-                    <span class="phpdocumentor-signature__name">getWindowMessage</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
-
-        <section class="phpdocumentor-description"><p>If it is, it creates a JavaScript function that executes on the page load and saves it to the client device for use.</p>
-</section>
-
-    
-    
-
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">mixed</span>
-            &mdash;
-        
-    
-</article>
-            </section>
-
     </article>
                 <section data-search-results class="phpdocumentor-search-results phpdocumentor-search-results--hidden">
     <section class="phpdocumentor-search-results__dialog">

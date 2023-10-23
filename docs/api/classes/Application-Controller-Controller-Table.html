@@ -60,11 +60,11 @@
 </h4>
     <ul class="phpdocumentor-list">
                     <li>
-                <a href="namespaces/application-router.html" class="">Router</a>
+                <a href="namespaces/application-controller.html" class="">Controller</a>
                 
             </li>
                     <li>
-                <a href="namespaces/application-controller.html" class="">Controller</a>
+                <a href="namespaces/application-model.html" class="">Model</a>
                 
             </li>
                     <li>
@@ -72,7 +72,7 @@
                 
             </li>
                     <li>
-                <a href="namespaces/application-model.html" class="">Model</a>
+                <a href="namespaces/application-sessionmanagement.html" class="">SessionManagement</a>
                 
             </li>
             </ul>
@@ -107,7 +107,7 @@
 
     <article class="phpdocumentor-element -class">
         <h2 class="phpdocumentor-content__title">
-    Controller_Customers
+    Controller_Table
 
         <span class="phpdocumentor-element__extends">
         extends <a href="classes/Application-Controller-Controller.html"><abbr title="\Application\Controller\Controller">Controller</abbr></a>
@@ -124,23 +124,24 @@
     </h2>
 
         <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/controllers/Controller_Customers.php"><a href="files/website-private-core-controllers-controller-customers.html"><abbr title="Website/private_core/controllers/Controller_Customers.php">Controller_Customers.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/controllers/Controller_Table.php"><a href="files/framework-private-core-controllers-controller-table.html"><abbr title="Framework/private_core/controllers/Controller_Table.php">Controller_Table.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">24</span>
+    <span class="phpdocumentor-element-found-in__line">26</span>
 
     </aside>
 
-            <p class="phpdocumentor-summary">The Controller object for the Customer page.</p>
+            <p class="phpdocumentor-summary">The Controller object for the Table page.</p>
 
-    <section class="phpdocumentor-description"><p>This class handles the data being sent and received from the server for the Customer page.
+    <section class="phpdocumentor-description"><p>This controller is slightly different to other controllers as it retrieves its data from session variables set from other models.
 Its other MVC components are:</p>
 <ul>
-<li>View: Customer.php</li>
-<li>Model: Model_Customer.php</li>
+<li>View: Table.php</li>
+<li>Model: Model_Table.php</li>
 </ul>
-<p>When receiving data from the model, it creates page elements to be used in the view. In this case, a form using the FormBuilder object.
-When sending data to the model (from a form submission), it validates the data and sends it to the model via sendModelData() for
-insertion into the database.</p>
+<p>This controller retrieves its data from its model, which obtains its data from session declared by other models. More information
+can be found in the Model_Table.php documentation.</p>
+<p>When receiving data from the model, it creates a basic HTML page with a single table element in it.
+The controller never sends data back to its model. THe model is purely used to retrieve data.</p>
 </section>
 
 
@@ -185,16 +186,16 @@ insertion into the database.</p>
 <dd></dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
-    <a href="classes/Application-Controller-Controller.html#property_mode">$mode</a>
+    <a href="classes/Application-Controller-Controller.html#property_model">$model</a>
     <span>
-                        &nbsp;: string            </span>
+                        &nbsp;: <a href="classes/Application-Model-Model.html"><abbr title="\Application\Model\Model">Model</abbr></a>|null            </span>
 </dt>
 <dd></dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
-    <a href="classes/Application-Controller-Controller.html#property_model">$model</a>
+    <a href="classes/Application-Controller-Controller.html#property_pageMode">$pageMode</a>
     <span>
-                        &nbsp;: <a href="classes/Application-Model-Model.html"><abbr title="\Application\Model\Model">Model</abbr></a>|null            </span>
+                        &nbsp;: string            </span>
 </dt>
 <dd></dd>
 
@@ -213,11 +214,11 @@ insertion into the database.</p>
 <dd></dd>
 
                 <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Application-Controller-Controller-Customers.html#method___construct">__construct()</a>
+    <a href="classes/Application-Controller-Controller-Table.html#method___construct">__construct()</a>
     <span>
                                 &nbsp;: mixed    </span>
 </dt>
-<dd>Takes an associated array (typically a GET request) and determines what data needs to be retrieved from the model.</dd>
+<dd>Additional data is typically an array based on GET variables.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Application-Controller-Controller.html#method___destruct">__destruct()</a>
@@ -241,14 +242,14 @@ insertion into the database.</p>
 <dd>Returns data associated to the specified key.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Application-Controller-Controller-Customers.html#method_postData">postData()</a>
+    <a href="classes/Application-Controller-Controller-Table.html#method_postData">postData()</a>
     <span>
                                 &nbsp;: mixed    </span>
 </dt>
-<dd>Validates and sends user-submitted data to the model for submission in the database.</dd>
+<dd>Since this controller does not send data to its model, no data submission is needed.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Application-Controller-Controller-Customers.html#method_retrieveData">retrieveData()</a>
+    <a href="classes/Application-Controller-Controller-Table.html#method_retrieveData">retrieveData()</a>
     <span>
                                 &nbsp;: void    </span>
 </dt>
@@ -263,18 +264,18 @@ insertion into the database.</p>
 based on the position of the spaces. Used for data that will be used to create new database objects including tables and columns.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -protected">
-    <a href="classes/Application-Controller-Controller.html#method_getMode">getMode()</a>
-    <span>
-                                &nbsp;: string    </span>
-</dt>
-<dd>Returns the mode the controller is being used in (i.e. create, insert, update, delete)</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -protected">
     <a href="classes/Application-Controller-Controller.html#method_getModel">getModel()</a>
     <span>
                                 &nbsp;: <a href="classes/Application-Model-Model.html"><abbr title="\Application\Model\Model">Model</abbr></a>    </span>
 </dt>
 <dd>Returns the Model object associated to this controller.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -protected">
+    <a href="classes/Application-Controller-Controller.html#method_getPage">getPage()</a>
+    <span>
+                                &nbsp;: string    </span>
+</dt>
+<dd>Returns the page the controller is being used in (i.e. create, insert, update, delete)</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -protected">
     <a href="classes/Application-Controller-DataValidator.html#method_removePascalCase">removePascalCase()</a>
@@ -291,11 +292,11 @@ based on the position of the spaces. Used for data that will be used to create n
 <dd>Sets the given data to the preparedData array for output in the view.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -protected">
-    <a href="classes/Application-Controller-Controller-Customers.html#method_validateDataParameters">validateDataParameters()</a>
+    <a href="classes/Application-Controller-Controller-Table.html#method_validateDataParameters">validateDataParameters()</a>
     <span>
-                                &nbsp;: array&lt;string|int, mixed&gt;|null    </span>
+                                &nbsp;: array&lt;string|int, mixed&gt;    </span>
 </dt>
-<dd>Validates customer form submission to suit the stored procedure for the respective mode.</dd>
+<dd>Since this controller does not send data to its model, no data validation is needed.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -protected">
     <a href="classes/Application-Controller-DataValidator.html#method_validatePostInput">validatePostInput()</a>
@@ -384,7 +385,7 @@ based on the position of the spaces. Used for data that will be used to create n
     <section class="phpdocumentor-properties">
         <h3 class="phpdocumentor-elements__header" id="properties">
             Properties
-            <a href="classes/Application-Controller-Controller-Customers.html#properties" class="headerlink"><i class="fas fa-link"></i></a>
+            <a href="classes/Application-Controller-Controller-Table.html#properties" class="headerlink"><i class="fas fa-link"></i></a>
         </h3>
                     <article
         class="
@@ -400,7 +401,7 @@ based on the position of the spaces. Used for data that will be used to create n
                                 </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/controllers/Controller.php"><a href="files/website-private-core-controllers-controller.html"><abbr title="Website/private_core/controllers/Controller.php">Controller.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/controllers/Controller.php"><a href="files/framework-private-core-controllers-controller.html"><abbr title="Framework/private_core/controllers/Controller.php">Controller.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">0</span>
 
@@ -435,7 +436,7 @@ based on the position of the spaces. Used for data that will be used to create n
                                 </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/controllers/Controller.php"><a href="files/website-private-core-controllers-controller.html"><abbr title="Website/private_core/controllers/Controller.php">Controller.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/controllers/Controller.php"><a href="files/framework-private-core-controllers-controller.html"><abbr title="Framework/private_core/controllers/Controller.php">Controller.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">0</span>
 
@@ -470,7 +471,7 @@ based on the position of the spaces. Used for data that will be used to create n
                                 </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/controllers/Controller.php"><a href="files/website-private-core-controllers-controller.html"><abbr title="Website/private_core/controllers/Controller.php">Controller.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/controllers/Controller.php"><a href="files/framework-private-core-controllers-controller.html"><abbr title="Framework/private_core/controllers/Controller.php">Controller.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">0</span>
 
@@ -505,7 +506,7 @@ based on the position of the spaces. Used for data that will be used to create n
                                 </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/controllers/Controller.php"><a href="files/website-private-core-controllers-controller.html"><abbr title="Website/private_core/controllers/Controller.php">Controller.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/controllers/Controller.php"><a href="files/framework-private-core-controllers-controller.html"><abbr title="Framework/private_core/controllers/Controller.php">Controller.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">46</span>
 
@@ -532,40 +533,6 @@ based on the position of the spaces. Used for data that will be used to create n
             -private
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="property_mode">
-        $mode
-        <a href="classes/Application-Controller-Controller.html#property_mode" class="headerlink"><i class="fas fa-link"></i></a>
-        <span class="phpdocumentor-element__modifiers">
-                                </span>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/controllers/Controller.php"><a href="files/website-private-core-controllers-controller.html"><abbr title="Website/private_core/controllers/Controller.php">Controller.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">47</span>
-
-    </aside>
-
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">private</span>
-        <span class="phpdocumentor-signature__type">string</span>
-    <span class="phpdocumentor-signature__name">$mode</span>
-    </code>
-
-        <section class="phpdocumentor-description"></section>
-
-        <section class="phpdocumentor-description"></section>
-
-    
-
-</article>
-                    <article
-        class="
-            phpdocumentor-element
-            -property
-            -private
-                                                        "
->
     <h4 class="phpdocumentor-element__name" id="property_model">
         $model
         <a href="classes/Application-Controller-Controller.html#property_model" class="headerlink"><i class="fas fa-link"></i></a>
@@ -573,7 +540,7 @@ based on the position of the spaces. Used for data that will be used to create n
                                 </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/controllers/Controller.php"><a href="files/website-private-core-controllers-controller.html"><abbr title="Website/private_core/controllers/Controller.php">Controller.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/controllers/Controller.php"><a href="files/framework-private-core-controllers-controller.html"><abbr title="Framework/private_core/controllers/Controller.php">Controller.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">43</span>
 
@@ -600,6 +567,40 @@ based on the position of the spaces. Used for data that will be used to create n
             -private
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="property_pageMode">
+        $pageMode
+        <a href="classes/Application-Controller-Controller.html#property_pageMode" class="headerlink"><i class="fas fa-link"></i></a>
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/controllers/Controller.php"><a href="files/framework-private-core-controllers-controller.html"><abbr title="Framework/private_core/controllers/Controller.php">Controller.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">47</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+        <span class="phpdocumentor-signature__type">string</span>
+    <span class="phpdocumentor-signature__name">$pageMode</span>
+    </code>
+
+        <section class="phpdocumentor-description"></section>
+
+        <section class="phpdocumentor-description"></section>
+
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -private
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="property_preparedData">
         $preparedData
         <a href="classes/Application-Controller-Controller.html#property_preparedData" class="headerlink"><i class="fas fa-link"></i></a>
@@ -607,7 +608,7 @@ based on the position of the spaces. Used for data that will be used to create n
                                 </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/controllers/Controller.php"><a href="files/website-private-core-controllers-controller.html"><abbr title="Website/private_core/controllers/Controller.php">Controller.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/controllers/Controller.php"><a href="files/framework-private-core-controllers-controller.html"><abbr title="Framework/private_core/controllers/Controller.php">Controller.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">44</span>
 
@@ -641,7 +642,7 @@ based on the position of the spaces. Used for data that will be used to create n
                                 </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/controllers/Controller.php"><a href="files/website-private-core-controllers-controller.html"><abbr title="Website/private_core/controllers/Controller.php">Controller.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/controllers/Controller.php"><a href="files/framework-private-core-controllers-controller.html"><abbr title="Framework/private_core/controllers/Controller.php">Controller.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">45</span>
 
@@ -666,7 +667,7 @@ based on the position of the spaces. Used for data that will be used to create n
             <section class="phpdocumentor-methods">
         <h3 class="phpdocumentor-elements__header" id="methods">
             Methods
-            <a href="classes/Application-Controller-Controller-Customers.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
+            <a href="classes/Application-Controller-Controller-Table.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
         </h3>
                     <article
         class="phpdocumentor-element
@@ -676,33 +677,30 @@ based on the position of the spaces. Used for data that will be used to create n
 >
     <h4 class="phpdocumentor-element__name" id="method___construct">
         __construct()
-        <a href="classes/Application-Controller-Controller-Customers.html#method___construct" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/Application-Controller-Controller-Table.html#method___construct" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/controllers/Controller_Customers.php"><a href="files/website-private-core-controllers-controller-customers.html"><abbr title="Website/private_core/controllers/Controller_Customers.php">Controller_Customers.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/controllers/Controller_Table.php"><a href="files/framework-private-core-controllers-controller-table.html"><abbr title="Framework/private_core/controllers/Controller_Table.php">Controller_Table.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">31</span>
+    <span class="phpdocumentor-element-found-in__line">29</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Takes an associated array (typically a GET request) and determines what data needs to be retrieved from the model.</p>
+        <p class="phpdocumentor-summary">Additional data is typically an array based on GET variables.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$data</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$data</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
-        <section class="phpdocumentor-description"><p>Constructs the model based on the given data. Provides the model with the table/view to retrieve data from.</p>
-</section>
-
+    
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$data</span>
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
-                 = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
+                            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>An associative array that contains data for the controller to create a model with. Usually $_GET.</p>
-</section>
+                    <section class="phpdocumentor-description"></section>
 
             </dd>
             </dl>
@@ -726,7 +724,7 @@ based on the position of the spaces. Used for data that will be used to create n
         <a href="classes/Application-Controller-Controller.html#method___destruct" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/controllers/Controller.php"><a href="files/website-private-core-controllers-controller.html"><abbr title="Website/private_core/controllers/Controller.php">Controller.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/controllers/Controller.php"><a href="files/framework-private-core-controllers-controller.html"><abbr title="Framework/private_core/controllers/Controller.php">Controller.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">66</span>
 
@@ -759,9 +757,9 @@ based on the position of the spaces. Used for data that will be used to create n
         <a href="classes/Application-Controller-Controller.html#method_checkPreparedData" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/controllers/Controller.php"><a href="files/website-private-core-controllers-controller.html"><abbr title="Website/private_core/controllers/Controller.php">Controller.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/controllers/Controller.php"><a href="files/framework-private-core-controllers-controller.html"><abbr title="Framework/private_core/controllers/Controller.php">Controller.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">122</span>
+    <span class="phpdocumentor-element-found-in__line">126</span>
 
     </aside>
 
@@ -804,9 +802,9 @@ based on the position of the spaces. Used for data that will be used to create n
         <a href="classes/Application-Controller-Controller.html#method_getPreparedData" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/controllers/Controller.php"><a href="files/website-private-core-controllers-controller.html"><abbr title="Website/private_core/controllers/Controller.php">Controller.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/controllers/Controller.php"><a href="files/framework-private-core-controllers-controller.html"><abbr title="Framework/private_core/controllers/Controller.php">Controller.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">113</span>
+    <span class="phpdocumentor-element-found-in__line">117</span>
 
     </aside>
 
@@ -850,22 +848,24 @@ based on the position of the spaces. Used for data that will be used to create n
 >
     <h4 class="phpdocumentor-element__name" id="method_postData">
         postData()
-        <a href="classes/Application-Controller-Controller-Customers.html#method_postData" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/Application-Controller-Controller-Table.html#method_postData" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/controllers/Controller_Customers.php"><a href="files/website-private-core-controllers-controller-customers.html"><abbr title="Website/private_core/controllers/Controller_Customers.php">Controller_Customers.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/controllers/Controller_Table.php"><a href="files/framework-private-core-controllers-controller-table.html"><abbr title="Framework/private_core/controllers/Controller_Table.php">Controller_Table.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">47</span>
+    <span class="phpdocumentor-element-found-in__line">38</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Validates and sends user-submitted data to the model for submission in the database.</p>
+        <p class="phpdocumentor-summary">Since this controller does not send data to its model, no data submission is needed.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                     <span class="phpdocumentor-signature__name">postData</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$data</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$mode</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>This function only exists as it is an abstract function that needs to be implemented.</p>
+</section>
+
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -905,12 +905,12 @@ based on the position of the spaces. Used for data that will be used to create n
 >
     <h4 class="phpdocumentor-element__name" id="method_retrieveData">
         retrieveData()
-        <a href="classes/Application-Controller-Controller-Customers.html#method_retrieveData" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/Application-Controller-Controller-Table.html#method_retrieveData" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/controllers/Controller_Customers.php"><a href="files/website-private-core-controllers-controller-customers.html"><abbr title="Website/private_core/controllers/Controller_Customers.php">Controller_Customers.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/controllers/Controller_Table.php"><a href="files/framework-private-core-controllers-controller-table.html"><abbr title="Framework/private_core/controllers/Controller_Table.php">Controller_Table.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">76</span>
+    <span class="phpdocumentor-element-found-in__line">45</span>
 
     </aside>
 
@@ -953,9 +953,9 @@ based on the position of the spaces. Used for data that will be used to create n
         <a href="classes/Application-Controller-DataValidator.html#method_formatNameForDatabase" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/controllers/DataValidators.php"><a href="files/website-private-core-controllers-datavalidators.html"><abbr title="Website/private_core/controllers/DataValidators.php">DataValidators.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/controllers/DataValidators.php"><a href="files/framework-private-core-controllers-datavalidators.html"><abbr title="Framework/private_core/controllers/DataValidators.php">DataValidators.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">342</span>
+    <span class="phpdocumentor-element-found-in__line">339</span>
 
     </aside>
 
@@ -996,49 +996,14 @@ based on the position of the spaces. Used for data that will be used to create n
             -protected
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_getMode">
-        getMode()
-        <a href="classes/Application-Controller-Controller.html#method_getMode" class="headerlink"><i class="fas fa-link"></i></a>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/controllers/Controller.php"><a href="files/website-private-core-controllers-controller.html"><abbr title="Website/private_core/controllers/Controller.php">Controller.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">102</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">Returns the mode the controller is being used in (i.e. create, insert, update, delete)</p>
-
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">protected</span>
-                    <span class="phpdocumentor-signature__name">getMode</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
-
-    
-    
-    
-
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">string</span>
-            &mdash;
-            <section class="phpdocumentor-description"><p>The page mode</p>
-</section>
-
-    
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -protected
-                                                        "
->
     <h4 class="phpdocumentor-element__name" id="method_getModel">
         getModel()
         <a href="classes/Application-Controller-Controller.html#method_getModel" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/controllers/Controller.php"><a href="files/website-private-core-controllers-controller.html"><abbr title="Website/private_core/controllers/Controller.php">Controller.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/controllers/Controller.php"><a href="files/framework-private-core-controllers-controller.html"><abbr title="Framework/private_core/controllers/Controller.php">Controller.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">93</span>
+    <span class="phpdocumentor-element-found-in__line">97</span>
 
     </aside>
 
@@ -1066,14 +1031,49 @@ based on the position of the spaces. Used for data that will be used to create n
             -protected
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="method_getPage">
+        getPage()
+        <a href="classes/Application-Controller-Controller.html#method_getPage" class="headerlink"><i class="fas fa-link"></i></a>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/controllers/Controller.php"><a href="files/framework-private-core-controllers-controller.html"><abbr title="Framework/private_core/controllers/Controller.php">Controller.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">106</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Returns the page the controller is being used in (i.e. create, insert, update, delete)</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">protected</span>
+                    <span class="phpdocumentor-signature__name">getPage</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+
+    
+    
+    
+
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+    <span class="phpdocumentor-signature__response_type">string</span>
+            &mdash;
+            <section class="phpdocumentor-description"><p>The page mode. The mode corresponds to the name of a page within a view.</p>
+</section>
+
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -protected
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="method_removePascalCase">
         removePascalCase()
         <a href="classes/Application-Controller-DataValidator.html#method_removePascalCase" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/controllers/DataValidators.php"><a href="files/website-private-core-controllers-datavalidators.html"><abbr title="Website/private_core/controllers/DataValidators.php">DataValidators.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/controllers/DataValidators.php"><a href="files/framework-private-core-controllers-datavalidators.html"><abbr title="Framework/private_core/controllers/DataValidators.php">DataValidators.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">445</span>
+    <span class="phpdocumentor-element-found-in__line">442</span>
 
     </aside>
 
@@ -1118,9 +1118,9 @@ based on the position of the spaces. Used for data that will be used to create n
         <a href="classes/Application-Controller-Controller.html#method_setPreparedData" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/controllers/Controller.php"><a href="files/website-private-core-controllers-controller.html"><abbr title="Website/private_core/controllers/Controller.php">Controller.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/controllers/Controller.php"><a href="files/framework-private-core-controllers-controller.html"><abbr title="Framework/private_core/controllers/Controller.php">Controller.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">138</span>
+    <span class="phpdocumentor-element-found-in__line">142</span>
 
     </aside>
 
@@ -1171,22 +1171,24 @@ based on the position of the spaces. Used for data that will be used to create n
 >
     <h4 class="phpdocumentor-element__name" id="method_validateDataParameters">
         validateDataParameters()
-        <a href="classes/Application-Controller-Controller-Customers.html#method_validateDataParameters" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/Application-Controller-Controller-Table.html#method_validateDataParameters" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/controllers/Controller_Customers.php"><a href="files/website-private-core-controllers-controller-customers.html"><abbr title="Website/private_core/controllers/Controller_Customers.php">Controller_Customers.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/controllers/Controller_Table.php"><a href="files/framework-private-core-controllers-controller-table.html"><abbr title="Framework/private_core/controllers/Controller_Table.php">Controller_Table.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">144</span>
+    <span class="phpdocumentor-element-found-in__line">74</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Validates customer form submission to suit the stored procedure for the respective mode.</p>
+        <p class="phpdocumentor-summary">Since this controller does not send data to its model, no data validation is needed.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
-                    <span class="phpdocumentor-signature__name">validateDataParameters</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__reference-operator">&amp;</span><span class="phpdocumentor-signature__argument__name">$data</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$mode</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">&#039;default&#039;</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;|null</span></code>
+                    <span class="phpdocumentor-signature__name">validateDataParameters</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$data</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$mode</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">&#039;default&#039;</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>This function only exists as it is an abstract function that needs to be implemented.</p>
+</section>
+
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -1194,7 +1196,8 @@ based on the position of the spaces. Used for data that will be used to create n
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
+                    <section class="phpdocumentor-description"><p>An array retrieved from a form submission containing the data to be validated.</p>
+</section>
 
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
@@ -1202,7 +1205,8 @@ based on the position of the spaces. Used for data that will be used to create n
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                  = <span class="phpdocumentor-signature__argument__default-value">&#039;default&#039;</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
+                    <section class="phpdocumentor-description"><p>The mode in which the data needs to be validated for. See @see{Application\Model} for MODE constants.</p>
+</section>
 
             </dd>
             </dl>
@@ -1210,9 +1214,11 @@ based on the position of the spaces. Used for data that will be used to create n
     
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;|null</span>
+    <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>An associative array of the validated data. If data is being sent to a stored procedure, each key must correspond to a parameter in the stored procedure.</p>
+</section>
+
     
 </article>
                     <article
@@ -1226,7 +1232,7 @@ based on the position of the spaces. Used for data that will be used to create n
         <a href="classes/Application-Controller-DataValidator.html#method_validatePostInput" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/controllers/DataValidators.php"><a href="files/website-private-core-controllers-datavalidators.html"><abbr title="Website/private_core/controllers/DataValidators.php">DataValidators.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/controllers/DataValidators.php"><a href="files/framework-private-core-controllers-datavalidators.html"><abbr title="Framework/private_core/controllers/DataValidators.php">DataValidators.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">304</span>
 
@@ -1281,9 +1287,9 @@ based on the position of the spaces. Used for data that will be used to create n
         <a href="classes/Application-Controller-DataValidator.html#method_validatePostOutput" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/controllers/DataValidators.php"><a href="files/website-private-core-controllers-datavalidators.html"><abbr title="Website/private_core/controllers/DataValidators.php">DataValidators.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/controllers/DataValidators.php"><a href="files/framework-private-core-controllers-datavalidators.html"><abbr title="Framework/private_core/controllers/DataValidators.php">DataValidators.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">323</span>
+    <span class="phpdocumentor-element-found-in__line">320</span>
 
     </aside>
 
@@ -1336,9 +1342,9 @@ based on the position of the spaces. Used for data that will be used to create n
         <a href="classes/Application-Controller-DataValidator.html#method_cleanseStringForDynamicSQL" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/controllers/DataValidators.php"><a href="files/website-private-core-controllers-datavalidators.html"><abbr title="Website/private_core/controllers/DataValidators.php">DataValidators.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/controllers/DataValidators.php"><a href="files/framework-private-core-controllers-datavalidators.html"><abbr title="Framework/private_core/controllers/DataValidators.php">DataValidators.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">486</span>
+    <span class="phpdocumentor-element-found-in__line">483</span>
 
     </aside>
 
@@ -1383,7 +1389,7 @@ based on the position of the spaces. Used for data that will be used to create n
         <a href="classes/Application-Controller-DataValidator.html#method_componentAttributeToJSON" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/controllers/DataValidators.php"><a href="files/website-private-core-controllers-datavalidators.html"><abbr title="Website/private_core/controllers/DataValidators.php">DataValidators.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/controllers/DataValidators.php"><a href="files/framework-private-core-controllers-datavalidators.html"><abbr title="Framework/private_core/controllers/DataValidators.php">DataValidators.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">184</span>
 
@@ -1442,7 +1448,7 @@ based on the position of the spaces. Used for data that will be used to create n
         <a href="classes/Application-Controller-DataValidator.html#method_dataTypeConversion" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/controllers/DataValidators.php"><a href="files/website-private-core-controllers-datavalidators.html"><abbr title="Website/private_core/controllers/DataValidators.php">DataValidators.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/controllers/DataValidators.php"><a href="files/framework-private-core-controllers-datavalidators.html"><abbr title="Framework/private_core/controllers/DataValidators.php">DataValidators.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">149</span>
 
@@ -1486,7 +1492,7 @@ based on the position of the spaces. Used for data that will be used to create n
         <a href="classes/Application-Controller-DataValidator.html#method_dynamicPillBoxValidation" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/controllers/DataValidators.php"><a href="files/website-private-core-controllers-datavalidators.html"><abbr title="Website/private_core/controllers/DataValidators.php">DataValidators.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/controllers/DataValidators.php"><a href="files/framework-private-core-controllers-datavalidators.html"><abbr title="Framework/private_core/controllers/DataValidators.php">DataValidators.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">265</span>
 
@@ -1533,7 +1539,7 @@ based on the position of the spaces. Used for data that will be used to create n
         <a href="classes/Application-Controller-DataValidator.html#method_validateCSVParams" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/controllers/DataValidators.php"><a href="files/website-private-core-controllers-datavalidators.html"><abbr title="Website/private_core/controllers/DataValidators.php">DataValidators.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/controllers/DataValidators.php"><a href="files/framework-private-core-controllers-datavalidators.html"><abbr title="Framework/private_core/controllers/DataValidators.php">DataValidators.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">21</span>
 
@@ -1592,7 +1598,7 @@ through it, creating CSV strings and storing them into an array with their respe
         <a href="classes/Application-Controller-DataValidator.html#method_validateCSVParamsForEdit" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/controllers/DataValidators.php"><a href="files/website-private-core-controllers-datavalidators.html"><abbr title="Website/private_core/controllers/DataValidators.php">DataValidators.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/controllers/DataValidators.php"><a href="files/framework-private-core-controllers-datavalidators.html"><abbr title="Framework/private_core/controllers/DataValidators.php">DataValidators.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">74</span>
 
@@ -1643,9 +1649,9 @@ through it, creating CSV strings and storing them into an array with their respe
         <a href="classes/Application-Controller-DataValidator.html#method_validateInput" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/controllers/DataValidators.php"><a href="files/website-private-core-controllers-datavalidators.html"><abbr title="Website/private_core/controllers/DataValidators.php">DataValidators.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/controllers/DataValidators.php"><a href="files/framework-private-core-controllers-datavalidators.html"><abbr title="Framework/private_core/controllers/DataValidators.php">DataValidators.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">386</span>
+    <span class="phpdocumentor-element-found-in__line">383</span>
 
     </aside>
 
@@ -1699,9 +1705,9 @@ through it, creating CSV strings and storing them into an array with their respe
         <a href="classes/Application-Controller-DataValidator.html#method_validateOutput" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/controllers/DataValidators.php"><a href="files/website-private-core-controllers-datavalidators.html"><abbr title="Website/private_core/controllers/DataValidators.php">DataValidators.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/controllers/DataValidators.php"><a href="files/framework-private-core-controllers-datavalidators.html"><abbr title="Framework/private_core/controllers/DataValidators.php">DataValidators.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">415</span>
+    <span class="phpdocumentor-element-found-in__line">412</span>
 
     </aside>
 
@@ -1746,7 +1752,7 @@ through it, creating CSV strings and storing them into an array with their respe
         <a href="classes/Application-Controller-DataValidator.html#method_validatePillBox" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/controllers/DataValidators.php"><a href="files/website-private-core-controllers-datavalidators.html"><abbr title="Website/private_core/controllers/DataValidators.php">DataValidators.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/controllers/DataValidators.php"><a href="files/framework-private-core-controllers-datavalidators.html"><abbr title="Framework/private_core/controllers/DataValidators.php">DataValidators.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">248</span>
 
@@ -1867,7 +1873,7 @@ through it, creating CSV strings and storing them into an array with their respe
 </section>
             </div>
         </div>
-        <a href="classes/Application-Controller-Controller-Customers.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
+        <a href="classes/Application-Controller-Controller-Table.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
 
     </main>
 

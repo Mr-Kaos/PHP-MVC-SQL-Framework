@@ -60,11 +60,11 @@
 </h4>
     <ul class="phpdocumentor-list">
                     <li>
-                <a href="namespaces/application-router.html" class="">Router</a>
+                <a href="namespaces/application-controller.html" class="">Controller</a>
                 
             </li>
                     <li>
-                <a href="namespaces/application-controller.html" class="">Controller</a>
+                <a href="namespaces/application-model.html" class="">Model</a>
                 
             </li>
                     <li>
@@ -72,7 +72,7 @@
                 
             </li>
                     <li>
-                <a href="namespaces/application-model.html" class="">Model</a>
+                <a href="namespaces/application-sessionmanagement.html" class="">SessionManagement</a>
                 
             </li>
             </ul>
@@ -121,15 +121,12 @@
         </div>
     
     
-            <span class="phpdocumentor-element__extends">
-            Uses
-                            <abbr title="\Application\HelperFunctions">HelperFunctions</abbr>                    </span>
     </h2>
 
         <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/controllers/PageBuilder/PageBuilder_Table.php"><a href="files/website-private-core-controllers-pagebuilder-pagebuilder-table.html"><abbr title="Website/private_core/controllers/PageBuilder/PageBuilder_Table.php">PageBuilder_Table.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/objects/PageBuilder/TableBuilder.php"><a href="files/framework-private-core-objects-pagebuilder-tablebuilder.html"><abbr title="Framework/private_core/objects/PageBuilder/TableBuilder.php">TableBuilder.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">25</span>
+    <span class="phpdocumentor-element-found-in__line">22</span>
 
     </aside>
 
@@ -152,13 +149,6 @@ This class also works in conjunction with the view &quot;Table&quot;, as hyperli
 </h3>
 
 <dl class="phpdocumentor-table-of-contents">
-            <dt class="phpdocumentor-table-of-contents__entry -constant -private">
-    <a href="classes/Application-PageBuilder-TableBuilder.html#constant_DEFAULT_STYLE_NAME">DEFAULT_STYLE_NAME</a>
-    <span>
-        &nbsp;= &quot;container-table&quot;                            </span>
-</dt>
-<dd></dd>
-
                     <dt class="phpdocumentor-table-of-contents__entry -property -public">
     <a href="classes/Application-PageBuilder-TableBuilder.html#property_columns">$columns</a>
     <span>
@@ -168,13 +158,6 @@ This class also works in conjunction with the view &quot;Table&quot;, as hyperli
 
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
     <a href="classes/Application-PageBuilder-TableBuilder.html#property_heading">$heading</a>
-    <span>
-                        &nbsp;: string|null            </span>
-</dt>
-<dd></dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -property -public">
-    <a href="classes/Application-PageBuilder-TableBuilder.html#property_hyperlinkVars">$hyperlinkVars</a>
     <span>
                         &nbsp;: string|null            </span>
 </dt>
@@ -195,13 +178,6 @@ This class also works in conjunction with the view &quot;Table&quot;, as hyperli
 <dd></dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
-    <a href="classes/Application-PageBuilder-TableBuilder.html#property_pageName">$pageName</a>
-    <span>
-                        &nbsp;: string|null            </span>
-</dt>
-<dd></dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -property -public">
     <a href="classes/Application-PageBuilder-TableBuilder.html#property_rowHyperlink">$rowHyperlink</a>
     <span>
                         &nbsp;: array&lt;string|int, mixed&gt;|null            </span>
@@ -216,9 +192,9 @@ This class also works in conjunction with the view &quot;Table&quot;, as hyperli
 <dd></dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
-    <a href="classes/Application-PageBuilder-TableBuilder.html#property_tableDataName">$tableDataName</a>
+    <a href="classes/Application-PageBuilder-TableBuilder.html#property_tableData">$tableData</a>
     <span>
-                        &nbsp;: string|null            </span>
+                        &nbsp;: array&lt;string|int, mixed&gt;|null            </span>
 </dt>
 <dd></dd>
 
@@ -258,23 +234,9 @@ This class also works in conjunction with the view &quot;Table&quot;, as hyperli
 <dd></dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
-    <a href="classes/Application-PageBuilder-TableBuilder.html#property_groupRowsBy">$groupRowsBy</a>
-    <span>
-                        &nbsp;: array&lt;string|int, mixed&gt;|null            </span>
-</dt>
-<dd></dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -property -private">
     <a href="classes/Application-PageBuilder-TableBuilder.html#property_heading">$heading</a>
     <span>
                         &nbsp;: string|null            </span>
-</dt>
-<dd></dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -property -private">
-    <a href="classes/Application-PageBuilder-TableBuilder.html#property_hyperlinkVars">$hyperlinkVars</a>
-    <span>
-                        &nbsp;: array&lt;string|int, mixed&gt;|null            </span>
 </dt>
 <dd></dd>
 
@@ -293,13 +255,6 @@ This class also works in conjunction with the view &quot;Table&quot;, as hyperli
 <dd></dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
-    <a href="classes/Application-PageBuilder-TableBuilder.html#property_rowHyperlink">$rowHyperlink</a>
-    <span>
-                        &nbsp;: string|null            </span>
-</dt>
-<dd></dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -property -private">
     <a href="classes/Application-PageBuilder-TableBuilder.html#property_sort">$sort</a>
     <span>
                         &nbsp;: string|null            </span>
@@ -307,9 +262,9 @@ This class also works in conjunction with the view &quot;Table&quot;, as hyperli
 <dd></dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
-    <a href="classes/Application-PageBuilder-TableBuilder.html#property_tableDataName">$tableDataName</a>
+    <a href="classes/Application-PageBuilder-TableBuilder.html#property_tableData">$tableData</a>
     <span>
-                        &nbsp;: string|null            </span>
+                        &nbsp;: array&lt;string|int, mixed&gt;|null            </span>
 </dt>
 <dd></dd>
 
@@ -419,6 +374,13 @@ This class also works in conjunction with the view &quot;Table&quot;, as hyperli
 <dd>Generates the HTML class attribute for the specified CSS class name.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -private">
+    <a href="classes/Application-PageBuilder-TableBuilder.html#method_buildPagination">buildPagination()</a>
+    <span>
+                                &nbsp;: string    </span>
+</dt>
+<dd>Creates the pagination for the table based on the number of pages required by the table.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -private">
     <a href="classes/Application-PageBuilder-PageElementBuilder.html#method_checkIdTaken">checkIdTaken()</a>
     <span>
                                 &nbsp;: bool    </span>
@@ -437,41 +399,6 @@ This class also works in conjunction with the view &quot;Table&quot;, as hyperli
 
 
         
-    <section class="phpdocumentor-constants">
-        <h3 class="phpdocumentor-elements__header" id="constants">
-            Constants
-            <a href="classes/Application-PageBuilder-TableBuilder.html#constants" class="headerlink"><i class="fas fa-link"></i></a>
-        </h3>
-                    <article class="phpdocumentor-element -constant -private ">
-    <h4 class="phpdocumentor-element__name" id="constant_DEFAULT_STYLE_NAME">
-        DEFAULT_STYLE_NAME
-        <a href="classes/Application-PageBuilder-TableBuilder.html#constant_DEFAULT_STYLE_NAME" class="headerlink"><i class="fas fa-link"></i></a>
-    </h4>
-
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/controllers/PageBuilder/PageBuilder_Table.php"><a href="files/website-private-core-controllers-pagebuilder-pagebuilder-table.html"><abbr title="Website/private_core/controllers/PageBuilder/PageBuilder_Table.php">PageBuilder_Table.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">39</span>
-
-    </aside>
-
-    
-    <code class="phpdocumentor-signature phpdocumentor-code ">
-    <span class="phpdocumentor-signature__visibility">private</span>
-        <span class="phpdocumentor-signature__type">mixed</span>
-    <span class="phpdocumentor-signature__name">DEFAULT_STYLE_NAME</span>
-    = <span class="phpdocumentor-signature__default-value">&quot;container-table&quot;</span>
-</code>
-
-
-        <section class="phpdocumentor-description"></section>
-
-        <section class="phpdocumentor-description"></section>
-
-    
-
-</article>
-            </section>
 
         
     <section class="phpdocumentor-properties">
@@ -493,7 +420,7 @@ This class also works in conjunction with the view &quot;Table&quot;, as hyperli
                                 </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/controllers/PageBuilder/PageBuilder_Table.php"><a href="files/website-private-core-controllers-pagebuilder-pagebuilder-table.html"><abbr title="Website/private_core/controllers/PageBuilder/PageBuilder_Table.php">PageBuilder_Table.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/objects/PageBuilder/TableBuilder.php"><a href="files/framework-private-core-objects-pagebuilder-tablebuilder.html"><abbr title="Framework/private_core/objects/PageBuilder/TableBuilder.php">TableBuilder.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">0</span>
 
@@ -506,9 +433,7 @@ This class also works in conjunction with the view &quot;Table&quot;, as hyperli
     <span class="phpdocumentor-signature__name">$columns</span>
     </code>
 
-        <section class="phpdocumentor-description"><ul>
-<li>An array of TableColumn objects</li>
-</ul>
+        <section class="phpdocumentor-description"><p>An array of TableColumn objects</p>
 </section>
 
         <section class="phpdocumentor-description"></section>
@@ -530,7 +455,7 @@ This class also works in conjunction with the view &quot;Table&quot;, as hyperli
                                 </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/controllers/PageBuilder/PageBuilder_Table.php"><a href="files/website-private-core-controllers-pagebuilder-pagebuilder-table.html"><abbr title="Website/private_core/controllers/PageBuilder/PageBuilder_Table.php">PageBuilder_Table.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/objects/PageBuilder/TableBuilder.php"><a href="files/framework-private-core-objects-pagebuilder-tablebuilder.html"><abbr title="Framework/private_core/objects/PageBuilder/TableBuilder.php">TableBuilder.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">0</span>
 
@@ -543,46 +468,7 @@ This class also works in conjunction with the view &quot;Table&quot;, as hyperli
     <span class="phpdocumentor-signature__name">$heading</span>
     </code>
 
-        <section class="phpdocumentor-description"><ul>
-<li>The title of the table to display in the <caption> element.</li>
-</ul>
-</section>
-
-        <section class="phpdocumentor-description"></section>
-
-    
-
-</article>
-                    <article
-        class="
-            phpdocumentor-element
-            -property
-            -public
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="property_hyperlinkVars">
-        $hyperlinkVars
-        <a href="classes/Application-PageBuilder-TableBuilder.html#property_hyperlinkVars" class="headerlink"><i class="fas fa-link"></i></a>
-        <span class="phpdocumentor-element__modifiers">
-                                </span>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/controllers/PageBuilder/PageBuilder_Table.php"><a href="files/website-private-core-controllers-pagebuilder-pagebuilder-table.html"><abbr title="Website/private_core/controllers/PageBuilder/PageBuilder_Table.php">PageBuilder_Table.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">0</span>
-
-    </aside>
-
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-        <span class="phpdocumentor-signature__type">string|null</span>
-    <span class="phpdocumentor-signature__name">$hyperlinkVars</span>
-    </code>
-
-        <section class="phpdocumentor-description"><ul>
-<li>An associative array where each key is a variable in $rowHyperlink and the value is a column name in this table or is null.</li>
-</ul>
+        <section class="phpdocumentor-description"><p>The title of the table to display in the <caption> element.</p>
 </section>
 
         <section class="phpdocumentor-description"></section>
@@ -604,7 +490,7 @@ This class also works in conjunction with the view &quot;Table&quot;, as hyperli
                                 </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/controllers/PageBuilder/PageBuilder_Table.php"><a href="files/website-private-core-controllers-pagebuilder-pagebuilder-table.html"><abbr title="Website/private_core/controllers/PageBuilder/PageBuilder_Table.php">PageBuilder_Table.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/objects/PageBuilder/TableBuilder.php"><a href="files/framework-private-core-objects-pagebuilder-tablebuilder.html"><abbr title="Framework/private_core/objects/PageBuilder/TableBuilder.php">TableBuilder.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">0</span>
 
@@ -617,9 +503,7 @@ This class also works in conjunction with the view &quot;Table&quot;, as hyperli
     <span class="phpdocumentor-signature__name">$maxRows</span>
     </code>
 
-        <section class="phpdocumentor-description"><ul>
-<li>The maximum number of rows for the table to display at a time.</li>
-</ul>
+        <section class="phpdocumentor-description"><p>The maximum number of rows for the table to display at a time.</p>
 </section>
 
         <section class="phpdocumentor-description"></section>
@@ -641,7 +525,7 @@ This class also works in conjunction with the view &quot;Table&quot;, as hyperli
                                 </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/controllers/PageBuilder/PageBuilder_Table.php"><a href="files/website-private-core-controllers-pagebuilder-pagebuilder-table.html"><abbr title="Website/private_core/controllers/PageBuilder/PageBuilder_Table.php">PageBuilder_Table.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/objects/PageBuilder/TableBuilder.php"><a href="files/framework-private-core-objects-pagebuilder-tablebuilder.html"><abbr title="Framework/private_core/objects/PageBuilder/TableBuilder.php">TableBuilder.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">0</span>
 
@@ -654,46 +538,7 @@ This class also works in conjunction with the view &quot;Table&quot;, as hyperli
     <span class="phpdocumentor-signature__name">$page</span>
     </code>
 
-        <section class="phpdocumentor-description"><ul>
-<li>The page of the table to display. If the number of records is greater than the $maxRows value, the table will be split into pages.</li>
-</ul>
-</section>
-
-        <section class="phpdocumentor-description"></section>
-
-    
-
-</article>
-                    <article
-        class="
-            phpdocumentor-element
-            -property
-            -public
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="property_pageName">
-        $pageName
-        <a href="classes/Application-PageBuilder-TableBuilder.html#property_pageName" class="headerlink"><i class="fas fa-link"></i></a>
-        <span class="phpdocumentor-element__modifiers">
-                                </span>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/controllers/PageBuilder/PageBuilder_Table.php"><a href="files/website-private-core-controllers-pagebuilder-pagebuilder-table.html"><abbr title="Website/private_core/controllers/PageBuilder/PageBuilder_Table.php">PageBuilder_Table.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">0</span>
-
-    </aside>
-
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-        <span class="phpdocumentor-signature__type">string|null</span>
-    <span class="phpdocumentor-signature__name">$pageName</span>
-    </code>
-
-        <section class="phpdocumentor-description"><ul>
-<li>The URI of the page. Should not include the full path. Path should be relative to the views directory.</li>
-</ul>
+        <section class="phpdocumentor-description"><p>The page of the table to display. If the number of records is greater than the $maxRows value, the table will be split into pages.</p>
 </section>
 
         <section class="phpdocumentor-description"></section>
@@ -715,7 +560,7 @@ This class also works in conjunction with the view &quot;Table&quot;, as hyperli
                                 </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/controllers/PageBuilder/PageBuilder_Table.php"><a href="files/website-private-core-controllers-pagebuilder-pagebuilder-table.html"><abbr title="Website/private_core/controllers/PageBuilder/PageBuilder_Table.php">PageBuilder_Table.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/objects/PageBuilder/TableBuilder.php"><a href="files/framework-private-core-objects-pagebuilder-tablebuilder.html"><abbr title="Framework/private_core/objects/PageBuilder/TableBuilder.php">TableBuilder.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">0</span>
 
@@ -728,9 +573,7 @@ This class also works in conjunction with the view &quot;Table&quot;, as hyperli
     <span class="phpdocumentor-signature__name">$rowHyperlink</span>
     </code>
 
-        <section class="phpdocumentor-description"><ul>
-<li>A URL that each row will direct to if clicked. Optional.</li>
-</ul>
+        <section class="phpdocumentor-description"><p>A URL that each row will direct to if clicked. Optional.</p>
 </section>
 
         <section class="phpdocumentor-description"></section>
@@ -752,7 +595,7 @@ This class also works in conjunction with the view &quot;Table&quot;, as hyperli
                                 </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/controllers/PageBuilder/PageBuilder_Table.php"><a href="files/website-private-core-controllers-pagebuilder-pagebuilder-table.html"><abbr title="Website/private_core/controllers/PageBuilder/PageBuilder_Table.php">PageBuilder_Table.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/objects/PageBuilder/TableBuilder.php"><a href="files/framework-private-core-objects-pagebuilder-tablebuilder.html"><abbr title="Framework/private_core/objects/PageBuilder/TableBuilder.php">TableBuilder.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">0</span>
 
@@ -765,9 +608,7 @@ This class also works in conjunction with the view &quot;Table&quot;, as hyperli
     <span class="phpdocumentor-signature__name">$sort</span>
     </code>
 
-        <section class="phpdocumentor-description"><ul>
-<li>The name of the column to sort by.</li>
-</ul>
+        <section class="phpdocumentor-description"><p>The name of the column to sort by.</p>
 </section>
 
         <section class="phpdocumentor-description"></section>
@@ -782,14 +623,14 @@ This class also works in conjunction with the view &quot;Table&quot;, as hyperli
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="property_tableDataName">
-        $tableDataName
-        <a href="classes/Application-PageBuilder-TableBuilder.html#property_tableDataName" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="property_tableData">
+        $tableData
+        <a href="classes/Application-PageBuilder-TableBuilder.html#property_tableData" class="headerlink"><i class="fas fa-link"></i></a>
         <span class="phpdocumentor-element__modifiers">
                                 </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/controllers/PageBuilder/PageBuilder_Table.php"><a href="files/website-private-core-controllers-pagebuilder-pagebuilder-table.html"><abbr title="Website/private_core/controllers/PageBuilder/PageBuilder_Table.php">PageBuilder_Table.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/objects/PageBuilder/TableBuilder.php"><a href="files/framework-private-core-objects-pagebuilder-tablebuilder.html"><abbr title="Framework/private_core/objects/PageBuilder/TableBuilder.php">TableBuilder.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">0</span>
 
@@ -798,13 +639,11 @@ This class also works in conjunction with the view &quot;Table&quot;, as hyperli
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-        <span class="phpdocumentor-signature__type">string|null</span>
-    <span class="phpdocumentor-signature__name">$tableDataName</span>
+        <span class="phpdocumentor-signature__type">array&lt;string|int, mixed&gt;|null</span>
+    <span class="phpdocumentor-signature__name">$tableData</span>
     </code>
 
-        <section class="phpdocumentor-description"><ul>
-<li>The key of the identifier in the session variables to determine the database table information.</li>
-</ul>
+        <section class="phpdocumentor-description"><p>An array containing any special settings for a table. Primarily used with table iFrames via <abbr title="\Application\PageBuilder\WarRoom\Controller\Controller_Table">Controller_Table</abbr></p>
 </section>
 
         <section class="phpdocumentor-description"></section>
@@ -826,7 +665,7 @@ This class also works in conjunction with the view &quot;Table&quot;, as hyperli
                                 </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/controllers/PageBuilder/PageBuilder_Table.php"><a href="files/website-private-core-controllers-pagebuilder-pagebuilder-table.html"><abbr title="Website/private_core/controllers/PageBuilder/PageBuilder_Table.php">PageBuilder_Table.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/objects/PageBuilder/TableBuilder.php"><a href="files/framework-private-core-objects-pagebuilder-tablebuilder.html"><abbr title="Framework/private_core/objects/PageBuilder/TableBuilder.php">TableBuilder.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">0</span>
 
@@ -839,9 +678,7 @@ This class also works in conjunction with the view &quot;Table&quot;, as hyperli
     <span class="phpdocumentor-signature__name">$tableRecordCount</span>
     </code>
 
-        <section class="phpdocumentor-description"><ul>
-<li>The number of records that exist in the source table. (Not the number of records that are displayed to the user)</li>
-</ul>
+        <section class="phpdocumentor-description"><p>The number of records that exist in the source table. (Not the number of records that are displayed to the user)</p>
 </section>
 
         <section class="phpdocumentor-description"></section>
@@ -863,7 +700,7 @@ This class also works in conjunction with the view &quot;Table&quot;, as hyperli
                                 </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/controllers/PageBuilder/PageBuilder.php"><a href="files/website-private-core-controllers-pagebuilder-pagebuilder.html"><abbr title="Website/private_core/controllers/PageBuilder/PageBuilder.php">PageBuilder.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/objects/PageBuilder/PageBuilder.php"><a href="files/framework-private-core-objects-pagebuilder-pagebuilder.html"><abbr title="Framework/private_core/objects/PageBuilder/PageBuilder.php">PageBuilder.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">10</span>
 
@@ -897,7 +734,7 @@ This class also works in conjunction with the view &quot;Table&quot;, as hyperli
                                 </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/controllers/PageBuilder/PageBuilder.php"><a href="files/website-private-core-controllers-pagebuilder-pagebuilder.html"><abbr title="Website/private_core/controllers/PageBuilder/PageBuilder.php">PageBuilder.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/objects/PageBuilder/PageBuilder.php"><a href="files/framework-private-core-objects-pagebuilder-pagebuilder.html"><abbr title="Framework/private_core/objects/PageBuilder/PageBuilder.php">PageBuilder.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">12</span>
 
@@ -931,7 +768,7 @@ This class also works in conjunction with the view &quot;Table&quot;, as hyperli
                                 </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/controllers/PageBuilder/PageBuilder.php"><a href="files/website-private-core-controllers-pagebuilder-pagebuilder.html"><abbr title="Website/private_core/controllers/PageBuilder/PageBuilder.php">PageBuilder.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/objects/PageBuilder/PageBuilder.php"><a href="files/framework-private-core-objects-pagebuilder-pagebuilder.html"><abbr title="Framework/private_core/objects/PageBuilder/PageBuilder.php">PageBuilder.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">11</span>
 
@@ -965,9 +802,9 @@ This class also works in conjunction with the view &quot;Table&quot;, as hyperli
                                 </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/controllers/PageBuilder/PageBuilder_Table.php"><a href="files/website-private-core-controllers-pagebuilder-pagebuilder-table.html"><abbr title="Website/private_core/controllers/PageBuilder/PageBuilder_Table.php">PageBuilder_Table.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/objects/PageBuilder/TableBuilder.php"><a href="files/framework-private-core-objects-pagebuilder-tablebuilder.html"><abbr title="Framework/private_core/objects/PageBuilder/TableBuilder.php">TableBuilder.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">29</span>
+    <span class="phpdocumentor-element-found-in__line">25</span>
 
     </aside>
 
@@ -992,40 +829,6 @@ This class also works in conjunction with the view &quot;Table&quot;, as hyperli
             -private
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="property_groupRowsBy">
-        $groupRowsBy
-        <a href="classes/Application-PageBuilder-TableBuilder.html#property_groupRowsBy" class="headerlink"><i class="fas fa-link"></i></a>
-        <span class="phpdocumentor-element__modifiers">
-                                </span>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/controllers/PageBuilder/PageBuilder_Table.php"><a href="files/website-private-core-controllers-pagebuilder-pagebuilder-table.html"><abbr title="Website/private_core/controllers/PageBuilder/PageBuilder_Table.php">PageBuilder_Table.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">36</span>
-
-    </aside>
-
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">private</span>
-        <span class="phpdocumentor-signature__type">array&lt;string|int, mixed&gt;|null</span>
-    <span class="phpdocumentor-signature__name">$groupRowsBy</span>
-    </code>
-
-        <section class="phpdocumentor-description"></section>
-
-        <section class="phpdocumentor-description"></section>
-
-    
-
-</article>
-                    <article
-        class="
-            phpdocumentor-element
-            -property
-            -private
-                                                        "
->
     <h4 class="phpdocumentor-element__name" id="property_heading">
         $heading
         <a href="classes/Application-PageBuilder-TableBuilder.html#property_heading" class="headerlink"><i class="fas fa-link"></i></a>
@@ -1033,9 +836,9 @@ This class also works in conjunction with the view &quot;Table&quot;, as hyperli
                                 </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/controllers/PageBuilder/PageBuilder_Table.php"><a href="files/website-private-core-controllers-pagebuilder-pagebuilder-table.html"><abbr title="Website/private_core/controllers/PageBuilder/PageBuilder_Table.php">PageBuilder_Table.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/objects/PageBuilder/TableBuilder.php"><a href="files/framework-private-core-objects-pagebuilder-tablebuilder.html"><abbr title="Framework/private_core/objects/PageBuilder/TableBuilder.php">TableBuilder.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">28</span>
+    <span class="phpdocumentor-element-found-in__line">24</span>
 
     </aside>
 
@@ -1060,40 +863,6 @@ This class also works in conjunction with the view &quot;Table&quot;, as hyperli
             -private
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="property_hyperlinkVars">
-        $hyperlinkVars
-        <a href="classes/Application-PageBuilder-TableBuilder.html#property_hyperlinkVars" class="headerlink"><i class="fas fa-link"></i></a>
-        <span class="phpdocumentor-element__modifiers">
-                                </span>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/controllers/PageBuilder/PageBuilder_Table.php"><a href="files/website-private-core-controllers-pagebuilder-pagebuilder-table.html"><abbr title="Website/private_core/controllers/PageBuilder/PageBuilder_Table.php">PageBuilder_Table.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">35</span>
-
-    </aside>
-
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">private</span>
-        <span class="phpdocumentor-signature__type">array&lt;string|int, mixed&gt;|null</span>
-    <span class="phpdocumentor-signature__name">$hyperlinkVars</span>
-    </code>
-
-        <section class="phpdocumentor-description"></section>
-
-        <section class="phpdocumentor-description"></section>
-
-    
-
-</article>
-                    <article
-        class="
-            phpdocumentor-element
-            -property
-            -private
-                                                        "
->
     <h4 class="phpdocumentor-element__name" id="property_maxRows">
         $maxRows
         <a href="classes/Application-PageBuilder-TableBuilder.html#property_maxRows" class="headerlink"><i class="fas fa-link"></i></a>
@@ -1101,9 +870,9 @@ This class also works in conjunction with the view &quot;Table&quot;, as hyperli
                                 </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/controllers/PageBuilder/PageBuilder_Table.php"><a href="files/website-private-core-controllers-pagebuilder-pagebuilder-table.html"><abbr title="Website/private_core/controllers/PageBuilder/PageBuilder_Table.php">PageBuilder_Table.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/objects/PageBuilder/TableBuilder.php"><a href="files/framework-private-core-objects-pagebuilder-tablebuilder.html"><abbr title="Framework/private_core/objects/PageBuilder/TableBuilder.php">TableBuilder.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">30</span>
+    <span class="phpdocumentor-element-found-in__line">26</span>
 
     </aside>
 
@@ -1135,9 +904,9 @@ This class also works in conjunction with the view &quot;Table&quot;, as hyperli
                                 </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/controllers/PageBuilder/PageBuilder_Table.php"><a href="files/website-private-core-controllers-pagebuilder-pagebuilder-table.html"><abbr title="Website/private_core/controllers/PageBuilder/PageBuilder_Table.php">PageBuilder_Table.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/objects/PageBuilder/TableBuilder.php"><a href="files/framework-private-core-objects-pagebuilder-tablebuilder.html"><abbr title="Framework/private_core/objects/PageBuilder/TableBuilder.php">TableBuilder.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">31</span>
+    <span class="phpdocumentor-element-found-in__line">27</span>
 
     </aside>
 
@@ -1162,40 +931,6 @@ This class also works in conjunction with the view &quot;Table&quot;, as hyperli
             -private
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="property_rowHyperlink">
-        $rowHyperlink
-        <a href="classes/Application-PageBuilder-TableBuilder.html#property_rowHyperlink" class="headerlink"><i class="fas fa-link"></i></a>
-        <span class="phpdocumentor-element__modifiers">
-                                </span>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/controllers/PageBuilder/PageBuilder_Table.php"><a href="files/website-private-core-controllers-pagebuilder-pagebuilder-table.html"><abbr title="Website/private_core/controllers/PageBuilder/PageBuilder_Table.php">PageBuilder_Table.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">32</span>
-
-    </aside>
-
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">private</span>
-        <span class="phpdocumentor-signature__type">string|null</span>
-    <span class="phpdocumentor-signature__name">$rowHyperlink</span>
-    </code>
-
-        <section class="phpdocumentor-description"></section>
-
-        <section class="phpdocumentor-description"></section>
-
-    
-
-</article>
-                    <article
-        class="
-            phpdocumentor-element
-            -property
-            -private
-                                                        "
->
     <h4 class="phpdocumentor-element__name" id="property_sort">
         $sort
         <a href="classes/Application-PageBuilder-TableBuilder.html#property_sort" class="headerlink"><i class="fas fa-link"></i></a>
@@ -1203,9 +938,9 @@ This class also works in conjunction with the view &quot;Table&quot;, as hyperli
                                 </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/controllers/PageBuilder/PageBuilder_Table.php"><a href="files/website-private-core-controllers-pagebuilder-pagebuilder-table.html"><abbr title="Website/private_core/controllers/PageBuilder/PageBuilder_Table.php">PageBuilder_Table.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/objects/PageBuilder/TableBuilder.php"><a href="files/framework-private-core-objects-pagebuilder-tablebuilder.html"><abbr title="Framework/private_core/objects/PageBuilder/TableBuilder.php">TableBuilder.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">34</span>
+    <span class="phpdocumentor-element-found-in__line">29</span>
 
     </aside>
 
@@ -1230,24 +965,24 @@ This class also works in conjunction with the view &quot;Table&quot;, as hyperli
             -private
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="property_tableDataName">
-        $tableDataName
-        <a href="classes/Application-PageBuilder-TableBuilder.html#property_tableDataName" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="property_tableData">
+        $tableData
+        <a href="classes/Application-PageBuilder-TableBuilder.html#property_tableData" class="headerlink"><i class="fas fa-link"></i></a>
         <span class="phpdocumentor-element__modifiers">
                                 </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/controllers/PageBuilder/PageBuilder_Table.php"><a href="files/website-private-core-controllers-pagebuilder-pagebuilder-table.html"><abbr title="Website/private_core/controllers/PageBuilder/PageBuilder_Table.php">PageBuilder_Table.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/objects/PageBuilder/TableBuilder.php"><a href="files/framework-private-core-objects-pagebuilder-tablebuilder.html"><abbr title="Framework/private_core/objects/PageBuilder/TableBuilder.php">TableBuilder.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">37</span>
+    <span class="phpdocumentor-element-found-in__line">30</span>
 
     </aside>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
-        <span class="phpdocumentor-signature__type">string|null</span>
-    <span class="phpdocumentor-signature__name">$tableDataName</span>
+        <span class="phpdocumentor-signature__type">array&lt;string|int, mixed&gt;|null</span>
+    <span class="phpdocumentor-signature__name">$tableData</span>
     </code>
 
         <section class="phpdocumentor-description"></section>
@@ -1271,9 +1006,9 @@ This class also works in conjunction with the view &quot;Table&quot;, as hyperli
                                 </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/controllers/PageBuilder/PageBuilder_Table.php"><a href="files/website-private-core-controllers-pagebuilder-pagebuilder-table.html"><abbr title="Website/private_core/controllers/PageBuilder/PageBuilder_Table.php">PageBuilder_Table.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/objects/PageBuilder/TableBuilder.php"><a href="files/framework-private-core-objects-pagebuilder-tablebuilder.html"><abbr title="Framework/private_core/objects/PageBuilder/TableBuilder.php">TableBuilder.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">33</span>
+    <span class="phpdocumentor-element-found-in__line">28</span>
 
     </aside>
 
@@ -1305,7 +1040,7 @@ This class also works in conjunction with the view &quot;Table&quot;, as hyperli
                                 </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/controllers/PageBuilder/PageBuilder.php"><a href="files/website-private-core-controllers-pagebuilder-pagebuilder.html"><abbr title="Website/private_core/controllers/PageBuilder/PageBuilder.php">PageBuilder.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/objects/PageBuilder/PageBuilder.php"><a href="files/framework-private-core-objects-pagebuilder-pagebuilder.html"><abbr title="Framework/private_core/objects/PageBuilder/PageBuilder.php">PageBuilder.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">13</span>
 
@@ -1343,16 +1078,16 @@ This class also works in conjunction with the view &quot;Table&quot;, as hyperli
         <a href="classes/Application-PageBuilder-TableBuilder.html#method___construct" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/controllers/PageBuilder/PageBuilder_Table.php"><a href="files/website-private-core-controllers-pagebuilder-pagebuilder-table.html"><abbr title="Website/private_core/controllers/PageBuilder/PageBuilder_Table.php">PageBuilder_Table.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/objects/PageBuilder/TableBuilder.php"><a href="files/framework-private-core-objects-pagebuilder-tablebuilder.html"><abbr title="Framework/private_core/objects/PageBuilder/TableBuilder.php">TableBuilder.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">41</span>
+    <span class="phpdocumentor-element-found-in__line">32</span>
 
     </aside>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$id</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$styleName</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$heading</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$maxRows</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">100</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$page</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">1</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$recordCount</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$sort</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$rowDestination</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$destinationVars</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$pageName</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">&quot;Table.php&quot;</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$groupRowsBy</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$tableDataName</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$id</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$styleName</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$heading</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$maxRows</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">100</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$page</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">1</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$recordCount</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$sort</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$tableData</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
         <section class="phpdocumentor-description"></section>
 
@@ -1415,40 +1150,8 @@ This class also works in conjunction with the view &quot;Table&quot;, as hyperli
 
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$rowDestination</span>
-                : <span class="phpdocumentor-signature__argument__return-type">string|null</span>
-                 = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
-
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$destinationVars</span>
+                <span class="phpdocumentor-signature__argument__name">$tableData</span>
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;|null</span>
-                 = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
-
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$pageName</span>
-                : <span class="phpdocumentor-signature__argument__return-type">string|null</span>
-                 = <span class="phpdocumentor-signature__argument__default-value">&quot;Table.php&quot;</span>            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
-
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$groupRowsBy</span>
-                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;|null</span>
-                 = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
-
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$tableDataName</span>
-                : <span class="phpdocumentor-signature__argument__return-type">string</span>
                  = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
                     <section class="phpdocumentor-description"></section>
@@ -1475,7 +1178,7 @@ This class also works in conjunction with the view &quot;Table&quot;, as hyperli
         <a href="classes/Application-PageBuilder-PageElementBuilder.html#method___destruct" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/controllers/PageBuilder/PageBuilder.php"><a href="files/website-private-core-controllers-pagebuilder-pagebuilder.html"><abbr title="Website/private_core/controllers/PageBuilder/PageBuilder.php">PageBuilder.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/objects/PageBuilder/PageBuilder.php"><a href="files/framework-private-core-objects-pagebuilder-pagebuilder.html"><abbr title="Framework/private_core/objects/PageBuilder/PageBuilder.php">PageBuilder.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">25</span>
 
@@ -1508,9 +1211,9 @@ This class also works in conjunction with the view &quot;Table&quot;, as hyperli
         <a href="classes/Application-PageBuilder-TableBuilder.html#method_addColumn" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/controllers/PageBuilder/PageBuilder_Table.php"><a href="files/website-private-core-controllers-pagebuilder-pagebuilder-table.html"><abbr title="Website/private_core/controllers/PageBuilder/PageBuilder_Table.php">PageBuilder_Table.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/objects/PageBuilder/TableBuilder.php"><a href="files/framework-private-core-objects-pagebuilder-tablebuilder.html"><abbr title="Framework/private_core/objects/PageBuilder/TableBuilder.php">TableBuilder.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">264</span>
+    <span class="phpdocumentor-element-found-in__line">239</span>
 
     </aside>
 
@@ -1602,9 +1305,9 @@ Only affects cells that are null due to being created before this column was add
         <a href="classes/Application-PageBuilder-TableBuilder.html#method_addPrimaryRow" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/controllers/PageBuilder/PageBuilder_Table.php"><a href="files/website-private-core-controllers-pagebuilder-pagebuilder-table.html"><abbr title="Website/private_core/controllers/PageBuilder/PageBuilder_Table.php">PageBuilder_Table.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/objects/PageBuilder/TableBuilder.php"><a href="files/framework-private-core-objects-pagebuilder-tablebuilder.html"><abbr title="Framework/private_core/objects/PageBuilder/TableBuilder.php">TableBuilder.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">233</span>
+    <span class="phpdocumentor-element-found-in__line">208</span>
 
     </aside>
 
@@ -1662,9 +1365,9 @@ Only affects cells that are null due to being created before this column was add
         <a href="classes/Application-PageBuilder-TableBuilder.html#method_addRow" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/controllers/PageBuilder/PageBuilder_Table.php"><a href="files/website-private-core-controllers-pagebuilder-pagebuilder-table.html"><abbr title="Website/private_core/controllers/PageBuilder/PageBuilder_Table.php">PageBuilder_Table.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/objects/PageBuilder/TableBuilder.php"><a href="files/framework-private-core-objects-pagebuilder-tablebuilder.html"><abbr title="Framework/private_core/objects/PageBuilder/TableBuilder.php">TableBuilder.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">219</span>
+    <span class="phpdocumentor-element-found-in__line">194</span>
 
     </aside>
 
@@ -1725,9 +1428,9 @@ Only affects cells that are null due to being created before this column was add
         <a href="classes/Application-PageBuilder-TableBuilder.html#method_arrayToTable" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/controllers/PageBuilder/PageBuilder_Table.php"><a href="files/website-private-core-controllers-pagebuilder-pagebuilder-table.html"><abbr title="Website/private_core/controllers/PageBuilder/PageBuilder_Table.php">PageBuilder_Table.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/objects/PageBuilder/TableBuilder.php"><a href="files/framework-private-core-objects-pagebuilder-tablebuilder.html"><abbr title="Framework/private_core/objects/PageBuilder/TableBuilder.php">TableBuilder.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">282</span>
+    <span class="phpdocumentor-element-found-in__line">257</span>
 
     </aside>
 
@@ -1790,7 +1493,7 @@ Only affects cells that are null due to being created before this column was add
                  = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
                     <section class="phpdocumentor-description"><ul>
-<li>The name of the column in the table (key in the given array) that will contin the action. If null, all columns will perform the specified action.</li>
+<li>The name of the column in the table (key in the given array) that will contain the action. If null, all columns will perform the specified action.</li>
 </ul>
 </section>
 
@@ -1816,9 +1519,9 @@ Only affects cells that are null due to being created before this column was add
         <a href="classes/Application-PageBuilder-TableBuilder.html#method_buildContainer" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/controllers/PageBuilder/PageBuilder_Table.php"><a href="files/website-private-core-controllers-pagebuilder-pagebuilder-table.html"><abbr title="Website/private_core/controllers/PageBuilder/PageBuilder_Table.php">PageBuilder_Table.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/objects/PageBuilder/TableBuilder.php"><a href="files/framework-private-core-objects-pagebuilder-tablebuilder.html"><abbr title="Framework/private_core/objects/PageBuilder/TableBuilder.php">TableBuilder.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">59</span>
+    <span class="phpdocumentor-element-found-in__line">47</span>
 
     </aside>
 
@@ -1849,9 +1552,9 @@ Only affects cells that are null due to being created before this column was add
         <a href="classes/Application-PageBuilder-TableBuilder.html#method_columnCount" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/controllers/PageBuilder/PageBuilder_Table.php"><a href="files/website-private-core-controllers-pagebuilder-pagebuilder-table.html"><abbr title="Website/private_core/controllers/PageBuilder/PageBuilder_Table.php">PageBuilder_Table.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/objects/PageBuilder/TableBuilder.php"><a href="files/framework-private-core-objects-pagebuilder-tablebuilder.html"><abbr title="Framework/private_core/objects/PageBuilder/TableBuilder.php">TableBuilder.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">200</span>
+    <span class="phpdocumentor-element-found-in__line">175</span>
 
     </aside>
 
@@ -1882,9 +1585,9 @@ Only affects cells that are null due to being created before this column was add
         <a href="classes/Application-PageBuilder-TableBuilder.html#method_ListElements" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/controllers/PageBuilder/PageBuilder_Table.php"><a href="files/website-private-core-controllers-pagebuilder-pagebuilder-table.html"><abbr title="Website/private_core/controllers/PageBuilder/PageBuilder_Table.php">PageBuilder_Table.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/objects/PageBuilder/TableBuilder.php"><a href="files/framework-private-core-objects-pagebuilder-tablebuilder.html"><abbr title="Framework/private_core/objects/PageBuilder/TableBuilder.php">TableBuilder.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">210</span>
+    <span class="phpdocumentor-element-found-in__line">185</span>
 
     </aside>
 
@@ -1915,9 +1618,9 @@ Only affects cells that are null due to being created before this column was add
         <a href="classes/Application-PageBuilder-TableBuilder.html#method_rowCount" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/controllers/PageBuilder/PageBuilder_Table.php"><a href="files/website-private-core-controllers-pagebuilder-pagebuilder-table.html"><abbr title="Website/private_core/controllers/PageBuilder/PageBuilder_Table.php">PageBuilder_Table.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/objects/PageBuilder/TableBuilder.php"><a href="files/framework-private-core-objects-pagebuilder-tablebuilder.html"><abbr title="Framework/private_core/objects/PageBuilder/TableBuilder.php">TableBuilder.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">205</span>
+    <span class="phpdocumentor-element-found-in__line">180</span>
 
     </aside>
 
@@ -1948,7 +1651,7 @@ Only affects cells that are null due to being created before this column was add
         <a href="classes/Application-PageBuilder-PageElementBuilder.html#method_addId" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/controllers/PageBuilder/PageBuilder.php"><a href="files/website-private-core-controllers-pagebuilder-pagebuilder.html"><abbr title="Website/private_core/controllers/PageBuilder/PageBuilder.php">PageBuilder.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/objects/PageBuilder/PageBuilder.php"><a href="files/framework-private-core-objects-pagebuilder-pagebuilder.html"><abbr title="Framework/private_core/objects/PageBuilder/PageBuilder.php">PageBuilder.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">33</span>
 
@@ -1992,7 +1695,7 @@ Only affects cells that are null due to being created before this column was add
         <a href="classes/Application-PageBuilder-PageElementBuilder.html#method_cleanseOutput" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/controllers/PageBuilder/PageBuilder.php"><a href="files/website-private-core-controllers-pagebuilder-pagebuilder.html"><abbr title="Website/private_core/controllers/PageBuilder/PageBuilder.php">PageBuilder.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/objects/PageBuilder/PageBuilder.php"><a href="files/framework-private-core-objects-pagebuilder-pagebuilder.html"><abbr title="Framework/private_core/objects/PageBuilder/PageBuilder.php">PageBuilder.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">88</span>
 
@@ -2037,7 +1740,7 @@ Only affects cells that are null due to being created before this column was add
         <a href="classes/Application-PageBuilder-PageElementBuilder.html#method_getClassAttribute" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/controllers/PageBuilder/PageBuilder.php"><a href="files/website-private-core-controllers-pagebuilder-pagebuilder.html"><abbr title="Website/private_core/controllers/PageBuilder/PageBuilder.php">PageBuilder.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/objects/PageBuilder/PageBuilder.php"><a href="files/framework-private-core-objects-pagebuilder-pagebuilder.html"><abbr title="Framework/private_core/objects/PageBuilder/PageBuilder.php">PageBuilder.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">68</span>
 
@@ -2078,12 +1781,72 @@ Only affects cells that are null due to being created before this column was add
             -private
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="method_buildPagination">
+        buildPagination()
+        <a href="classes/Application-PageBuilder-TableBuilder.html#method_buildPagination" class="headerlink"><i class="fas fa-link"></i></a>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/objects/PageBuilder/TableBuilder.php"><a href="files/framework-private-core-objects-pagebuilder-tablebuilder.html"><abbr title="Framework/private_core/objects/PageBuilder/TableBuilder.php">TableBuilder.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">298</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Creates the pagination for the table based on the number of pages required by the table.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+                    <span class="phpdocumentor-signature__name">buildPagination</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$tableDataName</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$sort</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$query</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$tableDataName</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"></section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$sort</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"></section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$query</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string|null</span>
+                 = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"></section>
+
+            </dd>
+            </dl>
+
+    
+
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+    <span class="phpdocumentor-signature__response_type">string</span>
+            &mdash;
+        
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -private
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="method_checkIdTaken">
         checkIdTaken()
         <a href="classes/Application-PageBuilder-PageElementBuilder.html#method_checkIdTaken" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/controllers/PageBuilder/PageBuilder.php"><a href="files/website-private-core-controllers-pagebuilder-pagebuilder.html"><abbr title="Website/private_core/controllers/PageBuilder/PageBuilder.php">PageBuilder.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/objects/PageBuilder/PageBuilder.php"><a href="files/framework-private-core-objects-pagebuilder-pagebuilder.html"><abbr title="Framework/private_core/objects/PageBuilder/PageBuilder.php">PageBuilder.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">50</span>
 
@@ -2127,9 +1890,9 @@ Only affects cells that are null due to being created before this column was add
         <a href="classes/Application-PageBuilder-TableBuilder.html#method_cleanseColumnName" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/controllers/PageBuilder/PageBuilder_Table.php"><a href="files/website-private-core-controllers-pagebuilder-pagebuilder-table.html"><abbr title="Website/private_core/controllers/PageBuilder/PageBuilder_Table.php">PageBuilder_Table.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/objects/PageBuilder/TableBuilder.php"><a href="files/framework-private-core-objects-pagebuilder-tablebuilder.html"><abbr title="Framework/private_core/objects/PageBuilder/TableBuilder.php">TableBuilder.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">313</span>
+    <span class="phpdocumentor-element-found-in__line">343</span>
 
     </aside>
 
