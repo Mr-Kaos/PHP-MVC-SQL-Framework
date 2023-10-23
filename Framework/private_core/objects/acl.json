@@ -1,0 +1,22 @@
+{
+	"FileDescription": "This is a file-based access-control list to define page access to user groups. Any views and their pages that are not listed in a user group are denied access from that group. User groups can be stored in a database. The JSON keys below should correspond to a user group name in the database or wherever you wish to store your user groups.",
+	"UserGroups": {
+		"None": {
+			"Sample": "*",
+			"Examples": "*",
+			"Home": "*"
+		},
+		"Admin": "*",
+		"GroupA": {
+			"Sample": "*",
+			"Home": "*"
+		},
+		"GroupB": {
+			"Sample": "*",
+			"Home": "*",
+			"Settings": [
+				"default"
+			]
+		}
+	}
+}

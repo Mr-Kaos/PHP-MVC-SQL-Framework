@@ -18,9 +18,6 @@ This document contains instructions and information on how to use various compon
 			- [Request Flowchart](#request-flowchart)
 
 ## Todo
-<!-- - Directory structure -->
-  <!-- - Where to place files -->
-  <!-- - Directory access on a web server -->
 - How to add pages
   - Creating a View
   - Creating a Controller
@@ -151,3 +148,5 @@ If a particular user group is not permitted to access any pages, omit them from 
 ### Database-Defined Access Control
 
 This access control method defines access control in a database table.
+
+**NOTE**: This feature has yet to be tested. 
