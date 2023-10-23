@@ -1,9 +1,7 @@
 <?php
-
 /**
  * This is front controller for the website. The Web server should be configured to route all requests through this file.
  */
-
 include_once('private_core/controllers/Controller.php');
 require_once('private_core/objects/Router.php');
 

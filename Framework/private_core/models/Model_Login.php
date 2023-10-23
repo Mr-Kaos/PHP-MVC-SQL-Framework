@@ -38,8 +38,6 @@ class Model_Login extends Model
 	/**
 	 * Fetches data from the database to update the model.
 	 * Takes a request received from the view through to the controller to specify what data is required.
-	 * 
-	 * This override retrieves the structure of usp1101 to create the form for creating a new customer.
 	 */
 	public function fetchModelData(array $request = null, string $submitMode = null): array
 	{

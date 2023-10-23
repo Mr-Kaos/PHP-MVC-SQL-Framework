@@ -3,24 +3,22 @@
 namespace Application\Controller;
 
 use Application\Model as m;
-use Application\PageBuilder as pb;
 
 require_once("Controller.php");
+require_once("private_core/models/Model_Template.php");
 require_once("private_core/objects/PageObjects/Modal.php");
-require_once("private_core/objects/PageBuilder/FormBuilder.php");
 
 /**
- * The Controller object for the Sample page.
- * This class handles the data being sent and received from the server for the Sample page.
+ * The Controller object for the <INSERT PAGE NAME HERE> page.
+ * <Describe what the controller is used for here>
+ * 
  * Its other MVC components are:
- * - View: Sample
- * - Model: Model_Sample.php
- *  
- * When receiving data from the model, it creates page elements to be used in the view. In this case, a form using the FormBuilder object.
- * When sending data to the model (from a form submission), it validates the data and sends it to the model via sendModelData() for
- * insertion into the database.
+ * - View: <Specify associated view here>
+ * - Model: <Specify associated model here, if one is required>
+ * 
  */
-class Controller_Sample extends Controller
+// Be sure to rename the Controller class to the name of the view!
+class Controller_Template extends Controller
 {
 	/**
 	 * Takes an associated array (typically a GET request) and determines what data needs to be retrieved from the model.
@@ -36,14 +34,34 @@ class Controller_Sample extends Controller
 	/**
 	 * Validates and sends user-submitted data to the model for submission in the database. 
 	 * @param array $data An associative array of the data to be validated and sent to the model. Typically an array obtained from a POST request.
-	 * @return mixed The response from the model after the validated data is sent to it.
+	 * @return string The destination URI to direct to upon completion.
 	 */
 	public function postData(array $data, string $mode): mixed
 	{
 		$data = $this->validateDataParameters($data, $mode);
-		if (gettype($data) == 'array') {
+		$destination = 'Template';
 
+		if (gettype($data) == 'array') {
+			// Send the validated data to the model and receive its response
+			$response = $this->getModel()->sendModelData($data, $mode);
+			switch ($mode) {
+				case m\MODE_INSERT:
+					// Perform any necessary operations if the INSERT mode was successful.
+
+					// Set a useful status message to inform the user the insert was successful.
+					$_SESSION["MSG_STATUS"] = "Successfully inserted data";
+					break;
+				case m\MODE_UPDATE:
+					// Perform any necessary operations if the UPDATE mode was successful and set a status message.
+					$_SESSION["MSG_STATUS"] = "Successfully updated data";
+					break;
+				case m\MODE_DELETE:
+					// Perform any necessary operations if the DELETE mode was successful and set a status message.
+					$_SESSION["MSG_STATUS"] = "Successfully deleted data";
+					break;
+			}
 		} else {
+			// Set the error message to what the validation returned and redirect to the previous page (or a URI of your choice).
 			$_SESSION["MSG_ERROR"] = $data;
 			$destination = $_SERVER["HTTP_REFERER"];
 		}
@@ -57,10 +75,10 @@ class Controller_Sample extends Controller
 	public function retrieveData(array $request = null): void
 	{
 		switch ($this->getPage()) {
-			case 'otherPage':
-				$fb = new pb\FormBuilder("", null, "");
-				break;
+				// Add cases for each page in the view that requires its own unique logic.
 			default:
+				// logic specific to "default" page goes here
+				break;
 		}
 	}
 
@@ -71,25 +89,13 @@ class Controller_Sample extends Controller
 	{
 		$validatedData = array();
 
+		// Validate each piece of data in their respective switch case. Each validated value should be stored in its own array key.
 		switch ($mode) {
 			case m\MODE_INSERT:
-				$validatedData["Username"] = $this->validatePostInput($data["username"]);
-				if ($data["passwordA"] === $data["passwordB"]) {
-					$validatedData["Password"] = $this->validatePostInput($data["passwordA"]);
-				} else {
-					return 'Passwords do not match.';
-				}
-				$validatedData["UserGroup"] = $this->validatePostInput($data["userGroup"]);;
-				$validatedData["FirstName"] = $this->validatePostInput($data["fName"]);
-				$validatedData["LastName"] = $this->validatePostInput($data["lName"]);
-				$validatedData["AcademicLevel"] = $this->validatePostInput($data["academicLevel"]);
-				$validatedData["Email"] = $this->validatePostInput($data["email"]);
-				$validatedData["PhoneNumber"] = $this->validatePostInput($data["phone"]);
 				break;
 			case m\MODE_UPDATE:
 				break;
 			case m\MODE_DELETE:
-				$validatedData["UserId"] = $data["delete"];
 				break;
 		}
 
