@@ -60,11 +60,11 @@
 </h4>
     <ul class="phpdocumentor-list">
                     <li>
-                <a href="namespaces/application-router.html" class="">Router</a>
+                <a href="namespaces/application-controller.html" class="">Controller</a>
                 
             </li>
                     <li>
-                <a href="namespaces/application-controller.html" class="">Controller</a>
+                <a href="namespaces/application-model.html" class="">Model</a>
                 
             </li>
                     <li>
@@ -72,7 +72,7 @@
                 
             </li>
                     <li>
-                <a href="namespaces/application-model.html" class="">Model</a>
+                <a href="namespaces/application-sessionmanagement.html" class="">SessionManagement</a>
                 
             </li>
             </ul>
@@ -102,24 +102,29 @@
             <div class="phpdocumentor-column -eight phpdocumentor-content">
                     <ul class="phpdocumentor-breadcrumbs">
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/application.html">Application</a></li>
-            <li class="phpdocumentor-breadcrumb"><a href="namespaces/application-pagebuilder.html">PageBuilder</a></li>
     </ul>
 
-    <article class="phpdocumentor-element -interface">
+    <article class="phpdocumentor-element -class">
         <h2 class="phpdocumentor-content__title">
-    SQLToWebPage
-                <div class="phpdocumentor-element__package">
-            in
+    DisplayMode
+
+            <span class="phpdocumentor-element__extends">
+        : string
+    </span>
+    
+            <div class="phpdocumentor-element__package">
+            in package
             <ul class="phpdocumentor-breadcrumbs">
-                                    <li><a href="packages/Application.html">Application</a></li>
                             </ul>
         </div>
+    
+    
     </h2>
 
         <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/controllers/PageBuilder/SQLToWebPage.php"><a href="files/website-private-core-controllers-pagebuilder-sqltowebpage.html"><abbr title="Website/private_core/controllers/PageBuilder/SQLToWebPage.php">SQLToWebPage.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/objects/Router.php"><a href="files/framework-private-core-objects-router.html"><abbr title="Framework/private_core/objects/Router.php">Router.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">21</span>
+    <span class="phpdocumentor-element-found-in__line">10</span>
 
     </aside>
 
@@ -139,23 +144,183 @@
 </h3>
 
 <dl class="phpdocumentor-table-of-contents">
-                        <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Application-PageBuilder-SQLToWebPage.html#method_databaseObjectToPageElements">databaseObjectToPageElements()</a>
+                <dt class="phpdocumentor-table-of-contents__entry -case -">
+    <a href="">BodyOnly</a>
     <span>
-                                &nbsp;: string    </span>
+                &nbsp;= &quot;none&quot;                    </span>
 </dt>
-<dd>Interface to create page elements.</dd>
+<dd></dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -case -">
+    <a href="">Default</a>
+    <span>
+                &nbsp;= &quot;default&quot;                    </span>
+</dt>
+<dd></dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -case -">
+    <a href="">FooterAndMain</a>
+    <span>
+                &nbsp;= &quot;footerOnly&quot;                    </span>
+</dt>
+<dd></dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -case -">
+    <a href="">NavAndMain</a>
+    <span>
+                &nbsp;= &quot;navOnly&quot;                    </span>
+</dt>
+<dd></dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -case -">
+    <a href="">Resource</a>
+    <span>
+                &nbsp;= &quot;resource&quot;                    </span>
+</dt>
+<dd></dd>
+
+                    <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a href="classes/Application-DisplayMode.html#method_getByName">getByName()</a>
+    <span>
+                                &nbsp;: <a href="classes/Application-DisplayMode.html"><abbr title="\Application\DisplayMode">DisplayMode</abbr></a>|null    </span>
+</dt>
+<dd></dd>
 
         </dl>
 
 
 
-        
+            <section class="phpdocumentor-cases">
+        <h3 class="phpdocumentor-elements__header" id="cases">
+            Cases
+            <a href="classes/Application-DisplayMode.html#cases" class="headerlink"><i class="fas fa-link"></i></a>
+        </h3>
+                    <article
+        class="
+            phpdocumentor-element
+            -enum-case
+        "
+>
+    <h4 class="phpdocumentor-element__name" id="enumcase_Default">
+        Default
+        <a href="" class="headerlink"><i class="fas fa-link"></i></a>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/objects/Router.php"><a href="files/framework-private-core-objects-router.html"><abbr title="Framework/private_core/objects/Router.php">Router.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">13</span>
+
+    </aside>
+
+    
+    
+        <section class="phpdocumentor-description"></section>
+
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -enum-case
+        "
+>
+    <h4 class="phpdocumentor-element__name" id="enumcase_BodyOnly">
+        BodyOnly
+        <a href="" class="headerlink"><i class="fas fa-link"></i></a>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/objects/Router.php"><a href="files/framework-private-core-objects-router.html"><abbr title="Framework/private_core/objects/Router.php">Router.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">15</span>
+
+    </aside>
+
+    
+    
+        <section class="phpdocumentor-description"></section>
+
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -enum-case
+        "
+>
+    <h4 class="phpdocumentor-element__name" id="enumcase_NavAndMain">
+        NavAndMain
+        <a href="" class="headerlink"><i class="fas fa-link"></i></a>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/objects/Router.php"><a href="files/framework-private-core-objects-router.html"><abbr title="Framework/private_core/objects/Router.php">Router.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">17</span>
+
+    </aside>
+
+    
+    
+        <section class="phpdocumentor-description"></section>
+
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -enum-case
+        "
+>
+    <h4 class="phpdocumentor-element__name" id="enumcase_FooterAndMain">
+        FooterAndMain
+        <a href="" class="headerlink"><i class="fas fa-link"></i></a>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/objects/Router.php"><a href="files/framework-private-core-objects-router.html"><abbr title="Framework/private_core/objects/Router.php">Router.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">19</span>
+
+    </aside>
+
+    
+    
+        <section class="phpdocumentor-description"></section>
+
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -enum-case
+        "
+>
+    <h4 class="phpdocumentor-element__name" id="enumcase_Resource">
+        Resource
+        <a href="" class="headerlink"><i class="fas fa-link"></i></a>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/objects/Router.php"><a href="files/framework-private-core-objects-router.html"><abbr title="Framework/private_core/objects/Router.php">Router.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">21</span>
+
+    </aside>
+
+    
+    
+        <section class="phpdocumentor-description"></section>
+
+    
+
+</article>
+            </section>
 
             <section class="phpdocumentor-methods">
         <h3 class="phpdocumentor-elements__header" id="methods">
             Methods
-            <a href="classes/Application-PageBuilder-SQLToWebPage.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
+            <a href="classes/Application-DisplayMode.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
         </h3>
                     <article
         class="phpdocumentor-element
@@ -163,49 +328,32 @@
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_databaseObjectToPageElements">
-        databaseObjectToPageElements()
-        <a href="classes/Application-PageBuilder-SQLToWebPage.html#method_databaseObjectToPageElements" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_getByName">
+        getByName()
+        <a href="classes/Application-DisplayMode.html#method_getByName" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/controllers/PageBuilder/SQLToWebPage.php"><a href="files/website-private-core-controllers-pagebuilder-sqltowebpage.html"><abbr title="Website/private_core/controllers/PageBuilder/SQLToWebPage.php">SQLToWebPage.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/objects/Router.php"><a href="files/framework-private-core-objects-router.html"><abbr title="Framework/private_core/objects/Router.php">Router.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">32</span>
+    <span class="phpdocumentor-element-found-in__line">23</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Interface to create page elements.</p>
-
+    
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">databaseObjectToPageElements</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$resultSet</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$options</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+                    <span class="phpdocumentor-signature__name">getByName</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$name</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Application-DisplayMode.html"><abbr title="\Application\DisplayMode">DisplayMode</abbr></a>|null</span></code>
 
-        <section class="phpdocumentor-description"><p>Takes a table or view name from the connected database and executes a query to retrieve it's structure.
-Creates HTML form elements based on the query's results.</p>
-</section>
+        <section class="phpdocumentor-description"></section>
 
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$resultSet</span>
-                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
+                <span class="phpdocumentor-signature__argument__name">$name</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string|null</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>An SQL Resultset of the queried data to be transformed into a form.</p>
-</section>
-
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$options</span>
-                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
-                 = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Additional params for extra options to filter out the resultset used to create page elements. The following options are accepted:</p>
-<ul>
-<li>OPTION_EXCLUDED_FIELDS {array} - A list of fields (as an array) to be ignored from the resultset</li>
-<li>OPTION_USE_OBJECT_NAME_ID {bool} - If true, will append the database object name to the id to reduce redundant IDs.</li>
-</ul>
-</section>
+                    <section class="phpdocumentor-description"></section>
 
             </dd>
             </dl>
@@ -213,11 +361,9 @@ Creates HTML form elements based on the query's results.</p>
     
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">string</span>
+    <span class="phpdocumentor-signature__response_type"><a href="classes/Application-DisplayMode.html"><abbr title="\Application\DisplayMode">DisplayMode</abbr></a>|null</span>
             &mdash;
-            <section class="phpdocumentor-description"><p>The constructed page elements. Returns Null if the $resultSet parameter is invalid.</p>
-</section>
-
+        
     
 </article>
             </section>
@@ -298,7 +444,7 @@ Creates HTML form elements based on the query's results.</p>
 </section>
             </div>
         </div>
-        <a href="classes/Application-PageBuilder-SQLToWebPage.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
+        <a href="classes/Application-DisplayMode.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
 
     </main>
 

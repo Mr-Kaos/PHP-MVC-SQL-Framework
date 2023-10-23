@@ -60,11 +60,11 @@
 </h4>
     <ul class="phpdocumentor-list">
                     <li>
-                <a href="namespaces/application-router.html" class="">Router</a>
+                <a href="namespaces/application-controller.html" class="">Controller</a>
                 
             </li>
                     <li>
-                <a href="namespaces/application-controller.html" class="">Controller</a>
+                <a href="namespaces/application-model.html" class="">Model</a>
                 
             </li>
                     <li>
@@ -72,7 +72,7 @@
                 
             </li>
                     <li>
-                <a href="namespaces/application-model.html" class="">Model</a>
+                <a href="namespaces/application-sessionmanagement.html" class="">SessionManagement</a>
                 
             </li>
             </ul>
@@ -107,7 +107,7 @@
 
     <article class="phpdocumentor-element -class">
         <h2 class="phpdocumentor-content__title">
-    Model_Customer
+    Model_Table
 
         <span class="phpdocumentor-element__extends">
         extends <a href="classes/Application-Model-Model.html"><abbr title="\Application\Model\Model">Model</abbr></a>
@@ -124,24 +124,24 @@
     </h2>
 
         <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/models/Model_Customer.php"><a href="files/website-private-core-models-model-customer.html"><abbr title="Website/private_core/models/Model_Customer.php">Model_Customer.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/models/Model_Table.php"><a href="files/framework-private-core-models-model-table.html"><abbr title="Framework/private_core/models/Model_Table.php">Model_Table.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">18</span>
+    <span class="phpdocumentor-element-found-in__line">24</span>
 
     </aside>
 
-            <p class="phpdocumentor-summary">The Model object for the Customer page.</p>
+            <p class="phpdocumentor-summary">The Model object for the Table page.</p>
 
-    <section class="phpdocumentor-description"><p>This class handles the retrieval and submission of data relating to Customers in the database.
+    <section class="phpdocumentor-description"><p>This class handles the retrieval and submission of data relating to Tables in the database.
 Its other MVC components are:</p>
 <ul>
-<li>View: Customer.php</li>
-<li>Controller: <abbr title="\Application\Controller\Controller_Customer">Controller_Customer</abbr>
+<li>View: Table.php</li>
+<li>Controller: <a href="classes/Application-Controller-Controller-Table.html"><abbr title="\Application\Controller\Controller_Table">Controller_Table</abbr></a>
 </li>
 </ul>
-<p>When <a href="classes/Application-Model-Model-Customer.html#method_fetchModelData"><abbr title="\Application\Model\Model_Customer::fetchModelData()">Model_Customer::fetchModelData()</abbr></a> is called (page load), it retrieves the table structure of the address table to allow the controller
+<p>When <a href="classes/Application-Model-Model-Table.html#method_fetchModelData"><abbr title="\Application\Model\Model_Table::fetchModelData()">Model_Table::fetchModelData()</abbr></a> is called (page load), it retrieves the table structure of the address table to allow the controller
 to build a form for it.
-When <a href="classes/Application-Model-Model-Customer.html#method_sendModelData"><abbr title="\Application\Model\Model_Customer::sendModelData()">Model_Customer::sendModelData()</abbr></a> is called, it either creates a new address record or updates an existing one. See <a href="classes/Application-Model-Model-Customer.html#method_sendModelData"><abbr title="\Application\Model\Model_Customer::sendModelData()">Model_Customer::sendModelData()</abbr></a> for specifics.</p>
+When <a href="classes/Application-Model-Model-Table.html#method_sendModelData"><abbr title="\Application\Model\Model_Table::sendModelData()">Model_Table::sendModelData()</abbr></a> is called, it either creates a new address record or updates an existing one. See <a href="classes/Application-Model-Model-Table.html#method_sendModelData"><abbr title="\Application\Model\Model_Table::sendModelData()">Model_Table::sendModelData()</abbr></a> for specifics.</p>
 </section>
 
 
@@ -157,13 +157,6 @@ When <a href="classes/Application-Model-Model-Customer.html#method_sendModelData
 </h3>
 
 <dl class="phpdocumentor-table-of-contents">
-            <dt class="phpdocumentor-table-of-contents__entry -constant -public">
-    <a href="classes/Application-Model-Model-Customer.html#constant_DEFAULT_TABLE">DEFAULT_TABLE</a>
-    <span>
-        &nbsp;= &quot;vw1801_Customers&quot;                            </span>
-</dt>
-<dd>The default database table this model uses. In this case, a view.</dd>
-
                     <dt class="phpdocumentor-table-of-contents__entry -property -public">
     <a href="classes/Application-Model-Model.html#property_conn">$conn</a>
     <span>
@@ -214,32 +207,32 @@ When <a href="classes/Application-Model-Model-Customer.html#method_sendModelData
 <dd></dd>
 
                 <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Application-Model-Model-Customer.html#method___construct">__construct()</a>
+    <a href="classes/Application-Model-Model-Table.html#method___construct">__construct()</a>
     <span>
                                 &nbsp;: void    </span>
 </dt>
-<dd>Constructor for Customer model.</dd>
+<dd>Constructor for Table model.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Application-Model-Model.html#method___destruct">__destruct()</a>
+    <a href="classes/Application-Model-Model-Table.html#method___destruct">__destruct()</a>
     <span>
-                                &nbsp;: mixed    </span>
+                                &nbsp;: void    </span>
 </dt>
-<dd>Destroys the instance of a model.</dd>
+<dd>Destroys this instance of the Model_Table object.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Application-Model-Model-Customer.html#method_fetchModelData">fetchModelData()</a>
+    <a href="classes/Application-Model-Model-Table.html#method_fetchModelData">fetchModelData()</a>
     <span>
                                 &nbsp;: array&lt;string|int, mixed&gt;    </span>
 </dt>
-<dd>Fetches data from the database to update the model.</dd>
+<dd>Fetches the specified number of records for the model&#039;s specified table/view.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Application-Model-Model-Customer.html#method_sendModelData">sendModelData()</a>
+    <a href="classes/Application-Model-Model-Table.html#method_sendModelData">sendModelData()</a>
     <span>
                                 &nbsp;: array&lt;string|int, mixed&gt;|null    </span>
 </dt>
-<dd>Submits the given data to the database via the stored procedures below and returns an navigational request for use in a location header.</dd>
+<dd>Does nothing</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -protected">
     <a href="classes/Application-Model-Model.html#method_checkForForeignKeyDependencies">checkForForeignKeyDependencies()</a>
@@ -330,7 +323,14 @@ When <a href="classes/Application-Model-Model-Customer.html#method_sendModelData
     <span>
                                 &nbsp;: array&lt;string|int, mixed&gt;    </span>
 </dt>
-<dd>Queries the specified database object and returns the results as an associative array.</dd>
+<dd>Queries the specified database object and returns the results.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -protected">
+    <a href="classes/Application-Model-Model.html#method_queryDatabaseObjectCount">queryDatabaseObjectCount()</a>
+    <span>
+                                &nbsp;: int    </span>
+</dt>
+<dd>Gets the count oof the specified database object.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -protected">
     <a href="classes/Application-Model-Model.html#method_setTableIdentifier">setTableIdentifier()</a>
@@ -347,11 +347,11 @@ When <a href="classes/Application-Model-Model-Customer.html#method_sendModelData
 <dd>Creates a session variable that defines the table to be displayed in Table.php.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -protected">
-    <a href="classes/Application-Model-Model.html#method_submitStoredProcedure">submitStoredProcedure()</a>
+    <a href="classes/Application-Model-Model.html#method_simplifyResultsetArray">simplifyResultsetArray()</a>
     <span>
-                                &nbsp;: array&lt;string|int, mixed&gt;|null    </span>
+                                &nbsp;: array&lt;string|int, mixed&gt;    </span>
 </dt>
-<dd>Executes a stored procedure on the database.</dd>
+<dd>Simplifies the given array to a more readable and cleaner format.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -private">
     <a href="classes/Application-Model-Model.html#method_closeConnection">closeConnection()</a>
@@ -400,47 +400,12 @@ When <a href="classes/Application-Model-Model-Customer.html#method_sendModelData
 
 
         
-    <section class="phpdocumentor-constants">
-        <h3 class="phpdocumentor-elements__header" id="constants">
-            Constants
-            <a href="classes/Application-Model-Model-Customer.html#constants" class="headerlink"><i class="fas fa-link"></i></a>
-        </h3>
-                    <article class="phpdocumentor-element -constant -public ">
-    <h4 class="phpdocumentor-element__name" id="constant_DEFAULT_TABLE">
-        DEFAULT_TABLE
-        <a href="classes/Application-Model-Model-Customer.html#constant_DEFAULT_TABLE" class="headerlink"><i class="fas fa-link"></i></a>
-    </h4>
-
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/models/Model_Customer.php"><a href="files/website-private-core-models-model-customer.html"><abbr title="Website/private_core/models/Model_Customer.php">Model_Customer.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">21</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">The default database table this model uses. In this case, a view.</p>
-
-    <code class="phpdocumentor-signature phpdocumentor-code ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-        <span class="phpdocumentor-signature__type">mixed</span>
-    <span class="phpdocumentor-signature__name">DEFAULT_TABLE</span>
-    = <span class="phpdocumentor-signature__default-value">&quot;vw1801_Customers&quot;</span>
-</code>
-
-
-    
-        <section class="phpdocumentor-description"></section>
-
-    
-
-</article>
-            </section>
 
         
     <section class="phpdocumentor-properties">
         <h3 class="phpdocumentor-elements__header" id="properties">
             Properties
-            <a href="classes/Application-Model-Model-Customer.html#properties" class="headerlink"><i class="fas fa-link"></i></a>
+            <a href="classes/Application-Model-Model-Table.html#properties" class="headerlink"><i class="fas fa-link"></i></a>
         </h3>
                     <article
         class="
@@ -456,7 +421,7 @@ When <a href="classes/Application-Model-Model-Customer.html#method_sendModelData
                                 </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/models/Model.php"><a href="files/website-private-core-models-model.html"><abbr title="Website/private_core/models/Model.php">Model.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/models/Model.php"><a href="files/framework-private-core-models-model.html"><abbr title="Framework/private_core/models/Model.php">Model.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">0</span>
 
@@ -491,7 +456,7 @@ When <a href="classes/Application-Model-Model-Customer.html#method_sendModelData
                                 </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/models/Model.php"><a href="files/website-private-core-models-model.html"><abbr title="Website/private_core/models/Model.php">Model.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/models/Model.php"><a href="files/framework-private-core-models-model.html"><abbr title="Framework/private_core/models/Model.php">Model.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">0</span>
 
@@ -526,7 +491,7 @@ When <a href="classes/Application-Model-Model-Customer.html#method_sendModelData
                                 </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/models/Model.php"><a href="files/website-private-core-models-model.html"><abbr title="Website/private_core/models/Model.php">Model.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/models/Model.php"><a href="files/framework-private-core-models-model.html"><abbr title="Framework/private_core/models/Model.php">Model.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">0</span>
 
@@ -561,7 +526,7 @@ When <a href="classes/Application-Model-Model-Customer.html#method_sendModelData
                                 </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/models/Model.php"><a href="files/website-private-core-models-model.html"><abbr title="Website/private_core/models/Model.php">Model.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/models/Model.php"><a href="files/framework-private-core-models-model.html"><abbr title="Framework/private_core/models/Model.php">Model.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">56</span>
 
@@ -595,7 +560,7 @@ When <a href="classes/Application-Model-Model-Customer.html#method_sendModelData
                                 </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/models/Model.php"><a href="files/website-private-core-models-model.html"><abbr title="Website/private_core/models/Model.php">Model.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/models/Model.php"><a href="files/framework-private-core-models-model.html"><abbr title="Framework/private_core/models/Model.php">Model.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">54</span>
 
@@ -629,7 +594,7 @@ When <a href="classes/Application-Model-Model-Customer.html#method_sendModelData
                                 </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/models/Model.php"><a href="files/website-private-core-models-model.html"><abbr title="Website/private_core/models/Model.php">Model.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/models/Model.php"><a href="files/framework-private-core-models-model.html"><abbr title="Framework/private_core/models/Model.php">Model.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">52</span>
 
@@ -663,7 +628,7 @@ When <a href="classes/Application-Model-Model-Customer.html#method_sendModelData
                                 </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/models/Model.php"><a href="files/website-private-core-models-model.html"><abbr title="Website/private_core/models/Model.php">Model.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/models/Model.php"><a href="files/framework-private-core-models-model.html"><abbr title="Framework/private_core/models/Model.php">Model.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">57</span>
 
@@ -688,7 +653,7 @@ When <a href="classes/Application-Model-Model-Customer.html#method_sendModelData
             <section class="phpdocumentor-methods">
         <h3 class="phpdocumentor-elements__header" id="methods">
             Methods
-            <a href="classes/Application-Model-Model-Customer.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
+            <a href="classes/Application-Model-Model-Table.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
         </h3>
                     <article
         class="phpdocumentor-element
@@ -698,42 +663,34 @@ When <a href="classes/Application-Model-Model-Customer.html#method_sendModelData
 >
     <h4 class="phpdocumentor-element__name" id="method___construct">
         __construct()
-        <a href="classes/Application-Model-Model-Customer.html#method___construct" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/Application-Model-Model-Table.html#method___construct" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/models/Model_Customer.php"><a href="files/website-private-core-models-model-customer.html"><abbr title="Website/private_core/models/Model_Customer.php">Model_Customer.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/models/Model_Table.php"><a href="files/framework-private-core-models-model-table.html"><abbr title="Framework/private_core/models/Model_Table.php">Model_Table.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">30</span>
+    <span class="phpdocumentor-element-found-in__line">34</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Constructor for Customer model.</p>
+        <p class="phpdocumentor-summary">Constructor for Table model.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$mode</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$data</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$tableDataName</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
-        <section class="phpdocumentor-description"><p>Takes an associated array (typically a GET request) and determines what data needs to be retrieved from the model.
-Constructs the model based on the given data. Provides the model with the table/view to retrieve data from.</p>
+        <section class="phpdocumentor-description"><p>Has a single parameter that is the key of the required table stored in the session's <a href="namespaces/application-model.html#constant_SESS_TABLES"><abbr title="\Application\Model\SESS_TABLES">SESS_TABLES</abbr></a> array.
+If the specified key exists in the session array, the table's name and schema are retrieved and used in the base model's constructor.
+If it is not found, the script terminates and no data is retrieved, resulting in the Table.php view displaying nothing.</p>
 </section>
 
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$mode</span>
+                <span class="phpdocumentor-signature__argument__name">$tableDataName</span>
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>The page mode.</p>
-</section>
-
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$data</span>
-                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
-                 = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>An associative array that contains data for the controller to create a model with. Usually $_GET.</p>
+                    <section class="phpdocumentor-description"><p>The name of the key in $_SESSION[<a href="namespaces/application-model.html#constant_SESS_TABLES"><abbr title="\Application\Model\SESS_TABLES">SESS_TABLES</abbr></a>].</p>
 </section>
 
             </dd>
@@ -755,29 +712,27 @@ Constructs the model based on the given data. Provides the model with the table/
 >
     <h4 class="phpdocumentor-element__name" id="method___destruct">
         __destruct()
-        <a href="classes/Application-Model-Model.html#method___destruct" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/Application-Model-Model-Table.html#method___destruct" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/models/Model.php"><a href="files/website-private-core-models-model.html"><abbr title="Website/private_core/models/Model.php">Model.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/models/Model_Table.php"><a href="files/framework-private-core-models-model-table.html"><abbr title="Framework/private_core/models/Model_Table.php">Model_Table.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">82</span>
+    <span class="phpdocumentor-element-found-in__line">49</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Destroys the instance of a model.</p>
+        <p class="phpdocumentor-summary">Destroys this instance of the Model_Table object.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">__destruct</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                    <span class="phpdocumentor-signature__name">__destruct</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
-        <section class="phpdocumentor-description"><p>Closes any open SQL Server connections.</p>
-</section>
-
+    
     
     
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">mixed</span>
+    <span class="phpdocumentor-signature__response_type">void</span>
             &mdash;
         
     
@@ -790,23 +745,33 @@ Constructs the model based on the given data. Provides the model with the table/
 >
     <h4 class="phpdocumentor-element__name" id="method_fetchModelData">
         fetchModelData()
-        <a href="classes/Application-Model-Model-Customer.html#method_fetchModelData" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/Application-Model-Model-Table.html#method_fetchModelData" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/models/Model_Customer.php"><a href="files/website-private-core-models-model-customer.html"><abbr title="Website/private_core/models/Model_Customer.php">Model_Customer.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/models/Model_Table.php"><a href="files/framework-private-core-models-model-table.html"><abbr title="Framework/private_core/models/Model_Table.php">Model_Table.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">45</span>
+    <span class="phpdocumentor-element-found-in__line">67</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Fetches data from the database to update the model.</p>
+        <p class="phpdocumentor-summary">Fetches the specified number of records for the model&#039;s specified table/view.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">fetchModelData</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$request</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$submitMode</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
+                    <span class="phpdocumentor-signature__name">fetchModelData</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$request</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
 
         <section class="phpdocumentor-description"><p>Takes a request received from the view through to the controller to specify what data is required.</p>
-<p>This override retrieves the structure of usp1101 to create the form for creating a new customer.</p>
+<p>In the case for the Table MVC components, the following are the request values sent through the view and received here:</p>
+<ul>
+<li>
+<a href="namespaces/application-model.html#constant_TABLE_DATA_KEY"><abbr title="\Application\Model\TABLE_DATA_KEY">TABLE_DATA_KEY</abbr></a>
+This constant should be used as a key in the request array. Its value is they key in $_SESSION[<a href="namespaces/application-model.html#constant_SESS_TABLES"><abbr title="\Application\Model\SESS_TABLES">SESS_TABLES</abbr></a>] that contains the specified table.
+This array value is set in the respective table's model.</li>
+<li>page
+Specifies the page number of the table to display.</li>
+<li>row
+Specifies the number of rows to retrieve and display in the table.</li>
+</ul>
 </section>
 
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
@@ -818,14 +783,6 @@ Constructs the model based on the given data. Provides the model with the table/
             <dd class="phpdocumentor-argument-list__definition">
                     <section class="phpdocumentor-description"><p>An associative array containing any requests to specify what data is required from the implemented model.</p>
 </section>
-
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$submitMode</span>
-                : <span class="phpdocumentor-signature__argument__return-type">string</span>
-                 = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
 
             </dd>
             </dl>
@@ -848,32 +805,22 @@ Constructs the model based on the given data. Provides the model with the table/
 >
     <h4 class="phpdocumentor-element__name" id="method_sendModelData">
         sendModelData()
-        <a href="classes/Application-Model-Model-Customer.html#method_sendModelData" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/Application-Model-Model-Table.html#method_sendModelData" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/models/Model_Customer.php"><a href="files/website-private-core-models-model-customer.html"><abbr title="Website/private_core/models/Model_Customer.php">Model_Customer.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/models/Model_Table.php"><a href="files/framework-private-core-models-model-table.html"><abbr title="Framework/private_core/models/Model_Table.php">Model_Table.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">81</span>
+    <span class="phpdocumentor-element-found-in__line">125</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Submits the given data to the database via the stored procedures below and returns an navigational request for use in a location header.</p>
+        <p class="phpdocumentor-summary">Does nothing</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                     <span class="phpdocumentor-signature__name">sendModelData</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$data</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$submitMode</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;|null</span></code>
 
-        <section class="phpdocumentor-description"><p>The model can send data to the database from three methods:</p>
-<ul>
-<li>Create:
-If creating a new record, all data related to an address except an CustomerId should be given. Executes usp1101.</li>
-<li>Update:
-If updating an existing address record, an CustomerId should be given. This executes usp//TODO.</li>
-<li>Delete:
-If deleting an existing record, an CustomerId and &quot;Delete&quot; value should be given. //TODO</li>
-</ul>
-</section>
-
+    
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -932,9 +879,9 @@ Each of these methods should call their own stored procedure to</li>
         <a href="classes/Application-Model-Model.html#method_checkForForeignKeyDependencies" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/models/Model.php"><a href="files/website-private-core-models-model.html"><abbr title="Website/private_core/models/Model.php">Model.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/models/Model.php"><a href="files/framework-private-core-models-model.html"><abbr title="Framework/private_core/models/Model.php">Model.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">477</span>
+    <span class="phpdocumentor-element-found-in__line">507</span>
 
     </aside>
 
@@ -980,9 +927,9 @@ Each of these methods should call their own stored procedure to</li>
         <a href="classes/Application-Model-Model.html#method_executeStoredProcedure" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/models/Model.php"><a href="files/website-private-core-models-model.html"><abbr title="Website/private_core/models/Model.php">Model.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/models/Model.php"><a href="files/framework-private-core-models-model.html"><abbr title="Framework/private_core/models/Model.php">Model.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">249</span>
+    <span class="phpdocumentor-element-found-in__line">283</span>
 
     </aside>
 
@@ -990,7 +937,7 @@ Each of these methods should call their own stored procedure to</li>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
-                    <span class="phpdocumentor-signature__name">executeStoredProcedure</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$schema</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$procedureName</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$params</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$twoColsToOne</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;|null</span></code>
+                    <span class="phpdocumentor-signature__name">executeStoredProcedure</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$schema</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$procedureName</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$params</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;|null</span></code>
 
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
@@ -1023,22 +970,6 @@ value associated to that parameter.</p>
 </section>
 
             </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$twoColsToOne</span>
-                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
-                 = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>If a resultset contains two or more columns, two columns can be specified and saved into a key-pair value.
-This parameter array must contain two keys:</p>
-<ul>
-<li>
-<a href="namespaces/application-model.html#constant_TWO_COL_TO_ONE_PRIMARY"><abbr title="\Application\Model\TWO_COL_TO_ONE_PRIMARY">TWO_COL_TO_ONE_PRIMARY</abbr></a>: The name of the column to be the array key</li>
-<li>
-<a href="namespaces/application-model.html#constant_TWO_COL_TO_ONE_SECONDARY"><abbr title="\Application\Model\TWO_COL_TO_ONE_SECONDARY">TWO_COL_TO_ONE_SECONDARY</abbr></a>: the name of the column to be the value</li>
-</ul>
-</section>
-
-            </dd>
             </dl>
 
     
@@ -1060,9 +991,9 @@ This parameter array must contain two keys:</p>
         <a href="classes/Application-Model-Model.html#method_getDBConnection" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/models/Model.php"><a href="files/website-private-core-models-model.html"><abbr title="Website/private_core/models/Model.php">Model.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/models/Model.php"><a href="files/framework-private-core-models-model.html"><abbr title="Framework/private_core/models/Model.php">Model.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">397</span>
+    <span class="phpdocumentor-element-found-in__line">427</span>
 
     </aside>
 
@@ -1095,9 +1026,9 @@ This parameter array must contain two keys:</p>
         <a href="classes/Application-Model-Model.html#method_getDBIdentifier" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/models/Model.php"><a href="files/website-private-core-models-model.html"><abbr title="Website/private_core/models/Model.php">Model.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/models/Model.php"><a href="files/framework-private-core-models-model.html"><abbr title="Framework/private_core/models/Model.php">Model.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">406</span>
+    <span class="phpdocumentor-element-found-in__line">436</span>
 
     </aside>
 
@@ -1130,9 +1061,9 @@ This parameter array must contain two keys:</p>
         <a href="classes/Application-Model-Model.html#method_getDBObjectName" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/models/Model.php"><a href="files/website-private-core-models-model.html"><abbr title="Website/private_core/models/Model.php">Model.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/models/Model.php"><a href="files/framework-private-core-models-model.html"><abbr title="Framework/private_core/models/Model.php">Model.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">415</span>
+    <span class="phpdocumentor-element-found-in__line">445</span>
 
     </aside>
 
@@ -1165,7 +1096,7 @@ This parameter array must contain two keys:</p>
         <a href="classes/Application-Model-Model.html#method_getDBObjectStructure" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/models/Model.php"><a href="files/website-private-core-models-model.html"><abbr title="Website/private_core/models/Model.php">Model.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/models/Model.php"><a href="files/framework-private-core-models-model.html"><abbr title="Framework/private_core/models/Model.php">Model.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">165</span>
 
@@ -1235,9 +1166,9 @@ does not exist), null is returned.</p>
         <a href="classes/Application-Model-Model.html#method_getDBRecordCount" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/models/Model.php"><a href="files/website-private-core-models-model.html"><abbr title="Website/private_core/models/Model.php">Model.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/models/Model.php"><a href="files/framework-private-core-models-model.html"><abbr title="Framework/private_core/models/Model.php">Model.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">355</span>
+    <span class="phpdocumentor-element-found-in__line">387</span>
 
     </aside>
 
@@ -1245,19 +1176,17 @@ does not exist), null is returned.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
-                    <span class="phpdocumentor-signature__name">getDBRecordCount</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$filters</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">int</span></code>
+                    <span class="phpdocumentor-signature__name">getDBRecordCount</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$whereClause</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">int</span></code>
 
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$filters</span>
-                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
+                <span class="phpdocumentor-signature__argument__name">$whereClause</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
                  = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>An associative array where the key is the column name and the value is a value to filter by (as used in a WHERE clause).
-The filter is passed off into <a href="classes/Application-Model-Model.html#method_getTableFilters"><abbr title="\Application\Model\Model::getTableFilters()">Model::getTableFilters()</abbr></a>.</p>
-</section>
+                    <section class="phpdocumentor-description"></section>
 
             </dd>
             </dl>
@@ -1283,9 +1212,9 @@ The filter is passed off into <a href="classes/Application-Model-Model.html#meth
         <a href="classes/Application-Model-Model.html#method_getDBSchema" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/models/Model.php"><a href="files/website-private-core-models-model.html"><abbr title="Website/private_core/models/Model.php">Model.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/models/Model.php"><a href="files/framework-private-core-models-model.html"><abbr title="Framework/private_core/models/Model.php">Model.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">424</span>
+    <span class="phpdocumentor-element-found-in__line">454</span>
 
     </aside>
 
@@ -1318,9 +1247,9 @@ The filter is passed off into <a href="classes/Application-Model-Model.html#meth
         <a href="classes/Application-Model-Model.html#method_getForeignKeyReferences" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/models/Model.php"><a href="files/website-private-core-models-model.html"><abbr title="Website/private_core/models/Model.php">Model.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/models/Model.php"><a href="files/framework-private-core-models-model.html"><abbr title="Framework/private_core/models/Model.php">Model.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">572</span>
+    <span class="phpdocumentor-element-found-in__line">602</span>
 
     </aside>
 
@@ -1364,9 +1293,9 @@ The filter is passed off into <a href="classes/Application-Model-Model.html#meth
         <a href="classes/Application-Model-Model.html#method_getModalReferences" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/models/Model.php"><a href="files/website-private-core-models-model.html"><abbr title="Website/private_core/models/Model.php">Model.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/models/Model.php"><a href="files/framework-private-core-models-model.html"><abbr title="Framework/private_core/models/Model.php">Model.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">441</span>
+    <span class="phpdocumentor-element-found-in__line">471</span>
 
     </aside>
 
@@ -1422,9 +1351,9 @@ The filter is passed off into <a href="classes/Application-Model-Model.html#meth
         <a href="classes/Application-Model-Model.html#method_getMode" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/models/Model.php"><a href="files/website-private-core-models-model.html"><abbr title="Website/private_core/models/Model.php">Model.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/models/Model.php"><a href="files/framework-private-core-models-model.html"><abbr title="Framework/private_core/models/Model.php">Model.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">429</span>
+    <span class="phpdocumentor-element-found-in__line">459</span>
 
     </aside>
 
@@ -1455,9 +1384,9 @@ The filter is passed off into <a href="classes/Application-Model-Model.html#meth
         <a href="classes/Application-Model-Model.html#method_getTableFilters" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/models/Model.php"><a href="files/website-private-core-models-model.html"><abbr title="Website/private_core/models/Model.php">Model.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/models/Model.php"><a href="files/framework-private-core-models-model.html"><abbr title="Framework/private_core/models/Model.php">Model.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">373</span>
+    <span class="phpdocumentor-element-found-in__line">405</span>
 
     </aside>
 
@@ -1504,19 +1433,23 @@ The filter is passed off into <a href="classes/Application-Model-Model.html#meth
         <a href="classes/Application-Model-Model.html#method_queryDatabaseObject" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/models/Model.php"><a href="files/website-private-core-models-model.html"><abbr title="Website/private_core/models/Model.php">Model.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/models/Model.php"><a href="files/framework-private-core-models-model.html"><abbr title="Framework/private_core/models/Model.php">Model.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">201</span>
+    <span class="phpdocumentor-element-found-in__line">204</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Queries the specified database object and returns the results as an associative array.</p>
+        <p class="phpdocumentor-summary">Queries the specified database object and returns the results.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
                     <span class="phpdocumentor-signature__name">queryDatabaseObject</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$schema</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$objectName</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$includedColumns</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$whereClause</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">&quot;&quot;</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>If the query returns a result set that contains multiple rows and columns, it will return each row as an array, where each row is accessed by a numeric key.
+If the query returns a result set that contains multiple rows but has one column, the column name will be the key of the array, with each row as a value within.
+If the query returns a result set that contains one row and one column, the value of that row will be returned as its respective PHP data type.</p>
+</section>
+
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -1573,12 +1506,86 @@ The filter is passed off into <a href="classes/Application-Model-Model.html#meth
             -protected
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="method_queryDatabaseObjectCount">
+        queryDatabaseObjectCount()
+        <a href="classes/Application-Model-Model.html#method_queryDatabaseObjectCount" class="headerlink"><i class="fas fa-link"></i></a>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/models/Model.php"><a href="files/framework-private-core-models-model.html"><abbr title="Framework/private_core/models/Model.php">Model.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">245</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Gets the count oof the specified database object.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">protected</span>
+                    <span class="phpdocumentor-signature__name">queryDatabaseObjectCount</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$schema</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$objectName</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$includedColumns</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$whereClause</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">&quot;&quot;</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">int</span></code>
+
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$schema</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                 = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>The database schema of the object to query.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$objectName</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                 = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>The name of the object to be queried.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$includedColumns</span>
+                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
+                 = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>An array of column names that will be included in the returned resultset. If null, all columns will be included. If there are exactly two columns specified, the result will be returned as an associative array, with the first column being the key.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$whereClause</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                 = <span class="phpdocumentor-signature__argument__default-value">&quot;&quot;</span>            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>a WHERE clause to filter results with.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+    <span class="phpdocumentor-signature__response_type">int</span>
+            &mdash;
+            <section class="phpdocumentor-description"><p>The number of rows of the specified columns in the database object</p>
+</section>
+
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -protected
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="method_setTableIdentifier">
         setTableIdentifier()
         <a href="classes/Application-Model-Model.html#method_setTableIdentifier" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/models/Model.php"><a href="files/website-private-core-models-model.html"><abbr title="Website/private_core/models/Model.php">Model.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/models/Model.php"><a href="files/framework-private-core-models-model.html"><abbr title="Framework/private_core/models/Model.php">Model.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">121</span>
 
@@ -1643,7 +1650,7 @@ The filter is passed off into <a href="classes/Application-Model-Model.html#meth
         <a href="classes/Application-Model-Model.html#method_setTableIdentifiers" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/models/Model.php"><a href="files/website-private-core-models-model.html"><abbr title="Website/private_core/models/Model.php">Model.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/models/Model.php"><a href="files/framework-private-core-models-model.html"><abbr title="Framework/private_core/models/Model.php">Model.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">96</span>
 
@@ -1736,53 +1743,41 @@ The filter is passed off into <a href="classes/Application-Model-Model.html#meth
             -protected
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_submitStoredProcedure">
-        submitStoredProcedure()
-        <a href="classes/Application-Model-Model.html#method_submitStoredProcedure" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_simplifyResultsetArray">
+        simplifyResultsetArray()
+        <a href="classes/Application-Model-Model.html#method_simplifyResultsetArray" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/models/Model.php"><a href="files/website-private-core-models-model.html"><abbr title="Website/private_core/models/Model.php">Model.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/models/Model.php"><a href="files/framework-private-core-models-model.html"><abbr title="Framework/private_core/models/Model.php">Model.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">282</span>
+    <span class="phpdocumentor-element-found-in__line">358</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Executes a stored procedure on the database.</p>
+        <p class="phpdocumentor-summary">Simplifies the given array to a more readable and cleaner format.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
-                    <span class="phpdocumentor-signature__name">submitStoredProcedure</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$procedureSchema</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$procedureName</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__reference-operator">&amp;</span><span class="phpdocumentor-signature__argument__name">$procedureParams</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;|null</span></code>
+                    <span class="phpdocumentor-signature__name">simplifyResultsetArray</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$resultSet</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">bool&nbsp;</span><span class="phpdocumentor-signature__argument__name">$valueIsKey</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">false</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
 
-        <section class="phpdocumentor-description"><p>All data sent here will be validated beforehand and then sent to the server if successfully validated.
-Data may only be sent to the database via a stored procedure.
-Any attempts to insert, select, delete or manipulate any data on the database without the use of a stored procedure will be denied.</p>
-</section>
-
+    
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$procedureSchema</span>
-                : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                <span class="phpdocumentor-signature__argument__name">$resultSet</span>
+                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
-
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$procedureName</span>
-                : <span class="phpdocumentor-signature__argument__return-type">string</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>The name of the stored procedure to execute.</p>
+                    <section class="phpdocumentor-description"><p>The array of the resultset to be simplified</p>
 </section>
 
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$procedureParams</span>
-                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
-                            </dt>
+                <span class="phpdocumentor-signature__argument__name">$valueIsKey</span>
+                : <span class="phpdocumentor-signature__argument__return-type">bool</span>
+                 = <span class="phpdocumentor-signature__argument__default-value">false</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>An associative array with the key being the parameters for the stored procedure and the values being the values the parameters will hold.</p>
+                    <section class="phpdocumentor-description"><p>If the key of the array should also the the value, enable this option.</p>
 </section>
 
             </dd>
@@ -1791,7 +1786,7 @@ Any attempts to insert, select, delete or manipulate any data on the database wi
     
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;|null</span>
+    <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
             &mdash;
         
     
@@ -1807,9 +1802,9 @@ Any attempts to insert, select, delete or manipulate any data on the database wi
         <a href="classes/Application-Model-Model.html#method_closeConnection" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/models/Model.php"><a href="files/website-private-core-models-model.html"><abbr title="Website/private_core/models/Model.php">Model.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/models/Model.php"><a href="files/framework-private-core-models-model.html"><abbr title="Framework/private_core/models/Model.php">Model.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">695</span>
+    <span class="phpdocumentor-element-found-in__line">715</span>
 
     </aside>
 
@@ -1851,9 +1846,9 @@ Any attempts to insert, select, delete or manipulate any data on the database wi
         <a href="classes/Application-Model-Model.html#method_displayErrors" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/models/Model.php"><a href="files/website-private-core-models-model.html"><abbr title="Website/private_core/models/Model.php">Model.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/models/Model.php"><a href="files/framework-private-core-models-model.html"><abbr title="Framework/private_core/models/Model.php">Model.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">611</span>
+    <span class="phpdocumentor-element-found-in__line">641</span>
 
     </aside>
 
@@ -1907,9 +1902,9 @@ Any attempts to insert, select, delete or manipulate any data on the database wi
         <a href="classes/Application-Model-Model.html#method_fetchForeignKeyData" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/models/Model.php"><a href="files/website-private-core-models-model.html"><abbr title="Website/private_core/models/Model.php">Model.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/models/Model.php"><a href="files/framework-private-core-models-model.html"><abbr title="Framework/private_core/models/Model.php">Model.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">529</span>
+    <span class="phpdocumentor-element-found-in__line">559</span>
 
     </aside>
 
@@ -1972,9 +1967,9 @@ Any attempts to insert, select, delete or manipulate any data on the database wi
         <a href="classes/Application-Model-Model.html#method_newConnection" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/models/Model.php"><a href="files/website-private-core-models-model.html"><abbr title="Website/private_core/models/Model.php">Model.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/models/Model.php"><a href="files/framework-private-core-models-model.html"><abbr title="Framework/private_core/models/Model.php">Model.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">679</span>
+    <span class="phpdocumentor-element-found-in__line">699</span>
 
     </aside>
 
@@ -2007,9 +2002,9 @@ Any attempts to insert, select, delete or manipulate any data on the database wi
         <a href="classes/Application-Model-Model.html#method_resultSetToArray" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/models/Model.php"><a href="files/website-private-core-models-model.html"><abbr title="Website/private_core/models/Model.php">Model.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/models/Model.php"><a href="files/framework-private-core-models-model.html"><abbr title="Framework/private_core/models/Model.php">Model.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">319</span>
+    <span class="phpdocumentor-element-found-in__line">318</span>
 
     </aside>
 
@@ -2081,9 +2076,9 @@ This parameter array must contain two keys:</p>
         <a href="classes/Application-Model-Model.html#method_trimTrailingComma" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/models/Model.php"><a href="files/website-private-core-models-model.html"><abbr title="Website/private_core/models/Model.php">Model.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/models/Model.php"><a href="files/framework-private-core-models-model.html"><abbr title="Framework/private_core/models/Model.php">Model.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">707</span>
+    <span class="phpdocumentor-element-found-in__line">727</span>
 
     </aside>
 
@@ -2204,7 +2199,7 @@ This parameter array must contain two keys:</p>
 </section>
             </div>
         </div>
-        <a href="classes/Application-Model-Model-Customer.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
+        <a href="classes/Application-Model-Model-Table.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
 
     </main>
 

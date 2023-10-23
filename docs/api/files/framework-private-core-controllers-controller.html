@@ -60,11 +60,11 @@
 </h4>
     <ul class="phpdocumentor-list">
                     <li>
-                <a href="namespaces/application-router.html" class="">Router</a>
+                <a href="namespaces/application-controller.html" class="">Controller</a>
                 
             </li>
                     <li>
-                <a href="namespaces/application-controller.html" class="">Controller</a>
+                <a href="namespaces/application-model.html" class="">Model</a>
                 
             </li>
                     <li>
@@ -72,7 +72,7 @@
                 
             </li>
                     <li>
-                <a href="namespaces/application-model.html" class="">Model</a>
+                <a href="namespaces/application-sessionmanagement.html" class="">SessionManagement</a>
                 
             </li>
             </ul>
@@ -104,10 +104,12 @@
     </ul>
 
     <article class="phpdocumentor-element -file">
-        <h2 class="phpdocumentor-content__title">PageBuilder_Form.php</h2>
+        <h2 class="phpdocumentor-content__title">Controller.php</h2>
 
-        
-    <section class="phpdocumentor-description"></section>
+            <p class="phpdocumentor-summary">Controller.php</p>
+
+    <section class="phpdocumentor-description"><p>Defines the Controller Base class and constants used throughout controllers and related objects.</p>
+</section>
 
 
 
@@ -121,8 +123,8 @@
 
 <dl class="phpdocumentor-table-of-contents">
     
-            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Application-PageBuilder-FormBuilder.html"><abbr title="\Application\PageBuilder\FormBuilder">FormBuilder</abbr></a></dt>
-        <dd>This script defines the class used to build pages dynamically.</dd>
+            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Application-Controller-Controller.html"><abbr title="\Application\Controller\Controller">Controller</abbr></a></dt>
+        <dd>Base Controller class</dd>
     
     
     </dl>
@@ -135,39 +137,32 @@
 
 <dl class="phpdocumentor-table-of-contents">
             <dt class="phpdocumentor-table-of-contents__entry -constant -public">
-    <a href="namespaces/application-pagebuilder.html#constant_PROPERTY_FRIENDLY_NAME">PROPERTY_FRIENDLY_NAME</a>
+    <a href="namespaces/application-controller.html#constant_DROPDOWN_NEW_OPTION">DROPDOWN_NEW_OPTION</a>
     <span>
-        &nbsp;= &quot;UserFriendlyName&quot;                            </span>
+        &nbsp;= &quot;modal_new&quot;                            </span>
 </dt>
-<dd></dd>
+<dd>Constant used to signify the &quot;New&quot; option in a dropdown box.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -constant -public">
-    <a href="namespaces/application-pagebuilder.html#constant_PROPERTY_MULTI_FK_SCHEMA">PROPERTY_MULTI_FK_SCHEMA</a>
+    <a href="namespaces/application-controller.html#constant_STATUS_FAILURE">STATUS_FAILURE</a>
     <span>
-        &nbsp;= &quot;MultiForeignKeySchema&quot;                            </span>
+        &nbsp;= 1                            </span>
 </dt>
-<dd></dd>
+<dd>Signifies that the form data validation was unsuccessful.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -constant -public">
-    <a href="namespaces/application-pagebuilder.html#constant_PROPERTY_MULTI_FK_TABLE">PROPERTY_MULTI_FK_TABLE</a>
+    <a href="namespaces/application-controller.html#constant_STATUS_SUBMIT_FAILURE">STATUS_SUBMIT_FAILURE</a>
     <span>
-        &nbsp;= &quot;MultiForeignKeyTable&quot;                            </span>
+        &nbsp;= 2                            </span>
 </dt>
-<dd></dd>
+<dd>Signifies that the form data validation and submission was unsuccessful.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -constant -public">
-    <a href="namespaces/application-pagebuilder.html#constant_PROPERTY_SELECT">PROPERTY_SELECT</a>
+    <a href="namespaces/application-controller.html#constant_STATUS_SUCCESS">STATUS_SUCCESS</a>
     <span>
-        &nbsp;= &quot;AllowCustomerSelect&quot;                            </span>
+        &nbsp;= 0                            </span>
 </dt>
-<dd>This script defines the class used to build html forms for pages dynamically.</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -constant -public">
-    <a href="namespaces/application-pagebuilder.html#constant_PROPERTY_USER_GEN">PROPERTY_USER_GEN</a>
-    <span>
-        &nbsp;= &quot;UserGenerated&quot;                            </span>
-</dt>
-<dd></dd>
+<dd>Signifies that the form data validation and submission was successful.</dd>
 
                     </dl>
 
@@ -177,115 +172,28 @@
     <section class="phpdocumentor-constants">
         <h3 class="phpdocumentor-elements__header" id="constants">
             Constants
-            <a href="files/website-private-core-controllers-pagebuilder-pagebuilder-form.html#constants" class="headerlink"><i class="fas fa-link"></i></a>
+            <a href="files/framework-private-core-controllers-controller.html#constants" class="headerlink"><i class="fas fa-link"></i></a>
         </h3>
                     <article class="phpdocumentor-element -constant -public ">
-    <h4 class="phpdocumentor-element__name" id="constant_PROPERTY_FRIENDLY_NAME">
-        PROPERTY_FRIENDLY_NAME
-        <a href="namespaces/application-pagebuilder.html#constant_PROPERTY_FRIENDLY_NAME" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="constant_DROPDOWN_NEW_OPTION">
+        DROPDOWN_NEW_OPTION
+        <a href="namespaces/application-controller.html#constant_DROPDOWN_NEW_OPTION" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
 
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/controllers/PageBuilder/PageBuilder_Form.php"><a href="files/website-private-core-controllers-pagebuilder-pagebuilder-form.html"><abbr title="Website/private_core/controllers/PageBuilder/PageBuilder_Form.php">PageBuilder_Form.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/controllers/Controller.php"><a href="files/framework-private-core-controllers-controller.html"><abbr title="Framework/private_core/controllers/Controller.php">Controller.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">16</span>
+    <span class="phpdocumentor-element-found-in__line">21</span>
 
     </aside>
 
-    
-    <code class="phpdocumentor-signature phpdocumentor-code ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-        <span class="phpdocumentor-signature__type">mixed</span>
-    <span class="phpdocumentor-signature__name">PROPERTY_FRIENDLY_NAME</span>
-    = <span class="phpdocumentor-signature__default-value">&quot;UserFriendlyName&quot;</span>
-</code>
-
-
-        <section class="phpdocumentor-description"></section>
-
-        <section class="phpdocumentor-description"></section>
-
-    
-
-</article>
-                    <article class="phpdocumentor-element -constant -public ">
-    <h4 class="phpdocumentor-element__name" id="constant_PROPERTY_MULTI_FK_SCHEMA">
-        PROPERTY_MULTI_FK_SCHEMA
-        <a href="namespaces/application-pagebuilder.html#constant_PROPERTY_MULTI_FK_SCHEMA" class="headerlink"><i class="fas fa-link"></i></a>
-    </h4>
-
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/controllers/PageBuilder/PageBuilder_Form.php"><a href="files/website-private-core-controllers-pagebuilder-pagebuilder-form.html"><abbr title="Website/private_core/controllers/PageBuilder/PageBuilder_Form.php">PageBuilder_Form.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">18</span>
-
-    </aside>
-
-    
-    <code class="phpdocumentor-signature phpdocumentor-code ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-        <span class="phpdocumentor-signature__type">mixed</span>
-    <span class="phpdocumentor-signature__name">PROPERTY_MULTI_FK_SCHEMA</span>
-    = <span class="phpdocumentor-signature__default-value">&quot;MultiForeignKeySchema&quot;</span>
-</code>
-
-
-        <section class="phpdocumentor-description"></section>
-
-        <section class="phpdocumentor-description"></section>
-
-    
-
-</article>
-                    <article class="phpdocumentor-element -constant -public ">
-    <h4 class="phpdocumentor-element__name" id="constant_PROPERTY_MULTI_FK_TABLE">
-        PROPERTY_MULTI_FK_TABLE
-        <a href="namespaces/application-pagebuilder.html#constant_PROPERTY_MULTI_FK_TABLE" class="headerlink"><i class="fas fa-link"></i></a>
-    </h4>
-
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/controllers/PageBuilder/PageBuilder_Form.php"><a href="files/website-private-core-controllers-pagebuilder-pagebuilder-form.html"><abbr title="Website/private_core/controllers/PageBuilder/PageBuilder_Form.php">PageBuilder_Form.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">19</span>
-
-    </aside>
-
-    
-    <code class="phpdocumentor-signature phpdocumentor-code ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-        <span class="phpdocumentor-signature__type">mixed</span>
-    <span class="phpdocumentor-signature__name">PROPERTY_MULTI_FK_TABLE</span>
-    = <span class="phpdocumentor-signature__default-value">&quot;MultiForeignKeyTable&quot;</span>
-</code>
-
-
-        <section class="phpdocumentor-description"></section>
-
-        <section class="phpdocumentor-description"></section>
-
-    
-
-</article>
-                    <article class="phpdocumentor-element -constant -public ">
-    <h4 class="phpdocumentor-element__name" id="constant_PROPERTY_SELECT">
-        PROPERTY_SELECT
-        <a href="namespaces/application-pagebuilder.html#constant_PROPERTY_SELECT" class="headerlink"><i class="fas fa-link"></i></a>
-    </h4>
-
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/controllers/PageBuilder/PageBuilder_Form.php"><a href="files/website-private-core-controllers-pagebuilder-pagebuilder-form.html"><abbr title="Website/private_core/controllers/PageBuilder/PageBuilder_Form.php">PageBuilder_Form.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">15</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">This script defines the class used to build html forms for pages dynamically.</p>
+        <p class="phpdocumentor-summary">Constant used to signify the &quot;New&quot; option in a dropdown box.</p>
 
     <code class="phpdocumentor-signature phpdocumentor-code ">
     <span class="phpdocumentor-signature__visibility">public</span>
         <span class="phpdocumentor-signature__type">mixed</span>
-    <span class="phpdocumentor-signature__name">PROPERTY_SELECT</span>
-    = <span class="phpdocumentor-signature__default-value">&quot;AllowCustomerSelect&quot;</span>
+    <span class="phpdocumentor-signature__name">DROPDOWN_NEW_OPTION</span>
+    = <span class="phpdocumentor-signature__default-value">&quot;modal_new&quot;</span>
 </code>
 
 
@@ -296,29 +204,87 @@
 
 </article>
                     <article class="phpdocumentor-element -constant -public ">
-    <h4 class="phpdocumentor-element__name" id="constant_PROPERTY_USER_GEN">
-        PROPERTY_USER_GEN
-        <a href="namespaces/application-pagebuilder.html#constant_PROPERTY_USER_GEN" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="constant_STATUS_FAILURE">
+        STATUS_FAILURE
+        <a href="namespaces/application-controller.html#constant_STATUS_FAILURE" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
 
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/controllers/PageBuilder/PageBuilder_Form.php"><a href="files/website-private-core-controllers-pagebuilder-pagebuilder-form.html"><abbr title="Website/private_core/controllers/PageBuilder/PageBuilder_Form.php">PageBuilder_Form.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/controllers/Controller.php"><a href="files/framework-private-core-controllers-controller.html"><abbr title="Framework/private_core/controllers/Controller.php">Controller.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">17</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Signifies that the form data validation was unsuccessful.</p>
+
     <code class="phpdocumentor-signature phpdocumentor-code ">
     <span class="phpdocumentor-signature__visibility">public</span>
         <span class="phpdocumentor-signature__type">mixed</span>
-    <span class="phpdocumentor-signature__name">PROPERTY_USER_GEN</span>
-    = <span class="phpdocumentor-signature__default-value">&quot;UserGenerated&quot;</span>
+    <span class="phpdocumentor-signature__name">STATUS_FAILURE</span>
+    = <span class="phpdocumentor-signature__default-value">1</span>
 </code>
 
 
+    
         <section class="phpdocumentor-description"></section>
 
+    
+
+</article>
+                    <article class="phpdocumentor-element -constant -public ">
+    <h4 class="phpdocumentor-element__name" id="constant_STATUS_SUBMIT_FAILURE">
+        STATUS_SUBMIT_FAILURE
+        <a href="namespaces/application-controller.html#constant_STATUS_SUBMIT_FAILURE" class="headerlink"><i class="fas fa-link"></i></a>
+    </h4>
+
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/controllers/Controller.php"><a href="files/framework-private-core-controllers-controller.html"><abbr title="Framework/private_core/controllers/Controller.php">Controller.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">19</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Signifies that the form data validation and submission was unsuccessful.</p>
+
+    <code class="phpdocumentor-signature phpdocumentor-code ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__type">mixed</span>
+    <span class="phpdocumentor-signature__name">STATUS_SUBMIT_FAILURE</span>
+    = <span class="phpdocumentor-signature__default-value">2</span>
+</code>
+
+
+    
+        <section class="phpdocumentor-description"></section>
+
+    
+
+</article>
+                    <article class="phpdocumentor-element -constant -public ">
+    <h4 class="phpdocumentor-element__name" id="constant_STATUS_SUCCESS">
+        STATUS_SUCCESS
+        <a href="namespaces/application-controller.html#constant_STATUS_SUCCESS" class="headerlink"><i class="fas fa-link"></i></a>
+    </h4>
+
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/controllers/Controller.php"><a href="files/framework-private-core-controllers-controller.html"><abbr title="Framework/private_core/controllers/Controller.php">Controller.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">15</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Signifies that the form data validation and submission was successful.</p>
+
+    <code class="phpdocumentor-signature phpdocumentor-code ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__type">mixed</span>
+    <span class="phpdocumentor-signature__name">STATUS_SUCCESS</span>
+    = <span class="phpdocumentor-signature__default-value">0</span>
+</code>
+
+
+    
         <section class="phpdocumentor-description"></section>
 
     
@@ -341,7 +307,7 @@
 </section>
             </div>
         </div>
-        <a href="files/website-private-core-controllers-pagebuilder-pagebuilder-form.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
+        <a href="files/framework-private-core-controllers-controller.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
 
     </main>
 

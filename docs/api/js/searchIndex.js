@@ -1,96 +1,6 @@
 Search.appendIndex(
     [
                 {
-            "fqsen": "\\Application\\Router\\VIEW_DIR",
-            "name": "VIEW_DIR",
-            "summary": "",
-            "url": "namespaces/application-router.html#constant_VIEW_DIR"
-        },                {
-            "fqsen": "\\Application\\Router\\CONTROLLER_DIR",
-            "name": "CONTROLLER_DIR",
-            "summary": "",
-            "url": "namespaces/application-router.html#constant_CONTROLLER_DIR"
-        },                {
-            "fqsen": "\\Application\\Router\\MODAL_MESSAGE",
-            "name": "MODAL_MESSAGE",
-            "summary": "",
-            "url": "namespaces/application-router.html#constant_MODAL_MESSAGE"
-        },                {
-            "fqsen": "\\Application\\Router\\DISPLAY_DEFAULT",
-            "name": "DISPLAY_DEFAULT",
-            "summary": "",
-            "url": "namespaces/application-router.html#constant_DISPLAY_DEFAULT"
-        },                {
-            "fqsen": "\\Application\\Router\\DISPLAY_NAV",
-            "name": "DISPLAY_NAV",
-            "summary": "",
-            "url": "namespaces/application-router.html#constant_DISPLAY_NAV"
-        },                {
-            "fqsen": "\\Application\\Router\\DISPLAY_FOOTER",
-            "name": "DISPLAY_FOOTER",
-            "summary": "",
-            "url": "namespaces/application-router.html#constant_DISPLAY_FOOTER"
-        },                {
-            "fqsen": "\\Application\\Router\\DISPLAY_NONE",
-            "name": "DISPLAY_NONE",
-            "summary": "",
-            "url": "namespaces/application-router.html#constant_DISPLAY_NONE"
-        },                {
-            "fqsen": "\\Application\\Router\\DOMAIN",
-            "name": "DOMAIN",
-            "summary": "",
-            "url": "namespaces/application-router.html#constant_DOMAIN"
-        },                {
-            "fqsen": "\\Application\\Router\\makeController\u0028\u0029",
-            "name": "makeController",
-            "summary": "Creates\u0020a\u0020controller\u0020object\u0020dynamically\u0020based\u0020on\u0020the\u0020given\u0020class\u0020name",
-            "url": "namespaces/application-router.html#function_makeController"
-        },                {
-            "fqsen": "\\Application\\Router\\headerSetUp\u0028\u0029",
-            "name": "headerSetUp",
-            "summary": "",
-            "url": "namespaces/application-router.html#function_headerSetUp"
-        },                {
-            "fqsen": "\\Application\\Router\\getContentTypeHeader\u0028\u0029",
-            "name": "getContentTypeHeader",
-            "summary": "Returns\u0020a\u0020MIME\u0020type\u0020based\u0020on\u0020the\u0020given\u0020file\u0020extension.",
-            "url": "namespaces/application-router.html#function_getContentTypeHeader"
-        },                {
-            "fqsen": "\\Application\\Router\\getWindowMessage\u0028\u0029",
-            "name": "getWindowMessage",
-            "summary": "Checks\u0020if\u0020this\u0020page\u0020is\u0020loaded\u0020with\u0020a\u0020message\u0020request\u0020in\u0020the\u0020GET\u0020variables.",
-            "url": "namespaces/application-router.html#function_getWindowMessage"
-        },                {
-            "fqsen": "\\Application\\Router\\Theme",
-            "name": "Theme",
-            "summary": "",
-            "url": "classes/Application-Router-Theme.html"
-        },                {
-            "fqsen": "\\Application\\Router\\Theme\u003A\u003ADefault",
-            "name": "Default",
-            "summary": "",
-            "url": ""
-        },                {
-            "fqsen": "\\Application\\Router\\Theme\u003A\u003ADark",
-            "name": "Dark",
-            "summary": "",
-            "url": ""
-        },                {
-            "fqsen": "\\Application\\Router\\Theme\u003A\u003AgameChild",
-            "name": "gameChild",
-            "summary": "",
-            "url": ""
-        },                {
-            "fqsen": "\\Application\\Router\\Theme\u003A\u003AhighContrast",
-            "name": "highContrast",
-            "summary": "",
-            "url": ""
-        },                {
-            "fqsen": "\\Application\\Router\\Theme\u003A\u003Asilly",
-            "name": "silly",
-            "summary": "",
-            "url": ""
-        },                {
             "fqsen": "\\Application\\Controller\\STATUS_SUCCESS",
             "name": "STATUS_SUCCESS",
             "summary": "Signifies\u0020that\u0020the\u0020form\u0020data\u0020validation\u0020and\u0020submission\u0020was\u0020successful.",
@@ -146,10 +56,10 @@ Search.appendIndex(
             "summary": "Returns\u0020the\u0020Model\u0020object\u0020associated\u0020to\u0020this\u0020controller.",
             "url": "classes/Application-Controller-Controller.html#method_getModel"
         },                {
-            "fqsen": "\\Application\\Controller\\Controller\u003A\u003AgetMode\u0028\u0029",
-            "name": "getMode",
-            "summary": "Returns\u0020the\u0020mode\u0020the\u0020controller\u0020is\u0020being\u0020used\u0020in\u0020\u0028i.e.\u0020create,\u0020insert,\u0020update,\u0020delete\u0029",
-            "url": "classes/Application-Controller-Controller.html#method_getMode"
+            "fqsen": "\\Application\\Controller\\Controller\u003A\u003AgetPage\u0028\u0029",
+            "name": "getPage",
+            "summary": "Returns\u0020the\u0020page\u0020the\u0020controller\u0020is\u0020being\u0020used\u0020in\u0020\u0028i.e.\u0020create,\u0020insert,\u0020update,\u0020delete\u0029",
+            "url": "classes/Application-Controller-Controller.html#method_getPage"
         },                {
             "fqsen": "\\Application\\Controller\\Controller\u003A\u003AgetPreparedData\u0028\u0029",
             "name": "getPreparedData",
@@ -186,35 +96,35 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Application-Controller-Controller.html#property_abortSubmit"
         },                {
-            "fqsen": "\\Application\\Controller\\Controller\u003A\u003A\u0024mode",
-            "name": "mode",
+            "fqsen": "\\Application\\Controller\\Controller\u003A\u003A\u0024pageMode",
+            "name": "pageMode",
             "summary": "",
-            "url": "classes/Application-Controller-Controller.html#property_mode"
+            "url": "classes/Application-Controller-Controller.html#property_pageMode"
         },                {
-            "fqsen": "\\Application\\Controller\\Controller_Customers",
-            "name": "Controller_Customers",
-            "summary": "The\u0020Controller\u0020object\u0020for\u0020the\u0020Customer\u0020page.",
-            "url": "classes/Application-Controller-Controller-Customers.html"
+            "fqsen": "\\Application\\Controller\\Controller_Table",
+            "name": "Controller_Table",
+            "summary": "The\u0020Controller\u0020object\u0020for\u0020the\u0020Table\u0020page.",
+            "url": "classes/Application-Controller-Controller-Table.html"
         },                {
-            "fqsen": "\\Application\\Controller\\Controller_Customers\u003A\u003A__construct\u0028\u0029",
+            "fqsen": "\\Application\\Controller\\Controller_Table\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
-            "summary": "Takes\u0020an\u0020associated\u0020array\u0020\u0028typically\u0020a\u0020GET\u0020request\u0029\u0020and\u0020determines\u0020what\u0020data\u0020needs\u0020to\u0020be\u0020retrieved\u0020from\u0020the\u0020model.",
-            "url": "classes/Application-Controller-Controller-Customers.html#method___construct"
+            "summary": "Additional\u0020data\u0020is\u0020typically\u0020an\u0020array\u0020based\u0020on\u0020GET\u0020variables.",
+            "url": "classes/Application-Controller-Controller-Table.html#method___construct"
         },                {
-            "fqsen": "\\Application\\Controller\\Controller_Customers\u003A\u003ApostData\u0028\u0029",
+            "fqsen": "\\Application\\Controller\\Controller_Table\u003A\u003ApostData\u0028\u0029",
             "name": "postData",
-            "summary": "Validates\u0020and\u0020sends\u0020user\u002Dsubmitted\u0020data\u0020to\u0020the\u0020model\u0020for\u0020submission\u0020in\u0020the\u0020database.",
-            "url": "classes/Application-Controller-Controller-Customers.html#method_postData"
+            "summary": "Since\u0020this\u0020controller\u0020does\u0020not\u0020send\u0020data\u0020to\u0020its\u0020model,\u0020no\u0020data\u0020submission\u0020is\u0020needed.",
+            "url": "classes/Application-Controller-Controller-Table.html#method_postData"
         },                {
-            "fqsen": "\\Application\\Controller\\Controller_Customers\u003A\u003AretrieveData\u0028\u0029",
+            "fqsen": "\\Application\\Controller\\Controller_Table\u003A\u003AretrieveData\u0028\u0029",
             "name": "retrieveData",
             "summary": "Retrieves\u0020the\u0020data\u0020from\u0020the\u0020Database\u0020and\u0020conforms\u0020it\u0020to\u0020the\u0020overridden\u0020function\u0027s\u0020specifications.",
-            "url": "classes/Application-Controller-Controller-Customers.html#method_retrieveData"
+            "url": "classes/Application-Controller-Controller-Table.html#method_retrieveData"
         },                {
-            "fqsen": "\\Application\\Controller\\Controller_Customers\u003A\u003AvalidateDataParameters\u0028\u0029",
+            "fqsen": "\\Application\\Controller\\Controller_Table\u003A\u003AvalidateDataParameters\u0028\u0029",
             "name": "validateDataParameters",
-            "summary": "Validates\u0020customer\u0020form\u0020submission\u0020to\u0020suit\u0020the\u0020stored\u0020procedure\u0020for\u0020the\u0020respective\u0020mode.",
-            "url": "classes/Application-Controller-Controller-Customers.html#method_validateDataParameters"
+            "summary": "Since\u0020this\u0020controller\u0020does\u0020not\u0020send\u0020data\u0020to\u0020its\u0020model,\u0020no\u0020data\u0020validation\u0020is\u0020needed.",
+            "url": "classes/Application-Controller-Controller-Table.html#method_validateDataParameters"
         },                {
             "fqsen": "\\Application\\Controller\\DataValidator",
             "name": "DataValidator",
@@ -286,6 +196,351 @@ Search.appendIndex(
             "summary": "Cleanses\u0020the\u0020given\u0020string\u0020to\u0020remove\u0020any\u0020values\u0020or\u0020characters\u0020that\u0020could\u0020be\u0020used\u0020to\u0020cause\u0020SQL\u0020Injection.",
             "url": "classes/Application-Controller-DataValidator.html#method_cleanseStringForDynamicSQL"
         },                {
+            "fqsen": "\\Application\\Model\\TWO_COL_TO_ONE_PRIMARY",
+            "name": "TWO_COL_TO_ONE_PRIMARY",
+            "summary": "Array\u0020key\u0020used\u0020to\u0020specify\u0020a\u0020value\u0020to\u0020be\u0020used\u0020as\u0020an\u0020array\u0020key\u0020in\u0020Model\u003A\u003AresultSetToArray\u0028\u0029",
+            "url": "namespaces/application-model.html#constant_TWO_COL_TO_ONE_PRIMARY"
+        },                {
+            "fqsen": "\\Application\\Model\\TWO_COL_TO_ONE_SECONDARY",
+            "name": "TWO_COL_TO_ONE_SECONDARY",
+            "summary": "Array\u0020key\u0020used\u0020to\u0020specify\u0020a\u0020value\u0020to\u0020be\u0020used\u0020as\u0020an\u0020array\u0020value\u0020in\u0020Model\u003A\u003AresultSetToArray\u0028\u0029",
+            "url": "namespaces/application-model.html#constant_TWO_COL_TO_ONE_SECONDARY"
+        },                {
+            "fqsen": "\\Application\\Model\\DATA_DEPENDENCIES",
+            "name": "DATA_DEPENDENCIES",
+            "summary": "Array\u0020key\u0020used\u0020to\u0020store\u0020dependency\u0020data.\u0020Used\u0020in\u0020the\u0020fetchModelData\u0020function.",
+            "url": "namespaces/application-model.html#constant_DATA_DEPENDENCIES"
+        },                {
+            "fqsen": "\\Application\\Model\\DATA_MODAL_REFS",
+            "name": "DATA_MODAL_REFS",
+            "summary": "Array\u0020key\u0020used\u0020to\u0020store\u0020modal\u0020data\u0020references.\u0020Used\u0020in\u0020the\u0020fetchModelData\u0020function.",
+            "url": "namespaces/application-model.html#constant_DATA_MODAL_REFS"
+        },                {
+            "fqsen": "\\Application\\Model\\DATA_DROPDOWNS",
+            "name": "DATA_DROPDOWNS",
+            "summary": "Array\u0020key\u0020used\u0020to\u0020store\u0020dependency\u0020data\u0020for\u0020dropdowns.\u0020Used\u0020in\u0020the\u0020fetchModelData\u0020function.",
+            "url": "namespaces/application-model.html#constant_DATA_DROPDOWNS"
+        },                {
+            "fqsen": "\\Application\\Model\\DATA_FORM_MAIN",
+            "name": "DATA_FORM_MAIN",
+            "summary": "Array\u0020key\u0020used\u0020to\u0020store\u0020data\u0020for\u0020the\u0020main\u0020form\u0020in\u0020the\u0020view.\u0020Used\u0020in\u0020the\u0020fetchModelData\u0020function.",
+            "url": "namespaces/application-model.html#constant_DATA_FORM_MAIN"
+        },                {
+            "fqsen": "\\Application\\Model\\DATA_FORM_EDIT",
+            "name": "DATA_FORM_EDIT",
+            "summary": "Array\u0020key\u0020used\u0020to\u0020store\u0020the\u0020values\u0020for\u0020the\u0020form\u0020when\u0020a\u0020record\u0020is\u0020being\u0020edited.",
+            "url": "namespaces/application-model.html#constant_DATA_FORM_EDIT"
+        },                {
+            "fqsen": "\\Application\\Model\\SESS_TABLES",
+            "name": "SESS_TABLES",
+            "summary": "Array\u0020key\u0020used\u0020to\u0020store\u0020table\u0020identifiers\u0020in\u0020the\u0020\u0024_SESSION\u0020array.",
+            "url": "namespaces/application-model.html#constant_SESS_TABLES"
+        },                {
+            "fqsen": "\\Application\\Model\\MODE_INSERT",
+            "name": "MODE_INSERT",
+            "summary": "Specifies\u0020the\u0020insertion\u0020of\u0020a\u0020new\u0020record",
+            "url": "namespaces/application-model.html#constant_MODE_INSERT"
+        },                {
+            "fqsen": "\\Application\\Model\\MODE_UPDATE",
+            "name": "MODE_UPDATE",
+            "summary": "Specified\u0020the\u0020updating\u0020of\u0020a\u0020record",
+            "url": "namespaces/application-model.html#constant_MODE_UPDATE"
+        },                {
+            "fqsen": "\\Application\\Model\\MODE_DELETE",
+            "name": "MODE_DELETE",
+            "summary": "Specifies\u0020the\u0020deletion\u0020of\u0020a\u0020record",
+            "url": "namespaces/application-model.html#constant_MODE_DELETE"
+        },                {
+            "fqsen": "\\Application\\Model\\MODE_CREATE",
+            "name": "MODE_CREATE",
+            "summary": "Specifies\u0020the\u0020creation\u0020of\u0020a\u0020new\u0020table",
+            "url": "namespaces/application-model.html#constant_MODE_CREATE"
+        },                {
+            "fqsen": "\\Application\\Model\\MODE_DROP",
+            "name": "MODE_DROP",
+            "summary": "Specifies\u0020the\u0020dropping\u0020of\u0020a\u0020user\u002Dgenerated\u0020table",
+            "url": "namespaces/application-model.html#constant_MODE_DROP"
+        },                {
+            "fqsen": "\\Application\\Model\\MODE_EDIT",
+            "name": "MODE_EDIT",
+            "summary": "Specifies\u0020the\u0020modification\u0020of\u0020a\u0020user\u002Dgenerated\u0020table",
+            "url": "namespaces/application-model.html#constant_MODE_EDIT"
+        },                {
+            "fqsen": "\\Application\\Model\\MODE_SELECT",
+            "name": "MODE_SELECT",
+            "summary": "Specifies\u0020the\u0020retrieval\u0020of\u0020data\u0020from\u0020the\u0020database.",
+            "url": "namespaces/application-model.html#constant_MODE_SELECT"
+        },                {
+            "fqsen": "\\Application\\Model\\SQL_PRINT_PREFIX",
+            "name": "SQL_PRINT_PREFIX",
+            "summary": "",
+            "url": "namespaces/application-model.html#constant_SQL_PRINT_PREFIX"
+        },                {
+            "fqsen": "\\Application\\Model\\Model",
+            "name": "Model",
+            "summary": "The\u0020base\u0020model\u0020class.",
+            "url": "classes/Application-Model-Model.html"
+        },                {
+            "fqsen": "\\Application\\Model\\Model\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "Constructs\u0020the\u0020model\u0020with\u0020the\u0020base\u0020attributes.",
+            "url": "classes/Application-Model-Model.html#method___construct"
+        },                {
+            "fqsen": "\\Application\\Model\\Model\u003A\u003A__destruct\u0028\u0029",
+            "name": "__destruct",
+            "summary": "Destroys\u0020the\u0020instance\u0020of\u0020a\u0020model.",
+            "url": "classes/Application-Model-Model.html#method___destruct"
+        },                {
+            "fqsen": "\\Application\\Model\\Model\u003A\u003AsetTableIdentifiers\u0028\u0029",
+            "name": "setTableIdentifiers",
+            "summary": "Creates\u0020a\u0020session\u0020variable\u0020that\u0020defines\u0020the\u0020table\u0020to\u0020be\u0020displayed\u0020in\u0020Table.php.",
+            "url": "classes/Application-Model-Model.html#method_setTableIdentifiers"
+        },                {
+            "fqsen": "\\Application\\Model\\Model\u003A\u003AsetTableIdentifier\u0028\u0029",
+            "name": "setTableIdentifier",
+            "summary": "Modifies\u0020the\u0020specified\u0020session\u0020variable\u0020with\u0020the\u0020new\u0020data.",
+            "url": "classes/Application-Model-Model.html#method_setTableIdentifier"
+        },                {
+            "fqsen": "\\Application\\Model\\Model\u003A\u003AfetchModelData\u0028\u0029",
+            "name": "fetchModelData",
+            "summary": "Fetches\u0020data\u0020from\u0020the\u0020database\u0020to\u0020update\u0020the\u0020model.",
+            "url": "classes/Application-Model-Model.html#method_fetchModelData"
+        },                {
+            "fqsen": "\\Application\\Model\\Model\u003A\u003AsendModelData\u0028\u0029",
+            "name": "sendModelData",
+            "summary": "Sends\u0020data\u0020to\u0020the\u0020database\u0020via\u0020a\u0020stored\u0020procedure.",
+            "url": "classes/Application-Model-Model.html#method_sendModelData"
+        },                {
+            "fqsen": "\\Application\\Model\\Model\u003A\u003AgetDBObjectStructure\u0028\u0029",
+            "name": "getDBObjectStructure",
+            "summary": "Performs\u0020a\u0020SELECT\u0020query\u0020in\u0020vw0001_TableFieldsExtra\u0020to\u0020retrieve\u0020the\u0020given\u0020database\u0020object\u0027s\u0020structure.",
+            "url": "classes/Application-Model-Model.html#method_getDBObjectStructure"
+        },                {
+            "fqsen": "\\Application\\Model\\Model\u003A\u003AqueryDatabaseObject\u0028\u0029",
+            "name": "queryDatabaseObject",
+            "summary": "Queries\u0020the\u0020specified\u0020database\u0020object\u0020and\u0020returns\u0020the\u0020results.",
+            "url": "classes/Application-Model-Model.html#method_queryDatabaseObject"
+        },                {
+            "fqsen": "\\Application\\Model\\Model\u003A\u003AqueryDatabaseObjectCount\u0028\u0029",
+            "name": "queryDatabaseObjectCount",
+            "summary": "Gets\u0020the\u0020count\u0020oof\u0020the\u0020specified\u0020database\u0020object.",
+            "url": "classes/Application-Model-Model.html#method_queryDatabaseObjectCount"
+        },                {
+            "fqsen": "\\Application\\Model\\Model\u003A\u003AexecuteStoredProcedure\u0028\u0029",
+            "name": "executeStoredProcedure",
+            "summary": "Executes\u0020a\u0020stored\u0020procedure\u0020and\u0020returns\u0020its\u0020resultset\u0020\u0028if\u0020one\u0020is\u0020generated\u0029\u0020as\u0020an\u0020array.",
+            "url": "classes/Application-Model-Model.html#method_executeStoredProcedure"
+        },                {
+            "fqsen": "\\Application\\Model\\Model\u003A\u003AresultSetToArray\u0028\u0029",
+            "name": "resultSetToArray",
+            "summary": "Converts\u0020a\u0020resultset\u0020object\u0020into\u0020an\u0020array.",
+            "url": "classes/Application-Model-Model.html#method_resultSetToArray"
+        },                {
+            "fqsen": "\\Application\\Model\\Model\u003A\u003AsimplifyResultsetArray\u0028\u0029",
+            "name": "simplifyResultsetArray",
+            "summary": "Simplifies\u0020the\u0020given\u0020array\u0020to\u0020a\u0020more\u0020readable\u0020and\u0020cleaner\u0020format.",
+            "url": "classes/Application-Model-Model.html#method_simplifyResultsetArray"
+        },                {
+            "fqsen": "\\Application\\Model\\Model\u003A\u003AgetDBRecordCount\u0028\u0029",
+            "name": "getDBRecordCount",
+            "summary": "Retrieves\u0020the\u0020number\u0020of\u0020records\u0020that\u0020exist\u0020in\u0020the\u0020model\u0027s\u0020object.",
+            "url": "classes/Application-Model-Model.html#method_getDBRecordCount"
+        },                {
+            "fqsen": "\\Application\\Model\\Model\u003A\u003AgetTableFilters\u0028\u0029",
+            "name": "getTableFilters",
+            "summary": "Checks\u0020if\u0020the\u0020session\u0020variable\u0020\u0022TableFilter\u0022\u0020is\u0020set\u0020and\u0020retrieves\u0020any\u0020filters\u0020from\u0020there\u0020and\u0020appends\u0020them\u0020to\u0020a\u0020WHERE\u0020clause\u0020string.",
+            "url": "classes/Application-Model-Model.html#method_getTableFilters"
+        },                {
+            "fqsen": "\\Application\\Model\\Model\u003A\u003AgetDBConnection\u0028\u0029",
+            "name": "getDBConnection",
+            "summary": "Returns\u0020a\u0020connection\u0020resource\u0020to\u0020the\u0020database.\u0020Only\u0020usable\u0020in\u0020inherited\u0020models.",
+            "url": "classes/Application-Model-Model.html#method_getDBConnection"
+        },                {
+            "fqsen": "\\Application\\Model\\Model\u003A\u003AgetDBIdentifier\u0028\u0029",
+            "name": "getDBIdentifier",
+            "summary": "Returns\u0020the\u0020database\u0020schema\u0020and\u0020object\u0020name\u0020as\u0020a\u0020concatenated\u0020string,\u0020separated\u0020by\u0020a\u0020period.",
+            "url": "classes/Application-Model-Model.html#method_getDBIdentifier"
+        },                {
+            "fqsen": "\\Application\\Model\\Model\u003A\u003AgetDBObjectName\u0028\u0029",
+            "name": "getDBObjectName",
+            "summary": "Returns\u0020the\u0020name\u0020of\u0020the\u0020Database\u0020object\u0020name.",
+            "url": "classes/Application-Model-Model.html#method_getDBObjectName"
+        },                {
+            "fqsen": "\\Application\\Model\\Model\u003A\u003AgetDBSchema\u0028\u0029",
+            "name": "getDBSchema",
+            "summary": "Returns\u0020the\u0020schema\u0020name\u0020of\u0020the\u0020db\u0020object.",
+            "url": "classes/Application-Model-Model.html#method_getDBSchema"
+        },                {
+            "fqsen": "\\Application\\Model\\Model\u003A\u003AgetMode\u0028\u0029",
+            "name": "getMode",
+            "summary": "",
+            "url": "classes/Application-Model-Model.html#method_getMode"
+        },                {
+            "fqsen": "\\Application\\Model\\Model\u003A\u003AgetModalReferences\u0028\u0029",
+            "name": "getModalReferences",
+            "summary": "Retrieves\u0020data\u0020for\u0020any\u0020modals\u0020that\u0020need\u0020to\u0020be\u0020added\u0020to\u0020the\u0020page.",
+            "url": "classes/Application-Model-Model.html#method_getModalReferences"
+        },                {
+            "fqsen": "\\Application\\Model\\Model\u003A\u003AcheckForForeignKeyDependencies\u0028\u0029",
+            "name": "checkForForeignKeyDependencies",
+            "summary": "Checks\u0020a\u0020resultset\u0020obtained\u0020from\u0020\u007B\u0040see\u0020Model\u003A\u003AgetDBObjectStructure\u0028\u0029\u007D\u0020for\u0020any\u0020data\u0020dependencies\u0020that\u0020need\u0020to\u0020be\u0020included\u0020or\u0020used\u0020in\u0020the\u0020controller.",
+            "url": "classes/Application-Model-Model.html#method_checkForForeignKeyDependencies"
+        },                {
+            "fqsen": "\\Application\\Model\\Model\u003A\u003AfetchForeignKeyData\u0028\u0029",
+            "name": "fetchForeignKeyData",
+            "summary": "Fetches\u0020the\u0020foreign\u0020key\u0020data\u0020dependencies\u0020associated\u0020to\u0020the\u0020model.",
+            "url": "classes/Application-Model-Model.html#method_fetchForeignKeyData"
+        },                {
+            "fqsen": "\\Application\\Model\\Model\u003A\u003AgetForeignKeyReferences\u0028\u0029",
+            "name": "getForeignKeyReferences",
+            "summary": "Finds\u0020and\u0020returns\u0020the\u0020table\u0020name,\u0020schema\u0020and\u0020column\u0020that\u0020the\u0020given\u0020data\u0020references.",
+            "url": "classes/Application-Model-Model.html#method_getForeignKeyReferences"
+        },                {
+            "fqsen": "\\Application\\Model\\Model\u003A\u003AdisplayErrors\u0028\u0029",
+            "name": "displayErrors",
+            "summary": "Catches\u0020and\u0020outputs\u0020user\u002Dfriendly\u0020messages\u0020for\u0020any\u0020errors\u0020that\u0020occur.\u0020Primarily\u0020for\u0020use\u0020with\u0020SQL\u0020queries.",
+            "url": "classes/Application-Model-Model.html#method_displayErrors"
+        },                {
+            "fqsen": "\\Application\\Model\\Model\u003A\u003AnewConnection\u0028\u0029",
+            "name": "newConnection",
+            "summary": "Creates\u0020a\u0020new\u0020Connection\u0020resource\u0020to\u0020the\u0020SQL\u0020Server.",
+            "url": "classes/Application-Model-Model.html#method_newConnection"
+        },                {
+            "fqsen": "\\Application\\Model\\Model\u003A\u003AcloseConnection\u0028\u0029",
+            "name": "closeConnection",
+            "summary": "Closes\u0020the\u0020specified\u0020connection\u0020resource.",
+            "url": "classes/Application-Model-Model.html#method_closeConnection"
+        },                {
+            "fqsen": "\\Application\\Model\\Model\u003A\u003AtrimTrailingComma\u0028\u0029",
+            "name": "trimTrailingComma",
+            "summary": "Removes\u0020any\u0020trailing\u0020delimiters\u0020if\u0020they\u0020are\u0020found.",
+            "url": "classes/Application-Model-Model.html#method_trimTrailingComma"
+        },                {
+            "fqsen": "\\Application\\Model\\Model\u003A\u003A\u0024dbSchema",
+            "name": "dbSchema",
+            "summary": "The\u0020database\u0020schema\u0020this\u0020model\u0020is\u0020sending\/retrieving\u0020data\u0020from.",
+            "url": "classes/Application-Model-Model.html#property_dbSchema"
+        },                {
+            "fqsen": "\\Application\\Model\\Model\u003A\u003A\u0024dbObject",
+            "name": "dbObject",
+            "summary": "The\u0020database\u0020object\u0020\u0028table,\u0020view\u0029\u0020the\u0020model\u0020is\u0020sending\/retrieving\u0020data\u0020from.",
+            "url": "classes/Application-Model-Model.html#property_dbObject"
+        },                {
+            "fqsen": "\\Application\\Model\\Model\u003A\u003A\u0024conn",
+            "name": "conn",
+            "summary": "An\u0020SQL\u0020Server\u0020connection\u0020resource.",
+            "url": "classes/Application-Model-Model.html#property_conn"
+        },                {
+            "fqsen": "\\Application\\Model\\Model\u003A\u003A\u0024mode",
+            "name": "mode",
+            "summary": "",
+            "url": "classes/Application-Model-Model.html#property_mode"
+        },                {
+            "fqsen": "\\Application\\Model\\TABLE_DATA_KEY",
+            "name": "TABLE_DATA_KEY",
+            "summary": "Used\u0020as\u0020a\u0020GET\u0020parameter\u0020in\u0020a\u0020URL\u0020to\u0020specify\u0020the\u0020table\u0020data\u0020key\u0020to\u0020retrieve\u0020from\u0020the\u0020session\u0020array\u0020\u0024_SESSION\u005B\u007B\u0040see\u0020SESS_TABLES\u007D\u005D.",
+            "url": "namespaces/application-model.html#constant_TABLE_DATA_KEY"
+        },                {
+            "fqsen": "\\Application\\Model\\Model_Table",
+            "name": "Model_Table",
+            "summary": "The\u0020Model\u0020object\u0020for\u0020the\u0020Table\u0020page.",
+            "url": "classes/Application-Model-Model-Table.html"
+        },                {
+            "fqsen": "\\Application\\Model\\Model_Table\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "Constructor\u0020for\u0020Table\u0020model.",
+            "url": "classes/Application-Model-Model-Table.html#method___construct"
+        },                {
+            "fqsen": "\\Application\\Model\\Model_Table\u003A\u003A__destruct\u0028\u0029",
+            "name": "__destruct",
+            "summary": "Destroys\u0020this\u0020instance\u0020of\u0020the\u0020Model_Table\u0020object.",
+            "url": "classes/Application-Model-Model-Table.html#method___destruct"
+        },                {
+            "fqsen": "\\Application\\Model\\Model_Table\u003A\u003AfetchModelData\u0028\u0029",
+            "name": "fetchModelData",
+            "summary": "Fetches\u0020the\u0020specified\u0020number\u0020of\u0020records\u0020for\u0020the\u0020model\u0027s\u0020specified\u0020table\/view.",
+            "url": "classes/Application-Model-Model-Table.html#method_fetchModelData"
+        },                {
+            "fqsen": "\\Application\\Model\\Model_Table\u003A\u003AsendModelData\u0028\u0029",
+            "name": "sendModelData",
+            "summary": "Does\u0020nothing",
+            "url": "classes/Application-Model-Model-Table.html#method_sendModelData"
+        },                {
+            "fqsen": "\\Application\\PageBuilder\\PROPERTY_SELECT",
+            "name": "PROPERTY_SELECT",
+            "summary": "This\u0020script\u0020defines\u0020the\u0020class\u0020used\u0020to\u0020build\u0020html\u0020forms\u0020for\u0020pages\u0020dynamically.",
+            "url": "namespaces/application-pagebuilder.html#constant_PROPERTY_SELECT"
+        },                {
+            "fqsen": "\\Application\\PageBuilder\\PROPERTY_FRIENDLY_NAME",
+            "name": "PROPERTY_FRIENDLY_NAME",
+            "summary": "",
+            "url": "namespaces/application-pagebuilder.html#constant_PROPERTY_FRIENDLY_NAME"
+        },                {
+            "fqsen": "\\Application\\PageBuilder\\PROPERTY_USER_GEN",
+            "name": "PROPERTY_USER_GEN",
+            "summary": "",
+            "url": "namespaces/application-pagebuilder.html#constant_PROPERTY_USER_GEN"
+        },                {
+            "fqsen": "\\Application\\PageBuilder\\PROPERTY_MULTI_FK_SCHEMA",
+            "name": "PROPERTY_MULTI_FK_SCHEMA",
+            "summary": "",
+            "url": "namespaces/application-pagebuilder.html#constant_PROPERTY_MULTI_FK_SCHEMA"
+        },                {
+            "fqsen": "\\Application\\PageBuilder\\PROPERTY_MULTI_FK_TABLE",
+            "name": "PROPERTY_MULTI_FK_TABLE",
+            "summary": "",
+            "url": "namespaces/application-pagebuilder.html#constant_PROPERTY_MULTI_FK_TABLE"
+        },                {
+            "fqsen": "\\Application\\PageBuilder\\FormBuilder",
+            "name": "FormBuilder",
+            "summary": "This\u0020script\u0020defines\u0020the\u0020class\u0020used\u0020to\u0020build\u0020pages\u0020dynamically.",
+            "url": "classes/Application-PageBuilder-FormBuilder.html"
+        },                {
+            "fqsen": "\\Application\\PageBuilder\\FormBuilder\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Application-PageBuilder-FormBuilder.html#method___construct"
+        },                {
+            "fqsen": "\\Application\\PageBuilder\\FormBuilder\u003A\u003AbuildContainer\u0028\u0029",
+            "name": "buildContainer",
+            "summary": "Builds\u0020the\u0020container\u0020created\u0020by\u0020the\u0020class\u0027\u0020functions",
+            "url": "classes/Application-PageBuilder-FormBuilder.html#method_buildContainer"
+        },                {
+            "fqsen": "\\Application\\PageBuilder\\FormBuilder\u003A\u003AaddItemToPageBuilder\u0028\u0029",
+            "name": "addItemToPageBuilder",
+            "summary": "",
+            "url": "classes/Application-PageBuilder-FormBuilder.html#method_addItemToPageBuilder"
+        },                {
+            "fqsen": "\\Application\\PageBuilder\\FormBuilder\u003A\u003AaddFieldSet\u0028\u0029",
+            "name": "addFieldSet",
+            "summary": "",
+            "url": "classes/Application-PageBuilder-FormBuilder.html#method_addFieldSet"
+        },                {
+            "fqsen": "\\Application\\PageBuilder\\FormBuilder\u003A\u003AcreateInput\u0028\u0029",
+            "name": "createInput",
+            "summary": "",
+            "url": "classes/Application-PageBuilder-FormBuilder.html#method_createInput"
+        },                {
+            "fqsen": "\\Application\\PageBuilder\\FormBuilder\u003A\u003AcreateMultiForeignDropdown\u0028\u0029",
+            "name": "createMultiForeignDropdown",
+            "summary": "",
+            "url": "classes/Application-PageBuilder-FormBuilder.html#method_createMultiForeignDropdown"
+        },                {
+            "fqsen": "\\Application\\PageBuilder\\FormBuilder\u003A\u003A\u0024formName",
+            "name": "formName",
+            "summary": "",
+            "url": "classes/Application-PageBuilder-FormBuilder.html#property_formName"
+        },                {
+            "fqsen": "\\Application\\PageBuilder\\FormBuilder\u003A\u003A\u0024method",
+            "name": "method",
+            "summary": "",
+            "url": "classes/Application-PageBuilder-FormBuilder.html#property_method"
+        },                {
+            "fqsen": "\\Application\\PageBuilder\\FormBuilder\u003A\u003A\u0024action",
+            "name": "action",
+            "summary": "",
+            "url": "classes/Application-PageBuilder-FormBuilder.html#property_action"
+        },                {
             "fqsen": "\\Application\\PageBuilder\\InputBuilder",
             "name": "InputBuilder",
             "summary": "",
@@ -300,11 +555,6 @@ Search.appendIndex(
             "name": "createDropDown",
             "summary": "Creates\u0020a\u0020HTML\u0020dropdown\u0020element.\u0020Creates\u0020select\u0020options\u0020based\u0020on\u0020the\u0020options\u0020passed.",
             "url": "classes/Application-PageBuilder-InputBuilder.html#method_createDropDown"
-        },                {
-            "fqsen": "\\Application\\PageBuilder\\InputBuilder\u003A\u003AresultSetToDropdown\u0028\u0029",
-            "name": "resultSetToDropdown",
-            "summary": "Takes\u0020a\u0020resultset\u0020resource\u0020and\u0020turns\u0020it\u0020into\u0020a\u0020drop\u002Ddown.",
-            "url": "classes/Application-PageBuilder-InputBuilder.html#method_resultSetToDropdown"
         },                {
             "fqsen": "\\Application\\PageBuilder\\InputBuilder\u003A\u003ASQLToHTMLDataType\u0028\u0029",
             "name": "SQLToHTMLDataType",
@@ -491,86 +741,6 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Application-PageBuilder-PageElementBuilder.html#property_usedIds"
         },                {
-            "fqsen": "\\Application\\PageBuilder\\PROPERTY_SELECT",
-            "name": "PROPERTY_SELECT",
-            "summary": "This\u0020script\u0020defines\u0020the\u0020class\u0020used\u0020to\u0020build\u0020html\u0020forms\u0020for\u0020pages\u0020dynamically.",
-            "url": "namespaces/application-pagebuilder.html#constant_PROPERTY_SELECT"
-        },                {
-            "fqsen": "\\Application\\PageBuilder\\PROPERTY_FRIENDLY_NAME",
-            "name": "PROPERTY_FRIENDLY_NAME",
-            "summary": "",
-            "url": "namespaces/application-pagebuilder.html#constant_PROPERTY_FRIENDLY_NAME"
-        },                {
-            "fqsen": "\\Application\\PageBuilder\\PROPERTY_USER_GEN",
-            "name": "PROPERTY_USER_GEN",
-            "summary": "",
-            "url": "namespaces/application-pagebuilder.html#constant_PROPERTY_USER_GEN"
-        },                {
-            "fqsen": "\\Application\\PageBuilder\\PROPERTY_MULTI_FK_SCHEMA",
-            "name": "PROPERTY_MULTI_FK_SCHEMA",
-            "summary": "",
-            "url": "namespaces/application-pagebuilder.html#constant_PROPERTY_MULTI_FK_SCHEMA"
-        },                {
-            "fqsen": "\\Application\\PageBuilder\\PROPERTY_MULTI_FK_TABLE",
-            "name": "PROPERTY_MULTI_FK_TABLE",
-            "summary": "",
-            "url": "namespaces/application-pagebuilder.html#constant_PROPERTY_MULTI_FK_TABLE"
-        },                {
-            "fqsen": "\\Application\\PageBuilder\\FormBuilder",
-            "name": "FormBuilder",
-            "summary": "This\u0020script\u0020defines\u0020the\u0020class\u0020used\u0020to\u0020build\u0020pages\u0020dynamically.",
-            "url": "classes/Application-PageBuilder-FormBuilder.html"
-        },                {
-            "fqsen": "\\Application\\PageBuilder\\FormBuilder\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "",
-            "url": "classes/Application-PageBuilder-FormBuilder.html#method___construct"
-        },                {
-            "fqsen": "\\Application\\PageBuilder\\FormBuilder\u003A\u003AbuildContainer\u0028\u0029",
-            "name": "buildContainer",
-            "summary": "Builds\u0020the\u0020container\u0020created\u0020by\u0020the\u0020class\u0027\u0020functions",
-            "url": "classes/Application-PageBuilder-FormBuilder.html#method_buildContainer"
-        },                {
-            "fqsen": "\\Application\\PageBuilder\\FormBuilder\u003A\u003AaddItemToPageBuilder\u0028\u0029",
-            "name": "addItemToPageBuilder",
-            "summary": "",
-            "url": "classes/Application-PageBuilder-FormBuilder.html#method_addItemToPageBuilder"
-        },                {
-            "fqsen": "\\Application\\PageBuilder\\FormBuilder\u003A\u003AaddFieldSet\u0028\u0029",
-            "name": "addFieldSet",
-            "summary": "",
-            "url": "classes/Application-PageBuilder-FormBuilder.html#method_addFieldSet"
-        },                {
-            "fqsen": "\\Application\\PageBuilder\\FormBuilder\u003A\u003AcreateInput\u0028\u0029",
-            "name": "createInput",
-            "summary": "",
-            "url": "classes/Application-PageBuilder-FormBuilder.html#method_createInput"
-        },                {
-            "fqsen": "\\Application\\PageBuilder\\FormBuilder\u003A\u003AdatabaseObjectToPageElements\u0028\u0029",
-            "name": "databaseObjectToPageElements",
-            "summary": "Interface\u0020to\u0020create\u0020page\u0020elements.",
-            "url": "classes/Application-PageBuilder-FormBuilder.html#method_databaseObjectToPageElements"
-        },                {
-            "fqsen": "\\Application\\PageBuilder\\FormBuilder\u003A\u003AcreateMultiForeignDropdown\u0028\u0029",
-            "name": "createMultiForeignDropdown",
-            "summary": "",
-            "url": "classes/Application-PageBuilder-FormBuilder.html#method_createMultiForeignDropdown"
-        },                {
-            "fqsen": "\\Application\\PageBuilder\\FormBuilder\u003A\u003A\u0024formName",
-            "name": "formName",
-            "summary": "",
-            "url": "classes/Application-PageBuilder-FormBuilder.html#property_formName"
-        },                {
-            "fqsen": "\\Application\\PageBuilder\\FormBuilder\u003A\u003A\u0024method",
-            "name": "method",
-            "summary": "",
-            "url": "classes/Application-PageBuilder-FormBuilder.html#property_method"
-        },                {
-            "fqsen": "\\Application\\PageBuilder\\FormBuilder\u003A\u003A\u0024action",
-            "name": "action",
-            "summary": "",
-            "url": "classes/Application-PageBuilder-FormBuilder.html#property_action"
-        },                {
             "fqsen": "\\Application\\PageBuilder\\TableBuilder",
             "name": "TableBuilder",
             "summary": "This\u0020script\u0020defines\u0020the\u0020class\u0020used\u0020to\u0020build\u0020html\u0020tables\u0020for\u0020pages\u0020dynamically.",
@@ -621,15 +791,15 @@ Search.appendIndex(
             "summary": "Takes\u0020an\u0020associative\u0020array\u0020and\u0020creates\u0020rows\u0020and\u0020columns\u0020from\u0020it.",
             "url": "classes/Application-PageBuilder-TableBuilder.html#method_arrayToTable"
         },                {
+            "fqsen": "\\Application\\PageBuilder\\TableBuilder\u003A\u003AbuildPagination\u0028\u0029",
+            "name": "buildPagination",
+            "summary": "Creates\u0020the\u0020pagination\u0020for\u0020the\u0020table\u0020based\u0020on\u0020the\u0020number\u0020of\u0020pages\u0020required\u0020by\u0020the\u0020table.",
+            "url": "classes/Application-PageBuilder-TableBuilder.html#method_buildPagination"
+        },                {
             "fqsen": "\\Application\\PageBuilder\\TableBuilder\u003A\u003AcleanseColumnName\u0028\u0029",
             "name": "cleanseColumnName",
             "summary": "",
             "url": "classes/Application-PageBuilder-TableBuilder.html#method_cleanseColumnName"
-        },                {
-            "fqsen": "\\Application\\PageBuilder\\TableBuilder\u003A\u003ADEFAULT_STYLE_NAME",
-            "name": "DEFAULT_STYLE_NAME",
-            "summary": "",
-            "url": "classes/Application-PageBuilder-TableBuilder.html#constant_DEFAULT_STYLE_NAME"
         },                {
             "fqsen": "\\Application\\PageBuilder\\TableBuilder\u003A\u003A\u0024heading",
             "name": "heading",
@@ -651,11 +821,6 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Application-PageBuilder-TableBuilder.html#property_page"
         },                {
-            "fqsen": "\\Application\\PageBuilder\\TableBuilder\u003A\u003A\u0024rowHyperlink",
-            "name": "rowHyperlink",
-            "summary": "",
-            "url": "classes/Application-PageBuilder-TableBuilder.html#property_rowHyperlink"
-        },                {
             "fqsen": "\\Application\\PageBuilder\\TableBuilder\u003A\u003A\u0024tableRecordCount",
             "name": "tableRecordCount",
             "summary": "",
@@ -666,85 +831,10 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Application-PageBuilder-TableBuilder.html#property_sort"
         },                {
-            "fqsen": "\\Application\\PageBuilder\\TableBuilder\u003A\u003A\u0024hyperlinkVars",
-            "name": "hyperlinkVars",
+            "fqsen": "\\Application\\PageBuilder\\TableBuilder\u003A\u003A\u0024tableData",
+            "name": "tableData",
             "summary": "",
-            "url": "classes/Application-PageBuilder-TableBuilder.html#property_hyperlinkVars"
-        },                {
-            "fqsen": "\\Application\\PageBuilder\\TableBuilder\u003A\u003A\u0024groupRowsBy",
-            "name": "groupRowsBy",
-            "summary": "",
-            "url": "classes/Application-PageBuilder-TableBuilder.html#property_groupRowsBy"
-        },                {
-            "fqsen": "\\Application\\PageBuilder\\TableBuilder\u003A\u003A\u0024tableDataName",
-            "name": "tableDataName",
-            "summary": "",
-            "url": "classes/Application-PageBuilder-TableBuilder.html#property_tableDataName"
-        },                {
-            "fqsen": "\\Application\\PageBuilder\\OPTION_EXCLUDED_FIELDS",
-            "name": "OPTION_EXCLUDED_FIELDS",
-            "summary": "",
-            "url": "namespaces/application-pagebuilder.html#constant_OPTION_EXCLUDED_FIELDS"
-        },                {
-            "fqsen": "\\Application\\PageBuilder\\OPTION_USE_OBJECT_NAME_ID",
-            "name": "OPTION_USE_OBJECT_NAME_ID",
-            "summary": "",
-            "url": "namespaces/application-pagebuilder.html#constant_OPTION_USE_OBJECT_NAME_ID"
-        },                {
-            "fqsen": "\\Application\\PageBuilder\\OPTION_FIELDNAME_PREFIX",
-            "name": "OPTION_FIELDNAME_PREFIX",
-            "summary": "",
-            "url": "namespaces/application-pagebuilder.html#constant_OPTION_FIELDNAME_PREFIX"
-        },                {
-            "fqsen": "\\Application\\PageBuilder\\OPTION_PROCEDURE_PARAMS",
-            "name": "OPTION_PROCEDURE_PARAMS",
-            "summary": "",
-            "url": "namespaces/application-pagebuilder.html#constant_OPTION_PROCEDURE_PARAMS"
-        },                {
-            "fqsen": "\\Application\\PageBuilder\\OPTION_APPEND_COLUMNS",
-            "name": "OPTION_APPEND_COLUMNS",
-            "summary": "",
-            "url": "namespaces/application-pagebuilder.html#constant_OPTION_APPEND_COLUMNS"
-        },                {
-            "fqsen": "\\Application\\PageBuilder\\OPTION_INTERACTIVE_CELLS",
-            "name": "OPTION_INTERACTIVE_CELLS",
-            "summary": "",
-            "url": "namespaces/application-pagebuilder.html#constant_OPTION_INTERACTIVE_CELLS"
-        },                {
-            "fqsen": "\\Application\\PageBuilder\\OPTION_ALLOW_WILDCARD",
-            "name": "OPTION_ALLOW_WILDCARD",
-            "summary": "",
-            "url": "namespaces/application-pagebuilder.html#constant_OPTION_ALLOW_WILDCARD"
-        },                {
-            "fqsen": "\\Application\\PageBuilder\\OPTION_INCLUDE_PRIMARYKEY",
-            "name": "OPTION_INCLUDE_PRIMARYKEY",
-            "summary": "",
-            "url": "namespaces/application-pagebuilder.html#constant_OPTION_INCLUDE_PRIMARYKEY"
-        },                {
-            "fqsen": "\\Application\\PageBuilder\\OPTION_ORDER_BY",
-            "name": "OPTION_ORDER_BY",
-            "summary": "",
-            "url": "namespaces/application-pagebuilder.html#constant_OPTION_ORDER_BY"
-        },                {
-            "fqsen": "\\Application\\PageBuilder\\OPTION_SHOW_DISALLOWED_FIELDS",
-            "name": "OPTION_SHOW_DISALLOWED_FIELDS",
-            "summary": "",
-            "url": "namespaces/application-pagebuilder.html#constant_OPTION_SHOW_DISALLOWED_FIELDS"
-        },                {
-            "fqsen": "\\Application\\PageBuilder\\OPTION_PREFILL_DATA",
-            "name": "OPTION_PREFILL_DATA",
-            "summary": "",
-            "url": "namespaces/application-pagebuilder.html#constant_OPTION_PREFILL_DATA"
-        },                {
-            "fqsen": "\\Application\\PageBuilder\\SQLToWebPage",
-            "name": "SQLToWebPage",
-            "summary": "",
-            "url": "classes/Application-PageBuilder-SQLToWebPage.html"
-        },                {
-            "fqsen": "\\Application\\PageBuilder\\SQLToWebPage\u003A\u003AdatabaseObjectToPageElements\u0028\u0029",
-            "name": "databaseObjectToPageElements",
-            "summary": "Interface\u0020to\u0020create\u0020page\u0020elements.",
-            "url": "classes/Application-PageBuilder-SQLToWebPage.html#method_databaseObjectToPageElements"
+            "url": "classes/Application-PageBuilder-TableBuilder.html#property_tableData"
         },                {
             "fqsen": "\\Application\\PageBuilder\\TableCreatorForm",
             "name": "TableCreatorForm",
@@ -793,7 +883,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Application\\PageBuilder\\DropDownElement\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
-            "summary": "",
+            "summary": "Sets\u0020up\u0020a\u0020dropdown\u0020element\u0020object.",
             "url": "classes/Application-PageBuilder-DropDownElement.html#method___construct"
         },                {
             "fqsen": "\\Application\\PageBuilder\\DropDownElement\u003A\u003A__destruct\u0028\u0029",
@@ -813,7 +903,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Application\\PageBuilder\\DropDownElement\u003A\u003AsetSelected\u0028\u0029",
             "name": "setSelected",
-            "summary": "",
+            "summary": "Changes\u0020the\u0020selected\u0020value\u0020of\u0020the\u0020dropdown\u0020list.",
             "url": "classes/Application-PageBuilder-DropDownElement.html#method_setSelected"
         },                {
             "fqsen": "\\Application\\PageBuilder\\DropDownElement\u003A\u003A\u0024disabled",
@@ -1256,334 +1346,299 @@ Search.appendIndex(
             "summary": "",
             "url": ""
         },                {
-            "fqsen": "\\Application\\Model\\TWO_COL_TO_ONE_PRIMARY",
-            "name": "TWO_COL_TO_ONE_PRIMARY",
-            "summary": "Array\u0020key\u0020used\u0020to\u0020specify\u0020a\u0020value\u0020to\u0020be\u0020used\u0020as\u0020an\u0020array\u0020key\u0020in\u0020Model\u003A\u003AresultSetToArray\u0028\u0029",
-            "url": "namespaces/application-model.html#constant_TWO_COL_TO_ONE_PRIMARY"
-        },                {
-            "fqsen": "\\Application\\Model\\TWO_COL_TO_ONE_SECONDARY",
-            "name": "TWO_COL_TO_ONE_SECONDARY",
-            "summary": "Array\u0020key\u0020used\u0020to\u0020specify\u0020a\u0020value\u0020to\u0020be\u0020used\u0020as\u0020an\u0020array\u0020value\u0020in\u0020Model\u003A\u003AresultSetToArray\u0028\u0029",
-            "url": "namespaces/application-model.html#constant_TWO_COL_TO_ONE_SECONDARY"
-        },                {
-            "fqsen": "\\Application\\Model\\DATA_DEPENDENCIES",
-            "name": "DATA_DEPENDENCIES",
-            "summary": "Array\u0020key\u0020used\u0020to\u0020store\u0020dependency\u0020data.\u0020Used\u0020in\u0020the\u0020fetchModelData\u0020function.",
-            "url": "namespaces/application-model.html#constant_DATA_DEPENDENCIES"
-        },                {
-            "fqsen": "\\Application\\Model\\DATA_MODAL_REFS",
-            "name": "DATA_MODAL_REFS",
-            "summary": "Array\u0020key\u0020used\u0020to\u0020store\u0020modal\u0020data\u0020references.\u0020Used\u0020in\u0020the\u0020fetchModelData\u0020function.",
-            "url": "namespaces/application-model.html#constant_DATA_MODAL_REFS"
-        },                {
-            "fqsen": "\\Application\\Model\\DATA_DROPDOWNS",
-            "name": "DATA_DROPDOWNS",
-            "summary": "Array\u0020key\u0020used\u0020to\u0020store\u0020dependency\u0020data\u0020for\u0020dropdowns.\u0020Used\u0020in\u0020the\u0020fetchModelData\u0020function.",
-            "url": "namespaces/application-model.html#constant_DATA_DROPDOWNS"
-        },                {
-            "fqsen": "\\Application\\Model\\DATA_FORM_MAIN",
-            "name": "DATA_FORM_MAIN",
-            "summary": "Array\u0020key\u0020used\u0020to\u0020store\u0020data\u0020for\u0020the\u0020main\u0020form\u0020in\u0020the\u0020view.\u0020Used\u0020in\u0020the\u0020fetchModelData\u0020function.",
-            "url": "namespaces/application-model.html#constant_DATA_FORM_MAIN"
-        },                {
-            "fqsen": "\\Application\\Model\\DATA_FORM_EDIT",
-            "name": "DATA_FORM_EDIT",
-            "summary": "Array\u0020key\u0020used\u0020to\u0020store\u0020the\u0020values\u0020for\u0020the\u0020form\u0020when\u0020a\u0020record\u0020is\u0020being\u0020edited.",
-            "url": "namespaces/application-model.html#constant_DATA_FORM_EDIT"
-        },                {
-            "fqsen": "\\Application\\Model\\SESS_TABLES",
-            "name": "SESS_TABLES",
-            "summary": "Array\u0020key\u0020used\u0020to\u0020store\u0020table\u0020identifiers\u0020in\u0020the\u0020\u0024_SESSION\u0020array.",
-            "url": "namespaces/application-model.html#constant_SESS_TABLES"
-        },                {
-            "fqsen": "\\Application\\Model\\MODE_INSERT",
-            "name": "MODE_INSERT",
-            "summary": "Specifies\u0020the\u0020insertion\u0020of\u0020a\u0020new\u0020record",
-            "url": "namespaces/application-model.html#constant_MODE_INSERT"
-        },                {
-            "fqsen": "\\Application\\Model\\MODE_UPDATE",
-            "name": "MODE_UPDATE",
-            "summary": "Specified\u0020the\u0020updating\u0020of\u0020a\u0020record",
-            "url": "namespaces/application-model.html#constant_MODE_UPDATE"
-        },                {
-            "fqsen": "\\Application\\Model\\MODE_DELETE",
-            "name": "MODE_DELETE",
-            "summary": "Specifies\u0020the\u0020deletion\u0020of\u0020a\u0020record",
-            "url": "namespaces/application-model.html#constant_MODE_DELETE"
-        },                {
-            "fqsen": "\\Application\\Model\\MODE_CREATE",
-            "name": "MODE_CREATE",
-            "summary": "Specifies\u0020the\u0020creation\u0020of\u0020a\u0020new\u0020table",
-            "url": "namespaces/application-model.html#constant_MODE_CREATE"
-        },                {
-            "fqsen": "\\Application\\Model\\MODE_DROP",
-            "name": "MODE_DROP",
-            "summary": "Specifies\u0020the\u0020dropping\u0020of\u0020a\u0020user\u002Dgenerated\u0020table",
-            "url": "namespaces/application-model.html#constant_MODE_DROP"
-        },                {
-            "fqsen": "\\Application\\Model\\MODE_EDIT",
-            "name": "MODE_EDIT",
-            "summary": "Specifies\u0020the\u0020modification\u0020of\u0020a\u0020user\u002Dgenerated\u0020table",
-            "url": "namespaces/application-model.html#constant_MODE_EDIT"
-        },                {
-            "fqsen": "\\Application\\Model\\SQL_PRINT_PREFIX",
-            "name": "SQL_PRINT_PREFIX",
+            "fqsen": "\\Application\\SITE_NAME",
+            "name": "SITE_NAME",
             "summary": "",
-            "url": "namespaces/application-model.html#constant_SQL_PRINT_PREFIX"
+            "url": "namespaces/application.html#constant_SITE_NAME"
         },                {
-            "fqsen": "\\Application\\Model\\Model",
-            "name": "Model",
-            "summary": "The\u0020base\u0020model\u0020class.",
-            "url": "classes/Application-Model-Model.html"
+            "fqsen": "\\Application\\VIEW_DIR",
+            "name": "VIEW_DIR",
+            "summary": "",
+            "url": "namespaces/application.html#constant_VIEW_DIR"
         },                {
-            "fqsen": "\\Application\\Model\\Model\u003A\u003A__construct\u0028\u0029",
+            "fqsen": "\\Application\\CONTROLLER_DIR",
+            "name": "CONTROLLER_DIR",
+            "summary": "",
+            "url": "namespaces/application.html#constant_CONTROLLER_DIR"
+        },                {
+            "fqsen": "\\Application\\MODAL_MESSAGE",
+            "name": "MODAL_MESSAGE",
+            "summary": "",
+            "url": "namespaces/application.html#constant_MODAL_MESSAGE"
+        },                {
+            "fqsen": "\\Application\\APP_NAME",
+            "name": "APP_NAME",
+            "summary": "",
+            "url": "namespaces/application.html#constant_APP_NAME"
+        },                {
+            "fqsen": "\\Application\\Router",
+            "name": "Router",
+            "summary": "Router\u0020Class",
+            "url": "classes/Application-Router.html"
+        },                {
+            "fqsen": "\\Application\\Router\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
-            "summary": "Constructs\u0020the\u0020model\u0020with\u0020the\u0020base\u0020attributes.",
-            "url": "classes/Application-Model-Model.html#method___construct"
+            "summary": "Router\u0020constructor.\u0020Constructed\u0020on\u0020each\u0020page\u0020load.",
+            "url": "classes/Application-Router.html#method___construct"
         },                {
-            "fqsen": "\\Application\\Model\\Model\u003A\u003A__destruct\u0028\u0029",
-            "name": "__destruct",
-            "summary": "Destroys\u0020the\u0020instance\u0020of\u0020a\u0020model.",
-            "url": "classes/Application-Model-Model.html#method___destruct"
+            "fqsen": "\\Application\\Router\u003A\u003AdisplayNav\u0028\u0029",
+            "name": "displayNav",
+            "summary": "Returns\u0020the\u0020URI\u0020the\u0020navbar\u0020if\u0020the\u0020display\u0020mode\u0020requires\u0020it.",
+            "url": "classes/Application-Router.html#method_displayNav"
         },                {
-            "fqsen": "\\Application\\Model\\Model\u003A\u003AsetTableIdentifiers\u0028\u0029",
-            "name": "setTableIdentifiers",
-            "summary": "Creates\u0020a\u0020session\u0020variable\u0020that\u0020defines\u0020the\u0020table\u0020to\u0020be\u0020displayed\u0020in\u0020Table.php.",
-            "url": "classes/Application-Model-Model.html#method_setTableIdentifiers"
+            "fqsen": "\\Application\\Router\u003A\u003AdisplayFooter\u0028\u0029",
+            "name": "displayFooter",
+            "summary": "Determines\u0020if\u0020the\u0020footer\u0020needs\u0020to\u0020be\u0020displayed.\u0020If\u0020it\u0020does,\u0020returns\u0020the\u0020URI\u0020of\u0020the\u0020footer\u0020so\u0020it\u0020can\u0020be\u0020used\u0020in\u0020an\u0020include\u0028\u0029\u0020call.",
+            "url": "classes/Application-Router.html#method_displayFooter"
         },                {
-            "fqsen": "\\Application\\Model\\Model\u003A\u003AsetTableIdentifier\u0028\u0029",
-            "name": "setTableIdentifier",
-            "summary": "Modifies\u0020the\u0020specified\u0020session\u0020variable\u0020with\u0020the\u0020new\u0020data.",
-            "url": "classes/Application-Model-Model.html#method_setTableIdentifier"
+            "fqsen": "\\Application\\Router\u003A\u003AgetController\u0028\u0029",
+            "name": "getController",
+            "summary": "Retrieves\u0020the\u0020controller\u0020object,\u0020if\u0020one\u0020exists\u0020for\u0020the\u0020current\u0020page.",
+            "url": "classes/Application-Router.html#method_getController"
         },                {
-            "fqsen": "\\Application\\Model\\Model\u003A\u003AfetchModelData\u0028\u0029",
-            "name": "fetchModelData",
-            "summary": "Fetches\u0020data\u0020from\u0020the\u0020database\u0020to\u0020update\u0020the\u0020model.",
-            "url": "classes/Application-Model-Model.html#method_fetchModelData"
+            "fqsen": "\\Application\\Router\u003A\u003AgetRequestedURI\u0028\u0029",
+            "name": "getRequestedURI",
+            "summary": "Returns\u0020the\u0020URI\u0020of\u0020the\u0020resource\u0020requested\u0020by\u0020the\u0020client.\u0020This\u0020could\u0020be\u0020a\u0020page\u0020from\u0020a\u0020view\u0020or\u0020a\u0020file\u0020from\u0020the\u0020res\/\u0020directory.",
+            "url": "classes/Application-Router.html#method_getRequestedURI"
         },                {
-            "fqsen": "\\Application\\Model\\Model\u003A\u003AsendModelData\u0028\u0029",
-            "name": "sendModelData",
-            "summary": "Sends\u0020data\u0020to\u0020the\u0020database\u0020via\u0020a\u0020stored\u0020procedure.",
-            "url": "classes/Application-Model-Model.html#method_sendModelData"
+            "fqsen": "\\Application\\Router\u003A\u003Aroute\u0028\u0029",
+            "name": "route",
+            "summary": "Returns\u0020a\u0020href\u0020for\u0020the\u0020specified\u0020page.",
+            "url": "classes/Application-Router.html#method_route"
         },                {
-            "fqsen": "\\Application\\Model\\Model\u003A\u003AgetDBObjectStructure\u0028\u0029",
-            "name": "getDBObjectStructure",
-            "summary": "Performs\u0020a\u0020SELECT\u0020query\u0020in\u0020vw0001_TableFieldsExtra\u0020to\u0020retrieve\u0020the\u0020given\u0020database\u0020object\u0027s\u0020structure.",
-            "url": "classes/Application-Model-Model.html#method_getDBObjectStructure"
+            "fqsen": "\\Application\\Router\u003A\u003AdisplayMessage\u0028\u0029",
+            "name": "displayMessage",
+            "summary": "Echoes\u0020a\u0020message\u0020set\u0020in\u0020the\u0020session\u0020storage.",
+            "url": "classes/Application-Router.html#method_displayMessage"
         },                {
-            "fqsen": "\\Application\\Model\\Model\u003A\u003AqueryDatabaseObject\u0028\u0029",
-            "name": "queryDatabaseObject",
-            "summary": "Queries\u0020the\u0020specified\u0020database\u0020object\u0020and\u0020returns\u0020the\u0020results\u0020as\u0020an\u0020associative\u0020array.",
-            "url": "classes/Application-Model-Model.html#method_queryDatabaseObject"
+            "fqsen": "\\Application\\Router\u003A\u003AgetPageName\u0028\u0029",
+            "name": "getPageName",
+            "summary": "Constructs\u0020and\u0020returns\u0020the\u0020name\u0020of\u0020the\u0020page\u0020to\u0020appear\u0020in\u0020the\u0020HTML\u0020\u003Ctitle\u003E\u0020tag.",
+            "url": "classes/Application-Router.html#method_getPageName"
         },                {
-            "fqsen": "\\Application\\Model\\Model\u003A\u003AexecuteStoredProcedure\u0028\u0029",
-            "name": "executeStoredProcedure",
-            "summary": "Executes\u0020a\u0020stored\u0020procedure\u0020and\u0020returns\u0020its\u0020resultset\u0020\u0028if\u0020one\u0020is\u0020generated\u0029\u0020as\u0020an\u0020array.",
-            "url": "classes/Application-Model-Model.html#method_executeStoredProcedure"
+            "fqsen": "\\Application\\Router\u003A\u003AoutputHeader\u0028\u0029",
+            "name": "outputHeader",
+            "summary": "Returns\u0020the\u0020URI\u0020the\u0020header\u0020if\u0020the\u0020display\u0020mode\u0020requires\u0020it.",
+            "url": "classes/Application-Router.html#method_outputHeader"
         },                {
-            "fqsen": "\\Application\\Model\\Model\u003A\u003AsubmitStoredProcedure\u0028\u0029",
-            "name": "submitStoredProcedure",
-            "summary": "Executes\u0020a\u0020stored\u0020procedure\u0020on\u0020the\u0020database.",
-            "url": "classes/Application-Model-Model.html#method_submitStoredProcedure"
+            "fqsen": "\\Application\\Router\u003A\u003AincludeController\u0028\u0029",
+            "name": "includeController",
+            "summary": "Includes\u0020the\u0020controller\u0020into\u0020the\u0020page.",
+            "url": "classes/Application-Router.html#method_includeController"
         },                {
-            "fqsen": "\\Application\\Model\\Model\u003A\u003AresultSetToArray\u0028\u0029",
-            "name": "resultSetToArray",
-            "summary": "Converts\u0020a\u0020resultset\u0020object\u0020into\u0020an\u0020array.",
-            "url": "classes/Application-Model-Model.html#method_resultSetToArray"
+            "fqsen": "\\Application\\Router\u003A\u003AredirectCleansedURL\u0028\u0029",
+            "name": "redirectCleansedURL",
+            "summary": "Checks\u0020if\u0020the\u0020URL\u0020used\u0020to\u0020access\u0020a\u0020page\u0020contains\u0020a\u0020file\u0020extension\u0020or\u0020any\u0020invalid\u0020strings.",
+            "url": "classes/Application-Router.html#method_redirectCleansedURL"
         },                {
-            "fqsen": "\\Application\\Model\\Model\u003A\u003AgetDBRecordCount\u0028\u0029",
-            "name": "getDBRecordCount",
-            "summary": "Retrieves\u0020the\u0020number\u0020of\u0020records\u0020that\u0020exist\u0020in\u0020the\u0020model\u0027s\u0020object.",
-            "url": "classes/Application-Model-Model.html#method_getDBRecordCount"
+            "fqsen": "\\Application\\Router\u003A\u003AgetRequestedContent\u0028\u0029",
+            "name": "getRequestedContent",
+            "summary": "Retrieves\u0020the\u0020content\u0020requested\u0020by\u0020the\u0020client\u0020as\u0020set\u0020in\u0020the\u0020constructor.",
+            "url": "classes/Application-Router.html#method_getRequestedContent"
         },                {
-            "fqsen": "\\Application\\Model\\Model\u003A\u003AgetTableFilters\u0028\u0029",
-            "name": "getTableFilters",
-            "summary": "Checks\u0020if\u0020the\u0020session\u0020variable\u0020\u0022TableFilter\u0022\u0020is\u0020set\u0020and\u0020retrieves\u0020any\u0020filters\u0020from\u0020there\u0020and\u0020appends\u0020them\u0020to\u0020a\u0020WHERE\u0020clause\u0020string.",
-            "url": "classes/Application-Model-Model.html#method_getTableFilters"
+            "fqsen": "\\Application\\Router\u003A\u003AsetupRoute\u0028\u0029",
+            "name": "setupRoute",
+            "summary": "Writes\u0020a\u0020new\u0020route\u0020to\u0020display\u0020the\u0020page.",
+            "url": "classes/Application-Router.html#method_setupRoute"
         },                {
-            "fqsen": "\\Application\\Model\\Model\u003A\u003AgetDBConnection\u0028\u0029",
-            "name": "getDBConnection",
-            "summary": "Returns\u0020a\u0020connection\u0020resource\u0020to\u0020the\u0020database.\u0020Only\u0020usable\u0020in\u0020inherited\u0020models.",
-            "url": "classes/Application-Model-Model.html#method_getDBConnection"
+            "fqsen": "\\Application\\Router\u003A\u003AmakeController\u0028\u0029",
+            "name": "makeController",
+            "summary": "Creates\u0020a\u0020controller\u0020object\u0020dynamically\u0020based\u0020on\u0020the\u0020given\u0020class\u0020name",
+            "url": "classes/Application-Router.html#method_makeController"
         },                {
-            "fqsen": "\\Application\\Model\\Model\u003A\u003AgetDBIdentifier\u0028\u0029",
-            "name": "getDBIdentifier",
-            "summary": "Returns\u0020the\u0020database\u0020schema\u0020and\u0020object\u0020name\u0020as\u0020a\u0020concatenated\u0020string,\u0020separated\u0020by\u0020a\u0020period.",
-            "url": "classes/Application-Model-Model.html#method_getDBIdentifier"
+            "fqsen": "\\Application\\Router\u003A\u003AgetContentTypeHeader\u0028\u0029",
+            "name": "getContentTypeHeader",
+            "summary": "Returns\u0020a\u0020MIME\u0020type\u0020based\u0020on\u0020the\u0020given\u0020file\u0020extension.",
+            "url": "classes/Application-Router.html#method_getContentTypeHeader"
         },                {
-            "fqsen": "\\Application\\Model\\Model\u003A\u003AgetDBObjectName\u0028\u0029",
-            "name": "getDBObjectName",
-            "summary": "Returns\u0020the\u0020name\u0020of\u0020the\u0020Database\u0020object\u0020name.",
-            "url": "classes/Application-Model-Model.html#method_getDBObjectName"
+            "fqsen": "\\Application\\Router\u003A\u003AgetWindowMessage\u0028\u0029",
+            "name": "getWindowMessage",
+            "summary": "Checks\u0020if\u0020this\u0020page\u0020is\u0020loaded\u0020with\u0020a\u0020message\u0020request\u0020in\u0020the\u0020GET\u0020variables.",
+            "url": "classes/Application-Router.html#method_getWindowMessage"
         },                {
-            "fqsen": "\\Application\\Model\\Model\u003A\u003AgetDBSchema\u0028\u0029",
-            "name": "getDBSchema",
-            "summary": "Returns\u0020the\u0020schema\u0020name\u0020of\u0020the\u0020db\u0020object.",
-            "url": "classes/Application-Model-Model.html#method_getDBSchema"
-        },                {
-            "fqsen": "\\Application\\Model\\Model\u003A\u003AgetMode\u0028\u0029",
-            "name": "getMode",
+            "fqsen": "\\Application\\Router\u003A\u003AEXPIRE_TIME_LIMIT",
+            "name": "EXPIRE_TIME_LIMIT",
             "summary": "",
-            "url": "classes/Application-Model-Model.html#method_getMode"
+            "url": "classes/Application-Router.html#constant_EXPIRE_TIME_LIMIT"
         },                {
-            "fqsen": "\\Application\\Model\\Model\u003A\u003AgetModalReferences\u0028\u0029",
-            "name": "getModalReferences",
-            "summary": "Retrieves\u0020data\u0020for\u0020any\u0020modals\u0020that\u0020need\u0020to\u0020be\u0020added\u0020to\u0020the\u0020page.",
-            "url": "classes/Application-Model-Model.html#method_getModalReferences"
+            "fqsen": "\\Application\\Router\u003A\u003ASESSION_TOKEN_EXPIRY",
+            "name": "SESSION_TOKEN_EXPIRY",
+            "summary": "",
+            "url": "classes/Application-Router.html#constant_SESSION_TOKEN_EXPIRY"
         },                {
-            "fqsen": "\\Application\\Model\\Model\u003A\u003AcheckForForeignKeyDependencies\u0028\u0029",
-            "name": "checkForForeignKeyDependencies",
-            "summary": "Checks\u0020a\u0020resultset\u0020obtained\u0020from\u0020\u007B\u0040see\u0020Model\u003A\u003AgetDBObjectStructure\u0028\u0029\u007D\u0020for\u0020any\u0020data\u0020dependencies\u0020that\u0020need\u0020to\u0020be\u0020included\u0020or\u0020used\u0020in\u0020the\u0020controller.",
-            "url": "classes/Application-Model-Model.html#method_checkForForeignKeyDependencies"
+            "fqsen": "\\Application\\Router\u003A\u003A\u0024requestParts",
+            "name": "requestParts",
+            "summary": "",
+            "url": "classes/Application-Router.html#property_requestParts"
         },                {
-            "fqsen": "\\Application\\Model\\Model\u003A\u003AfetchForeignKeyData\u0028\u0029",
-            "name": "fetchForeignKeyData",
-            "summary": "Fetches\u0020the\u0020foreign\u0020key\u0020data\u0020dependencies\u0020associated\u0020to\u0020the\u0020model.",
-            "url": "classes/Application-Model-Model.html#method_fetchForeignKeyData"
+            "fqsen": "\\Application\\Router\u003A\u003A\u0024getVars",
+            "name": "getVars",
+            "summary": "",
+            "url": "classes/Application-Router.html#property_getVars"
         },                {
-            "fqsen": "\\Application\\Model\\Model\u003A\u003AgetForeignKeyReferences\u0028\u0029",
-            "name": "getForeignKeyReferences",
-            "summary": "Finds\u0020and\u0020returns\u0020the\u0020table\u0020name,\u0020schema\u0020and\u0020column\u0020that\u0020the\u0020given\u0020data\u0020references.",
-            "url": "classes/Application-Model-Model.html#method_getForeignKeyReferences"
+            "fqsen": "\\Application\\Router\u003A\u003A\u0024title",
+            "name": "title",
+            "summary": "",
+            "url": "classes/Application-Router.html#property_title"
         },                {
-            "fqsen": "\\Application\\Model\\Model\u003A\u003AdisplayErrors\u0028\u0029",
-            "name": "displayErrors",
-            "summary": "Catches\u0020and\u0020outputs\u0020user\u002Dfriendly\u0020messages\u0020for\u0020any\u0020errors\u0020that\u0020occur.\u0020Primarily\u0020for\u0020use\u0020with\u0020SQL\u0020queries.",
-            "url": "classes/Application-Model-Model.html#method_displayErrors"
+            "fqsen": "\\Application\\Router\u003A\u003A\u0024page",
+            "name": "page",
+            "summary": "",
+            "url": "classes/Application-Router.html#property_page"
         },                {
-            "fqsen": "\\Application\\Model\\Model\u003A\u003AnewConnection\u0028\u0029",
-            "name": "newConnection",
-            "summary": "Creates\u0020a\u0020new\u0020Connection\u0020resource\u0020to\u0020the\u0020SQL\u0020Server.",
-            "url": "classes/Application-Model-Model.html#method_newConnection"
+            "fqsen": "\\Application\\Router\u003A\u003A\u0024url",
+            "name": "url",
+            "summary": "",
+            "url": "classes/Application-Router.html#property_url"
         },                {
-            "fqsen": "\\Application\\Model\\Model\u003A\u003AcloseConnection\u0028\u0029",
-            "name": "closeConnection",
-            "summary": "Closes\u0020the\u0020specified\u0020connection\u0020resource.",
-            "url": "classes/Application-Model-Model.html#method_closeConnection"
+            "fqsen": "\\Application\\Router\u003A\u003A\u0024destination",
+            "name": "destination",
+            "summary": "",
+            "url": "classes/Application-Router.html#property_destination"
         },                {
-            "fqsen": "\\Application\\Model\\Model\u003A\u003AtrimTrailingComma\u0028\u0029",
-            "name": "trimTrailingComma",
-            "summary": "Removes\u0020any\u0020trailing\u0020delimiters\u0020if\u0020they\u0020are\u0020found.",
-            "url": "classes/Application-Model-Model.html#method_trimTrailingComma"
+            "fqsen": "\\Application\\Router\u003A\u003A\u0024controller",
+            "name": "controller",
+            "summary": "",
+            "url": "classes/Application-Router.html#property_controller"
         },                {
-            "fqsen": "\\Application\\Model\\Model\u003A\u003A\u0024dbSchema",
-            "name": "dbSchema",
-            "summary": "The\u0020database\u0020schema\u0020this\u0020model\u0020is\u0020sending\/retrieving\u0020data\u0020from.",
-            "url": "classes/Application-Model-Model.html#property_dbSchema"
+            "fqsen": "\\Application\\Router\u003A\u003A\u0024DisplayMode",
+            "name": "DisplayMode",
+            "summary": "",
+            "url": "classes/Application-Router.html#property_DisplayMode"
         },                {
-            "fqsen": "\\Application\\Model\\Model\u003A\u003A\u0024dbObject",
-            "name": "dbObject",
-            "summary": "The\u0020database\u0020object\u0020\u0028table,\u0020view\u0029\u0020the\u0020model\u0020is\u0020sending\/retrieving\u0020data\u0020from.",
-            "url": "classes/Application-Model-Model.html#property_dbObject"
-        },                {
-            "fqsen": "\\Application\\Model\\Model\u003A\u003A\u0024conn",
-            "name": "conn",
-            "summary": "An\u0020SQL\u0020Server\u0020connection\u0020resource.",
-            "url": "classes/Application-Model-Model.html#property_conn"
-        },                {
-            "fqsen": "\\Application\\Model\\Model\u003A\u003A\u0024mode",
+            "fqsen": "\\Application\\Router\u003A\u003A\u0024mode",
             "name": "mode",
             "summary": "",
-            "url": "classes/Application-Model-Model.html#property_mode"
+            "url": "classes/Application-Router.html#property_mode"
         },                {
-            "fqsen": "\\Application\\Model\\Model_Customer",
-            "name": "Model_Customer",
-            "summary": "The\u0020Model\u0020object\u0020for\u0020the\u0020Customer\u0020page.",
-            "url": "classes/Application-Model-Model-Customer.html"
+            "fqsen": "\\Application\\Router\u003A\u003A\u0024requestedURI",
+            "name": "requestedURI",
+            "summary": "",
+            "url": "classes/Application-Router.html#property_requestedURI"
         },                {
-            "fqsen": "\\Application\\Model\\Model_Customer\u003A\u003A__construct\u0028\u0029",
+            "fqsen": "\\Application\\DisplayMode",
+            "name": "DisplayMode",
+            "summary": "",
+            "url": "classes/Application-DisplayMode.html"
+        },                {
+            "fqsen": "\\Application\\DisplayMode\u003A\u003AgetByName\u0028\u0029",
+            "name": "getByName",
+            "summary": "",
+            "url": "classes/Application-DisplayMode.html#method_getByName"
+        },                {
+            "fqsen": "\\Application\\DisplayMode\u003A\u003ADefault",
+            "name": "Default",
+            "summary": "",
+            "url": ""
+        },                {
+            "fqsen": "\\Application\\DisplayMode\u003A\u003ABodyOnly",
+            "name": "BodyOnly",
+            "summary": "",
+            "url": ""
+        },                {
+            "fqsen": "\\Application\\DisplayMode\u003A\u003ANavAndMain",
+            "name": "NavAndMain",
+            "summary": "",
+            "url": ""
+        },                {
+            "fqsen": "\\Application\\DisplayMode\u003A\u003AFooterAndMain",
+            "name": "FooterAndMain",
+            "summary": "",
+            "url": ""
+        },                {
+            "fqsen": "\\Application\\DisplayMode\u003A\u003AResource",
+            "name": "Resource",
+            "summary": "",
+            "url": ""
+        },                {
+            "fqsen": "\\Application\\SessionManagement\\LOGIN_REDIRECT",
+            "name": "LOGIN_REDIRECT",
+            "summary": "Authenticate.php.inc\nNOTICE\u003A\u0020THIS\u0020FILE\u0020MUST\u0020BE\u0020INCLUDED\u0020ON\u0020EVERY\u0020PAGE\u0020IN\u0020THE\u0020WEB\u0020APPLICATION\u0021",
+            "url": "namespaces/application-sessionmanagement.html#constant_LOGIN_REDIRECT"
+        },                {
+            "fqsen": "\\Application\\SessionManagement\\USER_INFO",
+            "name": "USER_INFO",
+            "summary": "",
+            "url": "namespaces/application-sessionmanagement.html#constant_USER_INFO"
+        },                {
+            "fqsen": "\\Application\\SessionManagement\\SessionManager",
+            "name": "SessionManager",
+            "summary": "",
+            "url": "classes/Application-SessionManagement-SessionManager.html"
+        },                {
+            "fqsen": "\\Application\\SessionManagement\\SessionManager\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
-            "summary": "Constructor\u0020for\u0020Customer\u0020model.",
-            "url": "classes/Application-Model-Model-Customer.html#method___construct"
+            "summary": "Constructor\u0020for\u0020session\u0020manager.\u0020Starts\u0020the\u0020session.",
+            "url": "classes/Application-SessionManagement-SessionManager.html#method___construct"
         },                {
-            "fqsen": "\\Application\\Model\\Model_Customer\u003A\u003AfetchModelData\u0028\u0029",
-            "name": "fetchModelData",
-            "summary": "Fetches\u0020data\u0020from\u0020the\u0020database\u0020to\u0020update\u0020the\u0020model.",
-            "url": "classes/Application-Model-Model-Customer.html#method_fetchModelData"
+            "fqsen": "\\Application\\SessionManagement\\SessionManager\u003A\u003AvalidateRequest\u0028\u0029",
+            "name": "validateRequest",
+            "summary": "Checks\u0020if\u0020the\u0020request\u0020in\u0020the\u0020session\u0020session\u0020is\u0020valid.",
+            "url": "classes/Application-SessionManagement-SessionManager.html#method_validateRequest"
         },                {
-            "fqsen": "\\Application\\Model\\Model_Customer\u003A\u003AsendModelData\u0028\u0029",
-            "name": "sendModelData",
-            "summary": "Submits\u0020the\u0020given\u0020data\u0020to\u0020the\u0020database\u0020via\u0020the\u0020stored\u0020procedures\u0020below\u0020and\u0020returns\u0020an\u0020navigational\u0020request\u0020for\u0020use\u0020in\u0020a\u0020location\u0020header.",
-            "url": "classes/Application-Model-Model-Customer.html#method_sendModelData"
+            "fqsen": "\\Application\\SessionManagement\\SessionManager\u003A\u003AcheckTimeout\u0028\u0029",
+            "name": "checkTimeout",
+            "summary": "Checks\u0020the\u0020last\u0020request\u0020that\u0020made\u0020in\u0020the\u0020current\u0020session.\u0020If\u0020the\u0020request\u0020was\u0020over\u0020the\u0020specified\u0020time,\u0020in\u0020\u007B\u0040see\u0020EXPIRE_TIME_LIMIT\u007D,\u0020the\u0020session\u0020will\u0020reset,\u0020logging\u0020the\u0020user\u0020out.",
+            "url": "classes/Application-SessionManagement-SessionManager.html#method_checkTimeout"
         },                {
-            "fqsen": "\\Application\\Model\\Model_Customer\u003A\u003ADEFAULT_TABLE",
-            "name": "DEFAULT_TABLE",
-            "summary": "The\u0020default\u0020database\u0020table\u0020this\u0020model\u0020uses.\u0020In\u0020this\u0020case,\u0020a\u0020view.",
-            "url": "classes/Application-Model-Model-Customer.html#constant_DEFAULT_TABLE"
+            "fqsen": "\\Application\\SessionManagement\\SessionManager\u003A\u003AcheckPageFromFile\u0028\u0029",
+            "name": "checkPageFromFile",
+            "summary": "Checks\u0020that\u0020the\u0020user\u0020is\u0020authenticated\u0020in\u0020the\u0020site\u0020using\u0020an\u0020access\u002Dcontrol\u002Dlist\u0020file.",
+            "url": "classes/Application-SessionManagement-SessionManager.html#method_checkPageFromFile"
         },                {
-            "fqsen": "\\Application\\Router\\Route",
-            "name": "Route",
+            "fqsen": "\\Application\\SessionManagement\\SessionManager\u003A\u003AstartSession\u0028\u0029",
+            "name": "startSession",
             "summary": "",
-            "url": "classes/Application-Router-Route.html"
+            "url": "classes/Application-SessionManagement-SessionManager.html#method_startSession"
         },                {
-            "fqsen": "\\Application\\Router\\Route\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
+            "fqsen": "\\Application\\SessionManagement\\SessionManager\u003A\u003AendSession\u0028\u0029",
+            "name": "endSession",
             "summary": "",
-            "url": "classes/Application-Router-Route.html#method___construct"
+            "url": "classes/Application-SessionManagement-SessionManager.html#method_endSession"
         },                {
-            "fqsen": "\\Application\\Router\\Route\u003A\u003AnewRoute\u0028\u0029",
-            "name": "newRoute",
+            "fqsen": "\\Application\\SessionManagement\\SessionManager\u003A\u003AEXPIRE_TIME_LIMIT",
+            "name": "EXPIRE_TIME_LIMIT",
             "summary": "",
-            "url": "classes/Application-Router-Route.html#method_newRoute"
+            "url": "classes/Application-SessionManagement-SessionManager.html#constant_EXPIRE_TIME_LIMIT"
         },                {
-            "fqsen": "\\Application\\Router\\Route\u003A\u003AechoRoute\u0028\u0029",
-            "name": "echoRoute",
-            "summary": "Returns\u0020a\u0020href\u0020for\u0020the\u0020specified\u0020page.",
-            "url": "classes/Application-Router-Route.html#method_echoRoute"
-        },                {
-            "fqsen": "\\Application\\Router\\Route\u003A\u003AgetRoot\u0028\u0029",
-            "name": "getRoot",
+            "fqsen": "\\Application\\SessionManagement\\SessionManager\u003A\u003ASESSION_TOKEN_EXPIRY",
+            "name": "SESSION_TOKEN_EXPIRY",
             "summary": "",
-            "url": "classes/Application-Router-Route.html#method_getRoot"
+            "url": "classes/Application-SessionManagement-SessionManager.html#constant_SESSION_TOKEN_EXPIRY"
         },                {
-            "fqsen": "\\Application\\Router\\Route\u003A\u003AgetHeading\u0028\u0029",
-            "name": "getHeading",
+            "fqsen": "\\Application\\SessionManagement\\SessionManager\u003A\u003AACCESS_CONTROL_LIST",
+            "name": "ACCESS_CONTROL_LIST",
             "summary": "",
-            "url": "classes/Application-Router-Route.html#method_getHeading"
-        },                {
-            "fqsen": "\\Application\\Router\\Route\u003A\u003AgetViewName\u0028\u0029",
-            "name": "getViewName",
-            "summary": "",
-            "url": "classes/Application-Router-Route.html#method_getViewName"
-        },                {
-            "fqsen": "\\Application\\Router\\Route\u003A\u003A\u0024root",
-            "name": "root",
-            "summary": "",
-            "url": "classes/Application-Router-Route.html#property_root"
-        },                {
-            "fqsen": "\\Application\\Router\\Route\u003A\u003A\u0024heading",
-            "name": "heading",
-            "summary": "",
-            "url": "classes/Application-Router-Route.html#property_heading"
+            "url": "classes/Application-SessionManagement-SessionManager.html#constant_ACCESS_CONTROL_LIST"
         },                {
             "fqsen": "\\",
             "name": "\\",
             "summary": "",
             "url": "namespaces/default.html"
         },                {
-            "fqsen": "\\Application\\Router",
-            "name": "Router",
-            "summary": "",
-            "url": "namespaces/application-router.html"
-        },                {
-            "fqsen": "\\Application",
-            "name": "Application",
-            "summary": "",
-            "url": "namespaces/application.html"
-        },                {
             "fqsen": "\\Application\\Controller",
             "name": "Controller",
             "summary": "",
             "url": "namespaces/application-controller.html"
+        },                {
+            "fqsen": "\\Application\\Model",
+            "name": "Model",
+            "summary": "",
+            "url": "namespaces/application-model.html"
         },                {
             "fqsen": "\\Application\\PageBuilder",
             "name": "PageBuilder",
             "summary": "",
             "url": "namespaces/application-pagebuilder.html"
         },                {
-            "fqsen": "\\Application\\Model",
-            "name": "Model",
+            "fqsen": "\\Application",
+            "name": "Application",
             "summary": "",
-            "url": "namespaces/application-model.html"
+            "url": "namespaces/application.html"
+        },                {
+            "fqsen": "\\Application\\SessionManagement",
+            "name": "SessionManagement",
+            "summary": "",
+            "url": "namespaces/application-sessionmanagement.html"
         }            ]
 );

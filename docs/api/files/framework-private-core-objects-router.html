@@ -60,11 +60,11 @@
 </h4>
     <ul class="phpdocumentor-list">
                     <li>
-                <a href="namespaces/application-router.html" class="">Router</a>
+                <a href="namespaces/application-controller.html" class="">Controller</a>
                 
             </li>
                     <li>
-                <a href="namespaces/application-controller.html" class="">Controller</a>
+                <a href="namespaces/application-model.html" class="">Model</a>
                 
             </li>
                     <li>
@@ -72,7 +72,7 @@
                 
             </li>
                     <li>
-                <a href="namespaces/application-model.html" class="">Model</a>
+                <a href="namespaces/application-sessionmanagement.html" class="">SessionManagement</a>
                 
             </li>
             </ul>
@@ -104,7 +104,7 @@
     </ul>
 
     <article class="phpdocumentor-element -file">
-        <h2 class="phpdocumentor-content__title">TableObjects.php</h2>
+        <h2 class="phpdocumentor-content__title">Router.php</h2>
 
         
     <section class="phpdocumentor-description"></section>
@@ -121,16 +121,11 @@
 
 <dl class="phpdocumentor-table-of-contents">
     
-            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Application-PageBuilder-TableColumn.html"><abbr title="\Application\PageBuilder\TableColumn">TableColumn</abbr></a></dt>
-        <dd>This class defines a column within a table
-It contains methods to alter a table cell&#039;s value or appearance if a certain action is given.</dd>
-            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Application-PageBuilder-TableRow.html"><abbr title="\Application\PageBuilder\TableRow">TableRow</abbr></a></dt>
-        <dd>This object defines a row within a table.</dd>
-            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Application-PageBuilder-RowCell.html"><abbr title="\Application\PageBuilder\RowCell">RowCell</abbr></a></dt>
-        <dd>This class defines a singular cell of a row within a table.</dd>
+            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Application-Router.html"><abbr title="\Application\Router">Router</abbr></a></dt>
+        <dd>Router Class</dd>
     
     
-            <dt class="phpdocumentor-table-of-contents__entry -enum"><a href="classes/Application-PageBuilder-ActionType.html"><abbr title="\Application\PageBuilder\ActionType">ActionType</abbr></a></dt>
+            <dt class="phpdocumentor-table-of-contents__entry -enum"><a href="classes/Application-DisplayMode.html"><abbr title="\Application\DisplayMode">DisplayMode</abbr></a></dt>
         <dd></dd>
     </dl>
 
@@ -142,23 +137,37 @@ It contains methods to alter a table cell&#039;s value or appearance if a certai
 
 <dl class="phpdocumentor-table-of-contents">
             <dt class="phpdocumentor-table-of-contents__entry -constant -public">
-    <a href="namespaces/application-pagebuilder.html#constant_HYPERLINK_COLUMN_KEY">HYPERLINK_COLUMN_KEY</a>
+    <a href="namespaces/application.html#constant_APP_NAME">APP_NAME</a>
     <span>
-        &nbsp;= &#039;COLUMN&#039;                            </span>
+        &nbsp;= &#039;/FrameworkDemo/&#039;                            </span>
 </dt>
 <dd></dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -constant -public">
-    <a href="namespaces/application-pagebuilder.html#constant_HYPERLINK_URL_KEY">HYPERLINK_URL_KEY</a>
+    <a href="namespaces/application.html#constant_CONTROLLER_DIR">CONTROLLER_DIR</a>
     <span>
-        &nbsp;= &#039;URL&#039;                            </span>
+        &nbsp;= &#039;private_core/controllers/&#039;                            </span>
 </dt>
 <dd></dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -constant -public">
-    <a href="namespaces/application-pagebuilder.html#constant_SELECTED_ROW">SELECTED_ROW</a>
+    <a href="namespaces/application.html#constant_MODAL_MESSAGE">MODAL_MESSAGE</a>
     <span>
-        &nbsp;= &quot;INSERT_SELECTED_DATA_HERE&quot;                            </span>
+        &nbsp;= &quot;ModalResponse&quot;                            </span>
+</dt>
+<dd></dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -constant -public">
+    <a href="namespaces/application.html#constant_SITE_NAME">SITE_NAME</a>
+    <span>
+        &nbsp;= &#039;FrameworkDemo&#039;                            </span>
+</dt>
+<dd></dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -constant -public">
+    <a href="namespaces/application.html#constant_VIEW_DIR">VIEW_DIR</a>
+    <span>
+        &nbsp;= &#039;private_core/views/&#039;                            </span>
 </dt>
 <dd></dd>
 
@@ -170,18 +179,18 @@ It contains methods to alter a table cell&#039;s value or appearance if a certai
     <section class="phpdocumentor-constants">
         <h3 class="phpdocumentor-elements__header" id="constants">
             Constants
-            <a href="files/website-private-core-controllers-pageobjects-tableobjects.html#constants" class="headerlink"><i class="fas fa-link"></i></a>
+            <a href="files/framework-private-core-objects-router.html#constants" class="headerlink"><i class="fas fa-link"></i></a>
         </h3>
                     <article class="phpdocumentor-element -constant -public ">
-    <h4 class="phpdocumentor-element__name" id="constant_HYPERLINK_COLUMN_KEY">
-        HYPERLINK_COLUMN_KEY
-        <a href="namespaces/application-pagebuilder.html#constant_HYPERLINK_COLUMN_KEY" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="constant_APP_NAME">
+        APP_NAME
+        <a href="namespaces/application.html#constant_APP_NAME" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
 
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/controllers/PageObjects/TableObjects.php"><a href="files/website-private-core-controllers-pageobjects-tableobjects.html"><abbr title="Website/private_core/controllers/PageObjects/TableObjects.php">TableObjects.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/objects/Router.php"><a href="files/framework-private-core-objects-router.html"><abbr title="Framework/private_core/objects/Router.php">Router.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">23</span>
+    <span class="phpdocumentor-element-found-in__line">41</span>
 
     </aside>
 
@@ -189,8 +198,8 @@ It contains methods to alter a table cell&#039;s value or appearance if a certai
     <code class="phpdocumentor-signature phpdocumentor-code ">
     <span class="phpdocumentor-signature__visibility">public</span>
         <span class="phpdocumentor-signature__type">mixed</span>
-    <span class="phpdocumentor-signature__name">HYPERLINK_COLUMN_KEY</span>
-    = <span class="phpdocumentor-signature__default-value">&#039;COLUMN&#039;</span>
+    <span class="phpdocumentor-signature__name">APP_NAME</span>
+    = <span class="phpdocumentor-signature__default-value">&#039;/FrameworkDemo/&#039;</span>
 </code>
 
 
@@ -202,15 +211,15 @@ It contains methods to alter a table cell&#039;s value or appearance if a certai
 
 </article>
                     <article class="phpdocumentor-element -constant -public ">
-    <h4 class="phpdocumentor-element__name" id="constant_HYPERLINK_URL_KEY">
-        HYPERLINK_URL_KEY
-        <a href="namespaces/application-pagebuilder.html#constant_HYPERLINK_URL_KEY" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="constant_CONTROLLER_DIR">
+        CONTROLLER_DIR
+        <a href="namespaces/application.html#constant_CONTROLLER_DIR" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
 
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/controllers/PageObjects/TableObjects.php"><a href="files/website-private-core-controllers-pageobjects-tableobjects.html"><abbr title="Website/private_core/controllers/PageObjects/TableObjects.php">TableObjects.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/objects/Router.php"><a href="files/framework-private-core-objects-router.html"><abbr title="Framework/private_core/objects/Router.php">Router.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">22</span>
+    <span class="phpdocumentor-element-found-in__line">39</span>
 
     </aside>
 
@@ -218,8 +227,8 @@ It contains methods to alter a table cell&#039;s value or appearance if a certai
     <code class="phpdocumentor-signature phpdocumentor-code ">
     <span class="phpdocumentor-signature__visibility">public</span>
         <span class="phpdocumentor-signature__type">mixed</span>
-    <span class="phpdocumentor-signature__name">HYPERLINK_URL_KEY</span>
-    = <span class="phpdocumentor-signature__default-value">&#039;URL&#039;</span>
+    <span class="phpdocumentor-signature__name">CONTROLLER_DIR</span>
+    = <span class="phpdocumentor-signature__default-value">&#039;private_core/controllers/&#039;</span>
 </code>
 
 
@@ -231,15 +240,15 @@ It contains methods to alter a table cell&#039;s value or appearance if a certai
 
 </article>
                     <article class="phpdocumentor-element -constant -public ">
-    <h4 class="phpdocumentor-element__name" id="constant_SELECTED_ROW">
-        SELECTED_ROW
-        <a href="namespaces/application-pagebuilder.html#constant_SELECTED_ROW" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="constant_MODAL_MESSAGE">
+        MODAL_MESSAGE
+        <a href="namespaces/application.html#constant_MODAL_MESSAGE" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
 
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Website/private_core/controllers/PageObjects/TableObjects.php"><a href="files/website-private-core-controllers-pageobjects-tableobjects.html"><abbr title="Website/private_core/controllers/PageObjects/TableObjects.php">TableObjects.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/objects/Router.php"><a href="files/framework-private-core-objects-router.html"><abbr title="Framework/private_core/objects/Router.php">Router.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">21</span>
+    <span class="phpdocumentor-element-found-in__line">40</span>
 
     </aside>
 
@@ -247,8 +256,66 @@ It contains methods to alter a table cell&#039;s value or appearance if a certai
     <code class="phpdocumentor-signature phpdocumentor-code ">
     <span class="phpdocumentor-signature__visibility">public</span>
         <span class="phpdocumentor-signature__type">mixed</span>
-    <span class="phpdocumentor-signature__name">SELECTED_ROW</span>
-    = <span class="phpdocumentor-signature__default-value">&quot;INSERT_SELECTED_DATA_HERE&quot;</span>
+    <span class="phpdocumentor-signature__name">MODAL_MESSAGE</span>
+    = <span class="phpdocumentor-signature__default-value">&quot;ModalResponse&quot;</span>
+</code>
+
+
+        <section class="phpdocumentor-description"></section>
+
+        <section class="phpdocumentor-description"></section>
+
+    
+
+</article>
+                    <article class="phpdocumentor-element -constant -public ">
+    <h4 class="phpdocumentor-element__name" id="constant_SITE_NAME">
+        SITE_NAME
+        <a href="namespaces/application.html#constant_SITE_NAME" class="headerlink"><i class="fas fa-link"></i></a>
+    </h4>
+
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/objects/Router.php"><a href="files/framework-private-core-objects-router.html"><abbr title="Framework/private_core/objects/Router.php">Router.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">37</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-signature phpdocumentor-code ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__type">mixed</span>
+    <span class="phpdocumentor-signature__name">SITE_NAME</span>
+    = <span class="phpdocumentor-signature__default-value">&#039;FrameworkDemo&#039;</span>
+</code>
+
+
+        <section class="phpdocumentor-description"></section>
+
+        <section class="phpdocumentor-description"></section>
+
+    
+
+</article>
+                    <article class="phpdocumentor-element -constant -public ">
+    <h4 class="phpdocumentor-element__name" id="constant_VIEW_DIR">
+        VIEW_DIR
+        <a href="namespaces/application.html#constant_VIEW_DIR" class="headerlink"><i class="fas fa-link"></i></a>
+    </h4>
+
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="Framework/private_core/objects/Router.php"><a href="files/framework-private-core-objects-router.html"><abbr title="Framework/private_core/objects/Router.php">Router.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">38</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-signature phpdocumentor-code ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__type">mixed</span>
+    <span class="phpdocumentor-signature__name">VIEW_DIR</span>
+    = <span class="phpdocumentor-signature__default-value">&#039;private_core/views/&#039;</span>
 </code>
 
 
@@ -276,7 +343,7 @@ It contains methods to alter a table cell&#039;s value or appearance if a certai
 </section>
             </div>
         </div>
-        <a href="files/website-private-core-controllers-pageobjects-tableobjects.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
+        <a href="files/framework-private-core-objects-router.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
 
     </main>
 
