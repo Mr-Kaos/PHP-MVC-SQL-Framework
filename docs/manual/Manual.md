@@ -11,15 +11,24 @@ This document contains instructions and information on how to use various compon
 ## Table of Contents
 
 - [MVC Framework Manual](#mvc-framework-manual)
+		- [**Author:** Kristian Oqueli Ambrose](#author-kristian-oqueli-ambrose)
+		- [**Document Created:** 23 October 2023](#document-created-23-october-2023)
 	- [Table of Contents](#table-of-contents)
+	- [Todo](#todo)
 - [1. Using the Framework](#1-using-the-framework)
 	- [Directory Structure](#directory-structure)
-		- [`private_core` Directory](#privatecore-directory)
+		- [`private_core` Directory](#private_core-directory)
 		- [`res` Directory](#res-directory)
 	- [Creating MVC Components](#creating-mvc-components)
+		- [View](#view)
 - [2. Technical Details](#2-technical-details)
 	- [Request Handling](#request-handling)
-		- [Request Process Examples](#request-process)
+		- [Request Process Examples](#request-process-examples)
+			- [Example 1: HTTP GET Request to "*`domain`*`/Home`"](#example-1-http-get-request-to-domainhome)
+			- [Example 2: HTTP GET Request to "*`domain`*`/res/js/sampleScript.js`"](#example-2-http-get-request-to-domainresjssamplescriptjs)
+			- [Example 3: HTTP GET Request to "*`domain`*`/Shop/item?id=123`"](#example-3-http-get-request-to-domainshopitemid123)
+			- [Example 4: HTTP POST Request from "*`domain`*`/Orders/new`" to "*`domain`*`/Orders?mode=insert`"](#example-4-http-post-request-from-domainordersnew-to-domainordersmodeinsert)
+			- [Request Flowchart](#request-flowchart)
 	- [Page Access Control](#page-access-control)
 		- [File-Based Access Control (Access Control List)](#file-based-access-control-access-control-list)
 		- [Database-Defined Access Control](#database-defined-access-control)
@@ -66,6 +75,36 @@ This directory contains resources used by pages on the website. This includes me
 
 ## Creating MVC Components
 
+This section details how to create each MVC component and what to include in each part.
+
+### View
+
+Views contain the content that the user will see. This done primarily though HTML, but to access content created and manipulated by the controller, inline PHP statements can be used.
+
+Ideally, **no logic** should be used in views except for inline if statements if necessary.
+The styling of elements is entirely up to the designer and does not need to use the default stylesheets supplied.
+
+#### Accessing Data From the Controller
+
+To access data generated or manipulated from the controller, it must first be set using `setPreparedData()` in the view's controller. Once the data has been set, it can be accessed in the view using the controller's `getPreparedData()` function. Below is an example of this process:
+
+In the controller's `retrieveData()` function:
+```php
+// $var can be the variable that contains the data, typically as a string to be displayed in the view.
+$this->setPreparedData("key", $var);
+```
+In the view:
+```php
+<body>
+	<p><?= $controller->getPreparedData("key") ?></p>
+</body>
+```
+
+Note that when outputting data to the view using `getPreparedData()`, the value assigned to it using `setPreparedData()` should be a printable data type, i.e. a string, or number. Arrays and objects cannot be printed and will throw an error.
+
+### Controller
+
+The controller should handle all logic that pertains to what content needs to be loaded per page in for its associated view.
 
 
 # 2. Technical Details
