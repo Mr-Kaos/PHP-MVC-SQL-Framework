@@ -54,7 +54,7 @@ abstract class Model
 	private ?string $dbObject;
 	/** An SQL Server connection resource. */
 	private $conn;
-	private $mode;
+	private $pageMode;
 
 	/**
 	 * Constructs the model with the base attributes.
@@ -70,7 +70,7 @@ abstract class Model
 	{
 		$this->dbSchema = $schema;
 		$this->dbObject = $objectName;
-		$this->mode = $mode;
+		$this->pageMode = $mode;
 		$this->conn = $this->newConnection();
 		$this->setTableIdentifiers($tableID, $schema, $objectName);
 	}
@@ -456,9 +456,9 @@ abstract class Model
 		return $this->dbSchema;
 	}
 
-	protected function getMode(): string
+	protected function getPage(): string
 	{
-		return $this->mode;
+		return $this->pageMode;
 	}
 
 	/**

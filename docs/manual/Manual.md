@@ -46,7 +46,17 @@ This document contains instructions and information on how to use various compon
   - Hyperlinks to pages and site resources
 - How to connect to a database
 
-# 1. Using the Framework
+# 1. About the Framework
+
+This framework is designed to be used with a Microsoft SQL Server database where the objects are the database tables themselves. Unlike other MVC models, database tables are not mirrored as an object in the application layer, i.e. the "Model" in MVC. Instead, the Model provides an interface to retrieve data for a particular view and its controller, which usually correlates to a database table. This allows for database objects to be dynamically created, hence not restricting the framework to a particular design of a database schema.
+
+Furthermore, this framework was designed so that the database contains all the core business logic. That is, data being sent into the database should be checked and validated for integrity at the database level, typically via a stored procedure rather than in the application layer via PHP.
+
+This does not mean no data validation should be done in this framework - Additional validation performed can help ensure the database receives clean data and that its integrity is maintained. Information on this aspect of the framework is described in the [Controller section](#controller).
+
+In summary, the aim of this framework is to provide a front-end to an SQL Server database, with basic security, page routing and data manipulation features.
+
+# 2. Using the Framework
 
 ## Directory Structure
 
@@ -84,6 +94,21 @@ Views contain the content that the user will see. This done primarily though HTM
 Ideally, **no logic** should be used in views except for inline if statements if necessary.
 The styling of elements is entirely up to the designer and does not need to use the default stylesheets supplied.
 
+#### Creating a View
+
+A view is defined by **a subdirectory** in the `private_core/views` directory. This subdirectory **must contain** a `default.php` file to act as the primary page for this view.
+
+For example, suppose a view with the name of "Marketplace" was to be created. Assume this view would have pages that display various products available in a marketplace. To create this view, a directory named "`Marketplace`" should be placed in the `views` directory. Then, a "`default.php`" file should be created within it. The directory structure would look something like this:
+
+```
+private_core/
+ ┣━ controllers/
+ ┣━ models/
+ ┗━ views/
+     ┗━ Marketplace/
+	     ┗━ default.php
+```
+
 #### Accessing Data From the Controller
 
 To access data generated or manipulated from the controller, it must first be set using `setPreparedData()` in the view's controller. Once the data has been set, it can be accessed in the view using the controller's `getPreparedData()` function. Below is an example of this process:
@@ -102,12 +127,107 @@ In the view:
 
 Note that when outputting data to the view using `getPreparedData()`, the value assigned to it using `setPreparedData()` should be a printable data type, i.e. a string, or number. Arrays and objects cannot be printed and will throw an error.
 
+### Model
+
+The model is responsible for sending and retrieving data from the database and returning it to the controller for displaying in the web browser or for fetching as a GET request. All models should inherit the base model class which provide functions to execute and return result sets from the database preformatted for use in the controller.
+
+#### Creating a Model
+
+This framework includes a template for the model, named "`Model_Template.php`". It might be easiest to copy this file and rename it to make a new model.
+
+When naming a model, the filename should match that of its associated view's directory. Continuing from [the example](#creating-a-view) of creating a view, a model can be added to the view by creating a new file in the `private_core/models` directory with the name "`Model_Marketplace.php`". The directory should look like this once created:
+
+```
+private_core/
+ ┣━ controllers/
+ ┣━ models/
+ ┃   ┣━ Model_Marketplace.php
+ ┃   ┗━ Model.php
+ ┗━ views/
+     ┗━ Marketplace/
+	     ┗━ default.php
+```
+
+Notice how the name of the view for the model is appended after "Model_" for its filename. All models should follow the naming scheme of "Model_<*view name*>", where "<*view_name*>" is the name of the view the model is associated with.
+
+Assuming the new model was created by copying the `Model_Template.php` file, you will need to change the name of the class:
+
+```php
+class Model_Marketplace extends Model
+```
+
+#### Core Functions
+
+All models have two primary functions: `fetchModelData()` and `sendModelData()`. These are for retrieving data from the database and sending data to the database respectively.
+
+The `fetchModelData()` function should contain logic on what data to fetch based on the page being requested.
+This can be achieved using a `switch` statement.
+Retrieving data from the database can be achieved using the `queryDatabaseObject()` function. Its results should be stored in an array which is returned to the controller. Below is an example of this process:
+
+```php
+public function fetchModelData(array $request = null, string $submitMode = null): array
+{
+	$modelData = array();
+
+	// The page is set in the constructor.
+	switch ($this->getPage()) {
+		case 'item':
+			// logic specific to "item" page goes here
+			break;
+		case 'new':
+			// logic specific to "new" page goes here
+			break;
+		default:
+			// logic specific to "default" page goes here.
+			// For example, querying the "Marketplace table" and storing it in an array for use in the controller.
+			$modelData["MarketplaceItems"] = $this->queryDatabaseObject('dbo', "Marketplace");
+			break;
+	}
+
+	// This function is called from the controller's retrieveData function and is returned there.	
+	return $modelData;
+}
+```
+
+The `sendModelData()` function should contains logic that determines what stored procedure is used to send data to the database. In this framework, **all data** being sent to the database **must** be sent via a stored procedure.
+
+```php
+SHOW EXAMPLE OF FUNCTION HERE
+```
+
+
 ### Controller
 
-The controller should handle all logic that pertains to what content needs to be loaded per page in for its associated view.
+The controller should handle all logic that pertains to what content needs to be loaded per page in for its associated view. All controllers should inherit the base controller class which provides functions to communicate with the model, and hence retrieve data from the database. The base Controller class should not be tampered with in any way.
 
+#### Creating a Controller
 
-# 2. Technical Details
+This framework includes a template for the controller, named "`Controller_Template.php`". When creating a new controller it might be easiest to start by making a copy of this file and renaming it.
+
+Much like the model, when naming a controller, the filename should match that of it's associated view's directory. The naming scheme is the same as the controller's: "Controller_<*view name*>", where "<*view_name*>" is the name of the view the controller is associated with.
+
+```
+private_core/
+ ┣━ controllers/
+ ┃   ┣━ Controller_Marketplace.php
+ ┃   ┗━ Controller.php
+ ┣━ models/
+ ┃   ┣━ Model_Marketplace.php
+ ┃   ┗━ Model.php
+ ┗━ views/
+     ┗━ Marketplace/
+	     ┗━ default.php
+```
+
+Assuming the new controller was created by copying the `Controller_Template.php` file, you will need to change the name of the class and the model it is including.
+
+```php
+class Controller_Marketplace extends Controller
+```
+
+TODO
+
+# 3. Technical Details
 
 This section explains how various components of the system work when used. Diagrams and flowcharts will be used as often as possible to aid in explanation.
 

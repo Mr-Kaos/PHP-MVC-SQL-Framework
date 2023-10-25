@@ -12,17 +12,15 @@ require_once("Model.php");
  * - View: <Specify associated view here>
  * - Model: <Specify associated controller here>
  *
- * When {@see Model_Sample::fetchModelData()} is called (on GET request), it retrieves the respective data for the page the client requested and returns it to the controller.
- * When {@see Model_Sample::sendModelData()} is called (on POST request), the data sent is validated and sent to the database. Upon completion it directs the user to a URI specified.
+ * When {@see Model_Template::fetchModelData()} is called (on GET request), it retrieves the respective data for the page the client requested and returns it to the controller.
+ * When {@see Model_Template::sendModelData()} is called (on POST request), the data sent is validated and sent to the database. Upon completion it directs the user to a URI specified.
  */
-class Model_Sample extends Model
+class Model_Template extends Model
 {
 	/**
-	 * Constructor for Sample model.
 	 * Takes an associated array (typically a GET request) and determines what data needs to be retrieved from the model.
 	 * Constructs the model based on the given data. Provides the model with the table/view to retrieve data from.
 	 * @param array $data An associative array that contains data for the controller to create a model with. Usually $_GET.
-	 * @return void
 	 */
 	public function __construct(string $mode, array $data = null)
 	{
@@ -42,7 +40,7 @@ class Model_Sample extends Model
 		$modelData = array();
 
 		if ($this->getDBConnection()) {
-			switch ($this->getMode()) {
+			switch ($this->getPage()) {
 					// Add cases for each page in the view that requires specific data to be retrieved for it.
 				default:
 					// logic specific to "default" page goes here

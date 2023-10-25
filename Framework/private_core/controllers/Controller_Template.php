@@ -3,6 +3,7 @@
 namespace Application\Controller;
 
 use Application\Model as m;
+use Application\Model\Model_Template;
 
 require_once("Controller.php");
 require_once("private_core/models/Model_Template.php");
@@ -28,7 +29,7 @@ class Controller_Template extends Controller
 	public function __construct(array $data = null)
 	{
 		$mode = isset($data["mode"]) ? $data["mode"] : null;
-		parent::__construct(null, $mode);
+		parent::__construct(new Model_Template($mode, $data), $mode);
 	}
 
 	/**
