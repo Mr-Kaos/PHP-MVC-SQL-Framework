@@ -6,6 +6,8 @@ This document contains instructions and information on how to use various compon
 
 ### **Document Created:** 23 October 2023
 
+For enquiries regarding this manual or the framework, please contact Kristian at [contact@kambrose.com](mailto:contact@kambrose.com).
+
 ---
 
 ## Table of Contents
@@ -15,19 +17,30 @@ This document contains instructions and information on how to use various compon
 		- [**Document Created:** 23 October 2023](#document-created-23-october-2023)
 	- [Table of Contents](#table-of-contents)
 	- [Todo](#todo)
-- [1. Using the Framework](#1-using-the-framework)
+- [1. About the Framework](#1-about-the-framework)
+- [2. Using the Framework](#2-using-the-framework)
 	- [Directory Structure](#directory-structure)
-		- [`private_core` Directory](#private_core-directory)
+		- [`private_core` Directory](#privatecore-directory)
 		- [`res` Directory](#res-directory)
 	- [Creating MVC Components](#creating-mvc-components)
 		- [View](#view)
-- [2. Technical Details](#2-technical-details)
+			- [Creating a View](#creating-a-view)
+			- [Accessing Data From the Controller](#accessing-data-from-the-controller)
+		- [Model](#model)
+			- [Creating a Model](#creating-a-model)
+			- [Core Functions](#core-functions)
+				- [**`fetchModelData()` Function**](#fetchmodeldata-function)
+				- [**`sendModelData()` Function**](#sendmodeldata-function)
+		- [Controller](#controller)
+			- [Creating a Controller](#creating-a-controller)
+			- [Core Functions](#core-functions-1)
+- [3. Technical Details](#3-technical-details)
 	- [Request Handling](#request-handling)
 		- [Request Process Examples](#request-process-examples)
-			- [Example 1: HTTP GET Request to "*`domain`*`/Home`"](#example-1-http-get-request-to-domainhome)
-			- [Example 2: HTTP GET Request to "*`domain`*`/res/js/sampleScript.js`"](#example-2-http-get-request-to-domainresjssamplescriptjs)
-			- [Example 3: HTTP GET Request to "*`domain`*`/Shop/item?id=123`"](#example-3-http-get-request-to-domainshopitemid123)
-			- [Example 4: HTTP POST Request from "*`domain`*`/Orders/new`" to "*`domain`*`/Orders?mode=insert`"](#example-4-http-post-request-from-domainordersnew-to-domainordersmodeinsert)
+			- [Example 1: HTTP GET Request to "*`domain`*`/Home`"](#example-1-http-get-request-to-%22domainhome%22)
+			- [Example 2: HTTP GET Request to "*`domain`*`/res/js/sampleScript.js`"](#example-2-http-get-request-to-%22domainresjssamplescriptjs%22)
+			- [Example 3: HTTP GET Request to "*`domain`*`/Shop/item?id=123`"](#example-3-http-get-request-to-%22domainshopitemid123%22)
+			- [Example 4: HTTP POST Request from "*`domain`*`/Orders/new`" to "*`domain`*`/Orders?mode=insert`"](#example-4-http-post-request-from-%22domainordersnew%22-to-%22domainordersmodeinsert%22)
 			- [Request Flowchart](#request-flowchart)
 	- [Page Access Control](#page-access-control)
 		- [File-Based Access Control (Access Control List)](#file-based-access-control-access-control-list)
@@ -36,6 +49,7 @@ This document contains instructions and information on how to use various compon
 	- [Submitting Forms](#submitting-forms)
 		- [Forms Using GET](#forms-using-get)
 		- [Forms Using POST](#forms-using-post)
+
 
 ## Todo
 - How to add pages
@@ -160,6 +174,8 @@ class Model_Marketplace extends Model
 
 All models have two primary functions: `fetchModelData()` and `sendModelData()`. These are for retrieving data from the database and sending data to the database respectively.
 
+##### **`fetchModelData()` Function**
+
 The `fetchModelData()` function should contain logic on what data to fetch based on the page being requested.
 This can be achieved using a `switch` statement.
 Retrieving data from the database can be achieved using the `queryDatabaseObject()` function. Its results should be stored in an array which is returned to the controller. Below is an example of this process:
@@ -189,12 +205,57 @@ public function fetchModelData(array $request = null, string $submitMode = null)
 }
 ```
 
+##### **`sendModelData()` Function**
+
 The `sendModelData()` function should contains logic that determines what stored procedure is used to send data to the database. In this framework, **all data** being sent to the database **must** be sent via a stored procedure.
 
-```php
-SHOW EXAMPLE OF FUNCTION HERE
-```
+The stored procedure to use can be determined by the [CRUD operation](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) initiated by the user. This framework comes with seven constants that define these operations:
 
+- `MODE_INSERT`
+  > Used when data is to be inserted into a database table.
+- `MODE_UPDATE`
+  > Used when an existing record is to be updated.
+- `MODE_DELETE`
+  > Used when an existing record is to be deleted.
+- `MODE_CREATE`
+  > Used when creating a new database object in the database, such as a table or view.
+- `MODE_DROP`
+  > Usd when dropping a database object in the database.
+- `MODE_EDIT`
+  > Used when modifying a database object in the database.
+- `MODE_SELECT`
+  > Used when selecting data. This should not be used within `sendModelData()`.
+
+These constants are assigned string values which should be used as a GET value in a form's action to specify what to do with the data. The action will need to be validated in the controller before it is sent to the `sendModelData()` function, which is covered in the controller's [`validateDataParameters()` function](#validatedataparameters-function).
+
+In most situations, only `MODE_INSERT`, `MODE_UPDATE` and `MODE_DELETE` will be used. The snippet below demonstrates how these can be used:
+
+```php
+public function sendModelData(array $data, string $submitMode = null): array | null
+{
+	$response = null;
+	// Use a switch statement to determine what action needs to be performed with the data. Each case should call a stored procedure respective to the mode.
+	switch ($submitMode) {
+		case MODE_INSERT:
+			$response = $this->executeStoredProcedure("dbo", "usp_ins", $data);
+			break;
+		case MODE_UPDATE:
+			$response = $this->executeStoredProcedure("dbo", "usp_upd", $data);
+			break;
+		case MODE_DELETE:
+			$response = $this->executeStoredProcedure("dbo", "usp_del", $data);
+			break;
+	}
+
+	// If an error occurred in the stored procedure or a PRINT statement was called, the message will be stored in the session.
+	if (isset($response["FAILURE"])) {
+		$_SESSION["MSG_ERROR"] = $response["FAILURE"];
+	}
+
+	// If the stored procedure returns any data via a SELECT, it will be returned.
+	return $response;
+}
+```
 
 ### Controller
 
@@ -225,7 +286,24 @@ Assuming the new controller was created by copying the `Controller_Template.php`
 class Controller_Marketplace extends Controller
 ```
 
-TODO
+#### Core Functions
+
+All controllers have three primary functions: `retrieveData()` requests data from the model and manipulates it, and `postData()` and `validateDataParameters()` are used to send data to the model.
+
+##### **`retrieveData()` Function**
+
+This function is called upon a GET request to the requested page. It should contain logic that determines what data retrieved from the model (if one exists for the controller) and how it is manipulated for display on a view's page.
+
+
+
+##### **`postData()` Function**
+
+##### **`validateDataParameters()` Function**
+
+### MVC Examples
+
+Complete examples of this framework can be found here:
+// TODO ADD LINK TO EXAMPLES. Will need to create a repository with the code and host it on a web server somewhere to demonstrate its functionality.
 
 # 3. Technical Details
 
