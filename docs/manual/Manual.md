@@ -294,16 +294,149 @@ All controllers have three primary functions: `retrieveData()` requests data fro
 
 This function is called upon a GET request to the requested page. It should contain logic that determines what data retrieved from the model (if one exists for the controller) and how it is manipulated for display on a view's page.
 
+To retrieve data from the model, the following line should be added at the beginning of the `retrieveData()` function:
 
+```php
+$modelData = $this->getModel()->fetchModelData($request);
+```
+
+The logic can then be separated per page using a switch statement and the `getPage()` function, much like was done in the model's [`fetchModelData()` function](#fetchmodeldata-function).
+The code would look something like this:
+
+```php
+public function retrieveData(array $request = null): void
+{
+	$modelData = $this->getModel()->fetchModelData($request);
+	switch ($this->getPage()) {
+		// Add cases for each page in the view that requires its own unique logic.
+		case 'item':
+			// logic specific to "item" page goes here
+			break;
+		case 'new':
+			// logic specific to "new" page goes here
+			break;
+		default:
+			// logic specific to "default" page goes here
+			break;
+	}
+}
+```
+
+The `retrieveData()` function does not return any values. To pass data manipulated or generated from the controller to the view, the `setPreparedData()` function should be used. It uses a key-value pair pattern to distinguish multiple sets of data.
+Ideally, only strings should be used with this function, but any data type or object can be assigned.
+
+```php
+// The first param is a key to identify associate the data to and the second is the data to be displayed on the view.
+$this->setPreparedData("key", $var);
+```
 
 ##### **`postData()` Function**
 
+This function is only called when a HTTP POST request is made to a page associated with a controller. The POST variables are passed into this function's `$data` parameter.
+
+It is responsible for calling the [`validateDataParameters()` function](#validatedataparameters-function) and sending the validated data to the model for use in the database, if the validation was successful. Upon completion, the function will redirect to the page specified by returning the name of the view or a specific URL.
+
+If validation is successful, the function should set a status message to be displayed once the redirected page is loaded. An example of this function is demonstrated below:
+
+```php
+public function postData(array $data, string $mode): mixed
+	{
+		$data = $this->validateDataParameters($data, $mode);
+		// Destination is set to direct to the default page in the Marketplace view.
+		$destination = 'Marketplace';
+
+		// If the validation was successful, it will return the data as an array. Any errors will be returned as a string in the form of an error message.
+		if (gettype($data) == 'array') {
+			// Send the validated data to the model and receive its response
+			$response = $this->getModel()->sendModelData($data, $mode);
+			if (!isset($response["FAILURE"])) {
+				switch ($mode) {
+					case m\MODE_INSERT:
+						// Perform any necessary operations if the INSERT mode was successful.
+
+						// Setting of a status message
+						$_SESSION["MSG_STATUS"] = "Successfully inserted data";
+						break;
+					case m\MODE_UPDATE:
+						// Setting of a status message
+						$_SESSION["MSG_STATUS"] = "Successfully updated data";
+						break;
+					case m\MODE_DELETE:
+						// Setting of a status message
+						$_SESSION["MSG_STATUS"] = "Successfully deleted data";
+						break;
+				}
+			} else {
+				// If an error occurred in the model, set its error message here.
+				$_SESSION["MSG_ERROR"] = $response["FAILURE"];
+			}
+		} else {
+			// Set the error message to what the validation returned and redirect to the previous page (or a URL of your choice).
+			$_SESSION["MSG_ERROR"] = $data;
+			$destination = $_SERVER["HTTP_REFERER"];
+		}
+
+		// The $destination is returned to the Router object which will route the user to the page/URL specified.
+		return $destination;
+	}
+```
+
+Much like in the model's [`sendModelData()` function](#sendmodeldata-function), a switch statement is used to distinguish between the CRUD mode used on the validated data.
+In this function though, it is used after the data is sent to the model and is purely used to set an appropriate status message based on the operation performed.
+
+It is worth noting that if an error message was set in the model's `sendModelData()` function, it should be set in this function too.
+
 ##### **`validateDataParameters()` Function**
+
+This function is used alongside the [`postData()` function](#postdata-function) to validate all data being sent to the model for use in a stored procedure.
+This function should also cleanse any data from potential SQL injections should the data be used in dynamic SQL statements within a stored procedure.
+
+Since this function should validate the data sent via a POST request for use in a stored procedure's parameters, this function should return an associative array with each key being a parameter in the stored procedure. Much like the model's [`sendModelData()` function](#sendmodeldata-function) and the controller's [`postData()` function](#postdata-function), a switch statement is used to distinguish between the CRUD operation, and hence the stored procedure to use when submitting data into the database with.
+
+For example, suppose a user is sending a request to the database to update an item in a marketplace platform. This would be done using the UPDATE mode. Suppose the SQL stored procedure for this operation has three parameters:
+- `@ItemID` - INT
+- `@ItemName` - NVARCHAR(64)
+- `@ItemQuantity` - SMALLINT
+  
+In the `validateDataParameters()` function, a switch statement would be used to select the UPDATE mode, and it would have code that cleanses the data from the POST request and assigns it to array keys that correspond to the stored procedure's parameters.
+The code snippet below demonstrates this: 
+
+```php
+protected function validateDataParameters(array $data, string $mode = 'default'): array | string | null
+{
+	$validated = array();
+
+	// Validate each piece of data in their respective switch case. Each validated value should be stored in its own array key.
+	switch ($mode) {
+		case m\MODE_INSERT:
+			break;
+		case m\MODE_UPDATE:
+			// Assign a key in the $validated array to correspond with its procedure's parameters. The procedure is what is defined in the model's sendModelData() function in the respective switch case.
+			$validated['ItemID'] = $this->validatePostInput($data['id']);
+
+			// Custom validation checks can be performed. If the data is found to be invalid, the $validated variable can be assigned to a string instead, which will be returned to the postData() function as an error message.
+			if (empty($data['name'])) {
+				$validated = "The name must not be empty.";
+				break;
+			}
+			$validated['ItemName'] = $this->validatePostInput($data['name']);
+			$validated['ItemQuantity'] = $this->validatePostInput($data['quantity']);
+			break;
+		case m\MODE_DELETE:
+			break;
+	}
+
+	return $validated;
+}
+```
+
+As displayed in the example above, each parameter in the stored procedure to be executed is used as a key in the `$validated` array, excluding the '`@`' symbol.
+This array is returned and the sent to the model if the `$validated` array is not redefined as a string. The `$validated` array should only be redefined to a string or null if the data is determined to tbe invalid.
 
 ### MVC Examples
 
 Complete examples of this framework can be found here:
-// TODO ADD LINK TO EXAMPLES. Will need to create a repository with the code and host it on a web server somewhere to demonstrate its functionality.
+*TODO ADD LINK TO EXAMPLES. Will need to create a repository with the code and host it on a web server somewhere to demonstrate its functionality.*
 
 # 3. Technical Details
 
@@ -317,7 +450,7 @@ It is assumed that the web server reads an `index.php` file as the default page 
 
 ### Request Process Examples
 
-The following examples demonstrate how the framework handles and responds to requests made by the user. No user configuration is needed to produce any of the example unless specified.
+The following examples demonstrate how the framework handles and responds to requests made by the user.
 
 A flowchart is displayed below that summarises the request flow.
 
@@ -370,12 +503,24 @@ switch ($this->getPage()) {
 7. After the controller has completed its tasks, the header, nav, `item.php` in "`private_core/views/Shop`" and footer are included via `index.php`.
 8. The request is completed and the content is displayed to the user.
 
-#### Example 4: HTTP POST Request from "*`domain`*`/Orders/new`" to "*`domain`*`/Orders?mode=insert`"
+#### Example 4: HTTP POST Request from "*`domain`*`/Marketplace/new`" to "*`domain`*`/Marketplace?mode=insert`"
 
-> This example demonstrates how a POST request is made from a form on the "new" page in the "Orders" view with the `action` attribute of the form pointing to `Orders?mode=insert`.
+> This example demonstrates how a POST request is made from a form on the "new" page in the "Marketplace" view with the `action` attribute of the form pointing to `Marketplace?mode=insert`.
 > The view in this example has a controller and router.
 
-1. 
+1. The user submits a form with all its fields filled in. It is assumed that all fields have a valid "`name`" attribute to be sent via POST.
+2. In `index.php`, a new Router object is created. This parses the URI request made by the user, being "`Marketplace?mode=insert`".
+3. The router checks if the requested URI is a resource or a webpage. In this case, it is found to be a view and checks to ensure it exists. The view is found in "`private_core/views/Marketplace/`".
+4. The router checks to see if a controller exists with the same name as the view. It finds one in `private_core/controllers/Controller_Marketplace.php` and constructs it. In this controller, a model is also specified and is constructed.
+5. With the constructed controller, the request made to the server is detected as POST and is forwarded to the controller's `postData()` function.
+6. The `postData()` function passes its received data to the `validateDataParameters()` function to be cleansed before submission into the model. This function also assigns the validated data to parameters for use in a stored procedure that the model will execute. See the [`validateDataParameters()` function](#validatedataparameters-function) for more info and examples.
+7. The validated data is returned back to the `postData()` function. It checks to see if the data returned is an array or not. If it is, the data is passed to the model's `sendModelData()` function. Else, the error message from the validated data is set.
+8. Assuming that no error occurred in the validation, the model sends the validated data to the appropriate stored procedure, denoted by the `mode` variable in the form's action. In this case, the mode is set to "insert", so the stored procedure for the insert CRUD operation is executed with the validated data.
+9. If the stored procedure returns any data or encounters any errors, they are returned to the controller's `postData()` function.
+10. The `postData()` function checks if an error was returned by the model's `sendModelData()` function. If one was found, it is set as an error message and the redirect location is set to the referrer or a custom page. Else, a suitable status message is set. If necessary, a specific page URI can be set to redirect to which is returned by the function. In this scenario, for inserting a record, the message could be similar to "Successfully inserted record". An example with code is described in the [`postData()` function](#postdata-function).
+11. After any status messages have been set, the page is redirected to the location specified.
+12. The router receives the URI/URL returned by the `postData()` function and sends a HTTP header to that location.
+13. The user is redirected to the location set by the router and that page is loaded.
 
 #### Request Flowchart
 

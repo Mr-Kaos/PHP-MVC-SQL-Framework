@@ -45,21 +45,25 @@ class Controller_Template extends Controller
 		if (gettype($data) == 'array') {
 			// Send the validated data to the model and receive its response
 			$response = $this->getModel()->sendModelData($data, $mode);
-			switch ($mode) {
-				case m\MODE_INSERT:
-					// Perform any necessary operations if the INSERT mode was successful.
+			if (!isset($response["FAILURE"])) {
+				switch ($mode) {
+					case m\MODE_INSERT:
+						// Perform any necessary operations if the INSERT mode was successful.
 
-					// Set a useful status message to inform the user the insert was successful.
-					$_SESSION["MSG_STATUS"] = "Successfully inserted data";
-					break;
-				case m\MODE_UPDATE:
-					// Perform any necessary operations if the UPDATE mode was successful and set a status message.
-					$_SESSION["MSG_STATUS"] = "Successfully updated data";
-					break;
-				case m\MODE_DELETE:
-					// Perform any necessary operations if the DELETE mode was successful and set a status message.
-					$_SESSION["MSG_STATUS"] = "Successfully deleted data";
-					break;
+						// Set a useful status message to inform the user the insert was successful.
+						$_SESSION["MSG_STATUS"] = "Successfully inserted data";
+						break;
+					case m\MODE_UPDATE:
+						// Perform any necessary operations if the UPDATE mode was successful and set a status message.
+						$_SESSION["MSG_STATUS"] = "Successfully updated data";
+						break;
+					case m\MODE_DELETE:
+						// Perform any necessary operations if the DELETE mode was successful and set a status message.
+						$_SESSION["MSG_STATUS"] = "Successfully deleted data";
+						break;
+				}
+			} else {
+				$_SESSION["MSG_ERROR"] = $response["FAILURE"];
 			}
 		} else {
 			// Set the error message to what the validation returned and redirect to the previous page (or a URI of your choice).
@@ -75,6 +79,7 @@ class Controller_Template extends Controller
 	 */
 	public function retrieveData(array $request = null): void
 	{
+		$modelData = $this->getModel()->fetchModelData($request);
 		switch ($this->getPage()) {
 				// Add cases for each page in the view that requires its own unique logic.
 			default:
@@ -88,7 +93,7 @@ class Controller_Template extends Controller
 	 */
 	protected function validateDataParameters(array $data, string $mode = 'default'): array | string | null
 	{
-		$validatedData = array();
+		$validated = array();
 
 		// Validate each piece of data in their respective switch case. Each validated value should be stored in its own array key.
 		switch ($mode) {
@@ -100,6 +105,6 @@ class Controller_Template extends Controller
 				break;
 		}
 
-		return $validatedData;
+		return $validated;
 	}
 }
