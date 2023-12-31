@@ -1,6 +1,6 @@
 <?php
 
-namespace Application\Controller;
+namespace EasyMVC\Controller;
 
 /**
  * This trait class contains special data validation functions that are used in specific controllers.
@@ -21,7 +21,6 @@ trait DataValidator
 	private function validateCSVParams(array $data, $keyPrefix = ""): array
 	{
 		$CSVData = array();
-		// $CSVData[$mainParamName] = $this->formatNameForDatabase($data[$mainParamName]);
 		$lastName = '';
 		$attributeNames = "";
 		$attributeFriendlyNames = "";
@@ -34,6 +33,7 @@ trait DataValidator
 			if (strpos($key, "attrName") === 0) {
 				$lastName = preg_replace('/\bmulti-/i', '', $val);
 				$lastName = $this->formatNameForDatabase($lastName);
+
 				$attributeNames .= $lastName . "`";
 				$attributeFriendlyNames .= $this->validateInput($val) . "`";
 			} else if (strpos($key, "attrType") === 0) {
@@ -57,7 +57,6 @@ trait DataValidator
 		if (strlen($attributeOverrides) > 0) {
 			$CSVData[$keyPrefix . "AttributeOverrides"] = $attributeOverrides;
 		}
-
 		return $CSVData;
 	}
 
@@ -74,8 +73,6 @@ trait DataValidator
 	private function validateCSVParamsForEdit(array &$data): array
 	{
 		$CSVData = array();
-		$originalName = '';
-		$columnName = '';
 		$originalNames = '';
 		$columnRenames = '';
 		$columnTypes = '';
@@ -85,47 +82,45 @@ trait DataValidator
 		$columnsToRemove = '';
 		$newFields = null;
 		$spliceOffset = 0;
-		$testObj = array();
+		$organised = array();
+		$currentIndex = 0;
 
+		// Loops through each piece of data posted, and assigns them to a string for use in the required stored procedure.
+		// If the "NEW_FIELDS_START" key is found, all following values in the array should be new fields to be parsed using the standard validateCSVParams function.
+
+		// Loops through each piece of data posted that needs to be parsed into CSV strings. This loop stores them in a temporary array which separates each value
+		// into their respective row for easy manipulation.
 		foreach ($data as $key => $val) {
 			if ($key === 'NEW_FIELDS_START') {
 				$newFields = $this->validateCSVParams(array_splice($data, $spliceOffset), 'New');
 				break;
-			} else if (strpos($key, "attrOriginalName") === 0) {
-				$originalName = $this->formatNameForDatabase($val);
-			} else if (strpos($key, "attrName") === 0) {
-				$testObj[$originalName] = [];
-				if ($val !== $originalName) {
-					$testObj[$originalName]["Rename"] = $val;
-				}
-			} else if (strpos($key, "attrType") === 0) {
-				$testObj[$columnName]["Type"] = $this->dataTypeConversion($val);
-			} else if (strpos($key, "attrVal") === 0) {
-				$testObj[$columnName]["Value"] = $this->validatePostInput($val);
-			} else if ($key === "identifier") {
-				$CSVData["IsNameColumn"] = $originalName;
-			} else if (strpos($key, "attrNull") === 0) {
-				$testObj[$columnName]["Null"] = $this->validatePostInput($val);
-			} else if (strpos($key, "attrSelectable") === 0) {
-				$testObj[$columnName]["Override"] = $this->validatePostInput($val);
-			} else if (strpos($key, "remove") === 0) {
-				$columnsToRemove .= "$val`";
+			} elseif (substr($key, strlen($key) - 1, strlen($key)) == $currentIndex) {
+				$organised[$currentIndex][$key] = $val;
+			} else if ($key === 'identifier') {
+				$organised[$currentIndex][$key] = $val;
 			} else {
-				$columnValues .= $val . '`';
+				$currentIndex++;
+				$organised[$currentIndex][$key] = $val;
 			}
 			$spliceOffset++;
 		}
 
-		foreach ($testObj as $key => $value) {
-			if (count($value) === 0) {
-				unset($testObj[$key]);
+		for ($i = 0; $i < count($organised); $i++) {
+			$separator = $i + 1 < count($organised) ? '`' : '';
+			$originalNames .= isset($organised[$i]['attrOriginalName' . $i]) ? $this->formatNameForDatabase($organised[$i]['attrOriginalName' . $i]) . $separator : '`';
+			$columnRenames .= isset($organised[$i]['attrName' . $i]) ? $this->validatePostInput($organised[$i]['attrName' . $i]) . $separator : '`';
+			$columnTypes .= isset($organised[$i]['attrType' . $i]) ? $this->dataTypeConversion($organised[$i]['attrType' . $i]) . $separator : '`';
+			$columnValues .= isset($organised[$i]['attrVal' . $i]) ? $this->validatePostInput($organised[$i]['attrVal' . $i]) . $separator : '`';
+			$columnNulls .= isset($organised[$i]['attrNull' . $i]) ? $this->validatePostInput($organised[$i]['attrNull' . $i]) . $separator : '`';
+			$columnOverride .= isset($organised[$i]['attrSelectable' . $i]) ? $this->validatePostInput($organised[$i]['attrSelectable' . $i]) . $separator : '`';
+			if (isset($organised[$i]['identifier'])) {
+				$CSVData["IsNameColumn"] = $organised[$i]['attrOriginalName' . $i];
+			}
+
+			if (isset($organised[$i]['attrSelectable' . $i])) {
+				$columnOverride .= $this->validatePostInput($organised[$i]['attrSelectable' . $i]) . $separator;
 			} else {
-				$originalNames .= $key . '`';
-				$columnRenames .= (isset($testObj[$key]["Rename"]) ? $testObj[$key]["Rename"] : '') . '`';
-				$columnTypes .= (isset($testObj[$key]["Type"]) ? $testObj[$key]["Type"] : '') . '`';
-				$columnValues .= (isset($testObj[$key]["Value"]) ? $testObj[$key]["Value"] : '') . '`';
-				$columnNulls .= (isset($testObj[$key]["Null"]) ? $testObj[$key]["Null"] : '') . '`';
-				$columnOverride .= (isset($testObj[$key]["Override"]) ? $testObj[$key]["Override"] : '') . '`';
+				$columnOverride .= '`';
 			}
 		}
 
@@ -142,6 +137,7 @@ trait DataValidator
 			$CSVData = array_merge($CSVData, $newFields);
 		}
 
+		unset($CSVData['NewAttributeRequired']);
 		return $CSVData;
 	}
 
@@ -166,10 +162,7 @@ trait DataValidator
 				$typeName .= "BIT";
 				break;
 			case "enum":
-				//tests if the last 6 characters of the string are "-Multi" which indicates that the attribute while being a foreign key, will contain multiple of them.
-				// if (substr($data["attrVal" . substr($key, -1)], -6) === "-Multi") {
 				$typeName .= "FK";
-				// }
 				break;
 		}
 
@@ -177,9 +170,11 @@ trait DataValidator
 	}
 
 	/**
-	 * This is used to format Product attributes for use in a model.
+	 * This is used to format Product attributes into a JSON string.
+	 * This is used when submitting a new order, a new routing task or a machine product configuration.
 	 * @param array $data - An array containing the data to be parsed and validated for use in an MVC model.
-	 * @return array - the validated data as an array.
+	 * @param array | @deprecated $fieldsToIgnore  An array containing keys in the $data that should not be parsed and included in the output JSON. 
+	 * @return string - the validated data as an array.
 	 */
 	private function componentAttributeToJSON(?array $data, array $fieldsToIgnore = array()): string
 	{
@@ -187,24 +182,45 @@ trait DataValidator
 		if (!is_null($data)) {
 			$componentsArray = array();
 			$subArray = array();
-			$subArrayName = null;
+			$subArrayName = '';
 			$multiPostKey = null;
 			$tempMultiPostValues = array();
+			$removeProductName = false;
+			$cleansedName = '';
+			$productsFound = false;
 
 			foreach ($data as $var => $val) {
 				if (!is_numeric(array_search($var, $fieldsToIgnore))) {
-					// If "Product-" is found, create an array within the json array.
-					if (substr($var, 0, 5) == "PROD_") {
-						if (is_null($subArrayName)) {
+					if ($removeProductName && !empty($subArrayName)) {
+						$cleansedName = str_replace($subArrayName . '_', '', $var);
+					}
+					// If the next component attribute is not from a pillbox input but the pillbox key is set, assign the previously obtained pillbox values
+					if (!is_null($multiPostKey) && substr($var, 0, 6) !== 'multi-') {
+						if (count($tempMultiPostValues) > 0) {
+							$subArray[$multiPostKey] = $tempMultiPostValues;
+						}
+						$tempMultiPostValues = [];
+						$multiPostKey = null;
+					}
+					// If the prefix "PROD_" is found, create an array within the json array.
+					if (substr($var, 0, 5) == "PROD_" || substr($var, 0, 4) == "Add_") {
+						$productsFound = true;
+						if (empty($subArrayName)) {
 							$subArrayName = str_replace("PROD_", '', $var);
+							$subArrayName = str_replace("Add_", '', $subArrayName);
 						} else {
 							$componentsArray[$subArrayName] = $subArray;
 							$subArray = array();
 							$subArrayName = str_replace("PROD_", '', $var);
+							$subArrayName = str_replace("Add_", '', $subArrayName);
 						}
-					} else if (!is_null($multiPostKey) && str_contains($var, $multiPostKey)) {
+						if (substr($var, 0, 5) == "PROD_" || substr($var, 0, 4) == "Add_") {
+							$removeProductName = true;
+						}
+						$componentsArray[$subArrayName] = array();
+					} elseif (!is_null($multiPostKey) && str_contains($var, $multiPostKey)) {
 						array_push($tempMultiPostValues, $val);
-					} else if (substr($var, 0, 6) == 'multi-') {
+					} elseif (substr($var, 0, 6) == 'multi-') {
 						if (count($tempMultiPostValues) > 0) {
 							if (count($subArray) > 0) {
 								$subArray[$multiPostKey] = $tempMultiPostValues;
@@ -212,17 +228,17 @@ trait DataValidator
 								$componentsArray[$multiPostKey] = $tempMultiPostValues;
 							}
 						}
-						$multiPostKey = str_replace('multi-', '', $var);
+						$multiPostKey = str_replace('multi-', '', $cleansedName);
 						$tempMultiPostValues = array();
-					} else {
-						if (is_null($subArrayName)) {
-							$componentsArray[$var] = $this->validateInput($val);
-						} elseif (!empty($val)) {
-							$subArray[$var] = $this->validateInput($val);
+					} elseif (str_contains($var, $subArrayName) && $productsFound) {
+						if (!empty($val)) {
+							$subArray[$cleansedName] = $this->validateInput($val);
 						}
 					}
 				}
 			}
+
+			// Ensures the last product is added to the components array.
 			if (count($tempMultiPostValues) > 0) {
 				if (count($subArray) > 0) {
 					$subArray[$multiPostKey] = $tempMultiPostValues;
@@ -242,6 +258,7 @@ trait DataValidator
 
 	/**
 	 * Validates the inputs from a pillbox input.
+	 * @deprecated
 	 * @param string $pillBoxId The ID of the multi-select dropdown that corresponds to the pillbox element.
 	 * @param array $data An array containing the pillbox elements.
 	 */
@@ -262,16 +279,14 @@ trait DataValidator
 	 * @param array $data Form data 
 	 * @return array The validated data.
 	 */
-	private function dynamicPillBoxValidation($data)
+	function dynamicPillBoxValidation($data)
 	{
 		$validatedPillBoxInputs = array();
 		$multiFkData = null;
 		$multiFkKey = null;
 
 		foreach ($data as $key => &$input) {
-
 			if (substr($key, 0, 6) === 'multi-') {
-
 				if (is_null($multiFkKey)) {
 					$multiFkKey = str_replace('multi-', '', $key);
 					$multiFkData = '';
@@ -284,13 +299,11 @@ trait DataValidator
 					$multiFkData = '';
 				}
 			} else {
-				var_dump($key);
-
 				$validatedPillBoxInputs[$key] = $input;
 			}
 		}
 		if ($multiFkData != '') {
-			$validatedPillBoxInputs[$multiFkKey] = $multiFkData;
+			$validatedPillBoxInputs[$multiFkKey] = rtrim($multiFkData, ";");
 		}
 		return $validatedPillBoxInputs;
 	}
@@ -301,11 +314,11 @@ trait DataValidator
 	 * @param bool $addSingleQuote If true, strings are enclosed by single quotes. This is primarily used to aid SQL query syntax.
 	 * @return mixed The validated data from a POST request.
 	 */
-	protected function validatePostInput(mixed $data, bool $addSingleQuote = false): mixed
+	protected function validatePostInput(mixed $data): mixed
 	{
 		$validated = false;
 		if (!is_null($data)) {
-			$validated = $this->validateInput($data, $addSingleQuote);
+			$validated = $this->validateInput($data);
 		}
 
 		return $validated;
@@ -327,6 +340,84 @@ trait DataValidator
 		}
 
 		return $validated;
+	}
+
+	/**
+	 * Saves the files as described in the $_FILES variable to the specified directory.
+	 * The files should be one that is posted into the $_FILES variable.
+	 * 
+	 * @param array $fileData An array from $_FILES for the specified files to upload.
+	 * @param string $targetDir The target directory to move the uploaded file to.
+	 * @param array $allowedExtensions An array of file extensions that are to be allowed. If a file is uploaded with an extension that is not in this list, the file will be denied.
+	 * @param int $sizeLimit The maximum allowed file size for the uploaded file in bytes. Default is 15MB.
+	 * @return string|false If successful, the filename of the uploaded file is returned. Else, false.
+	 */
+	protected function saveFile(array $fileData, array $allowedExtensions, string $targetDir = 'res/uploads/', int $sizeLimit = 15000000): string | false
+	{
+		$saved = false;
+
+		if (isset($fileData["name"])) {
+			if (is_array($fileData['name'])) {
+				for ($i = 0; $i < count($fileData['name']); $i++) {
+					$file = array(
+						'name' => $fileData['name'][$i],
+						'full_path' => $fileData['full_path'][$i],
+						'type' => $fileData['type'][$i],
+						'tmp_name' => $fileData['tmp_name'][$i],
+						'error' => $fileData['error'][$i],
+						'size' => $fileData['size'][$i]
+					);
+					if (($upload = $this->uploadFile($file, $targetDir, $allowedExtensions, "", $sizeLimit)) !== false) {
+						$saved .= "$upload;";
+					}
+				}
+			} else {
+				$saved = $this->uploadFile($fileData, $targetDir, $allowedExtensions, "", $sizeLimit);
+			}
+		} else {
+			error_log('Cannot find files.');
+		}
+
+		return $saved;
+	}
+
+	/**
+	 * Uploads the specified file as defined in the $_FILES array.
+	 * 
+	 * @param array $fileData An array from $_FILES for the specified files to upload.
+	 * @param string $targetDir The target directory to move the uploaded file to.
+	 * @param array $allowedExtensions An array of file extensions that are to be allowed. If a file is uploaded with an extension that is not in this list, the file will be denied.
+	 * @param int $sizeLimit The maximum allowed file size for the uploaded file in bytes. Default is 15MB.
+	 * @param string $NewName A new name for the file, do NOT include file extension
+	 * @return string|false If successful, the filename of the uploaded file is returned. Else, false.
+	 */
+	protected function uploadFile(array $fileData, string $targetDir, array $allowedExtensions, string $NewName = "", int $sizeLimit = 15000000): string | false
+	{
+		$saved = false;
+
+		$fileExtension = strtolower(pathinfo(basename($fileData['name']), PATHINFO_EXTENSION));
+		if($NewName != "") $fileData['name'] = $NewName .".". $fileExtension;
+		$target = $targetDir . $fileData['name'];
+		if ($fileData["size"] <= $sizeLimit) {
+			if (in_array($fileExtension, $allowedExtensions)) {
+				if (!is_dir($targetDir)) {
+					var_dump($targetDir);
+					mkdir($targetDir);
+				}
+	
+				if (move_uploaded_file($fileData['tmp_name'], $target)) {
+					$saved = $fileData['name'];
+				} else {
+					error_log('Failed to upload file. File may not exist in temp directory. Temp dir: "' . ini_get('upload_tmp_dir') . '"');
+				}
+			} else {
+				error_log('Uploaded file is of a non-permitted type.');
+			}
+		} else {
+			error_log('Uploaded file exceeds specified limit.');
+		}
+
+		return $saved;
 	}
 
 	/**
@@ -358,47 +449,43 @@ trait DataValidator
 
 		// Remove all spaces from the name
 		$text = str_replace(" ", "", $text);
-		// Capitalise the first character of the name
-		$text = substr_replace($text, strtoupper(substr($text, 0, 1)), 0, 1);
-
 		// Loop through all identified indexes in the name where a space was found,
 		// and convert the character to uppercase
-		for ($i = 0; $i < count($positions); $i++) {
-			$capitalisedChar = strtoupper(substr($text, $positions[$i] - $i, 1));
-			$text = substr_replace($text, $capitalisedChar, $positions[$i] - $i, 1);
-		}
+		//temporarily disabled as causes issues with the new FriendlyName Editing
+		// for ($i = 0; $i < count($positions); $i++) {
+		// 	$capitalisedChar = strtoupper(substr($text, $positions[$i] - $i, 1));
+		// 	$text = substr_replace($text, $capitalisedChar, $positions[$i] - $i, 1);
+		// }
 
 		$text = preg_replace("/[^A-Za-z0-9 ]/", '', $text);
 		$text = $this->cleanseStringForDynamicSQL($text);
-
+		// Capitalise the first character of the name
+		$text = substr_replace($text, strtoupper(substr($text, 0, 1)), 0, 1);
 		return $text;
 	}
 
 	/**
 	 * Formats any data passed through so it is valid for use in an SQL query.
 	 * @param mixed $data Data to be validated for use in an SQL query.
-	 * @param bool $addApostrophe If true, adds apostrophes (') to the left and right of the given data.
 	 * @return string The validated data as a string.
 	 */
-	private function validateInput(mixed $data, bool $addApostrophe = false): string
+	private function validateInput(mixed $data): string
 	{
 		$validatedInput = $data;
-
 		if ($data instanceof \DateTime) {
 			$validatedInput = date_format($data, 'Y-m-d H:i:s');
 		} else if (!is_numeric($data) && !is_null($data)) {
 			$data = str_replace('`', '', $data);
-			if ($data === "" || $data === "NULL") {
-				$validatedInput = "NULL";
-			} else if ($data === "on" || $data === "true") {
+			// if ($data === "" || $data === "NULL") {
+			// 	$validatedInput = "NULL";
+			// } else 
+			if ($data === "on" || $data === "true") {
 				$validatedInput = "1";
-			} else if ($data === "false") {
+			} elseif ($data === "false") {
 				$validatedInput = "0";
-			} else if ($addApostrophe) {
-				$validatedInput = "'$data'";
 			}
-		} else if (is_null($data) || $data === "") {
-			$validatedInput = "NULL";
+			// } else if (is_null($data) || $data === "") {
+			// 	$validatedInput = "NULL";
 		}
 
 		return $validatedInput;

@@ -1,11 +1,8 @@
 <?php
 
-namespace Application\SessionManagement;
+namespace EasyMVC\SessionManagement;
 
 /**
- * Authenticate.php.inc
- * NOTICE: THIS FILE MUST BE INCLUDED ON EVERY PAGE IN THE WEB APPLICATION! 
- * 
  * This script handles user authentication to the server.
  * It will initialise a session if one is has not already been created and will check if the client's
  * session variables are valid or not when accessing a web page.
@@ -20,9 +17,9 @@ const USER_INFO = 'USER_INFO';
 class SessionManager
 {
 	//Both Values below are in minutes.
-	private const EXPIRE_TIME_LIMIT = 60; // The time limit for if a user is inactive for too long.
 	private const SESSION_TOKEN_EXPIRY = 15; // The time limit from the start of a session where a session token will expire and be replaced with a new one. Session Hijacking prevention.
 	private const ACCESS_CONTROL_LIST = 'acl.json';
+	private const EXCLUDED_PAGES = ['Login', 'Table'];
 
 	/**
 	 * Constructor for session manager. Starts the session.
@@ -35,22 +32,44 @@ class SessionManager
 	/**
 	 * Checks if the request in the session session is valid.
 	 * First checks if the session has timed out. Then check if the user is logged in and is accessing a page they are allowed to visit.
+	 * @return bool True if the request is valid. False if it is not.
 	 */
 	public function validateRequest(string $page)
 	{
 		$valid = false;
-		$userGroup = "None";
+		$userGroup = 5;
 
 		if ($this->checkTimeout()) {
 			session_unset();
 			session_destroy();
 		} elseif (isset($_SESSION[USER_INFO])) {
 			$userGroup = $_SESSION[USER_INFO]['Group'];
+			$valid = true;
 		}
 
-		$valid = $this->checkPageFromFile($page, $userGroup);
+		if (constant('AUTH_METHOD') == 'file') {
+			$valid = $this->checkPageFromFile($page, $userGroup);
+		} else {
+			$valid = $this->checkPageFromDatabase($page, $userGroup);
+		}
 
 		return $valid;
+	}
+
+	/**
+	 * Checks if the user is authenticated into the site.
+	 */
+	public function checkAuthentication(): bool
+	{
+		$authenticated = false;
+
+		if (isset($_SESSION['USER_INFO'])) {
+			$authenticated = true;
+
+			// Add checks to ensure the login details are up to date. I.e., if the username was changed and they are still logged in, update the SESSION data.
+		}
+
+		return $authenticated;
 	}
 
 	/**
@@ -62,7 +81,7 @@ class SessionManager
 		$timedOut = false;
 
 		//Last Activity Check
-		if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] >  $this::EXPIRE_TIME_LIMIT * 60)) {
+		if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] >  constant('TIMEOUT_LOGIN') * 60)) {
 			$timedOut = true;
 		}
 		$_SESSION['LAST_ACTIVITY'] = time();
@@ -79,31 +98,78 @@ class SessionManager
 	}
 
 	/**
-	 * Checks that the user is authenticated in the site using an access-control-list file.
+	 * Checks that the user is granted access to the requested page using data stored in the database.
+	 */
+	private function checkPageFromDatabase(string $url, string $userGroup): bool
+	{
+		$accessGranted = false;
+		$qry = 'SELECT AccessControlJSON FROM [WebApp].[GroupPageAccessControl] WHERE UserGroup = ?';
+
+		$connectionInfo = array("Database" => constant('DB_NAME'), "UID" => constant('DB_USERNAME'), "PWD" => constant('DB_PASSWORD'), "CharacterSet" => "UTF-8");
+		$conn = sqlsrv_connect(constant('DB_SERVER'), $connectionInfo);
+		if (!$conn) {
+			$_SESSION["MSG_ERROR"] = 'Unable to connect to the database.';
+		}
+
+		$result = sqlsrv_query($conn, $qry, [$userGroup]);
+		if ($result) {
+			$result = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)['AccessControlJSON'];
+			if (!is_null($result)) {
+				if (!is_null($json = json_decode($result, true))) {
+					$accessGranted = $this->checkPageAccessJSON($json, $url);
+				} else {
+					echo 'debug: failed to parse json';
+				}
+			}
+		} else {
+			echo 'debug: failed to retrieve access control list';
+		}
+
+		return $accessGranted;
+	}
+
+	/**
+	 * Checks that the user is granted access to the requested page using an access-control-list file.
 	 */
 	private function checkPageFromFile(string $url, string $userGroup): bool
 	{
-		$authenticated = false;
+		$accessGranted = false;
+
+		$json = json_decode(file_get_contents($this::ACCESS_CONTROL_LIST, true), true);
+		$validViews = $json['UserGroups'][$userGroup];
+		$this->checkPageAccessJSON($validViews, $url);
+
+		return $accessGranted;
+	}
+
+	/**
+	 * Parses a JSON object containing page access control for the given user/user group.
+	 * Contains exclusions for some views, such as Login and Table views.
+	 * @param array $json An array of the decoded JSON object containing the Views and pages that are accessible to the specified user group.
+	 * @param string $url The URL of the requested page to be accessed.
+	 */
+	private function checkPageAccessJSON(array $json, string $url)
+	{
+		$accessGranted = false;
 
 		$split = explode('/', $url);
 		$view = $split[0];
 		$page = isset($split[1]) ?  $split[1] : 'default';
 
-		$json = json_decode(file_get_contents($this::ACCESS_CONTROL_LIST, true), true);
-		$validViews = $json['UserGroups'][$userGroup];
-
-		if ($validViews == '*') {
-			$authenticated = true;
+		if (in_array($view, $this::EXCLUDED_PAGES)) {
+			$accessGranted = true;
+		} elseif (array_key_exists("*", $json)) {
+			$accessGranted = true;
 		} else {
 			// check if the view is listed as accessible
-			if (isset($validViews[$view])) {
+			if (isset($json[$view])) {
 				// if view is accessible, check that the page requested is also accessible
-				if ($validViews[$view] == '*') {
-					$authenticated = true;
-				} elseif (is_array($validViews[$view])) {
-					foreach ($validViews[$view] as $pg) {
+				if ($json[$view] == '*') {
+					$accessGranted = true;
+				} elseif (is_array($json[$view])) {
+					foreach ($json[$view] as $pg) {
 						if ($page == $pg) {
-							$authenticated = true;
+							$accessGranted = true;
 							break;
 						}
 					}
@@ -111,7 +177,7 @@ class SessionManager
 			}
 		}
 
-		return $authenticated;
+		return $accessGranted;
 	}
 
 	private function startSession()

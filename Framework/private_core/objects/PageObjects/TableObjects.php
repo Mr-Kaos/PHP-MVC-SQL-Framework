@@ -1,8 +1,9 @@
 <?php
 
-namespace Application\PageBuilder;
+namespace EasyMVC\PageBuilder;
 
-// This script defines objects used to create tables in the PageBuilder_Table file (TableBuilder class).
+// This script defines objects used to create tables in the TableBuilder file (TableBuilder class).
+// include_once("../phpScripts/globalHelperFunctions.php");
 enum ActionType: Int
 {
 		// No action.
@@ -182,7 +183,6 @@ class TableRow
 		if (!is_null($this->styleName)) {
 			$html = ' class="' . $this->styleName;
 		}
-
 		// If there is a hyperlink specified for the row, add a CSS style that makes the row look clickable.
 		if (!is_null($hyperlink)) {
 

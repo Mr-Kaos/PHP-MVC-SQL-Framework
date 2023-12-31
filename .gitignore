@@ -1,2 +1,8 @@
 # IDE ignores
 .vscode/
+
+#composer files
+Framework/vendor/*
+
+# Configuration files
+Framework/config.php

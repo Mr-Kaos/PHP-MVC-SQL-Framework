@@ -1,9 +1,9 @@
 <?php
 
-namespace Application\Controller;
+namespace EasyMVC\Controller;
 
-use Application\Model as m;
-use Application\Model\Model_Template;
+use EasyMVC\Model as m;
+use EasyMVC\Model\Model_Template;
 
 require_once("Controller.php");
 require_once("private_core/models/Model_Template.php");

@@ -13,11 +13,8 @@ $theme = isset($_SESSION["applicationTheme"]) ? $_SESSION["applicationTheme"] : 
 	<meta charset="utf-8">
 	<title><?= $router->getPageName() ?></title>
 	<link rel="icon" type="image/x-icon" href="res/img/favicon.ico">
-	<link id="theme" href="res/css/style_<?= $theme?>.css" rel="stylesheet" type="text/css">
-	<link href="res/css/layout_default.css" rel="stylesheet" type="text/css">
+	<link id="theme" href="res/css/themes/style_<?= $theme ?>.css" rel="stylesheet" type="text/css">
+	<link href="res/css/layouts/layout_default.css" rel="stylesheet" type="text/css">
 	<script src="https://use.fontawesome.com/1f8670fa31.js"></script>
-	<!-- <script src="https://kit.fontawesome.com/7909644d0f.js" crossorigin="anonymous"></script> -->
 	<script defer src="res/js/iframeAutoSize.js"></script>
 </head>
-
-

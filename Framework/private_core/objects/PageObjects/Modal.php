@@ -1,6 +1,6 @@
 <?php
 
-namespace Application\PageBuilder;
+namespace EasyMVC\PageBuilder;
 
 require_once('PageElement.php');
 /**

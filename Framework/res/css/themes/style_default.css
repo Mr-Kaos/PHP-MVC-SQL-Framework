@@ -10,20 +10,25 @@
 */
 :root {
 	/* Main Page Colours */
-	--main-bg-colour: #fff;
-	--main-bg-accent: #f1fffe;
-	--main-bg-accent-dark: #e0e0e0;
-	--main-colour: #1E959F;
-	--main-colour-alt: #f07171;
-	--main-text-dark: #000;
-	--main-text-light: #fff;
+	--bg-colour: #fff;
+	--bg-accent: #fff2d6;
+	--bg-dark: #dddddd;
+	--element-bg-colour: #0a2c12;
+	--text-dark: #000;
+	--text-light: #fff;
 	--modal-bg-colour: #55555549;
+	/* Main Palette */
+	--primary-colour: #85A48C;
+	--color-1:#D0DAD3;
+	--color-2:#FFFFFF;
+	--color-3:#D6D8AE;
+	--color-4:#9B9E60;
+	--color-5:#5D6015;
 
 	/* Font Styles */
 	--font-fam: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 	--font-size: 14px;
-	--nav-font-size: 20px;
-	--hyperlink: #00887d;
+	--hyperlink: #080;
 
 	/* Message/Alert Styles */
 	--alert-text-default: #061;
@@ -34,45 +39,42 @@
 	--alert-bg-important: #ffc4c4;
 
 	/* Generic Element Effects */
-	--box-shadow-nav: 0px 4px 6px 2px #000000a1;
+	--box-shadow-nav: 0px 2px 16px 2px #000000a1;
 	--box-shadow-menu: drop-shadow(4px 2px 2px #000000);
 	--box-shadow-modal: 0px 8px 8px 0px #00000050;
 
 	/* Generic Element Styles */
-	--border-thin: thin solid #ccc;
-	--border-standard: 2px solid #cacaca;
-	--border-thick: thick solid #ddd;
+	--border-thin: thin solid #222;
+	--border-standard: 2px solid #222;
+	--border-thick: thick solid #222;
 	--border-radius-small: 4px;
 	--border-radius-med: 7px;
 	--border-radius-large: 10px;
 	--border-radius-xlarge: 15px;
 
 	/* Input Elements */
-	--btn-bg: #f2f2f2;
-	--btn-bg-active: #ccc;
 	--btn-confirm: #0fb800;
 	--btn-confirm-hover: #0c9200;
 	--btn-cancel: #f13;
 	--btn-cancel-hover: #db0727;
 	--btn-disabled: #dbacac;
-	--btn-text-light: #fff;
-	--btn-text-dark: #000;
-	--input-bg: #ececec;
+	--input-bg: #dfdfdf;
+	--input-bg-edited: #ffffe0;
 	--input-active: #f3c794;
 	--input-active-bg: #ffedd9;
 	--input-invalid: #ffd2d2;
-	--disabledInputBG: #ccc;
-	--disabled-input-text: #5c5c5c;
+	--input-disabled-bg: #ccc;
+	--input-disabled-text: #5c5c5c;
 
 	/* Table Styles */
-	--tbl-header: #2fcccc;
+	--tbl-header: #77b871;
 	--tbl-row-even: #f5f5f5;
 	--tbl-row-odd: #e7e7e7;
 	--tbl-row-border: solid thin #e7e7e7;
 }
 
 .logo {
-	background-image: url("../img/logo.png");
+	background-image: url("../../img/logo.png");
 	background-repeat: no-repeat;
 }
 

@@ -1,27 +1,25 @@
 <?php
 
-namespace Application\PageBuilder;
+namespace EasyMVC\PageBuilder;
 
-require_once('FormElement.php');
-
+require_once('InputElement.php');
 /**
  * Defines a dropdown element to be built in HTML
  */
-class DropDownElement extends FormElement
+class DropDownElement extends InputElement
 {
 	private array $options;
 	private ?string $selected;
 	private bool $disabled;
-	private array $attributes;
 
 	/**
 	 * Sets up a dropdown element object.
 	 * Checks if any options were given. If none were given, options can be added later via {@see DropdownElement/addOption()}, else the dropdown is automatically disabled.
 	 * Also checks if a selected value was set for the dropdown. If a HTML attribute of 'value' or 'selected' is given, it sets the dropdown's value to the specified value, if it exists in its options. The 'selected' attribute takes precedence over 'value' if both are given.
 	 */
-	public function __construct(string $id, string $label, ?array &$options = array(), ?array $attributes = array(), string $styleName = null, string $labelStyle = null)
+	public function __construct(string $label, string $id, ?array $options = array(), ?array $attributes = array(), string $styleName = null, string $labelStyle = null)
 	{
-		parent::__construct($id, $label, isset($attributes['required']) ? $attributes['required'] : false, $styleName, $labelStyle);
+		parent::__construct($label, $id, InputTypes::dropdown, $attributes, $styleName, $labelStyle);
 
 		if (is_null($options)) {
 			$this->options = array();
@@ -73,10 +71,13 @@ class DropDownElement extends FormElement
 	/**
 	 * Changes the selected value of the dropdown list.
 	 * Calling this function after building the dropdown has no effect on the dropdown returned by {@see DropdownElement/buildElement()}
+	 * @deprecated
 	 * @param string $optionValue The value of the option to set as the selected dropdown option.
 	 */
 	public function setSelected(string $optionValue): void
 	{
+		// echo '<pre>' . print_r($this->options, true) . '</pre>';
+		// echo 'desired selection: ' . $optionValue . '<br>';
 		foreach ($this->options as $option => $value) {
 			if (is_array($value)) {
 				$keys = array_keys($value);
@@ -109,24 +110,24 @@ class DropDownElement extends FormElement
 	 */
 	public function buildElement(): string
 	{
-		$element = $this->buildLabel($this->required);
+		$element = $this->buildLabel($this->getAttribute('required') ? true : false);
 		$attributes = "";
 		foreach ($this->attributes as $attr => $val) {
-			$attributes .= "$attr=$val ";
+			$attributes .= "$attr=\"$val\" ";
 		}
 
 		if (isset($this->options['New Item'])) {
 			$attributes .= 'modal="Modal_' . $this->id . '"';
 		}
 
-		$element .= '<select id="' . $this->id . '" name="' . $this->id . '"' . $this->getClassAttribute() . $attributes;
+		$element .= '<select id="' . $this->id . '" name="' . $this->name . '"' . $this->getClassAttribute() . $attributes;
 		if (count($this->options) === 0) {
-			$element .= 'disabled><option value="NULL">No options available</option>';
+			$element .= 'disabled><option>No options available</option>';
 		} else {
 			if ($this->disabled) {
 				$element .= 'disabled>';
-			} else if (!$this->required) {
-				$element .= '><option value="NULL">Select an option</option>';
+			} else if (!$this->checkAttribute('required')) {
+				$element .= '><option value>Select an option</option>';
 			} else {
 				$element .= ">";
 			}

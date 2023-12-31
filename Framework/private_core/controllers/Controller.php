@@ -6,10 +6,10 @@
  * Defines the Controller Base class and constants used throughout controllers and related objects.
  */
 
-namespace Application\Controller;
+namespace EasyMVC\Controller;
 
-use \Application\Model\Model;
-require_once("private_core/controllers/DataValidators.php");
+use \EasyMVC\Model\Model;
+require_once("./private_core/controllers/DataValidators.php");
 
 /** Signifies that the form data validation and submission was successful.  */
 const STATUS_SUCCESS = 0;
@@ -39,12 +39,12 @@ const DROPDOWN_NEW_OPTION = "modal_new";
  */
 abstract class Controller
 {
-	use  \Application\Controller\DataValidator;
+	use \EasyMVC\Controller\DataValidator;
 	private ?Model $model;
 	private array $preparedData;
 	private bool $submitToDatabase;
 	private bool $abortSubmit = false;
-	private string $pageMode;
+	private string $mode;
 
 	/**
 	 * Base Controller Constructor.
@@ -56,7 +56,7 @@ abstract class Controller
 	{
 		$this->model = $model;
 		$this->preparedData = array();
-		$this->pageMode = $mode;
+		$this->mode = $mode;
 		$this->submitToDatabase = $submitToDatabase;
 	}
 
@@ -82,11 +82,7 @@ abstract class Controller
 
 	/**
 	 * Validates the data sent to it to conform with the model for submission into the database.
-	 * @param array $data An array retrieved from a form submission containing the data to be validated.
-	 * @param string $mode The mode in which the data needs to be validated for. See @see{Application\Model} for MODE constants.
-	 * @return array An associative array of the validated data. If data is being sent to a stored procedure, each key must correspond to a parameter in the stored procedure.
-	 * @return string If an error occurs in the validation, a string containing the error message may be returned. Should only be used if an error occurs.
-	 * @return null If the controller is not used to validate any parameters, the function must always return null.
+	 * @
 	 * */
 	protected abstract function validateDataParameters(array $data, string $mode = 'default'): array | string | null;
 
@@ -100,12 +96,12 @@ abstract class Controller
 	}
 
 	/**
-	 * Returns the page the controller is being used in (i.e. create, insert, update, delete)
-	 * @return string The page mode. The mode corresponds to the name of a page within a view.
+	 * Returns the page the controller is being used in. The page is the filename from a View's directory, excluding the file extension.
+	 * @return string The page name
 	 */
 	protected function getPage(): string
 	{
-		return $this->pageMode;
+		return $this->mode;
 	}
 
 	/**
@@ -114,7 +110,7 @@ abstract class Controller
 	 * @param string $key The array key in the preparedData array that contains the content to be echoed on the page.
 	 * @return string If the requested data exists, the data is returned. Else, null is returned.
 	 */
-	public function getPreparedData(string $key): string | null
+	public function getPreparedData(string $key): mixed
 	{
 		return isset($this->preparedData[$key]) ? $this->preparedData[$key] : null;
 	}
@@ -125,11 +121,7 @@ abstract class Controller
 	 */
 	public function checkPreparedData(string $key): bool
 	{
-		$isSet = false;
-		if (isset($this->preparedData[$key])) {
-			$isSet = true;
-		}
-		return $isSet;
+		return isset($this->preparedData[$key]);
 	}
 
 	/**
@@ -139,7 +131,7 @@ abstract class Controller
 	 * @param string $key The identifier that the assigned data will be assigned to.
 	 * @param string $data The data in the form of a string to associate with the key.
 	 */
-	protected function setPreparedData(string $key, string $data): void
+	protected function setPreparedData(string $key, mixed $data): void
 	{
 		$this->preparedData[$key] = $data;
 	}

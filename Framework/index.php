@@ -1,11 +1,14 @@
 <?php
+
 /**
  * This is front controller for the website. The Web server should be configured to route all requests through this file.
  */
+
+require_once('config.php');
 include_once('private_core/controllers/Controller.php');
 require_once('private_core/objects/Router.php');
 
-$router = new \Application\Router($_SERVER['REQUEST_URI']);
+$router = new \EasyMVC\Router($_SERVER['REQUEST_URI']);
 $controller = $router->getController();
 
 // Header is only outputted if the request requires it.
@@ -27,3 +30,4 @@ include($router->getRequestedURI());
 if (!is_null($footer = $router->displayFooter())) {
 	include($footer);
 }
+session_write_close();

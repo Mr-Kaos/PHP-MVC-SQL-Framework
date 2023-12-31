@@ -1,8 +1,8 @@
 <?php
 
-namespace Application\PageBuilder;
+namespace EasyMVC\PageBuilder;
 
-use \Application\Model as m;
+use \EasyMVC\Model as m;
 
 require_once("PageBuilder.php");
 
@@ -15,7 +15,6 @@ require_once("PageBuilder.php");
  */
 class TableCreatorForm extends PageElementBuilder
 {
-
 	private string $name;
 	private bool $allowIdentifier = false;
 	private bool $dropdownWithSchema = false;
@@ -41,12 +40,12 @@ class TableCreatorForm extends PageElementBuilder
 	{
 		// Generate a HTML element to store the prefill data so the tableBuilder JS script can read it and prefill the fields.
 		$formPrefill = '<div id="table_creator_prefill" class="hidden">';
-
 		foreach ($this->prefillData[m\DATA_FORM_MAIN] as $field) {
 			if (!is_null($field['PROPERTY_NAMES'])) {
 				$properties = array_combine(explode("`", $field["PROPERTY_NAMES"]), explode("`", $field["PROPERTY_VALUES"]));
 				if (isset($properties["UserGenerated"])) {
 					$formPrefill .= '<span class="hidden"';
+					$formPrefill .= 'originalName="' . $field["FIELD_NAME"] . '" ';
 					$formPrefill .= 'fieldName="' . $properties["UserFriendlyName"] . '" ';
 					$formPrefill .= 'allowNulls="' . $field['IS_NULLABLE'] . '" ';
 					if (str_contains($field['PROPERTY_NAMES'], 'IsName')) {
@@ -63,60 +62,63 @@ class TableCreatorForm extends PageElementBuilder
 							if (isset($this->prefillData[m\DATA_DEPENDENCIES]['Prefill_Enums'][$field['FIELD_NAME']])) {
 								$schema = $this->prefillData[m\DATA_DEPENDENCIES]['Prefill_Enums'][$field['FIELD_NAME']]['Schema'];
 								$table = $this->prefillData[m\DATA_DEPENDENCIES]['Prefill_Enums'][$field['FIELD_NAME']]['Table'];
-	
+
 								if ($this->dropdownWithSchema) {
 									$formPrefill .= 'fieldType="enum" ' . 'Value="' . "$schema.$table" . '"';
 								} else {
 									$formPrefill .= 'fieldType="enum" ' . 'Value="' . $table . '"';
 								}
 							}
-							
-							if ($field['DATA_TYPE'] == 'tinyint') {
-								$formPrefill .= 'fieldType="number" Max="255"';
-							
-							} else if ($field['DATA_TYPE'] == 'smallint') {
-								$formPrefill .= 'fieldType="number" Max="32767"';
 
-							} else  if ($field['DATA_TYPE'] == 'int') {
+							if (isset($properties['NumericLimit'])) {
+								$formPrefill .= 'fieldType="number" Max="' . $properties['NumericLimit'] . '"';
+							} elseif ($field['DATA_TYPE'] == 'tinyint') {
+								$formPrefill .= 'fieldType="number" Max="255"';
+							} elseif ($field['DATA_TYPE'] == 'smallint') {
+								$formPrefill .= 'fieldType="number" Max="32767"';
+							} elseif ($field['DATA_TYPE'] == 'int') {
 								$formPrefill .= 'fieldType="number" Max="2147483647"';
 							}
 							break;
 						case 'decimal':
 							$max = '';
-							$i = 0;
-							while ($i < ($field['NUMERIC_PRECISION'] - $field['NUMERIC_SCALE'])) {
-								$max .= '9';
-								$i++;
+							if (isset($properties['NumericLimit'])) {
+								$max = $properties['NumericLimit'];
+							} else {
+								$i = 0;
+								while ($i < ($field['PRECISION'] - $field['SCALE'])) {
+									$max .= '9';
+									$i++;
+								}
 							}
-							$formPrefill .= 'fieldType="number" Max="' . $max . '" Decimal="' . $field['NUMERIC_SCALE'] . '"';
+							$formPrefill .= 'fieldType="number" Max="' . $max . '" Decimal="' . $field['SCALE'] . '"';
 							break;
 						case 'varchar':
 							if (str_contains($field['PROPERTY_NAMES'], 'MultiForeignKey')) {
 								$schema = $this->prefillData[m\DATA_DEPENDENCIES]['Prefill_Enums'][$field['FIELD_NAME']]['Schema'];
 								$table = $this->prefillData[m\DATA_DEPENDENCIES]['Prefill_Enums'][$field['FIELD_NAME']]['Table'];
-	
+
 								if ($this->dropdownWithSchema) {
 									$formPrefill .= 'fieldType="enum" ' . 'Value="' . "$schema.$table" . '"';
 								} else {
 									$formPrefill .= 'fieldType="enum" ' . 'Value="' . $table . '"';
 								}
-								
+
 								$formPrefill .= ' multiFK="true"';
 							} else {
-								$formPrefill .= 'fieldType="text" Max="' . $field['CHARACTER_MAXIMUM_LENGTH'] . '"';
+								$formPrefill .= 'fieldType="text" Max="' . $field['MAX_LENGTH'] . '"';
 							}
 							break;
 						case 'nvarchar':
-							$formPrefill .= 'fieldType="textUTF" Max="' . $field['CHARACTER_MAXIMUM_LENGTH'] . '"';
+							$formPrefill .= 'fieldType="textUTF" Max="' . ($field['MAX_LENGTH'] / 2) . '"';
 							break;
 						case 'bit':
 							$formPrefill .= 'fieldType="boolean"';
 							break;
 					}
 				}
+				$formPrefill .= '></span>';
 			}
-
-			$formPrefill .= '></span>';
 		}
 		$formPrefill .= '</div>';
 		return $formPrefill;
@@ -137,6 +139,7 @@ class TableCreatorForm extends PageElementBuilder
 		}
 
 		$content .= '<h2> ' . $this->name . ' Fields</h2><table><tbody id="attributesTable"><tr id="attributesTableHead">
+			<th id="attr_table_reorder"></th>
 			<th id="attr_table_name">Name</th>
 			<th id="attr_table_type">Type</th>
 			<th id="attr_table_value">Value</th>

@@ -1,6 +1,6 @@
 <?php
 
-namespace Application\Model;
+namespace EasyMVC\Model;
 
 require_once("Model.php");
 
@@ -15,7 +15,7 @@ const TABLE_DATA_KEY = "TableDataName";
  * This class handles the retrieval and submission of data relating to Tables in the database.
  * Its other MVC components are:
  * - View: Table.php
- * - Controller: {@see \Application\Controller\Controller_Table}
+ * - Controller: {@see \EasyMVC\Controller\Controller_Table}
  *
  * When {@see Model_Table::fetchModelData()} is called (page load), it retrieves the table structure of the address table to allow the controller
  * to build a form for it.
@@ -78,8 +78,9 @@ class Model_Table extends Model
 
 		if ($this->getDBConnection()) {
 			$rows = isset($request["rows"]) ? $request["rows"] : 25;
-			$filter = $this->getTableFilters(isset($request["TableFilter"]) ? $request["TableFilter"] : null);
+			$filter = isset($request["TableFilter"]) ? $request["TableFilter"] : null;
 			$orderBy = isset($request["sort"]) ? $request["sort"] : null;
+			$where = '';
 			// determine if the ordering is to be ascending or descending
 			$order = null;
 			if (!is_null($orderBy)) {
@@ -97,24 +98,21 @@ class Model_Table extends Model
 			}
 
 			if (is_null($order)) {
-				$column = $this->queryDatabaseObject('INFORMATION_SCHEMA', 'COLUMNS', ['COLUMN_NAME'], "WHERE ORDINAL_POSITION = 1 AND TABLE_SCHEMA = '" . $this->getDBSchema() . "' AND TABLE_NAME = '" . $this->getDBObjectName() . "'");
-				if (count($column) > 0) {
-					$order = '[' . $column[array_keys($column)[0]] . ']';
-				} else {
-					echo "DEBUG: No records returned. " . $this->getDBIdentifier();
+				$order = $this->queryDatabaseObject('INFORMATION_SCHEMA', 'COLUMNS', ['COLUMN_NAME'], "WHERE ORDINAL_POSITION = 1 AND TABLE_SCHEMA = '" . $this->getDBSchema() . "' AND TABLE_NAME = '" . $this->getDBObjectName() . "'");
+			}
+			if (isset($request['q'])) {
+				$query = $request['q'];
+				$cols = $this->queryDatabaseObject('dbo', 'vw_TableFields', ['COLUMN_NAME'], "WHERE TABLE_NAME = '" . $this->getDBObjectName() . "' AND TABLE_SCHEMA = '" . $this->getDBSchema() . "'");
+				$where = 'WHERE ';
+				for ($i = 0; $i < count($cols); $i++) {
+					$where .= "[$cols[$i]] LIKE '%$query%' ";
+					if ($i + 1 < count($cols)) {
+						$where .= 'OR ';
+					}
 				}
 			}
-			$modelData["RecordCount"] = $this->getDBRecordCount(isset($request["TableFilter"]) ? $request["TableFilter"] : null);
-			$modelData["ResultSet"] = $this->queryDatabaseObject($this->getDBSchema(), $this->getDBObjectName(), null, " $filter ORDER BY $order OFFSET " . $page * $rows . " ROWS FETCH NEXT $rows ROWS ONLY");
-			
-			// get the count of the first element in the resultset. If its count is greater than 1, the resultset contains more than one row. Else, only one row is returned, so it needs to be put back into array key 0.
-			$firstKey = array_keys($modelData["ResultSet"])[0];
-
-			if (!is_array(($modelData["ResultSet"][$firstKey]))) {
-				$row = $modelData["ResultSet"];
-				$modelData["ResultSet"] = null;
-				$modelData["ResultSet"][0] = $row;
-			}
+			$modelData["ResultSet"] = $this->queryDatabaseObject($this->getDBSchema(), $this->getDBObjectName(), null, " $where $filter ORDER BY $order OFFSET " . $page * $rows . " ROWS FETCH NEXT $rows ROWS ONLY");
+			$modelData["RecordCount"] = $this->getDBRecordCount($where);
 		}
 
 		return $modelData;

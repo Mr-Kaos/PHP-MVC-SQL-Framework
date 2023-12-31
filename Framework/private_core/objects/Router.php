@@ -1,9 +1,9 @@
 <?php
 
-namespace Application;
+namespace EasyMVC;
 
-use Application\Controller\Controller;
-use Application\SessionManagement\SessionManager;
+use EasyMVC\Controller\Controller;
+use EasyMVC\SessionManagement\SessionManager;
 
 include('SessionManager.php');
 
@@ -34,11 +34,11 @@ enum DisplayMode: String
 	}
 }
 
-const SITE_NAME = 'FrameworkDemo';
+const SITE_NAME = 'EasyMVC';
 const VIEW_DIR = 'private_core/views/';
 const CONTROLLER_DIR = 'private_core/controllers/';
 const MODAL_MESSAGE = "ModalResponse";
-const APP_NAME = '/FrameworkDemo/';
+const APP_NAME = '/EasyMVC/';
 
 /**
  * Router Class
@@ -262,19 +262,42 @@ class Router
 			$this->requestedURI = 'res/' . $resource;
 			include($this->requestedURI);
 			die();
-		} else if (count($this->requestParts) >= 1 && $this->page !== '') {
+		} else if (count($this->requestParts) >= 1 && ($this->page !== '' || $this->page !== constant('AUTH_PAGE'))) {
 			$sessionManager = new SessionManager();
-			$valid = $sessionManager->validateRequest($this->page);
-			if (!$valid) {
-				$this->page = "Login";
-				$this->DisplayMode = DisplayMode::Default;
-				// } elseif ($this->page == 'Login') {
-				// $this->page = "Home";
+			
+			if (constant('REQUIRE_AUTH')) {
+				// If the user is authenticated, check they have permission to view that page:
+				if ($sessionManager->checkAuthentication()) {
+					$valid = $sessionManager->validateRequest($this->page);
+					// If the user does not have access to the requested page, redirect to the home page.
+					// If on the home page and access is denied, redirect to the login page.
+					if (!$valid) {
+					$_SESSION['MSG_ERROR'] = 'You do not have permission to access that page.';
+						if ($this->page == 'Home') {
+							header("location:" . constant('AUTH_PAGE'));
+							die();
+						} elseif ($this->page !== constant('AUTH_PAGE')) {
+							header("location:Home");
+							die();
+						}
+						$this->DisplayMode = DisplayMode::BodyOnly;
+						if (strtolower(substr($this->page, 4)) != constant('AUTH_PAGE')) {
+							$_SESSION["LOGIN_REDIRECT_DATA"]["TEMP_POST"] = $_POST;
+						}
+						$_SESSION["LOGIN_REDIRECT_DATA"]["TEMP_GET"] = $_GET;
+						$_SESSION["LOGIN_REDIRECT_DATA"]["TARGET"] = $this->page;
+					}
+				} elseif ($this->page !== constant('AUTH_PAGE')) {
+					$_SESSION['MSG_ERROR'] = 'You must login to access this page.';
+					header("location:" . constant('AUTH_PAGE'));
+					die();
+				}
 			}
 
 			$pageData = $this->setupRoute($this->page);
 			$this->destination = $pageData['view'];
 			$this->mode = $pageData['mode'];
+			// $this->exactPage = $pageData['exact'];
 
 			// Check if the requested page exists. If not, direct to home page
 			if (!is_dir(VIEW_DIR . $this->destination) || $this->destination === '') {
@@ -288,7 +311,7 @@ class Router
 				$viewFile = VIEW_DIR . $this->destination . '.php';
 			}
 
-			if ($this->page == 'Table') {
+			if ($this->page == 'Table' || $this->page == 'Login') {
 				$this->DisplayMode = DisplayMode::BodyOnly;
 			} else {
 				$displayModeName = isset($this->getVars['mode']) ? $this->getVars['mode'] : null;
@@ -357,11 +380,11 @@ class Router
 	 * Creates a controller object dynamically based on the given class name
 	 * @param string
 	 * @param mixed
-	 * @return @see{Application\Controller\Controller}
+	 * @return @see{EasyMVC\Controller\Controller}
 	 */
 	private function makeController(string $className, string $mode, mixed $constructorParam = null): Controller
 	{
-		$class = 'Application\Controller\Controller_' . $className;
+		$class = 'EasyMVC\Controller\Controller_' . $className;
 
 		if (is_null($constructorParam)) {
 			$constructorParam = $_GET;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Application\Model;
+namespace EasyMVC\Model;
 
 require_once("Model.php");
 

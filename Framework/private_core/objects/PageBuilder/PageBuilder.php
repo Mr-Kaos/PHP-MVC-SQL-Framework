@@ -1,5 +1,5 @@
 <?php
-namespace Application\PageBuilder;
+namespace EasyMVC\PageBuilder;
 
 /**
  * This script defines the class used to build pages dynamically.

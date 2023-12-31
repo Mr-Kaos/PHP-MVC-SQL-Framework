@@ -1,19 +1,29 @@
 <?php
 
-namespace Application\Controller;
+namespace EasyMVC\Controller;
 
-use Application\Model as m;
-use Application\SessionManagement as s;
+use EasyMVC\Model as m;
+use EasyMVC\SessionManagement as s;
+use EasyMVC\PageBuilder as pb;
 
-require_once("Controller.php");
+use const EasyMVC\SessionManagement\LOGIN_REDIRECT;
+use const EasyMVC\SessionManagement\USER_INFO;
+
 require_once("private_core/models/Model_Login.php");
-require_once("private_core/objects/SessionManager.php");
-require_once("private_core/objects/PageObjects/Modal.php");
 require_once("private_core/objects/PageBuilder/FormBuilder.php");
+require_once("private_core/objects/PageObjects/Modal.php");
+require_once("private_core/objects/SessionManager.php");
 
 /**
- * The Controller object for the Login.
- * This class handles the data being sent and received from the server for the Login page.
+ * The Controller object for the Address page.
+ * This class handles the data being sent and received from the server for the Address page.
+ * Its other MVC components are:
+ * - View: Address.php
+ * - Model: Model_Address.php
+ *  
+ * When receiving data from the model, it creates page elements to be used in the view. In this case, a form using the FormBuilder object.
+ * When sending data to the model (from a form submission), it validates the data and sends it to the model via sendModelData() for
+ * insertion into the database.
  */
 class Controller_Login extends Controller
 {
@@ -24,8 +34,14 @@ class Controller_Login extends Controller
 	 */
 	public function __construct(array $data = null)
 	{
+		// If the page is loaded with the "logout" GET variable, end the user's session.
+		if (isset($data['logout'])) {
+			$this->logOut();
+			die();
+		}
 		$mode = isset($data["mode"]) ? $data["mode"] : null;
-		parent::__construct(new m\Model_Login($mode, $data), $mode);
+		$data = array("Account" => 'Logins');
+		parent::__construct(new \EasyMVC\Model\Model_Login($mode, $data), $mode);
 	}
 
 	/**
@@ -37,27 +53,38 @@ class Controller_Login extends Controller
 	{
 		$data = $this->validateDataParameters($data, $mode);
 		$response = $this->getModel()->sendModelData($data, $mode);
-
-		$destination = isset($_SESSION[s\LOGIN_REDIRECT]) ? $_SESSION[s\LOGIN_REDIRECT] : 'Login';
+		$destination = 'Login';
 
 		if (!isset($response["FAILURE"])) {
 			switch ($mode) {
 				case m\MODE_SELECT:
-					if (isset($response["LoginID"])) {
-						if ($this->logIn($response)) {
-							$destination = "Home";
+					$response = $response;
+					if (isset($response["LoginId"])) {
+						if ($this->logUserIn($response)) {
+							$destination = $_SESSION["LOGIN_REDIRECT_DATA"]["TARGET"];
+							$getValues = $_SESSION["LOGIN_REDIRECT_DATA"]["TEMP_GET"];
+							$getValueHTTP = "";
+							foreach ($getValues as $key => $val) {
+								if ($getValueHTTP == "") {
+									$getValueHTTP .= "?";
+								} else {
+									$getValueHTTP .= "&";
+								}
+								$getValueHTTP .= $key . "=" . $val;
+							}
+							$destination .= $getValueHTTP;
+							if( strtolower(substr($destination,0,5)  )=="login" ){
+								$destination = "Home";
+							}
 						} else {
-							$_SESSION["MSG_ERROR"] = 'Failed to authenticate login.';
+							$_SESSION["LOGIN_ERROR"] = 'Failed to authenticate login.';
 						}
-					} else {
-						$destination = 'Login';
 					}
 					break;
 			}
 		} else {
-			$_SESSION["MSG_ERROR"] = $response["FAILURE"];
+			$_SESSION["LOGIN_ERROR"] = $response["FAILURE"];
 		}
-
 		return $destination;
 	}
 
@@ -66,42 +93,42 @@ class Controller_Login extends Controller
 	 */
 	public function retrieveData(array $request = null): void
 	{
-		// Log user out if the GET variable 'logout' is given
-		if (isset($request['logout'])) {
-			$this->logOut();
-			die();
-		}
-	}
-
-	/** 
-	 * Validates form data
-	 */
-	protected function validateDataParameters(array $data, string $mode = 'default'): array | string | null
-	{
-		$validatedData = array();
-
-		switch ($mode) {
-			case m\MODE_SELECT:
-				$validatedData["Username"] = $this->validatePostInput($data["username"]);
-				$validatedData["Password"] = $this->validatePostInput($data["password"]);
+		switch ($this->getPage()) {
+			case 'default':
+				if (isset($_SESSION["LOGIN_ERROR"])) {
+					$this->setPreparedData("err", "<div class='alert-box-warning'>" . $_SESSION["LOGIN_ERROR"] . "</div>");
+					unset($_SESSION["LOGIN_ERROR"]);
+				}
 				break;
 		}
-
-		return $validatedData;
 	}
 
-	private function logIn($loginDetails): bool
+	protected function validateDataParameters(array $data, string $mode = 'default'): array | string | null
+	{
+		$validated = array();
+		switch ($mode) {
+			case m\MODE_SELECT:
+				$validated = $data;
+				break;
+		}
+		return $validated;
+	}
+
+	private function logUserIn($loginDetails): bool
 	{
 		$loginData = array();
 		$success = false;
-		if (isset($loginDetails["LoginID"]) && isset($loginDetails["UserID"])) {
-			if (is_numeric($loginDetails["LoginID"])) {
-				$loginData["LoginId"] = $loginDetails["LoginID"];
-				$loginData["UserId"] = $loginDetails["UserID"];
+		if (isset($loginDetails["LoginId"]) && isset($loginDetails["Username"])) {
+			if (is_numeric($loginDetails["LoginId"])) {
+				$loginData["LoginId"] = $loginDetails["LoginId"];
+				$loginData["UserId"] = $loginDetails["ContactEmployeeId"];
+				$loginData["IsEmployee"] = $loginDetails["IsEmployeeLogin"];
+				$loginData["Username"] = $loginDetails["Username"];
 				$loginData["PrivilegeLevel"] = $loginDetails["PrivilegeLevel"];
 				$loginData["Group"] = $loginDetails["UserGroup"];
-				$_SESSION['USER_INFO'] = $loginData;
+				$_SESSION[USER_INFO] = $loginData;
 				$success = true;
+				$_SESSION['MSG_STATUS'] = 'Successfully Logged in';
 			}
 		}
 
@@ -110,8 +137,8 @@ class Controller_Login extends Controller
 
 	private function logOut()
 	{
-		new s\SessionManager();
-		unset($_SESSION[s\USER_INFO]);
+		$session = new s\SessionManager();
+		$session->endSession();
 		$_SESSION['MSG_STATUS'] = 'Successfully logged out.';
 		header('location:Login');
 	}

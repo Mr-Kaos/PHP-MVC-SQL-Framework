@@ -1,14 +1,13 @@
 <?php
 
-namespace Application\Controller;
+namespace EasyMVC\Controller;
 
-use Application\Model as m;
-use Application\PageBuilder as pb;
-
-require_once("Controller.php");
+use EasyMVC\Model as m;
+use EasyMVC\PageBuilder as pb;
 
 require_once("private_core/models/Model_Table.php");
-require_once("private_core/objects/PageBuilder/PageBuilder_Table.php");
+require_once("private_core/objects/PageBuilder/FormBuilder.php");
+require_once("private_core/objects/PageBuilder/TableBuilder.php");
 
 /**
  * The Controller object for the Table page.
@@ -25,10 +24,13 @@ require_once("private_core/objects/PageBuilder/PageBuilder_Table.php");
  */
 class Controller_Table extends Controller
 {
+	private ?string $tableDataName;
+
 	/** Additional data is typically an array based on GET variables. */
 	public function __construct(array $data)
 	{
-		parent::__construct(new \Application\Model\Model_Table($data["TableDataName"]), false);
+		$this->tableDataName = isset($data["TableDataName"]) ? $data["TableDataName"] : null;
+		parent::__construct(new \EasyMVC\Model\Model_Table($data["TableDataName"]), false);
 	}
 
 	/**
@@ -37,6 +39,10 @@ class Controller_Table extends Controller
 	 */
 	public function postData(array $data, string $mode): mixed
 	{
+		$data = $this->validateDataParameters($data);
+
+		$destination = "Table?TableDataName=$this->tableDataName&mode=none&q=" . $data['query'];
+		return $destination;
 	}
 
 	/** Retrieves the data from the Database and conforms it to the overridden function's specifications. 
@@ -52,14 +58,22 @@ class Controller_Table extends Controller
 
 		if (isset($modelData["ResultSet"])) {
 			// Obtain the session table data:
-			$tableDataName = isset($request["TableDataName"]) ? $request["TableDataName"] : null;
-			$tableSettings = isset($modelData[m\SESS_TABLES][$tableDataName]) ? $modelData[m\SESS_TABLES][$tableDataName] : null;
+			$tableSettings = isset($modelData[m\SESS_TABLES][$this->tableDataName]) ? $modelData[m\SESS_TABLES][$this->tableDataName] : null;
 
-			$destination = isset($tableSettings["destination"]) ? $tableSettings["destination"] : null;
-			$destVars = isset($tableSettings["destinationVars"]) ? $tableSettings["destinationVars"] : null;
-			$groupColumn = isset($tableSettings["groupRowsBy"]) ? $tableSettings["groupRowsBy"] : null;
+			$fb = new pb\FormBuilder("", null, null, "post", "Table?TableDataName=$this->tableDataName&mode=none");
+			$searchBar = $fb->createInput('Search ', 'search', pb\InputTypes::search, ['value' => isset($request['q']) ? $request['q'] : null]);
+			$fb->addFieldSet($searchBar, null);
+			$this->setPreparedData('Search', $fb->buildContainer(null, null));
+			$fb->__destruct();
 
-			$tb = new pb\TableBuilder("Results", null, $modelData["Name"], $rows, $page, $modelData["RecordCount"], $sort, $destination, $destVars, null, $groupColumn, $tableDataName);
+			$tableSettings['TableDataName'] = $this->tableDataName;
+			if (isset($request['q'])) {
+				if (!empty($request['q'])) {
+					$tableSettings['Query'] = $request['q'];
+				}
+			}
+
+			$tb = new pb\TableBuilder("Results", null, $modelData["Name"], $rows, $page, $modelData["RecordCount"], $sort, $tableSettings);//$destination, $destVars, null, $groupColumn, $this->tableDataName);
 			$tb->arrayToTable($modelData["ResultSet"]);
 			$this->setPreparedData("TableContent", $tb->buildContainer());
 			$tb->__destruct();
@@ -68,11 +82,14 @@ class Controller_Table extends Controller
 	}
 
 	/**
-	 * Since this controller does not send data to its model, no data validation is needed.
-	 * This function only exists as it is an abstract function that needs to be implemented.
+	 * This function validates a search query made in the table
 	 */
 	protected function validateDataParameters(array $data, string $mode = 'default'): array | string | null
 	{
-		return null;
+		$validated = null;
+
+		$validated['query'] = $this->validatePostInput($data['search']);
+
+		return $validated;
 	}
 }

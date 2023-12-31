@@ -1,6 +1,6 @@
 <?php
 
-namespace Application\PageBuilder;
+namespace EasyMVC\PageBuilder;
 
 require_once("PageBuilder.php");
 require_once("private_core/objects/PageObjects/TableObjects.php");
@@ -17,7 +17,7 @@ require_once("private_core/objects/PageObjects/TableObjects.php");
  * @property ?array $rowHyperlink A URL that each row will direct to if clicked. Optional.
  * @property int $tableRecordCount The number of records that exist in the source table. (Not the number of records that are displayed to the user)
  * @property ?string $sort The name of the column to sort by.
- * @property ?array $tableData An array containing any special settings for a table. Primarily used with table iFrames via {@see WarRoom\Controller\Controller_Table}
+ * @property ?array $tableData An array containing any special settings for a table. Primarily used with table iFrames via {@see EasyMVC\Controller\Controller_Table}
  */
 class TableBuilder extends PageElementBuilder
 {

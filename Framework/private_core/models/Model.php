@@ -1,6 +1,6 @@
 <?php
 
-namespace Application\Model;
+namespace EasyMVC\Model;
 
 /** Array key used to specify a value to be used as an array key in Model::resultSetToArray() */
 const TWO_COL_TO_ONE_PRIMARY = "PRIMARY_COL";
@@ -18,6 +18,9 @@ const DATA_FORM_MAIN = "MainForm";
 const DATA_FORM_EDIT = "FormEditData";
 /** Array key used to store table identifiers in the $_SESSION array. */
 const SESS_TABLES = "TABLES";
+/** Array key used to store data for a RESTful GET request */
+const DATA_REST_GET = "RestfulGET";
+
 
 /** Specifies the insertion of a new record */
 const MODE_INSERT = 'add';
@@ -31,16 +34,17 @@ const MODE_CREATE = 'new';
 const MODE_DROP = 'drop';
 /** Specifies the modification of a user-generated table*/
 const MODE_EDIT = 'edit';
-/** Specifies the retrieval of data from the database. */
+/** */
 const MODE_SELECT = 'select';
 
-const SQL_PRINT_PREFIX = '/(?:\[Microsoft]\[ODBC Driver (\d+) for SQL Server]\[SQL Server])/';
+const SQL_PRINT_PREFIX = '[Microsoft][ODBC Driver 17 for SQL Server][SQL Server]';
 
 /**
  * The base model class.
  * @author Kristian Oqueli Ambrose
  * 
  * Contains basic information necessary to define an object's data model.
+ * All data models are based off a table/view in the AbleFormes database.
  * 
  * @property string $dbSchema The database schema this model is sending/retrieving data from.
  * @property string $dbObject The database object (table, view) the model is sending/retrieving data from.
@@ -54,24 +58,24 @@ abstract class Model
 	private ?string $dbObject;
 	/** An SQL Server connection resource. */
 	private $conn;
-	private $pageMode;
+	private $mode;
 
 	/**
 	 * Constructs the model with the base attributes.
 	 * Creates an SQL connection resource, sets the database object to retrieve data from and sets the table identifiers for use in
-	 * {@see \Application\Model\Model_Table}.
+	 * {@see \EasyMVC\Model\Model_Table}.
 	 * 
 	 * @param string $schema The name of the database schema of the database object the model will send/retrieve data from.
 	 * @param ?string $objectName The name of the database object (typically a table or view) that the model will send/receive data from.
 	 * @param string $mode The page mode.
-	 * @param string $tableID Optional. If set, sets a table Identifier for use to create a table using Table.php. Used in {@see \Application\Model\Model_Table}.
+	 * @param string $tableID Optional. If set, sets a table Identifier for use to create a table using Table.php. Used in {@see \EasyMVC\Model\Model_Table}.
 	 */
 	public function __construct(string $schema, ?string $objectName, string $mode, string $tableID = null)
 	{
 		$this->dbSchema = $schema;
 		$this->dbObject = $objectName;
-		$this->pageMode = $mode;
-		$this->conn = $this->newConnection();
+		$this->mode = $mode;
+		$this->conn = (constant('REQUIRE_DB')) ? $this->newConnection() : null;
 		$this->setTableIdentifiers($tableID, $schema, $objectName);
 	}
 
@@ -137,13 +141,13 @@ abstract class Model
 	 * 
 	 * @param array $data An associative array of the data to be submitted to the database.
 	 * @param string $submitMode A constant specifying the method being used to submit data. The allowed modes are:
-	 * - {@see \Application\Model\MODE_CREATE} Create:
-	 * 	If creating a new table, all data related to an  except an Name should be given. Executes usp4000.
-	 * - {@see \Application\Model\MODE_INSERT} Insert:
+	 * - {@see \EasyMVC\Model\MODE_CREATE} Create:
+	 * 	If creating a new table, all data related to an  except an Name should be given. Executes usp.
+	 * - {@see \EasyMVC\Model\MODE_INSERT} Insert:
 	 * If inserting data to a table, all data to be inserted along with the identifier for the table should be passed.
-	 * - {@see \Application\Model\MODE_UPDATE}:
+	 * - {@see \EasyMVC\Model\MODE_UPDATE}:
 	 *	If updating an existing address record, the record's ID should be given along with data for each column.
-	 * - {@see \Application\Model\MODE_DROP} Delete:
+	 * - {@see \EasyMVC\Model\MODE_DROP} Delete:
 	 * 	If deleting an existing record, the record's ID should be given.
 	 * Each of these methods should call their own stored procedure to 
 	 * @return array|null A response message from the stored procedure if an error occurred. returns null if no error occurred.
@@ -151,7 +155,8 @@ abstract class Model
 	public abstract function sendModelData(array $data, string $submitMode = null): array | null;
 
 	/**
-	 * Performs a SELECT query in vw0001_TableFieldsExtra to retrieve the given database object's structure.
+	 * @ignore - Needs to be adapted outside of a pre-built SQL view.
+	 * Performs a SELECT query in vw_TableFields to retrieve the given database object's structure.
 	 * The structure includes all columns for tables and views and their various properties.
 	 * This function should not be used to retrieve the structure of stored procedures.
 	 * If no schema or object is passed into the function, the ones used in the model's initialisation are used instead.
@@ -180,9 +185,9 @@ abstract class Model
 				}
 			}
 			$qry = "SELECT *
-			FROM vw0001_TableFieldsExtra
-			WHERE $keyClause OBJECT_SCHEMA = '$schema' AND OBJECT_NAME = '$object' $hiddenFieldsQry
-			ORDER BY ORDINAL_POSITION ASC";
+			FROM vw_DatabaseObjectFields
+			WHERE $keyClause [OBJECT_SCHEMA_NAME] = '$schema' AND [OBJECT_NAME] = '$object' $hiddenFieldsQry
+			ORDER BY [FIELD_ORDINAL] ASC";
 			$resultSet = $this->resultSetToArray(sqlsrv_query($this->conn, $qry));
 		}
 
@@ -199,7 +204,7 @@ abstract class Model
 	 * @param string $objectName The name of the object to be queried.
 	 * @param array $includedColumns An array of column names that will be included in the returned resultset. If null, all columns will be included. If there are exactly two columns specified, the result will be returned as an associative array, with the first column being the key.
 	 * @param string $whereClause a WHERE clause to filter results with.
-	 * @return array An array of the resultset retrieved
+	 * @return array|string|null An array of the resultset retrieved
 	 */
 	protected function queryDatabaseObject(string $schema = null, string $objectName = null, array $includedColumns = null, string $whereClause = ""): array | string | null
 	{
@@ -219,6 +224,7 @@ abstract class Model
 		}
 		$qry = $this->trimTrailingComma($qry);
 		$qry .= " FROM [$schema].[$objectName] $whereClause";
+
 		$result = sqlsrv_query($this->getDBConnection(), $qry);
 		if ($result) {
 			$resultSet = $this->resultSetToArray($result);
@@ -234,51 +240,12 @@ abstract class Model
 		return $resultSet;
 	}
 
-	/** 
-	 * Gets the count oof the specified database object.
-	 * @param string $schema The database schema of the object to query.
-	 * @param string $objectName The name of the object to be queried.
-	 * @param array $includedColumns An array of column names that will be included in the returned resultset. If null, all columns will be included. If there are exactly two columns specified, the result will be returned as an associative array, with the first column being the key.
-	 * @param string $whereClause a WHERE clause to filter results with.
-	 * @return int The number of rows of the specified columns in the database object
-	 */
-	protected function queryDatabaseObjectCount(string $schema = null, string $objectName = null, array $includedColumns = null, string $whereClause = ""): int
-	{
-		$count = 0;
-		$qry = "SELECT COUNT(";
-		if (is_null($schema) || is_null($objectName)) {
-			$schema = &$this->dbSchema;
-			$objectName = &$this->dbObject;
-		}
-		if (!is_null($includedColumns)) {
-			foreach ($includedColumns as &$column) {
-				$qry .= "[$column], ";
-			}
-		} else {
-			$qry .= "* ";
-		}
-		$qry = $this->trimTrailingComma($qry);
-		$qry .= ") FROM [$schema].[$objectName] $whereClause";
-		$result = sqlsrv_query($this->getDBConnection(), $qry);
-		if ($result) {
-			$count = $this->resultSetToArray($result)[0];
-		} else {
-			$this->displayErrors($qry);
-		}
-
-		return $count;
-	}
-
 	/**
 	 * Executes a stored procedure and returns its resultset (if one is generated) as an array.
 	 * @param string $schema The schema name of th stored procedure.
 	 * @param string $procedureName The name of the stored procedure to execute.
 	 * @param array $params An associative array where each key is the name of a parameter in the specified stored procedure and the value is the
 	 * value associated to that parameter.
-	 * @param array $twoColsToOne If a resultset contains two or more columns, two columns can be specified and saved into a key-pair value.
-	 * This parameter array must contain two keys:
-	 * - {@see \Application\Model\TWO_COL_TO_ONE_PRIMARY}: The name of the column to be the array key
-	 * - {@see \Application\Model\TWO_COL_TO_ONE_SECONDARY}: the name of the column to be the value
 	 */
 	protected function executeStoredProcedure(string $schema, string $procedureName, array $params): ?array
 	{
@@ -305,52 +272,6 @@ abstract class Model
 	}
 
 	/**
-	 * Converts a resultset object into an array.
-	 * If the resultset contains one column, it returns the array as an associative array, rather than an array of arrays.
-	 * @param mixed $resultSet The Resultset retrieved from an sqlsrv_query() call.
-	 * @param bool $forceSubArray {@todo needs documentation} 
-	 * @param array $twoColumnsToOne If a resultset contains two or more columns, two columns can be specified and saved into a key-pair value.
-	 * This parameter array must contain two keys:
-	 * - {@see \Application\Model\TWO_COL_TO_ONE_PRIMARY}: The name of the column to be the array key
-	 * - {@see \Application\Model\TWO_COL_TO_ONE_SECONDARY}: the name of the column to be the value
-	 * @return array The resultset's data in the form of an array.
-	 */
-	private function resultSetToArray(mixed $resultSet, bool $forceSubArray = false, array $twoColumnsToOne = null): array
-	{
-		$array = array();
-		if ($resultSet) {
-			$keys = null;
-			$i = 0;
-			while ($row = sqlsrv_fetch_array($resultSet, SQLSRV_FETCH_ASSOC)) {
-				// If there is just on column (count === 1), make the resultset an associative array. else, return resultset as an array of arrays.
-				if (!is_null($twoColumnsToOne)) {
-					// Make sure the fields requested to be placed in an associative array exist.
-					if (isset($row[$twoColumnsToOne[TWO_COL_TO_ONE_PRIMARY]]) && isset($row[$twoColumnsToOne[TWO_COL_TO_ONE_SECONDARY]])) {
-						$array[$row[$twoColumnsToOne[TWO_COL_TO_ONE_PRIMARY]]] = $row[$twoColumnsToOne[TWO_COL_TO_ONE_SECONDARY]];
-					}
-				} elseif (count($row) === 1 && !$forceSubArray) {
-					if (is_null($keys)) {
-						$keys = array_keys($row);
-					}
-					$array[$i] = $row[$keys[0]];
-					$i++;
-				} else {
-					array_push($array, $row);
-				}
-			}
-		} else {
-			array_push($array, "No ResultSet Acquired.");
-		}
-
-		// if the resultset's count is 1, and its first element is an array, set that array to be the main array.
-		if (count($array) == 1 && isset($array[0])) {
-			if (is_array($array[0])) {
-				$array = $array[0];
-			}
-		}
-		return $array;
-	}
-	/**
 	 * Simplifies the given array to a more readable and cleaner format.
 	 * @param array $resultSet The array of the resultset to be simplified
 	 * @param bool $valueIsKey If the key of the array should also the the value, enable this option.
@@ -374,6 +295,46 @@ abstract class Model
 				}
 			}
 		}
+		return $array;
+	}
+
+	/**
+	 * Converts a resultset object into an array.
+	 * If the resultset contains one column, it returns the array as an associative array, rather than an array of arrays.
+	 * @param mixed $resultSet The Resultset retrieved from an sqlsrv_query() call.
+	 * @param bool $forceSubArray {@todo needs documentation} 
+	 * @param array $twoColumnsToOne If a resultset contains two or more columns, two columns can be specified and saved into a key-pair value.
+	 * This parameter array must contain two keys:
+	 * - {@see \EasyMVC\Model\TWO_COL_TO_ONE_PRIMARY}: The name of the column to be the array key
+	 * - {@see \EasyMVC\Model\TWO_COL_TO_ONE_SECONDARY}: the name of the column to be the value
+	 * @return array The resultset's data in the form of an array.
+	 */
+	private function resultSetToArray(mixed $resultSet): array
+	{
+		$array = array();
+		$singleColumn = false;
+		if ($resultSet) {
+			while ($row = sqlsrv_fetch_array($resultSet, SQLSRV_FETCH_ASSOC)) {
+				array_push($array, $row);
+				if (count($row) == 1) {
+					$singleColumn = true;
+				}
+			}
+		} else {
+			array_push($array, "No ResultSet Acquired.");
+		}
+
+		if ($singleColumn) {
+			$array = $this->simplifyResultsetArray($array);
+		}
+
+		// if the resultset's count is 1, and its first element is an array, set that array to be the main array.
+		if (count($array) == 1 && isset($array[0])) {
+			if (is_array($array[0])) {
+				$array = $array[0];
+			}
+		}
+
 		return $array;
 	}
 
@@ -408,6 +369,8 @@ abstract class Model
 		$filterArray = null;
 		if (!is_null($filters)) {
 			$filterArray = &$filters;
+			// } else if (isset($_SESSION["TableFilter"])) {
+			// 	$filterArray = &$_SESSION["TableFilter"];
 		}
 
 		if (!is_null($filterArray)) {
@@ -456,14 +419,19 @@ abstract class Model
 		return $this->dbSchema;
 	}
 
+	/**
+	 * Returns the page the controller is being used in. The page is the filename from a View's directory, excluding the file extension.
+	 * @return string The page name
+	 */
 	protected function getPage(): string
 	{
-		return $this->pageMode;
+		return $this->mode;
 	}
 
 	/**
+	 * @ignore - Needs to be adapted outside of a pre-built SQL stored procedure. ALso needs to be tested on other Database engines.
 	 * Retrieves data for any modals that need to be added to the page.
-	 * Executes usp0021 to find all foreign keys for the model's database object.
+	 * Executes usp to find all foreign keys for the model's database object.
 	 * @param $SchemaOverride string If the modal is in a different schema than the model's schema, this parameter can be used to override the schema.
 	 * @param $TableOverride string If the modal is in a different table than the model's table, this parameter can be used to override the table.
 	 * @return array An associative array where each key is the name of a column that has a modal and its value is the schema, table and column that it references.
@@ -481,7 +449,7 @@ abstract class Model
 		} else {
 			$Table = $this->getDBObjectName();
 		}
-		$modalReferences = $this->executeStoredProcedure('dbo', 'usp0021_sel_ForeignKeysForTableX', ["TableSchema" => $Schema, "TableName" => $Table]);
+		$modalReferences = $this->executeStoredProcedure('dbo', 'usp_sel_ForeignKeysForTableX', ["TableSchema" => $Schema, "TableName" => $Table]);
 		// Clean up ModalReferences array for use in controller:
 		// This is done by replacing the numeric array key with the column name instead.
 		$numericKeys = count($modalReferences);
@@ -498,6 +466,7 @@ abstract class Model
 	}
 
 	/**
+	 * @ignore - Needs to be adapted outside of a pre-built SQL view.
 	 * Checks a resultset obtained from {@see Model::getDBObjectStructure()} for any data dependencies that need to be included or used in the controller.
 	 * This includes foreign key fields or other result sets that need to be included e.g. for dropdown lists).
 	 * 
@@ -506,43 +475,20 @@ abstract class Model
 	 */
 	protected function checkForForeignKeyDependencies(array &$resultSet): ?array
 	{
+		// If only one column is in the resultset, reformat the array as if it contained multiple
+		if (!isset($resultSet[0])) {
+			$resultSet = [$resultSet];
+		}
 		$foreignKeyResultSet = array();
 		foreach ($resultSet as $row) {
+
 			//  Regular tables with explicit foreign keys will go through here
-			if ($row["KEY_TYPE"] == "FOREIGN KEY") {
-				$foreignKeyResultSet = empty($foreignKeyResultSet) ? array() : $foreignKeyResultSet;;
-				$foreignKeyResultSet[$row["FIELD_NAME"]] = $this->fetchForeignKeyData($row["OBJECT_SCHEMA"], $row["OBJECT_NAME"], $row["FIELD_NAME"]);
-				// Stored Procedure params go here
-			} else if ($row["KEY_TYPE"] === "uspParam" && !is_null($row["PROPERTY_VALUES"])) {
-				$qry = "SELECT TOP 1 * FROM dbo.ExtraProcedureParametersInfo WHERE PARAMETER_NAME = '" . $row["FIELD_NAME"] . "' AND SPECIFIC_NAME = '" . $row["OBJECT_NAME"] . "'";
-				$refSchema = null;
-				$refTable = null;
-				$dataResultSet = sqlsrv_query($this->conn, $qry);
-				if ($dataResultSet) {
-					$uspData = sqlsrv_fetch_array($dataResultSet, SQLSRV_FETCH_ASSOC);
-					$refSchema = $uspData["ReferencesTableSchema"];
-					$refTable = $uspData["ReferencesTable"];
-				}
-				$foreignKeyResultSet[$row["FIELD_NAME"]] = $this->fetchForeignKeyData($refSchema, $refTable);
-				// Extended properties 
-			} else if (!is_null($row["PROPERTY_NAMES"])) {
-				if (str_contains($row["PROPERTY_NAMES"], \Application\PageBuilder\PROPERTY_MULTI_FK_SCHEMA)) {
-					$splitKeys = explode('`', $row["PROPERTY_NAMES"]);
-					$splitValues = explode('`', $row["PROPERTY_VALUES"]);
-					$valIndex = -1;
-
-					$schema = null;
-					$table = null;
-					foreach ($splitKeys as $key) {
-						$valIndex++;
-						if ($key === \Application\PageBuilder\PROPERTY_MULTI_FK_SCHEMA) {
-							$schema = $splitValues[$valIndex];
-						} else if ($key === \Application\PageBuilder\PROPERTY_MULTI_FK_TABLE) {
-							$table = $splitValues[$valIndex];
-						}
-					}
-
-					$foreignKeyResultSet[$row["FIELD_NAME"]] = $this->fetchForeignKeyData($schema, $table);
+			if (isset($row['REFERENCED_SCHEMA_NAME'])) {
+				$foreignKeyResultSet[$row["FIELD_NAME"]] = $this->fetchForeignKeyData($row["REFERENCED_SCHEMA_NAME"], $row["REFERENCED_TABLE_NAME"], $row["REFERENCED_COLUMN_NAME"]);
+			} elseif (!is_null($row['PROPERTY_NAMES'])) {
+				if (str_contains($row['PROPERTY_NAMES'], 'MultiForeignKeySchema')) {
+					$properties = array_combine(explode("`", $row["PROPERTY_NAMES"]), explode("`", $row["PROPERTY_VALUES"]));
+					$foreignKeyResultSet[$row["FIELD_NAME"]] = $this->fetchForeignKeyData($properties["MultiForeignKeySchema"], $properties["MultiForeignKeyTable"], null);
 				}
 			}
 		}
@@ -550,6 +496,7 @@ abstract class Model
 	}
 
 	/**
+	 * @ignore - Needs to be adapted outside of a pre-built SQL view.
 	 * Fetches the foreign key data dependencies associated to the model.
 	 * @param string $schema The database schema the foreign key is referencing.
 	 * @param string $object The database object the foreign key is referencing.
@@ -561,18 +508,12 @@ abstract class Model
 		$fkData = null;
 
 		if ($this->conn) {
-			if (!is_null($column)) {
-				$qry = "SELECT TOP 1 * FROM vw0005_ForeignKeyColumns WHERE TABLE_NAME = '$object' AND TABLE_SCHEMA = '$schema' AND COLUMN_NAME = '$column';";
-				$fkResults = sqlsrv_query($this->conn, $qry);
-				if ($fkResults) {
-					$row = sqlsrv_fetch_array($fkResults, SQLSRV_FETCH_ASSOC);
-					$object = $row["REFERENCED_TABLE_NAME"];
-					$schema = $row["REFERENCED_TABLE_SCHEMA"];
-				}
+			if (is_null($column)) {
+				$column = $this->queryDatabaseObject('dbo', 'vw_TableFields', ['COLUMN_NAME'], "WHERE TABLE_SCHEMA = '$schema' AND TABLE_NAME = '$object' AND PRIMARY_KEY = 1");
 			}
 
 			if (!is_null($schema)) {
-				$qry = "EXEC usp0022_sel_TableRecordWithName @TableName = '$object', @SchemaName = '$schema'";
+				$qry = "EXEC usp_sel_TableRecordWithName @TableName = '$object', @SchemaName = '$schema', @PrimaryKey = '$column'";
 				$dataResultSet = sqlsrv_query($this->conn, $qry);
 				if ($dataResultSet) {
 					$count = 0;
@@ -607,7 +548,7 @@ abstract class Model
 
 			foreach ($data as $row) {
 				$ok = false;
-				if ($row["KEY_TYPE"] == "FOREIGN KEY") {
+				if (!is_null($row["REFERENCED_SCHEMA_NAME"])) {
 					$ok = true;
 				} else if (!is_null($row['PROPERTY_NAMES'])) {
 					if (str_contains($row['PROPERTY_NAMES'], 'MultiForeignKey')) {
@@ -616,7 +557,7 @@ abstract class Model
 				}
 
 				if ($ok) {
-					$qry = "SELECT TOP 1 * FROM vw0010_AllForeignKeyReferences WHERE TABLE_NAME = '" . $row["OBJECT_NAME"] . "' AND TABLE_SCHEMA = '" . $row["OBJECT_SCHEMA"] . "' AND COLUMN_NAME = '" . $row["FIELD_NAME"] . "';";
+					$qry = "SELECT TOP 1 * FROM vw_AllForeignKeyReferences WHERE TABLE_NAME = '" . $row["OBJECT_NAME"] . "' AND TABLE_SCHEMA = '" . $row["OBJECT_SCHEMA_NAME"] . "' AND COLUMN_NAME = '" . $row["FIELD_NAME"] . "';";
 					$fkResults = sqlsrv_query($this->conn, $qry);
 					if ($fkResults) {
 						$fkRow = sqlsrv_fetch_array($fkResults, SQLSRV_FETCH_ASSOC);
@@ -647,11 +588,15 @@ abstract class Model
 			$msg = "Failure executing SQL query.\nQuery: $qry\nSQL Server Messages:";
 
 			foreach (sqlsrv_errors() as $error) {
-				$msg .= "<hr>SQL Error ID: " . $error['code'] . '. Message: ' . $error['message'];
+				$msg .= "\nCode: " . $error['code'] . ' | message: ' . $error['message'];
 				switch ($error["code"]) {
 						// Print statement
 					case 0:
-						$response["FAILURE"] .= preg_replace(SQL_PRINT_PREFIX, '', $error["message"]);
+						$response["FAILURE"] .= str_replace(SQL_PRINT_PREFIX, '', $error["message"]);
+						break;
+						// Deleting record with foreign key constraint
+					case 547:
+						$response["FAILURE"] .= 'The specified record cannot be deleted as it is referenced by a record in another table.';
 						break;
 						// dropping non-existent table
 					case 3701:
@@ -659,7 +604,7 @@ abstract class Model
 						break;
 						// Dropping in-use column
 					case 4922:
-						$msg = preg_replace([SQL_PRINT_PREFIX, "ALTER TABLE DROP COLUMN "], '', $error["message"]);
+						$msg = str_replace([SQL_PRINT_PREFIX, "ALTER TABLE DROP COLUMN "], '', $error["message"]);
 						$cutoffPosition = strpos($msg, ' failed because');
 						$fieldName = substr($msg, 0, $cutoffPosition);
 						$msg = 'Cannot remove field "' . $fieldName . '" as it is referenced by other tables.';
@@ -667,7 +612,7 @@ abstract class Model
 						break;
 						// Dropping non-existent column
 					case 4924:
-						$msg = preg_replace([SQL_PRINT_PREFIX, 'ALTER TABLE DROP COLUMN failed because column'], '', $error["message"]);
+						$msg = str_replace([SQL_PRINT_PREFIX, 'ALTER TABLE DROP COLUMN failed because column'], '', $error["message"]);
 						$cutoffPosition = strpos($msg, 'does not exist');
 						$msg = 'Failed to remove field' . substr($msg, 0, $cutoffPosition) . ' as it does not exist.';
 						$response["FAILURE"] .= $msg;
@@ -679,12 +624,15 @@ abstract class Model
 					case 15477:
 						$response = null;
 						break;
+					// Catch for "statement has been terminated" error
+					case 3621:
+						break;
 					default:
 						if (!is_null($data)) {
 							$msg .= '<br>Sent data: <pre>' . print_r($data, true) . '</pre>';
 						}
-						$msg .= '<hr>This is a temporary error message. Will be removed in production.';
-						$response['FAILURE'] = 'An internal server error ocurred.';
+						$msg .= 'This is a temporary error message. To be removed in production.';
+						$response["FAILURE"] = 'An uncaught exception has occurred.';
 				}
 				error_log($msg, 0);
 			}
@@ -698,10 +646,8 @@ abstract class Model
 	 */
 	private function newConnection(): mixed
 	{
-		$serverName = "localhost";
-		//$connectionInfo = array("Database" => "DB_NAME", "UID" => 'sa', "PWD" => 'password');
-		$connectionInfo = array("Database" => "DB_NAME");
-		$conn = sqlsrv_connect($serverName, $connectionInfo);
+		$connectionInfo = array("Database" => constant('DB_NAME'), "UID" => constant('DB_USERNAME'), "PWD" => constant('DB_PASSWORD'), "CharacterSet" => "UTF-8");
+		$conn = sqlsrv_connect(constant('DB_SERVER'), $connectionInfo);
 		if (!$conn) {
 			$_SESSION["MSG_ERROR"] = 'Unable to connect to the database.';
 		}
