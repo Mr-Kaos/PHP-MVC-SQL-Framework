@@ -14,6 +14,15 @@
 define('AUTH_METHOD', 'file');
 
 /**
+ * Debugging
+ * Settings in this section will output to the log location specified, unless specified otherwise.
+ */
+// Location to log errors or debugging information to. Options are "Default" (Location specified by PHP installation.).
+define('LOG_LOCATION', 'default');
+define('LOG_SQL', false); // Default false. Set to true to log all SQL statements executed. 
+
+
+/**
  * Database Connection
  */
 define('REQUIRE_DB', false); // If true, will attempt to connect to a database.

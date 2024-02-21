@@ -53,7 +53,7 @@ const SQL_PRINT_PREFIX = '[Microsoft][ODBC Driver 17 for SQL Server][SQL Server]
 abstract class Model
 {
 	/** The database schema this model is sending/retrieving data from. */
-	private string $dbSchema;
+	private ?string $dbSchema;
 	/** The database object (table, view) the model is sending/retrieving data from. */
 	private ?string $dbObject;
 	/** An SQL Server connection resource. */
@@ -70,13 +70,12 @@ abstract class Model
 	 * @param string $mode The page mode.
 	 * @param string $tableID Optional. If set, sets a table Identifier for use to create a table using Table.php. Used in {@see \EasyMVC\Model\Model_Table}.
 	 */
-	public function __construct(string $schema, ?string $objectName, string $mode, string $tableID = null)
+	public function __construct(?string $schema, ?string $objectName, string $mode)
 	{
 		$this->dbSchema = $schema;
 		$this->dbObject = $objectName;
 		$this->mode = $mode;
 		$this->conn = (constant('REQUIRE_DB')) ? $this->newConnection() : null;
-		$this->setTableIdentifiers($tableID, $schema, $objectName);
 	}
 
 	/**
@@ -86,45 +85,6 @@ abstract class Model
 	public function __destruct()
 	{
 		$this->closeConnection($this->conn);
-	}
-
-	/**
-	 * Creates a session variable that defines the table to be displayed in Table.php.
-	 * @param string $identifier The Session key that is used to identify the table.
-	 * @param string $schema The database schema for the required table.
-	 * @param string $object The database object name (i.e. table/view name)
-	 * @param string $actionDestination The URL in which the action directs to. If null, will default to the current page. (optional)
-	 * @param string $actionVariables The name of a column in the requested database table/view to use as an action for the row if clicked. (Optional)
-	 * @param string $groupRowsBy If multiple rows need to be grouped together with another row (e.g. several rows share the same primary key), the column name that will group rows should be mentioned here.
-	 */
-	protected function setTableIdentifiers(?string $identifier, ?string $schema, ?string $object, string $actionDestination = null, array $actionVariables = null, array $hideRows = null, array $groupRowsBy = null): void
-	{
-		if (!is_null($identifier)) {
-			$_SESSION[SESS_TABLES][$identifier] = array(
-				"schema" => $schema,
-				"object" => $object
-			);
-			if (!is_null($actionDestination)) {
-				$this->setTableIdentifier($identifier, "destination", $actionDestination);
-				$this->setTableIdentifier($identifier, "destinationVars", $actionVariables);
-			}
-			if (!is_null($groupRowsBy)) {
-				$this->setTableIdentifier($identifier, "hideRows", $hideRows);
-				$this->setTableIdentifier($identifier, "groupRowsBy", $groupRowsBy);
-			}
-		}
-	}
-
-	/**
-	 * Modifies the specified session variable with the new data.
-	 * If the existing data already contains the new data, it is replaced. Else, it is appended to the existing array.
-	 * @param string $identifier The {@see SESS_TABLES} key that contains the data to modify.
-	 * @param string $key The array key within the identifier's array to save the data to. If the key already exists, the data is replaced.
-	 * @param mixed $data The data to append or replace in the specified array. Must be an associative array.
-	 */
-	protected function setTableIdentifier(string $identifier, string $key, mixed $data): void
-	{
-		$_SESSION[SESS_TABLES][$identifier][$key] = $data;
 	}
 
 	/**
@@ -142,7 +102,7 @@ abstract class Model
 	 * @param array $data An associative array of the data to be submitted to the database.
 	 * @param string $submitMode A constant specifying the method being used to submit data. The allowed modes are:
 	 * - {@see \EasyMVC\Model\MODE_CREATE} Create:
-	 * 	If creating a new table, all data related to an  except an Name should be given. Executes usp.
+	 * 	If creating a new table, all data related to an  except an Name should be given. Executes usp_ins_NewEnum.
 	 * - {@see \EasyMVC\Model\MODE_INSERT} Insert:
 	 * If inserting data to a table, all data to be inserted along with the identifier for the table should be passed.
 	 * - {@see \EasyMVC\Model\MODE_UPDATE}:
@@ -155,7 +115,6 @@ abstract class Model
 	public abstract function sendModelData(array $data, string $submitMode = null): array | null;
 
 	/**
-	 * @ignore - Needs to be adapted outside of a pre-built SQL view.
 	 * Performs a SELECT query in vw_TableFields to retrieve the given database object's structure.
 	 * The structure includes all columns for tables and views and their various properties.
 	 * This function should not be used to retrieve the structure of stored procedures.
@@ -187,7 +146,7 @@ abstract class Model
 			$qry = "SELECT *
 			FROM vw_DatabaseObjectFields
 			WHERE $keyClause [OBJECT_SCHEMA_NAME] = '$schema' AND [OBJECT_NAME] = '$object' $hiddenFieldsQry
-			ORDER BY [FIELD_ORDINAL] ASC";
+			ORDER BY [ORDINAL_POSITION] ASC";
 			$resultSet = $this->resultSetToArray(sqlsrv_query($this->conn, $qry));
 		}
 
@@ -226,6 +185,10 @@ abstract class Model
 		$qry .= " FROM [$schema].[$objectName] $whereClause";
 
 		$result = sqlsrv_query($this->getDBConnection(), $qry);
+		if (constant('LOG_SQL')) {
+			error_log(get_class($this));
+			error_log($qry);
+		}
 		if ($result) {
 			$resultSet = $this->resultSetToArray($result);
 
@@ -234,7 +197,7 @@ abstract class Model
 				$resultSet = $resultSet[array_keys($resultSet)[0]];
 			}
 		} else {
-			$_SESSION["MSG_ERROR"] = $this->displayErrors($qry)['FAILURE'];
+			new \EasyMVC\Components\Notification($this->displayErrors($qry)['FAILURE'], \EasyMVC\Components\NotificationType::Error);
 		}
 
 		return $resultSet;
@@ -261,6 +224,11 @@ abstract class Model
 			$qry = $this->trimTrailingComma($qry);
 
 			$result = sqlsrv_query($this->conn, $qry, $parameters);
+			if (constant('LOG_SQL')) {
+				error_log(get_class($this));
+				error_log($qry);
+				error_log(print_r($params, true));
+			}
 
 			if ($result) {
 				$resultSet = $this->resultSetToArray($result);
@@ -309,48 +277,69 @@ abstract class Model
 	 * - {@see \EasyMVC\Model\TWO_COL_TO_ONE_SECONDARY}: the name of the column to be the value
 	 * @return array The resultset's data in the form of an array.
 	 */
-	private function resultSetToArray(mixed $resultSet): array
+	private function resultSetToArray(mixed $stmt): array
 	{
-		$array = array();
-		$singleColumn = false;
-		if ($resultSet) {
-			while ($row = sqlsrv_fetch_array($resultSet, SQLSRV_FETCH_ASSOC)) {
-				array_push($array, $row);
-				if (count($row) == 1) {
-					$singleColumn = true;
+		$results = array();
+		$resultSet = $stmt;
+
+		while (!is_null($resultSet)) {
+			$array = array();
+			$singleColumn = false;
+			if ($resultSet !== false) {
+				while ($row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
+					array_push($array, $row);
+					if (count($row) == 1) {
+						$singleColumn = true;
+					}
+				}
+			} else {
+				array_push($array, "No ResultSet Acquired.");
+				$resultSet = null;
+			}
+
+			if ($singleColumn) {
+				$array = $this->simplifyResultsetArray($array);
+			}
+
+			// if the resultset's count is 1, and its first element is an array, set that array to be the main array.
+			if (count($array) == 1 && isset($array[0])) {
+				if (is_array($array[0])) {
+					$array = $array[0];
 				}
 			}
-		} else {
-			array_push($array, "No ResultSet Acquired.");
-		}
+			array_push($results, $array);
 
-		if ($singleColumn) {
-			$array = $this->simplifyResultsetArray($array);
-		}
-
-		// if the resultset's count is 1, and its first element is an array, set that array to be the main array.
-		if (count($array) == 1 && isset($array[0])) {
-			if (is_array($array[0])) {
-				$array = $array[0];
+			if ($stmt !== false) {
+				$resultSet = sqlsrv_next_result($stmt);
 			}
 		}
 
-		return $array;
+		if (count($results) == 1) {
+			$results = $results[0];
+		}
+
+		return $results;
 	}
 
 	/**
 	 * Retrieves the number of records that exist in the model's object.
-	 * @param string $filters A WHERE Clause to filter the resultset by.
+	 * @param string $whereClause A WHERE clause to filter the resultset by.
 	 * The filter is passed off into {@see Model::getTableFilters()}.
+	 * @param string $schema The schema of a table or view to select the count for. If omitted, uses the model's set database identifiers. If given, the $object parameter must also be given.
+	 * @param string $object The name of the table or view to select the count for. If omitted, uses the model's set database identifiers.
 	 * @return int The number of records in the model's database table/view.  
 	 */
 	// protected function getDBRecordCount(array $filters = null): int
-	protected function getDBRecordCount(string $whereClause = null): int
+	protected function getDBRecordCount(string $whereClause = null, string $schema = null, string $object = null): int
 	{
 		$count = 0;
+		$resultSet = false;
 
-		// $filter = $this->getTableFilters($filters);
-		$resultSet = sqlsrv_query($this->conn, "SELECT COUNT(*) FROM " . $this->getDBIdentifier() . " $whereClause");
+		if (!is_null($schema) && !is_null($object)) {
+			$resultSet = sqlsrv_query($this->conn, "SELECT COUNT(*) FROM [$schema].[$object] $whereClause");
+		} else {
+			$resultSet = sqlsrv_query($this->conn, "SELECT COUNT(*) FROM " . $this->getDBIdentifier() . " $whereClause");
+		}
 		if ($resultSet) {
 			$count = sqlsrv_fetch_array($resultSet, SQLSRV_FETCH_NUMERIC)[0];
 		}
@@ -429,9 +418,8 @@ abstract class Model
 	}
 
 	/**
-	 * @ignore - Needs to be adapted outside of a pre-built SQL stored procedure. ALso needs to be tested on other Database engines.
 	 * Retrieves data for any modals that need to be added to the page.
-	 * Executes usp to find all foreign keys for the model's database object.
+	 * Executes usp_sel_ForeignKeysForTableX to find all foreign keys for the model's database object.
 	 * @param $SchemaOverride string If the modal is in a different schema than the model's schema, this parameter can be used to override the schema.
 	 * @param $TableOverride string If the modal is in a different table than the model's table, this parameter can be used to override the table.
 	 * @return array An associative array where each key is the name of a column that has a modal and its value is the schema, table and column that it references.
@@ -466,7 +454,6 @@ abstract class Model
 	}
 
 	/**
-	 * @ignore - Needs to be adapted outside of a pre-built SQL view.
 	 * Checks a resultset obtained from {@see Model::getDBObjectStructure()} for any data dependencies that need to be included or used in the controller.
 	 * This includes foreign key fields or other result sets that need to be included e.g. for dropdown lists).
 	 * 
@@ -475,28 +462,33 @@ abstract class Model
 	 */
 	protected function checkForForeignKeyDependencies(array &$resultSet): ?array
 	{
+		$foreignKeyResultSet = null;
+
 		// If only one column is in the resultset, reformat the array as if it contained multiple
 		if (!isset($resultSet[0])) {
 			$resultSet = [$resultSet];
 		}
-		$foreignKeyResultSet = array();
-		foreach ($resultSet as $row) {
 
-			//  Regular tables with explicit foreign keys will go through here
-			if (isset($row['REFERENCED_SCHEMA_NAME'])) {
-				$foreignKeyResultSet[$row["FIELD_NAME"]] = $this->fetchForeignKeyData($row["REFERENCED_SCHEMA_NAME"], $row["REFERENCED_TABLE_NAME"], $row["REFERENCED_COLUMN_NAME"]);
-			} elseif (!is_null($row['PROPERTY_NAMES'])) {
-				if (str_contains($row['PROPERTY_NAMES'], 'MultiForeignKeySchema')) {
-					$properties = array_combine(explode("`", $row["PROPERTY_NAMES"]), explode("`", $row["PROPERTY_VALUES"]));
-					$foreignKeyResultSet[$row["FIELD_NAME"]] = $this->fetchForeignKeyData($properties["MultiForeignKeySchema"], $properties["MultiForeignKeyTable"], null);
+		// ensure that each row is of type array.
+		if (is_array($resultSet[0])) {
+			$foreignKeyResultSet = array();
+			foreach ($resultSet as $row) {
+				//  Regular tables with explicit foreign keys will go through here
+				if (isset($row['REFERENCED_SCHEMA_NAME'])) {
+					$foreignKeyResultSet[$row["FIELD_NAME"]] = $this->fetchForeignKeyData($row["REFERENCED_SCHEMA_NAME"], $row["REFERENCED_TABLE_NAME"], $row["REFERENCED_COLUMN_NAME"]);
+				} elseif (!is_null($row['PROPERTY_NAMES'])) {
+					if (str_contains($row['PROPERTY_NAMES'], 'MultiForeignKeySchema')) {
+						$properties = array_combine(explode("`", $row["PROPERTY_NAMES"]), explode("`", $row["PROPERTY_VALUES"]));
+						$foreignKeyResultSet[$row["FIELD_NAME"]] = $this->fetchForeignKeyData($properties["MultiForeignKeySchema"], $properties["MultiForeignKeyTable"], null);
+					}
 				}
 			}
 		}
+
 		return $foreignKeyResultSet;
 	}
 
 	/**
-	 * @ignore - Needs to be adapted outside of a pre-built SQL view.
 	 * Fetches the foreign key data dependencies associated to the model.
 	 * @param string $schema The database schema the foreign key is referencing.
 	 * @param string $object The database object the foreign key is referencing.
@@ -515,6 +507,10 @@ abstract class Model
 			if (!is_null($schema)) {
 				$qry = "EXEC usp_sel_TableRecordWithName @TableName = '$object', @SchemaName = '$schema', @PrimaryKey = '$column'";
 				$dataResultSet = sqlsrv_query($this->conn, $qry);
+				if (constant('LOG_SQL')) {
+					error_log(get_class($this));
+					error_log($qry);
+				}
 				if ($dataResultSet) {
 					$count = 0;
 					while ($row = sqlsrv_fetch_array($dataResultSet, SQLSRV_FETCH_ASSOC)) {
@@ -624,7 +620,7 @@ abstract class Model
 					case 15477:
 						$response = null;
 						break;
-					// Catch for "statement has been terminated" error
+						// Catch for "statement has been terminated" error
 					case 3621:
 						break;
 					default:
@@ -632,7 +628,7 @@ abstract class Model
 							$msg .= '<br>Sent data: <pre>' . print_r($data, true) . '</pre>';
 						}
 						$msg .= 'This is a temporary error message. To be removed in production.';
-						$response["FAILURE"] = 'An uncaught exception has occurred.';
+						$response["FAILURE"] = "An uncaught exception has occurred.\n";
 				}
 				error_log($msg, 0);
 			}
@@ -649,7 +645,7 @@ abstract class Model
 		$connectionInfo = array("Database" => constant('DB_NAME'), "UID" => constant('DB_USERNAME'), "PWD" => constant('DB_PASSWORD'), "CharacterSet" => "UTF-8");
 		$conn = sqlsrv_connect(constant('DB_SERVER'), $connectionInfo);
 		if (!$conn) {
-			$_SESSION["MSG_ERROR"] = 'Unable to connect to the database.';
+			new \EasyMVC\Components\Notification('Unable to connect to the database.', \EasyMVC\Components\NotificationType::Error);
 		}
 		return $conn;
 	}

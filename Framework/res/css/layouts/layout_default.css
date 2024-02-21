@@ -69,6 +69,16 @@ footer a {
 	list-style: square inside url("../../img/checkbox.svg");
 }
 
+.container-notifications {
+	margin: 0px auto;
+	width: 100%;
+	position: fixed;
+	top: 50px;
+	display: flex;
+	flex-direction: column;
+	z-index: 10;
+}
+
 .alert-box {
 	margin: 10px auto;
 	padding: 3px 6px;
@@ -894,8 +904,12 @@ input:focus {
 }
 
 .modal-close {
-	margin-right: 5px;
+	margin-left: 5px;
 	float: right;
+	display: block;
+	cursor: pointer;
+	text-decoration: none;
+	font-weight: bold;
 }
 
 .iframe-modal {

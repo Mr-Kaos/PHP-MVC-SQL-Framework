@@ -8,8 +8,11 @@
 
 namespace EasyMVC\Controller;
 
-use \EasyMVC\Model\Model;
+use EasyMVC\Components as c;
+use EasyMVC\Model\Model;
 require_once("./private_core/controllers/DataValidators.php");
+require_once("private_core/objects/components/Notification.php");
+
 
 /** Signifies that the form data validation and submission was successful.  */
 const STATUS_SUCCESS = 0;
@@ -41,6 +44,7 @@ abstract class Controller
 	use \EasyMVC\Controller\DataValidator;
 	private ?Model $model;
 	private array $preparedData;
+	private bool $submitToDatabase;
 	private bool $abortSubmit = false;
 	private string $mode;
 
@@ -50,11 +54,12 @@ abstract class Controller
 	 * 
 	 * The implementations of the controllers set the database tables for its model and page-specific data that the paired view will display.
 	 */
-	public function __construct(?Model $model, string $mode)
+	public function __construct(?Model $model, string $mode, bool $submitToDatabase = false)
 	{
 		$this->model = $model;
 		$this->preparedData = array();
 		$this->mode = $mode;
+		$this->submitToDatabase = $submitToDatabase;
 	}
 
 	/**
@@ -131,5 +136,47 @@ abstract class Controller
 	protected function setPreparedData(string $key, mixed $data): void
 	{
 		$this->preparedData[$key] = $data;
+	}
+
+	protected function addNotification(string $message, c\NotificationType $type = c\NotificationType::Default) {
+		new c\Notification($message, $type);
+	}
+
+	/**
+	 * Creates a session variable and stores hidden field values 
+	 * that contain sensitive information that will be used upon submission
+	 * but should not be stored in hidden fields on a page to be displayed
+	 * @param string $hiddenFieldKey - the key of the hidden field
+	 * @param string $hiddenFieldValue - the value of the key of the hidden field  
+	 */
+	protected function setHiddenField(string $hiddenFieldKey, mixed $hiddenFieldValue): void 
+	{
+		$_SESSION["HiddenFields"][get_class($this)][$hiddenFieldKey] = $hiddenFieldValue;
+	}
+
+	/**
+	 * Takes in a key value of a hidden field and looks for the session variable that it is stored in 
+	 * when it finds the hidden key it retrieves the value and returns it. 
+	 * The Session Variable is also unset once it has been retrieved
+	 * @param string $hiddenFieldKey - the key of the hidden field that the value is stored in
+	 */
+	protected function getHiddenField(string $hiddenFieldKey): mixed 
+	{
+		$foundField = 'Could Not find that hidden field';
+
+		if(isset($_SESSION["HiddenFields"][get_class($this)][$hiddenFieldKey])){
+			$foundField = $_SESSION["HiddenFields"][get_class($this)][$hiddenFieldKey];
+			unset($_SESSION["HiddenFields"][get_class($this)][$hiddenFieldKey]);
+		}
+
+		if(empty($_SESSION["HiddenFields"][get_class($this)])){
+			unset($_SESSION["HiddenFields"][get_class($this)]);
+		}
+
+		if(empty($_SESSION["HiddenFields"])){
+			unset($_SESSION["HiddenFields"]);
+		}
+
+		return $foundField;
 	}
 }

@@ -8,7 +8,11 @@ require_once('config.php');
 include_once('private_core/controllers/Controller.php');
 require_once('private_core/objects/Router.php');
 
+/** Array key used to store table identifiers in the $_SESSION array. */
+const SESS_TABLES = "TABLES";
+
 $router = new \EasyMVC\Router($_SERVER['REQUEST_URI']);
+$router->navigate();
 $controller = $router->getController();
 
 // Header is only outputted if the request requires it.

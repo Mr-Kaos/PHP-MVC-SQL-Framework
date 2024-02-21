@@ -4,6 +4,7 @@ namespace EasyMVC;
 
 use EasyMVC\Controller\Controller;
 use EasyMVC\SessionManagement\SessionManager;
+use const EasyMVC\Components\SESS_NOTIF;
 
 include('SessionManager.php');
 
@@ -67,8 +68,11 @@ class Router
 	 * Takes the Request URI and parses it to determine what page is requested by the client.
 	 * @param string $request The requested URI as provided by $_SESSION['REQUEST_URI'].
 	 */
-	public function __construct(string $request)
+	public function __construct(string $request = null)
 	{
+		if (is_null($request)) {
+			$request = $_SERVER['REQUEST_URI'];
+		}
 		$page = str_replace([APP_NAME, '.php'], '', $request);
 		$page = substr($page, 0, 1) == '/' ? substr($page, 1) : $page;
 		$this->url = $page;
@@ -77,6 +81,10 @@ class Router
 		$this->getVars = $_GET;
 		$this->DisplayMode = DisplayMode::Default;
 		$this->title = SITE_NAME;
+	}
+
+	public function navigate()
+	{
 		$this->redirectCleansedURL();
 		$this->getRequestedContent();
 	}
@@ -154,23 +162,33 @@ class Router
 	}
 
 	/**
-	 * Echoes a message set in the session storage.
-	 * Only displays one message at a time, with error messages taking priority.
-	 * After the message is displayed it is cleared from the session.
+	 * Returns a <script> tag with the correct path for the script based on the current page.
+	 * @param string $scriptPath The filename or path of the script as described from the res/js/ directory.
+	 * @return string Formatted <script> tags that contain the correctly adjusted script path.
+	 */
+	public function getScript(string $scriptPath): string
+	{
+		$path = $this->route("res/js/$scriptPath");
+		return '<script defer src="' . $path . '"></script>';
+	}
+
+	/**
+	 * Echoes any notification messages stored in the Session.
+	 * Displays all messages in order of creation. That is first in, first displayed.
 	 */
 	public function displayMessage(): void
 	{
-		// Error Message display
-		if (isset($_SESSION["MSG_ERROR"])) {
-			echo '<div class="alert-box alert-box-important">An error occurred:<br>' . $_SESSION["MSG_ERROR"] . '</div>';
-			unset($_SESSION["MSG_ERROR"]);
-		} elseif (isset($_SESSION["MSG_WARNING"])) {
-			echo '<div class="alert-box alert-box-warning">' . $_SESSION["MSG_WARNING"] . '</div>';
-			unset($_SESSION["MSG_WARNING"]);
-		} elseif (isset($_SESSION["MSG_STATUS"])) {
-			echo '<div class="alert-box alert-box-default">' . $_SESSION["MSG_STATUS"] . '</div>';
-			unset($_SESSION["MSG_STATUS"]);
+		$notifContainer = '';
+		$notifContainer = '<div id="notification_bubbles" class="container-notifications">';
+		if (isset($_SESSION[SESS_NOTIF])) {
+			foreach ($_SESSION[SESS_NOTIF] as $notification) {
+				$notifContainer .= $notification->displayNotification();
+			}
 		}
+		$notifContainer .= '</div>';
+
+		unset($_SESSION[SESS_NOTIF]);
+		echo $notifContainer;
 	}
 
 	/**
@@ -260,11 +278,11 @@ class Router
 			// For some reason, setting the requested URI here and including it via the index like all other pages does not work. Not sure why.
 			// For now, the requested file is included here and the script is killed immediately after.
 			$this->requestedURI = 'res/' . $resource;
-			include($this->requestedURI);
+			readfile($this->requestedURI,);
 			die();
-		} else if (count($this->requestParts) >= 1 && ($this->page !== '' || $this->page !== constant('AUTH_PAGE'))) {
-			$sessionManager = new SessionManager();
-			
+		} else if (count($this->requestParts) >= 1 && ($this->page !== '' || $this->page !== 'Login')) {
+			$sessionManager = new SessionManager($this->page);
+
 			if (constant('REQUIRE_AUTH')) {
 				// If the user is authenticated, check they have permission to view that page:
 				if ($sessionManager->checkAuthentication()) {
@@ -272,61 +290,67 @@ class Router
 					// If the user does not have access to the requested page, redirect to the home page.
 					// If on the home page and access is denied, redirect to the login page.
 					if (!$valid) {
-					$_SESSION['MSG_ERROR'] = 'You do not have permission to access that page.';
+						new \EasyMVC\Components\Notification('You do not have permission to access that page.', \EasyMVC\Components\NotificationType::Warning);
 						if ($this->page == 'Home') {
-							header("location:" . constant('AUTH_PAGE'));
+							header("location:" . $this->route('Login'));
 							die();
-						} elseif ($this->page !== constant('AUTH_PAGE')) {
-							header("location:Home");
+						} elseif ($this->page !== 'Login') {
+							header("location:" . $this->route('Home'));
 							die();
 						}
 						$this->DisplayMode = DisplayMode::BodyOnly;
-						if (strtolower(substr($this->page, 4)) != constant('AUTH_PAGE')) {
+						if (strtolower(substr($this->page, 4)) != "Login") {
 							$_SESSION["LOGIN_REDIRECT_DATA"]["TEMP_POST"] = $_POST;
 						}
 						$_SESSION["LOGIN_REDIRECT_DATA"]["TEMP_GET"] = $_GET;
 						$_SESSION["LOGIN_REDIRECT_DATA"]["TARGET"] = $this->page;
 					}
-				} elseif ($this->page !== constant('AUTH_PAGE')) {
-					$_SESSION['MSG_ERROR'] = 'You must login to access this page.';
-					header("location:" . constant('AUTH_PAGE'));
+				} elseif ($this->page !== 'Login') {
+					new \EasyMVC\Components\Notification('You must login to access this page.', \EasyMVC\Components\NotificationType::Warning);
+					header("location:Login");
 					die();
 				}
 			}
 
-			$pageData = $this->setupRoute($this->page);
-			$this->destination = $pageData['view'];
-			$this->mode = $pageData['mode'];
-			// $this->exactPage = $pageData['exact'];
-
-			// Check if the requested page exists. If not, direct to home page
-			if (!is_dir(VIEW_DIR . $this->destination) || $this->destination === '') {
-				$_SESSION["MSG_WARNING"] = 'DEBUG:<br>Could not find view: "' . VIEW_DIR . $this->destination . '"<hr>Page will redirect to home in release. <a href="Home">Click here</a> to go home.';
-				header("location:Home");
-			}
-
-			if ($this->mode !== '') {
-				$viewFile = VIEW_DIR . $this->destination . '/' . $this->mode . '.php';
+			// Check if the request is a modalResponse. If it is, do not render any content.
+			if (isset($this->getVars[MODAL_MESSAGE])) {
+				header('content-type:text-plain');
+				die();
 			} else {
-				$viewFile = VIEW_DIR . $this->destination . '.php';
-			}
+				$pageData = $this->setupRoute($this->page);
+				$this->destination = $pageData['view'];
+				$this->mode = $pageData['mode'];
+				// $this->exactPage = $pageData['exact'];
 
-			if ($this->page == 'Table' || $this->page == 'Login') {
-				$this->DisplayMode = DisplayMode::BodyOnly;
-			} else {
-				$displayModeName = isset($this->getVars['mode']) ? $this->getVars['mode'] : null;
-				$this->DisplayMode = $this->DisplayMode->getByName($displayModeName);
-			}
+				// Check if the requested page exists. If not, direct to home page
+				if (!is_dir(VIEW_DIR . $this->destination) || $this->destination === '') {
+					$_SESSION["MSG_WARNING"] = 'DEBUG:<br>Could not find view: "' . VIEW_DIR . $this->destination . '"<hr>Page will redirect to home in release. <a href="Home">Click here</a> to go home.';
+					header("location:Home");
+				}
 
-			if (file_exists($viewFile)) {
-				$this->requestedURI = $viewFile;
-			} else {
-				$redirect = VIEW_DIR . $this->destination . '/default.php';
-				$_SESSION["MSG_WARNING"] = "[DEBUG] ERROR! Could not locate file: " . $viewFile . ". Loaded \"$redirect\" instead.";
-				$this->requestedURI = $redirect;
-			}
+				if ($this->mode !== '') {
+					$viewFile = VIEW_DIR . $this->destination . '/' . $this->mode . '.php';
+				} else {
+					$viewFile = VIEW_DIR . $this->destination . '.php';
+				}
 
-			$this->controller = $this->includeController($this->destination, $this->mode);
+				if ($this->page == 'Table' || $this->page == 'Login') {
+					$this->DisplayMode = DisplayMode::BodyOnly;
+				} else {
+					$displayModeName = isset($this->getVars['mode']) ? $this->getVars['mode'] : null;
+					$this->DisplayMode = $this->DisplayMode->getByName($displayModeName);
+				}
+
+				if (file_exists($viewFile)) {
+					$this->requestedURI = $viewFile;
+				} else {
+					$redirect = VIEW_DIR . $this->destination . '/default.php';
+					$_SESSION["MSG_WARNING"] = "[DEBUG] ERROR! Could not locate file: " . $viewFile . ". Loaded \"$redirect\" instead.";
+					$this->requestedURI = $redirect;
+				}
+
+				$this->controller = $this->includeController($this->destination, $this->mode);
+			}
 		} else {
 			header("location:Home");
 			die();
@@ -453,11 +477,15 @@ class Router
 			case '.json':
 				$mimeType = 'application/json';
 				break;
+			case '.txt':
+			case '.dic':
+			case '.aff':
+				$mimeType = 'text/plain';
+				break;
 			default:
 				$mimeType = 'none';
 				break;
 		}
-
 		return $mimeType;
 	}
 
