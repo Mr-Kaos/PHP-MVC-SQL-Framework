@@ -16,5 +16,5 @@ $theme = isset($_SESSION["applicationTheme"]) ? $_SESSION["applicationTheme"] : 
 	<link id="theme" href="res/css/themes/style_<?= $theme ?>.css" rel="stylesheet" type="text/css">
 	<link href="res/css/layouts/layout_default.css" rel="stylesheet" type="text/css">
 	<script src="https://use.fontawesome.com/1f8670fa31.js"></script>
-	<script defer src="res/js/iframeAutoSize.js"></script>
+	<script defer src="<?= $router->route('res/js/core.js')?>"></script>
 </head>

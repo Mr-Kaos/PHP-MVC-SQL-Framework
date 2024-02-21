@@ -21,6 +21,7 @@ trait DataValidator
 	private function validateCSVParams(array $data, $keyPrefix = ""): array
 	{
 		$CSVData = array();
+		// $CSVData[$mainParamName] = $this->formatNameForDatabase($data[$mainParamName]);
 		$lastName = '';
 		$attributeNames = "";
 		$attributeFriendlyNames = "";
@@ -196,7 +197,7 @@ trait DataValidator
 					}
 					// If the next component attribute is not from a pillbox input but the pillbox key is set, assign the previously obtained pillbox values
 					if (!is_null($multiPostKey) && substr($var, 0, 6) !== 'multi-') {
-						if (count($tempMultiPostValues) > 0) {
+						if (count($tempMultiPostValues) > 0 && !empty($multiPostKey)) {
 							$subArray[$multiPostKey] = $tempMultiPostValues;
 						}
 						$tempMultiPostValues = [];
@@ -231,7 +232,8 @@ trait DataValidator
 						$multiPostKey = str_replace('multi-', '', $cleansedName);
 						$tempMultiPostValues = array();
 					} elseif (str_contains($var, $subArrayName) && $productsFound) {
-						if (!empty($val)) {
+						// $val = $this->validatePostInput($val);
+						if (!is_null($val) && !empty($cleansedName)) {
 							$subArray[$cleansedName] = $this->validateInput($val);
 						}
 					}
@@ -356,7 +358,7 @@ trait DataValidator
 	{
 		$saved = false;
 
-		if (isset($fileData["name"])) {
+		if (!empty($fileData["name"])) {
 			if (is_array($fileData['name'])) {
 				for ($i = 0; $i < count($fileData['name']); $i++) {
 					$file = array(
@@ -396,15 +398,16 @@ trait DataValidator
 		$saved = false;
 
 		$fileExtension = strtolower(pathinfo(basename($fileData['name']), PATHINFO_EXTENSION));
-		if($NewName != "") $fileData['name'] = $NewName .".". $fileExtension;
+		if ($NewName != "") {
+			$fileData['name'] = $NewName . "." . $fileExtension;
+		}
 		$target = $targetDir . $fileData['name'];
 		if ($fileData["size"] <= $sizeLimit) {
 			if (in_array($fileExtension, $allowedExtensions)) {
 				if (!is_dir($targetDir)) {
-					var_dump($targetDir);
 					mkdir($targetDir);
 				}
-	
+
 				if (move_uploaded_file($fileData['tmp_name'], $target)) {
 					$saved = $fileData['name'];
 				} else {
@@ -469,23 +472,23 @@ trait DataValidator
 	 * @param mixed $data Data to be validated for use in an SQL query.
 	 * @return string The validated data as a string.
 	 */
-	private function validateInput(mixed $data): string
+	private function validateInput(mixed $data): string|int|null
 	{
 		$validatedInput = $data;
 		if ($data instanceof \DateTime) {
 			$validatedInput = date_format($data, 'Y-m-d H:i:s');
 		} else if (!is_numeric($data) && !is_null($data)) {
 			$data = str_replace('`', '', $data);
-			// if ($data === "" || $data === "NULL") {
-			// 	$validatedInput = "NULL";
-			// } else 
+			if ($data === "" || $data === "NULL") {
+				$validatedInput = null;
+			} else 
 			if ($data === "on" || $data === "true") {
 				$validatedInput = "1";
 			} elseif ($data === "false") {
 				$validatedInput = "0";
 			}
 			// } else if (is_null($data) || $data === "") {
-			// 	$validatedInput = "NULL";
+			// 	$validatedInput = "null";
 		}
 
 		return $validatedInput;
