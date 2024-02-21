@@ -10,7 +10,11 @@
 		</div>
 		<div class="container-menu-box">
 			<h2>Database Connection</h2>
-			<p>Display details of core database connection here</p>
+			<?php if ($controller->checkPreparedData('DB')) : ?>
+				<?= $controller->getPreparedData('DB') ?>
+			<?php else : ?>
+				<p>No database has been configured.</p>
+			<?php endif ?>
 		</div>
 	</div>
 </main>

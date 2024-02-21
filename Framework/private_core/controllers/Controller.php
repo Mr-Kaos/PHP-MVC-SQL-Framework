@@ -35,14 +35,12 @@ const DROPDOWN_NEW_OPTION = "modal_new";
  * 
  * @property Model $model The Model associated with this controller. The controller feeds data directly into the model.
  * @property array $preparedData An associative array of the data extracted from the model and validated by the controller.
- * @property bool $submitToDatabase Determines if the controller is being used to insert data to the database.
  */
 abstract class Controller
 {
 	use \EasyMVC\Controller\DataValidator;
 	private ?Model $model;
 	private array $preparedData;
-	private bool $submitToDatabase;
 	private bool $abortSubmit = false;
 	private string $mode;
 
@@ -52,12 +50,11 @@ abstract class Controller
 	 * 
 	 * The implementations of the controllers set the database tables for its model and page-specific data that the paired view will display.
 	 */
-	public function __construct(?Model $model, string $mode, bool $submitToDatabase = false)
+	public function __construct(?Model $model, string $mode)
 	{
 		$this->model = $model;
 		$this->preparedData = array();
 		$this->mode = $mode;
-		$this->submitToDatabase = $submitToDatabase;
 	}
 
 	/**
